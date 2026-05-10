@@ -10,8 +10,7 @@
   },
   "scripts": {
     "dev": "next dev --turbo",
-    "build": "opennextjs-cloudflare build",
-    "build:next": "next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
