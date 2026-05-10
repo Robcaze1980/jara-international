@@ -4,7 +4,7 @@
 
 name = "jara-international"
 main = ".open-next/worker.js"
-compatibility_date = "2025-03-01"
+compatibility_date = "2025-12-01"
 compatibility_flags = ["nodejs_compat"]
 
 # Static assets (per OpenNext convention)

@@ -22,7 +22,7 @@ B2B distributor of premium fiber-cement panels for the United States constructio
 - **React 19**
 - **Tailwind CSS 3.4** + Radix UI primitives + lucide-react icons
 - **TypeScript 5.7** strict
-- **Cloudflare Pages** deploy via `@cloudflare/next-on-pages`
+- **Cloudflare Workers** deploy via `@opennextjs/cloudflare` (per ADR-020 Round 4 user-strategic tiebreak)
 
 ## Local development
 
@@ -40,11 +40,40 @@ npm run preview
 
 ## Deploy
 
-Auto-deploy via Cloudflare Pages connected to `main` branch.
+Auto-deploy via Cloudflare Workers connected to `main` branch in this repo.
 
-Manual deploy:
+### ⚠️ CRITICAL: Cloudflare dashboard must be configured with the right build command
+
+OpenNext requires a non-default build command. **The Cloudflare project's Build configuration MUST have:**
+
+| Field | Value |
+|---|---|
+| **Build command** | `npm run cf:build` |
+| **Deploy command** | `npx wrangler deploy` |
+| **Version command** | `npx wrangler versions upload` |
+| **Root directory** | `/` |
+
+**Why not just `npm run build`?** OpenNext (`opennextjs-cloudflare build`) internally invokes `npm run build` to produce the underlying Next.js output, then bundles it as a Worker. If `package.json`'s `build` script were also `opennextjs-cloudflare build`, infinite recursion would occur and the build would loop until Cloudflare timeout. The current `package.json` keeps `build = next build` (vanilla — what OpenNext expects to call internally) and exposes the OpenNext command as `cf:build` (what Cloudflare's dashboard must invoke).
+
+**If you ever re-import the project to Cloudflare or a new collaborator deploys:** verify the dashboard build command is `npm run cf:build` and NOT the auto-detected `npm run build`. Otherwise the deploy will silently fail with "entry-point file at .open-next/worker.js was not found".
+
+### Manual deploy from local
+
 ```bash
-npm run cf:deploy
+npm run cf:build       # generates .open-next/worker.js
+npm run cf:deploy      # uploads to Cloudflare Workers
+```
+
+### Local preview that mirrors Cloudflare Workers runtime
+
+```bash
+npm run preview        # builds with OpenNext, serves locally with workerd
+```
+
+### Local Next dev (faster iteration, no Workers runtime)
+
+```bash
+npm run dev            # → http://localhost:3000
 ```
 
 ---

@@ -14,9 +14,19 @@ import { PRODUCTS } from '@/data/products';
 // OpenNext on Cloudflare Workers runs the default Node runtime via
 // nodejs_compat (configured in wrangler.toml). No need for `runtime = 'edge'`
 // — the explicit edge runtime caused 500 errors in production.
-// Cache-Control header below handles CDN-edge caching (1h fresh + 24h SWR);
-// `export const revalidate` is for Next ISR which requires R2/KV cache backing
-// we haven't configured (and don't need for static product data).
+//
+// Caching strategy (per Round 5 GLM finding — documented for future reference):
+// Every request hits the Worker (no ISR cache). For low/moderate traffic this
+// is fine because:
+//   1. Cloudflare's CDN respects the Cache-Control header below — the response
+//      is held at the edge for 1 hour fresh + 24 hours stale-while-revalidate,
+//      so most requests never reach the Worker.
+//   2. Worker startup is ~22ms (excellent — well within ADR-019 SH2 budget).
+//   3. The payload is built from in-memory data (no DB or external fetch).
+//
+// Revisit if/when traffic grows or AI crawlers hit this endpoint at scale —
+// at that point, configure OpenNext incremental cache override with R2 backing
+// in `open-next.config.ts` and add `export const revalidate = 3600` here.
 
 export async function GET() {
   const payload = {

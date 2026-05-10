@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     description: SITE.description,
     images: [
       {
-        url: '/images/og/og-default.png',
+        url: '/images/og/og-default.svg',
         width: 1200,
         height: 630,
         alt: SITE.name,
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: `${SITE.name} | ${SITE.tagline}`,
     description: SITE.description,
-    images: ['/images/og/og-default.png'],
+    images: ['/images/og/og-default.svg'],
   },
   alternates: {
     canonical: SITE.url,
@@ -81,13 +81,10 @@ export const metadata: Metadata = {
       'x-default': SITE.url,
     },
   },
-  // GSC + Bing Webmaster verification — replace stubs after user provides codes
-  verification: {
-    google: 'PLACEHOLDER_GSC_VERIFICATION_CODE',
-    other: {
-      'msvalidate.01': 'PLACEHOLDER_BING_VERIFICATION_CODE',
-    },
-  },
+  // GSC verification: auto-verified by Cloudflare Google integration (no meta tag needed).
+  // Bing verification: handled by /BingSiteAuth.xml file in public/ (no meta tag needed).
+  // Removed placeholder values per Round 5 review — they were stale and would have caused
+  // verification failures if Google/Bing read them as authoritative.
 };
 
 export const viewport: Viewport = {
