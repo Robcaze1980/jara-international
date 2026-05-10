@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  JARA International — Hero placeholder (Sprint 1).
+  Replace with user-supplied AI-generated photo when delivered.
+  Per ADR-013: layout never changes; only the image swaps.
+
+  Brand-compliant per JARA Brand Strategy:
+  - Navy gradient background (#062B49 → #04233D, locked colors §10-11)
+  - Three-panel symbol watermark (per logo strategy §5-6)
+  - NO orange/red/green/yellow (forbidden §12)
+  - Architectural, clean, material-focused tone (§22)
+
+  Dimensions: 2400×1200 (matches recommended hero source size).
+-->
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 2400 1200"
+  width="2400"
+  height="1200"
+  preserveAspectRatio="xMidYMid slice"
+  role="img"
+  aria-label="JARA International — placeholder hero"
+>
+  <defs>
+    <linearGradient id="bgGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#062B49" />
+      <stop offset="50%" stop-color="#04233D" />
+      <stop offset="100%" stop-color="#062B49" />
+    </linearGradient>
+    <linearGradient id="panelLight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5F7894" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#5F7894" stop-opacity="0.05" />
+    </linearGradient>
+    <linearGradient id="panelMid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5F7894" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#5F7894" stop-opacity="0.08" />
+    </linearGradient>
+    <linearGradient id="panelDeep" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5F7894" stop-opacity="0.32" />
+      <stop offset="100%" stop-color="#5F7894" stop-opacity="0.12" />
+    </linearGradient>
+  </defs>
+
+  <!-- Base navy gradient -->
+  <rect width="2400" height="1200" fill="url(#bgGradient)" />
+
+  <!-- Three-panel symbol motif — abstract material/inventory representation -->
+  <!-- Right side, subtle, large scale -->
+  <g transform="translate(1500 150)" opacity="0.55">
+    <!-- Back panel -->
+    <rect x="0" y="0" width="280" height="900" rx="6" fill="url(#panelLight)" />
+    <!-- Mid panel -->
+    <rect x="120" y="40" width="280" height="900" rx="6" fill="url(#panelMid)" />
+    <!-- Front panel -->
+    <rect x="240" y="80" width="280" height="900" rx="6" fill="url(#panelDeep)" />
+
+    <!-- Subtle vertical accent lines -->
+    <line x1="280" y1="0" x2="280" y2="900" stroke="#B8C7D6" stroke-width="0.5" stroke-opacity="0.3" />
+    <line x1="400" y1="40" x2="400" y2="940" stroke="#B8C7D6" stroke-width="0.5" stroke-opacity="0.3" />
+    <line x1="520" y1="80" x2="520" y2="980" stroke="#B8C7D6" stroke-width="0.5" stroke-opacity="0.3" />
+  </g>
+
+  <!-- Corner watermark — symbol only, very subtle -->
+  <g transform="translate(2200 1080)" opacity="0.18">
+    <rect x="0" y="0" width="40" height="100" rx="2" fill="#B8C7D6" />
+    <rect x="20" y="6" width="40" height="100" rx="2" fill="#B8C7D6" />
+    <rect x="40" y="12" width="40" height="100" rx="2" fill="#B8C7D6" />
+  </g>
+
+  <!-- Subtle grid pattern (architectural, low-contrast) -->
+  <g opacity="0.04" stroke="#B8C7D6" stroke-width="1">
+    <line x1="0" y1="200" x2="2400" y2="200" />
+    <line x1="0" y1="400" x2="2400" y2="400" />
+    <line x1="0" y1="600" x2="2400" y2="600" />
+    <line x1="0" y1="800" x2="2400" y2="800" />
+    <line x1="0" y1="1000" x2="2400" y2="1000" />
+  </g>
+</svg>

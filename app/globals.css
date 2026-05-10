@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* JARA International — locked design tokens (per JARA Brand Strategy §10-11) */
+:root {
+  /* Color tokens (also exposed via tailwind.config.ts) */
+  --color-navy: #062B49;
+  --color-navy-dark: #04233D;
+  --color-steel: #5F7894;
+  --color-bluegray: #B8C7D6;
+  --color-bg: #FFFFFF;
+  --color-bg-soft: #F4F6F8;
+  --color-ink: #1F2933;
+
+  /* Spacing rhythm */
+  --radius: 0.5rem;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* JARA brand typography hierarchy (per JARA brand guide §9) */
+  h1, h2, h3 {
+    @apply font-display text-navy;
+    text-wrap: balance;
+  }
+
+  /* Focus-visible for keyboard accessibility (WCAG AA) */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-steel;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}

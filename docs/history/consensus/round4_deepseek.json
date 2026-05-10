@@ -1,0 +1,27 @@
+{
+  "model": "deepseek/deepseek-v4-pro",
+  "content": "{\n  \"model\": \"DeepSeek V4 Pro\",\n  \"agent\": \"DeepSeek V4 Pro\",\n  \"votes\": {\n    \"J\": \"J1\"\n  },\n  \"reasoning\": {\n    \"J\": \"Downgrading to Next.js 15.5.2 immediately resolves the adapter blocker with zero risk, preserves all other locked architectures, and guarantees launch within days as mandated.\"\n  },\n  \"additional_findings\": [],\n  \"verdict\": \"ship\",\n  \"verdict_reason\": \"J1 is the safest, fastest path that fully respects the launch timeline and only adjusts ADR-001 as anticipated by the fallback clause in F1.5.\"\n}",
+  "usage": {
+    "prompt_tokens": 1147,
+    "completion_tokens": 489,
+    "total_tokens": 1636,
+    "cost": 0.00091513125,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.000924375,
+      "upstream_inference_prompt_cost": 0.000498945,
+      "upstream_inference_completions_cost": 0.00042543
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 341,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}

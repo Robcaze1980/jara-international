@@ -1,0 +1,27 @@
+{
+  "model": "google/gemini-3.1-flash-lite",
+  "content": "{\n  \"model\": \"gemini-3-pro\",\n  \"agent\": \"Gemini 3 Pro\",\n  \"votes\": {\n    \"A\": \"A2\",\n    \"B\": \"B2\",\n    \"C\": \"C1\",\n    \"D\": \"D2\",\n    \"E\": \"E3\",\n    \"F\": \"F3\",\n    \"G\": \"G1\",\n    \"H\": \"H3\",\n    \"I\": \"I1\"\n  },\n  \"reasoning\": {\n    \"A\": \"Astro 5 is superior for a content-heavy B2B catalog, offering better performance and SEO out-of-the-box compared to Next.js.\",\n    \"B\": \"A multi-product catalog establishes JARA as a legitimate distributor rather than a single-product reseller, maximizing the utility of the existing PDF data.\",\n    \"C\": \"jarainternational.com is the professional standard for a US-based corporate entity and should be the canonical authority.\",\n    \"D\": \"D2 provides the necessary technical depth for AI crawlers to index product specs accurately without the overhead of maintaining an MCP server or chatbot.\",\n    \"E\": \"The interactive calculator provides high value to contractors while capturing leads, and by omitting prices, it adheres strictly to SB-4.\",\n    \"F\": \"F3 is the only safe path to ensure a launch date is not delayed by external approval cycles; it maintains compliance while allowing for future updates.\",\n    \"G\": \"G1 focuses on high-intent, non-branded search terms, ensuring traffic growth while avoiding potential trademark or compliance conflicts with Plycem.\",\n    \"H\": \"H3 provides immediate utility to the Spanish-speaking labor market via a landing page without the massive resource drain of a full site translation at launch.\",\n    \"I\": \"info@jarainternational.com aligns with the canonical domain and conveys the corporate stability required for B2B procurement.\"\n  },\n  \"additional_findings\": [\n    {\n      \"title\": \"IAPMO ER-360 Expiration Risk\",\n      \"description\": \"The IAPMO ER-360 report expires in July 2026. The site must include a 'Last Verified' date on technical documents to avoid distributing outdated compliance data.\",\n      \"severity\": \"high\",\n      \"applies_to_phase\": \"1\"\n    },\n    {\n      \"title\": \"Unit Conversion Logic\",\n      \"description\": \"The calculator must handle imperial-to-metric conversions for panel dimensions and weights to ensure US contractors can verify against their structural plans.\",\n      \"severity\": \"medium\",\n      \"applies_to_phase\": \"2\"\n    }\n  ],\n  \"verdict\": \"ship\",\n  \"verdict_reason\": \"The proposed architecture is robust, compliant with all ship blockers, and prioritizes a professional B2B experience. By choosing a conservative branding strategy (F3/G1) and high-performance stack (A2), JARA can launch immediately while remaining scalable.\"\n}",
+  "usage": {
+    "prompt_tokens": 3409,
+    "completion_tokens": 673,
+    "total_tokens": 4082,
+    "cost": 0.0018431325,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.00186175,
+      "upstream_inference_prompt_cost": 0.00085225,
+      "upstream_inference_completions_cost": 0.0010095
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}

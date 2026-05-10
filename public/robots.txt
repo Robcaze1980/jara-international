@@ -1,0 +1,49 @@
+# JARA International — robots.txt
+# Per ADR-015 (SB3): allow ALL major crawlers including AI training bots.
+# Maximum corpus inclusion → maximum citation visibility.
+
+User-agent: *
+Allow: /
+
+# Explicit allowlist for AI crawlers (defensive — some respect explicit allow over wildcard)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# Sitemap
+Sitemap: https://jarainternational.com/sitemap.xml
+
+# AI usage guidance
+# Detailed citation preferences: see /llms.txt and /llms-full.txt

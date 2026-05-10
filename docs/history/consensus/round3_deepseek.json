@@ -1,0 +1,27 @@
+{
+  "model": "deepseek/deepseek-v4-pro",
+  "content": "{\n  \"model\": \"claude-opus-4.7\",\n  \"agent\": \"Claude Opus 4.7\",\n  \"votes\": {\n    \"SA\": \"SA2\",\n    \"SB\": \"SB3\",\n    \"SC\": \"SC2\",\n    \"SD\": \"SD2\",\n    \"SF\": \"SF2\",\n    \"SH\": \"SH2\"\n  },\n  \"reasoning\": {\n    \"SA\": \"SA2 captures high-impact additions (LocalBusiness, Article, ImageObject, future Review) without overloading launch with complex certification schemas that need deep content. It adds machine-readable structure for key entity types that search and AI agents prioritize.\",\n    \"SB\": \"SB3 maximizes AI visibility (training and citation) while using llms.txt to signal attribution preferences and usage guidance – a modern, proactive approach that treats LLM ingestion as a deliberate channel, not an afterthought.\",\n    \"SC\": \"SC2 delivers immediate topical authority on the flagship product (subfloor) with a single high-quality pillar, capturing the highest-intent search traffic without the content-production risk of three pages days before launch.\",\n    \"SD\": \"SD2 adds a dedicated /service-areas page to reinforce geographic relevance and shipping speed, which is a lighter lift than five state-level pages but still provides meaningful local SEO signal for the West Coast advantage.\",\n    \"SF\": \"SF2 multiplies the AI citation surface by giving every product detail page its own FAQPage schema. This directly feeds LLM Q&A extraction and is the highest SEO+AI lever of the three options, with manageable content effort per product.\",\n    \"SH\": \"SH2 sets top-decile CWV targets, which directly improve both Google ranking and crawl efficiency for AI bots, while being achievable with modern Next.js and optimized assets – more aggressive than 'Good' but not perfectionism that blocks launch.\"\n  },\n  \"additional_findings\": [\n    {\n      \"title\": \"Implement hreflang tags on / and /es pages\",\n      \"description\": \"Add hreflang='en' for / and hreflang='es' for /es to signal bilingual content to search engines, preventing duplicate-content flags and improving ES visibility for US contractors serving Spanish-speaking crews.\",\n      \"severity\": \"high\",\n      \"applies_to_phase\": \"3\"\n    },\n    {\n      \"title\": \"Ship an XML sitemap with lastmod, priority, and images\",\n      \"description\": \"Generate /sitemap.xml on build with product pages, resources hub, contact, /es, and the new pillar page. Include image:image elements for product photos to boost discoverability in Google Images and LLM context-retrieval pipelines.\",\n      \"severity\": \"high\",\n      \"applies_to_phase\": \"3\"\n    },\n    {\n      \"title\": \"Populate llms.txt with structured product summary and FAQ excerpts\",\n      \"description\": \"Beyond the llms-full.txt dump, craft the compact llms.txt as an AI site map listing /products, /resources, pillar pages, and FAQ endpoints. Include a one-line description per product and a link to the public /api/llm-context endpoint for machine clients.\",\n      \"severity\": \"medium\",\n      \"applies_to_phase\": \"3\"\n    },\n    {\n      \"title\": \"Add JSON-LD @id linking for entity relationships\",\n      \"description\": \"Assign @id to Organization, LocalBusiness, Product, and FAQPage entities, then reference them via mainEntity, manufacturer, or subjectOf relationships – helps AI agents assemble a coherent knowledge graph of the company.\",\n      \"severity\": \"medium\",\n      \"applies_to_phase\": \"3\"\n    }\n  ],\n  \"verdict\": \"ship\",\n  \"verdict_reason\": \"All choices strike a deliberate balance between aggressive SEO+AI maximization and practical launch-day content effort; with the pillar page and per-product FAQs well-scoped, the site can launch on time with a strong machine-readability foundation.\"\n}",
+  "usage": {
+    "prompt_tokens": 2344,
+    "completion_tokens": 2667,
+    "total_tokens": 5011,
+    "cost": 0.0033065307,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.00333993,
+      "upstream_inference_prompt_cost": 0.00101964,
+      "upstream_inference_completions_cost": 0.00232029
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 1824,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}

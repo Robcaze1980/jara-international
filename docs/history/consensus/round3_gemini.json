@@ -1,0 +1,27 @@
+{
+  "model": "google/gemini-3.1-flash-lite",
+  "content": "```json\n{\n  \"model\": \"claude-opus-4.7\",\n  \"agent\": \"Claude Opus 4.7 (manual)\",\n  \"votes\": {\n    \"SA\": \"SA3\",\n    \"SB\": \"SB3\",\n    \"SC\": \"SC2\",\n    \"SD\": \"SD2\",\n    \"SF\": \"SF2\",\n    \"SH\": \"SH2\"\n  },\n  \"reasoning\": {\n    \"SA\": \"Aggressive schema (SA3) is the single highest-leverage action for AI agents and AHJs to verify compliance without human intervention.\",\n    \"SB\": \"SB3 signals professional intent to AI systems while maximizing visibility; llms.txt is the modern standard for B2B transparency.\",\n    \"SC\": \"SC2 provides the necessary topical authority for the primary product without delaying the launch with excessive content bloat.\",\n    \"SD\": \"SD2 balances local SEO reach with manageable maintenance, ensuring the Long Beach warehouse is contextually linked to the target market.\",\n    \"SF\": \"SF2 maximizes the 'answer engine' surface area, ensuring product-specific questions are indexed directly alongside the product data.\",\n    \"SH\": \"SH2 is achievable with Next.js 16/Cloudflare and provides a distinct competitive advantage in search rankings and crawl budget efficiency.\"\n  },\n  \"additional_findings\": [\n    {\n      \"title\": \"Hreflang Implementation for /es\",\n      \"description\": \"Ensure the /es landing page includes canonical tags pointing to itself and hreflang annotations linking to the English equivalent to prevent duplicate content penalties.\",\n      \"severity\": \"high\",\n      \"applies_to_phase\": \"3\"\n    },\n    {\n      \"title\": \"LLM-Context API Payload Structure\",\n      \"description\": \"The /api/llm-context endpoint should return a JSON object containing the current inventory status of the Long Beach warehouse to assist AI procurement agents.\",\n      \"severity\": \"medium\",\n      \"applies_to_phase\": \"3\"\n    }\n  ],\n  \"verdict\": \"ship\",\n  \"verdict_reason\": \"The selected options provide a high-performance, AI-optimized foundation that maximizes search visibility and machine readability without compromising the rapid launch timeline.\"\n}\n```",
+  "usage": {
+    "prompt_tokens": 2453,
+    "completion_tokens": 507,
+    "total_tokens": 2960,
+    "cost": 0.0013600125,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.00137375,
+      "upstream_inference_prompt_cost": 0.00061325,
+      "upstream_inference_completions_cost": 0.0007605
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}

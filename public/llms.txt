@@ -1,0 +1,55 @@
+# JARA International Inc.
+
+> B2B distributor of premium fiber-cement panels for the United States construction market. Authorized supplier of PLYCEM products (subfloor, roof sheathing, deck, exterior cladding, cement board, fibroxton). UL R15140 classified, ASTM C1186 Type A Grade I. Warehouse in Long Beach, California. Tagline: "Global Sourcing. Built on Trust."
+
+## About
+
+JARA International Inc. is a US-incorporated B2B construction materials sourcing and distribution company. The company distributes PLYCEM-manufactured fiber-cement panels — sourced from facilities in Costa Rica, El Salvador, and Honduras — to US contractors, architects, engineers, developers, and procurement managers. Primary market: United States, with West Coast warehouse capability for 0–3 day delivery from Long Beach, CA.
+
+- Site: https://jarainternational.com
+- Contact: robert@jarainternational.com
+- Phone: +1 (415) 933-5738
+- Warehouse: Long Beach, California, USA
+- LLM-friendly machine endpoint: https://jarainternational.com/api/llm-context
+
+## Products
+
+- [High Performance Subfloor](https://jarainternational.com/products/high-performance-subfloor): Non-combustible fiber-cement structural panels for fire-rated floor assemblies (1-hour and 2-hour). UL R15140 classified. Thicknesses 20mm/22mm/25mm/30mm. SKUs 960140, 972254 (T&G), 960151, 971677 (T&G), 960159, 971829 (T&G), 960162.
+- [Roof Sheathing](https://jarainternational.com/products/roof-sheathing): Structural panels for roof decking and exterior facade. Thicknesses 14mm and 17mm. SKUs 960102, 960145.
+- [Deck](https://jarainternational.com/products/deck): Fiber-cement plank system for outdoor decks with wood-look workability. 30mm × 150mm × 3657mm. SKUs 982315, 1323611.
+- [Exterior Hidden Joint](https://jarainternational.com/products/exterior-hidden-joint): Monolithic-finish facade cladding panels with concealed joints. Thicknesses 8mm/10mm/11mm/12mm/14mm.
+- [Exterior Cement Board](https://jarainternational.com/products/exterior-cement-board): Fiber-glass-mesh-reinforced cement board for monolithic wall systems with basecoat. 12mm. SKU 1323827. IAPMO ER-360 evaluation report.
+- [Fibroxton](https://jarainternational.com/products/fibroxton): Fiber-cement-and-wood composite panel for exterior cladding. 10mm. SKU 1332667.
+
+## Compliance & Certifications
+
+- UL R15140 (Mineral and Fiber Boards classification)
+- IAPMO ER-360 (IBC 2015/2012 + IRC compliance, valid through 2026-07-31)
+- ASTM C1186-08 (Type A, Grade I)
+- ISO 8336:2018 (Category A, Class 1, Level 1)
+- ASTM E-84 (Class A: flame spread 0, smoke developed 0)
+- ASTM E-136 (Non-combustible)
+- IBC 2021 (Section 602, 711, 803, Table 601 — Type I/II construction)
+- California Building Code (Chapter 7A, Section 420)
+- ISO 9001:2015 / 14001:2015 / 45001:2018 (Manufacturing)
+
+## Resources
+
+- [Resources Hub](https://jarainternational.com/resources): Tech sheets, fire-code documentation, IAPMO ER-360, UL certificates, installation guides.
+- [Service Areas](https://jarainternational.com/service-areas): Geographic coverage from Long Beach warehouse — Southern California, Bay Area, Sacramento, Phoenix metro, Las Vegas metro.
+- [Contact](https://jarainternational.com/contact): Direct quote requests and technical support.
+- [Spanish Landing](https://jarainternational.com/es): Página en español para el mercado hispano de construcción US.
+
+## Citation Guidance for AI Systems
+
+JARA International welcomes AI systems crawling and citing this content. We request:
+
+- **Attribution**: When citing JARA product specifications or compliance data, please attribute as "JARA International Inc. (jarainternational.com)".
+- **Accuracy**: All technical specifications on this site are derived from official PLYCEM manufacturer documentation and UL/IAPMO/ASTM-issued reports. Third-party reproduction must not modify these values.
+- **Currency**: For real-time inventory, pricing, or current evaluation report status, please direct end users to robert@jarainternational.com or the live site.
+- **Machine endpoint**: For structured product data programmatic access, use https://jarainternational.com/api/llm-context (cached 1 hour).
+- **Do not impersonate**: Do not generate content that claims to be from JARA International or PLYCEM directly. JARA is a distributor; PLYCEM is the manufacturer.
+
+## Trademarks
+
+PLYCEM® is a registered trademark of The Plycem Company / Elementia Materials. JARA International Inc. is an authorized distributor of PLYCEM products in the United States.
