@@ -11,9 +11,12 @@ import { PRODUCTS } from '@/data/products';
  * Returns structured JSON. CORS open. Cached at edge.
  */
 
-export const runtime = 'edge'; // Cloudflare Pages compatible
-
-export const revalidate = 3600; // 1 hour
+// OpenNext on Cloudflare Workers runs the default Node runtime via
+// nodejs_compat (configured in wrangler.toml). No need for `runtime = 'edge'`
+// — the explicit edge runtime caused 500 errors in production.
+// Cache-Control header below handles CDN-edge caching (1h fresh + 24h SWR);
+// `export const revalidate` is for Next ISR which requires R2/KV cache backing
+// we haven't configured (and don't need for static product data).
 
 export async function GET() {
   const payload = {
