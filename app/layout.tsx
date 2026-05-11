@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Inter, Montserrat } from 'next/font/google';
 import { SITE } from '@/lib/site';
 import { organizationSchema, localBusinessSchema, jsonLdScript } from '@/lib/jsonld';
+import { SiteFooter } from '@/components/SiteFooter';
 
 import './globals.css';
 
@@ -114,6 +115,7 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased">
         <main>{children}</main>
+        <SiteFooter />
       </body>
     </html>
   );

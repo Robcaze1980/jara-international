@@ -1,61 +1,66 @@
+import type { Metadata } from 'next';
+import Script from 'next/script';
 import { SITE } from '@/lib/site';
+import { PRODUCTS } from '@/data/products';
+import { productSchema, webSiteSchema, jsonLdScript } from '@/lib/jsonld';
+import { Hero } from '@/components/Hero';
+import { ValueProps } from '@/components/ValueProps';
+import { FeaturedProducts } from '@/components/FeaturedProducts';
+import { TrustBar } from '@/components/TrustBar';
+import { MaterialCalculator } from '@/components/MaterialCalculator';
+import { FinalCTA } from '@/components/FinalCTA';
+import { StickyCTABar } from '@/components/StickyCTABar';
 
 /**
- * Sprint 1 smoke test home page.
- * Validates: RSC rendering, brand tokens, typography, hreflang, canonical.
- * Will be replaced in Sprint 2 with full hero + calculator + product grid (per ADR-005, ADR-010, ADR-013).
+ * Home page composition — per Round 6 ADR-025 HD2 section ordering:
+ *
+ *   Hero → ValueProps → FeaturedProducts → TrustBar → Calculator → FinalCTA → Footer
+ *
+ * Per Round 6 F4.R6 + GLM finding: emit Product JSON-LD for each of the 6
+ * featured products + WebSite JSON-LD on home (Organization + LocalBusiness
+ * already in root layout per ADR-014).
+ *
+ * StickyCTABar is a client component appended at the end (per ADR-026 HE2 —
+ * appears after scroll past hero, hides when virtual keyboard is open).
+ *
+ * Page-specific metadata: title is the default from layout (`%s | JARA`),
+ * description is overridden to be more home-specific. Canonical and hreflang
+ * cascade from root layout.
  */
-export default function Home() {
-  return (
-    <div className="min-h-screen bg-bg-soft">
-      {/* Sprint 1 placeholder hero — will be replaced with VA1 full-bleed hero in Sprint 2 */}
-      <section className="bg-navy text-white">
-        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
-          <p className="text-sm font-medium tracking-wider text-bluegray uppercase">
-            B2B Construction Materials Distribution
-          </p>
-          <h1 className="mt-4 font-display text-4xl font-bold text-white md:text-5xl lg:text-6xl text-balance">
-            {SITE.tagline}
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-bluegray">
-            Premium fiber-cement panels supplied for US contractors, architects, developers, and distributors. UL R15140 classified · ASTM C1186 Type A Grade I · In stock Long Beach, CA.
-          </p>
-          <div className="mt-10 flex flex-wrap gap-4">
-            <a
-              href="#"
-              className="inline-flex items-center rounded-md bg-white px-5 py-3 text-sm font-semibold text-navy hover:bg-bluegray transition-colors"
-            >
-              Request a Quote
-            </a>
-            <a
-              href="#"
-              className="inline-flex items-center rounded-md border border-white/30 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-colors"
-            >
-              View Products
-            </a>
-          </div>
-        </div>
-      </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-24">
-        <div className="rounded-lg border border-bluegray bg-white p-6 shadow-sm">
-          <h2 className="font-display text-2xl font-bold text-navy">Sprint 1 Smoke Test ✓</h2>
-          <p className="mt-3 text-ink leading-relaxed">
-            This page validates Phase 1 constraint <strong>C5</strong>: Next.js 16 + Tailwind 3.4 + JARA brand tokens (navy <code className="rounded bg-bg-soft px-1.5 py-0.5 text-sm">#062B49</code>, Montserrat display, Inter body) render correctly on Cloudflare Pages.
-          </p>
-          <ul className="mt-4 space-y-1 text-sm text-steel">
-            <li>✓ Server-rendered (RSC) — no client-side hydration of static content</li>
-            <li>✓ JSON-LD Organization + LocalBusiness in &lt;head&gt; (per ADR-014)</li>
-            <li>✓ hreflang en-US / es-US / x-default (per F1.R3)</li>
-            <li>✓ Self-referencing canonical (per Round 3 GLM finding)</li>
-            <li>✓ Open Graph + Twitter Card meta (per Round 3 GLM finding)</li>
-            <li>✓ robots meta with max-snippet/image/video preview (per ADR-015)</li>
-          </ul>
-          <p className="mt-4 text-sm text-steel">
-            Sprint 2 replaces this with the full home: hero with user-supplied photo, material calculator, featured products, sticky bottom bar.
-          </p>
-        </div>
-      </section>
-    </div>
+export const metadata: Metadata = {
+  title: 'Fiber-Cement Panel Distributor — In Stock Long Beach CA',
+  description:
+    'JARA International distributes the full PLYCEM fiber-cement product line — subfloor, roof sheathing, deck, exterior cladding, cement board, and fibroxton — to US contractors, architects, and developers. UL R15140, ASTM C1186, IAPMO ER-360. In stock at Long Beach, CA. 0–3 day West Coast delivery.',
+};
+
+export default function HomePage() {
+  // Build JSON-LD payloads at request time
+  const allSchemas = [webSiteSchema(), ...PRODUCTS.map((p) => productSchema(p))];
+
+  return (
+    <>
+      {/* JSON-LD: WebSite + 6 Product schemas (Organization + LocalBusiness in root layout) */}
+      {allSchemas.map((schema, i) => (
+        <Script
+          key={`jsonld-${i}`}
+          id={`jsonld-${i}`}
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: jsonLdScript(schema) }}
+        />
+      ))}
+
+      {/* Section order per ADR-025 HD2 (Round 6) */}
+      <Hero />
+      <ValueProps />
+      <FeaturedProducts />
+      <TrustBar />
+      <MaterialCalculator />
+      <FinalCTA />
+
+      {/* Sticky CTA bar — client component, appears after scroll past hero */}
+      <StickyCTABar />
+    </>
   );
 }

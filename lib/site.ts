@@ -19,10 +19,19 @@ export const SITE = {
   locale: 'en-US',
   altLocales: ['es-US'],
 
-  // Contact (ADR-009)
+  // Contact (ADR-009 + 2026-05-10 phone strategy lock)
   email: 'robert@jarainternational.com',
   emailLeads: 'robert@jarainternational.com',
-  phone: '+1 (415) 933-5738',
+
+  // Phone strategy: Primary number = Retell.ai "Anna" AI agent (screens calls,
+  // captures lead data, tells caller Robertson will follow up).
+  // Secondary number = Robertson's personal cell (disclosed in footer for trust
+  // signal and direct-contact preference).
+  phone: '+1 (415) 532-3376', // Anna AI agent — primary CTA on site
+  phonePrimary: '+1 (415) 532-3376', // explicit alias for clarity in components
+  phonePrimaryRaw: '+14155323376', // tel: and wa.me link format
+  phoneSecondary: '+1 (415) 933-5738', // Robertson direct — footer secondary
+  phoneSecondaryRaw: '+14159335738',
 
   // Warehouse / LocalBusiness (ADR-017)
   warehouse: {

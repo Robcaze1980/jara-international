@@ -71,7 +71,80 @@ export function breadcrumbSchema(items: Array<{ name: string; url: string }>) {
   };
 }
 
+/** Per Round 6 F4.R6: Product schema for each featured product on home + product detail pages. */
+export function productSchema(product: import('@/data/products').Product) {
+  const firstVariant = product.variants[0];
+  const productUrl = `${SITE.url}/products/${product.slug}`;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    '@id': `${productUrl}#product`,
+    name: product.name,
+    description: product.shortDescription,
+    url: productUrl,
+    sku: firstVariant?.sku,
+    mpn: firstVariant?.sku, // SKU and MPN are equivalent for Plycem product codes
+    category: 'Fiber Cement Building Panel',
+    manufacturer: {
+      '@type': 'Organization',
+      name: product.manufacturer,
+    },
+    brand: {
+      '@type': 'Brand',
+      name: product.manufacturer,
+    },
+    // Per Round 3 GLM finding: compliance certifications as additionalProperty
+    additionalProperty: product.compliance.map((cert) => ({
+      '@type': 'PropertyValue',
+      name: cert.standard,
+      value: cert.detail,
+    })),
+    // Distributor relationship (Plycem ship blocker compliant — no "Authorized" claim).
+    // Per ship blocker SB-4: NO price, NO priceCurrency, NO priceSpecification —
+    // a quote-only model. availability=InStock is the only commercial signal we
+    // expose; pricing is communicated privately via the submittal form path.
+    offers: {
+      '@type': 'Offer',
+      seller: { '@id': ORG_ID },
+      availability: 'https://schema.org/InStock',
+      areaServed: SITE.serviceAreas.map((a) => ({ '@type': 'Place', name: a })),
+    },
+  };
+}
+
+/** WebSite schema for home page (per Round 6 GLM finding). */
+export function webSiteSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${SITE.url}/#website`,
+    name: SITE.name,
+    url: SITE.url,
+    description: SITE.description,
+    publisher: { '@id': ORG_ID },
+    inLanguage: ['en-US', 'es-US'],
+  };
+}
+
+/** FAQ schema with guard — only renders if items array is non-empty (Round 5 GLM finding F6 dispositioned). */
+export function faqSchema(items: Array<{ question: string; answer: string }>) {
+  if (items.length === 0) return null;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  };
+}
+
 /** Render JSON-LD as a script tag string for embedding in <head>. */
-export function jsonLdScript(schema: object): string {
+export function jsonLdScript(schema: object | null): string {
+  if (!schema) return '';
   return JSON.stringify(schema);
 }

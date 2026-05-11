@@ -124,7 +124,7 @@ PHASE 6    — Launch + Post-launch (30-day review)   [Round 5]
 | 1 | ✅ Complete | `round1_synthesis.md` + `round1_5_synthesis.md` — 9/9 items locked | 2026-05-10 |
 | 2 | ✅ Complete | Round 2 — 4/4 resolved (3 consensus + 1 user-strategic) | 2026-05-10 |
 | 3 | ✅ Complete | Round 3 — 6/6 locked (5 unanimous, 1 at 3/4). Full SEO+AI playbook + sprint checklist | 2026-05-10 |
-| 4 | ⏸ Blocked on Phases 2–3 | Sprints 1–7 (shippable code) | — |
+| 4 | 🔄 Sprint 1 ✅ COMPLETE + reviewed (Round 5) | Sprint 2 next | 2026-05-10 (Sprint 1) |
 | 5 | ⏸ Blocked on Phase 4 | Pre-launch ship/hold vote | — |
 | 6 | ⏸ Blocked on Phase 5 | Launch + analytics review | — |
 
