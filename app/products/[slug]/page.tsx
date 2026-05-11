@@ -40,6 +40,11 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     description: product.shortDescription,
     alternates: {
       canonical,
+      // Hreflang launch limitation (Round 8 §4 disposition, Round 9 C6 comment):
+      // es-US points to /es marketing root for ALL 6 detail pages because per-slug
+      // Spanish detail routes are post-launch scope. Do NOT "fix" this to
+      // ${SITE.url}/es/products/${slug} until those routes exist — Google's hreflang
+      // validator will demote the whole chain if alternates 404.
       languages: {
         'en-US': canonical,
         'es-US': `${SITE.url}/es`,
