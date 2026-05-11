@@ -1,0 +1,27 @@
+{
+  "model": "deepseek/deepseek-v4-pro",
+  "content": "```json\n{\n  \"model\": \"DeepSeek V4 Pro\",\n  \"agent\": \"DeepSeek V4 Pro\",\n  \"votes\": {\n    \"PA\": \"PA1\",\n    \"PB\": \"PB1\",\n    \"PC\": \"PC1\",\n    \"PD\": \"PD1\",\n    \"PE\": \"PE1\"\n  },\n  \"reasoning\": {\n    \"PA\": \"PA1 is the fastest to implement, mirrors spec-sheet conventions, and can be made accessible with responsive scroll and proper table markup. No JS for accordion, no card layout complexity.\",\n    \"PB\": \"PB1 keeps FAQ content co-located with product data, making JSON-LD derivation trivial and avoiding file proliferation. The schema extension is minor and flagged as low-risk.\",\n    \"PC\": \"PC1 is data-driven, requires zero editorial maintenance, and can be implemented with a simple build-time similarity function. It auto-updates if applications change, shipping faster than manual curation.\",\n    \"PD\": \"PD1 preserves the current stub pattern, requires zero new engineering, and maintains lead capture. Hosting PDFs or building a gated form would delay launch.\",\n    \"PE\": \"PE1 follows the linear spec-sheet reading pattern (physical specs first, then compliance, then FAQ) and is the most conventional B2B ordering. No reordering logic needed, fastest to implement.\"\n  },\n  \"additional_findings\": [\n    {\n      \"title\": \"Extending products.ts with FAQ field\",\n      \"description\": \"PB1 adds a `faqs` array to the immutable product schema. This is a low-risk extension, but must be documented and the schema version note updated.\",\n      \"severity\": \"low\",\n      \"applies_to_phase\": \"4\"\n    },\n    {\n      \"title\": \"Variant table mobile accessibility\",\n      \"description\": \"PA1's scrollable table on mobile must use proper `role=\\\"table\\\"` and ensure focusable scroll region for keyboard users. Reference WCAG 2.1 AA scrollable region patterns.\",\n      \"severity\": \"medium\",\n      \"applies_to_phase\": \"4\"\n    },\n    {\n      \"title\": \"Multiple JSON-LD blocks per page\",\n      \"description\": \"Three separate `<script type=\\\"application/ld+json\\\">` blocks (Product, FAQ, Breadcrumb) must be validated with Google's Rich Results Test to avoid parser conflicts. Ensure each has unique `@type` and no overlapping `@id` collisions.\",\n      \"severity\": \"medium\",\n      \"applies_to_phase\": \"4\"\n    },\n    {\n      \"title\": \"Breadcrumb canonicalization\",\n      \"description\": \"BreadcrumbList must use absolute canonical URLs for each item, matching the self-referencing canonical. Verify that dynamic [slug] breadcrumbs resolve correctly at build time.\",\n      \"severity\": \"low\",\n      \"applies_to_phase\": \"4\"\n    },\n    {\n      \"title\": \"Related products image lazy-loading\",\n      \"description\": \"Related product cards will include images (hero placeholders). Ensure `loading=\\\"lazy\\\"` and explicit dimensions to prevent CLS, maintaining LCP <1.5s.\",\n      \"severity\": \"medium\",\n      \"applies_to_phase\": \"4\"\n    },\n    {\n      \"title\": \"OG image per product\",\n      \"description\": \"Each product detail page should have a unique Open Graph image (e.g., product name over navy gradient). Without it, social shares will use a generic fallback. This can be a simple generated SVG or static asset.\",\n      \"severity\": \"medium\",\n      \"applies_to_phase\": \"4\"\n    }\n  ],\n  \"verdict\": \"ship\",\n  \"verdict_reason\": \"All votes select the fastest, brand-compliant options with no launch blockers. Minor implementation risks are flagged and manageable within Sprint 3.\"\n}\n```",
+  "usage": {
+    "prompt_tokens": 2977,
+    "completion_tokens": 1882,
+    "total_tokens": 4859,
+    "cost": 0.0112488948,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.01136252,
+      "upstream_inference_prompt_cost": 0.00500136,
+      "upstream_inference_completions_cost": 0.00636116
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 1054,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}

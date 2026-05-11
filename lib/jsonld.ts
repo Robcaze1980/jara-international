@@ -58,10 +58,19 @@ export function localBusinessSchema() {
   };
 }
 
-export function breadcrumbSchema(items: Array<{ name: string; url: string }>) {
+/**
+ * BreadcrumbList schema. Per Round 8 F1.R8 (4/4 voters): each schema rendered on
+ * a single page needs a collision-free `@id`, so the canonical URL is appended
+ * with `#breadcrumb`.
+ */
+export function breadcrumbSchema(
+  pageUrl: string,
+  items: Array<{ name: string; url: string }>,
+) {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
+    '@id': `${pageUrl}#breadcrumb`,
     itemListElement: items.map((item, idx) => ({
       '@type': 'ListItem',
       position: idx + 1,
@@ -137,12 +146,21 @@ export function webSiteSchema() {
   };
 }
 
-/** FAQ schema with guard — only renders if items array is non-empty (Round 5 GLM finding F6 dispositioned). */
-export function faqSchema(items: Array<{ question: string; answer: string }>) {
+/**
+ * FAQPage schema with guard — only renders if items array is non-empty
+ * (Round 5 GLM finding F6 dispositioned). Per Round 8 F1.R8 the canonical
+ * URL is appended with `#faq` to disambiguate when three JSON-LD blocks
+ * (Product + FAQPage + BreadcrumbList) ship together on a detail page.
+ */
+export function faqSchema(
+  pageUrl: string,
+  items: Array<{ question: string; answer: string }>,
+) {
   if (items.length === 0) return null;
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
+    '@id': `${pageUrl}#faq`,
     mainEntity: items.map((item) => ({
       '@type': 'Question',
       name: item.question,
