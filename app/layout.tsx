@@ -3,6 +3,7 @@ import { Inter, Montserrat } from 'next/font/google';
 import { SITE } from '@/lib/site';
 import { organizationSchema, localBusinessSchema, jsonLdScript } from '@/lib/jsonld';
 import { SiteFooter } from '@/components/SiteFooter';
+import { StickyCTABar } from '@/components/StickyCTABar';
 
 import './globals.css';
 
@@ -13,11 +14,13 @@ const inter = Inter({
   display: 'swap',
 });
 
+// Per Round 7 cleanup: trimmed weights to ['600', '700'] (only used weights).
+// Saved ~9KB / 2 HTTP requests. Re-add 400/500 if non-display copy needs them.
 const montserrat = Montserrat({
   subsets: ['latin'],
   variable: '--font-montserrat',
   display: 'swap',
-  weight: ['400', '500', '600', '700'],
+  weight: ['600', '700'],
 });
 
 export const metadata: Metadata = {
@@ -116,6 +119,9 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         <main>{children}</main>
         <SiteFooter />
+        {/* Per Round 7 cleanup: StickyCTABar moved from page.tsx to layout
+            so it renders on /es and other pages too (was home-only). */}
+        <StickyCTABar />
       </body>
     </html>
   );

@@ -30,7 +30,7 @@ export function ProductCard({ product }: { product: Product }) {
 
   return (
     <Link
-      href={`/products`}
+      href={`/products/${product.slug}`}
       className="group flex h-full flex-col overflow-hidden rounded-lg border border-bluegray/40 bg-white shadow-sm transition-all hover:border-navy hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel"
       aria-label={`View ${product.name} product details`}
     >

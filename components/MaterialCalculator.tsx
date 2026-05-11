@@ -100,99 +100,108 @@ export function MaterialCalculator() {
           noValidate
           className="rounded-lg border border-bluegray/40 bg-white p-6 shadow-sm md:p-8"
         >
-          <div className="grid gap-6 md:grid-cols-2">
-            {/* Square footage */}
-            <div className="md:col-span-2">
-              <label
-                htmlFor={sfId}
-                className="block text-sm font-semibold text-navy"
-              >
-                Project square footage <span className="text-steel">*</span>
-              </label>
-              <input
-                id={sfId}
-                type="number"
-                inputMode="numeric"
-                min="1"
-                max="500000"
-                step="1"
-                placeholder="e.g. 12000"
-                value={inputs.squareFeet}
-                onChange={(e) =>
-                  setInputs({ ...inputs, squareFeet: e.target.value })
-                }
-                aria-invalid={!!getFieldError('squareFeet')}
-                aria-describedby={getFieldError('squareFeet') ? errorRegionId : undefined}
-                className={`mt-2 block w-full rounded-md border px-3 py-2 text-base text-ink shadow-sm placeholder:text-ink/40 focus:border-navy focus:outline-2 focus:outline-offset-2 focus:outline-navy ${
-                  getFieldError('squareFeet')
-                    ? 'border-red-700 bg-red-50'
-                    : 'border-bluegray/60 bg-white'
-                }`}
-              />
-            </div>
+          {/* fieldset/legend semantic grouping per Round 7 F3.R7 (WCAG AA) */}
+          <fieldset className="border-0 p-0 m-0">
+            <legend className="sr-only">Project details for material estimate</legend>
 
-            {/* Construction type */}
-            <div>
-              <label
-                htmlFor={typeId}
-                className="block text-sm font-semibold text-navy"
-              >
-                Construction type <span className="text-steel">*</span>
-              </label>
-              <select
-                id={typeId}
-                value={inputs.constructionType}
-                onChange={(e) =>
-                  setInputs({
-                    ...inputs,
-                    constructionType: e.target.value as CalculatorInputs['constructionType'],
-                  })
-                }
-                aria-invalid={!!getFieldError('constructionType')}
-                aria-describedby={getFieldError('constructionType') ? errorRegionId : undefined}
-                className={`mt-2 block w-full rounded-md border px-3 py-2 text-base text-ink shadow-sm focus:border-navy focus:outline-2 focus:outline-offset-2 focus:outline-navy ${
-                  getFieldError('constructionType')
-                    ? 'border-red-700 bg-red-50'
-                    : 'border-bluegray/60 bg-white'
-                }`}
-              >
-                <option value="">Select your construction type…</option>
-                {CONSTRUCTION_TYPES.map((ct) => (
-                  <option key={ct.value} value={ct.value}>
-                    {ct.label}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <div className="grid gap-6 md:grid-cols-2">
+              {/* Square footage */}
+              <div className="md:col-span-2">
+                <label
+                  htmlFor={sfId}
+                  className="block text-sm font-semibold text-navy"
+                >
+                  Project square footage <span className="text-steel" aria-hidden="true">*</span>
+                </label>
+                <input
+                  id={sfId}
+                  type="number"
+                  inputMode="numeric"
+                  min="1"
+                  max="500000"
+                  step="1"
+                  placeholder="e.g. 12000"
+                  value={inputs.squareFeet}
+                  onChange={(e) =>
+                    setInputs({ ...inputs, squareFeet: e.target.value })
+                  }
+                  required
+                  aria-required="true"
+                  aria-invalid={!!getFieldError('squareFeet')}
+                  aria-describedby={getFieldError('squareFeet') ? errorRegionId : undefined}
+                  className={`mt-2 block w-full rounded-md border px-3 py-2 text-base text-ink shadow-sm placeholder:text-ink/40 focus:border-navy focus:outline-2 focus:outline-offset-2 focus:outline-navy ${
+                    getFieldError('squareFeet')
+                      ? 'border-red-700 bg-red-50'
+                      : 'border-bluegray/60 bg-white'
+                  }`}
+                />
+              </div>
 
-            {/* Panel thickness (optional) */}
-            <div>
-              <label
-                htmlFor={thickId}
-                className="block text-sm font-semibold text-navy"
-              >
-                Panel thickness <span className="text-steel/60">(optional)</span>
-              </label>
-              <select
-                id={thickId}
-                value={inputs.thicknessMm || ''}
-                onChange={(e) =>
-                  setInputs({
-                    ...inputs,
-                    thicknessMm: e.target.value ? (Number(e.target.value) as CalculatorInputs['thicknessMm']) : 0,
-                  })
-                }
-                className="mt-2 block w-full rounded-md border border-bluegray/60 bg-white px-3 py-2 text-base text-ink shadow-sm focus:border-navy focus:outline-2 focus:outline-offset-2 focus:outline-navy"
-              >
-                <option value="">Default for construction type</option>
-                {PANEL_THICKNESSES.map((t) => (
-                  <option key={t.value} value={t.value}>
-                    {t.label}
-                  </option>
-                ))}
-              </select>
+              {/* Construction type */}
+              <div>
+                <label
+                  htmlFor={typeId}
+                  className="block text-sm font-semibold text-navy"
+                >
+                  Construction type <span className="text-steel" aria-hidden="true">*</span>
+                </label>
+                <select
+                  id={typeId}
+                  value={inputs.constructionType}
+                  onChange={(e) =>
+                    setInputs({
+                      ...inputs,
+                      constructionType: e.target.value as CalculatorInputs['constructionType'],
+                    })
+                  }
+                  required
+                  aria-required="true"
+                  aria-invalid={!!getFieldError('constructionType')}
+                  aria-describedby={getFieldError('constructionType') ? errorRegionId : undefined}
+                  className={`mt-2 block w-full rounded-md border px-3 py-2 text-base text-ink shadow-sm focus:border-navy focus:outline-2 focus:outline-offset-2 focus:outline-navy ${
+                    getFieldError('constructionType')
+                      ? 'border-red-700 bg-red-50'
+                      : 'border-bluegray/60 bg-white'
+                  }`}
+                >
+                  <option value="">Select your construction type…</option>
+                  {CONSTRUCTION_TYPES.map((ct) => (
+                    <option key={ct.value} value={ct.value}>
+                      {ct.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Panel thickness (optional) */}
+              <div>
+                <label
+                  htmlFor={thickId}
+                  className="block text-sm font-semibold text-navy"
+                >
+                  Panel thickness <span className="text-steel/60">(optional)</span>
+                </label>
+                <select
+                  id={thickId}
+                  value={inputs.thicknessMm || ''}
+                  onChange={(e) =>
+                    setInputs({
+                      ...inputs,
+                      thicknessMm: e.target.value ? (Number(e.target.value) as CalculatorInputs['thicknessMm']) : 0,
+                    })
+                  }
+                  className="mt-2 block w-full rounded-md border border-bluegray/60 bg-white px-3 py-2 text-base text-ink shadow-sm focus:border-navy focus:outline-2 focus:outline-offset-2 focus:outline-navy"
+                >
+                  <option value="">Default for construction type</option>
+                  {PANEL_THICKNESSES.map((t) => (
+                    <option key={t.value} value={t.value}>
+                      {t.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
-          </div>
+          </fieldset>
 
           {/* Error region */}
           {hasAttempted && errors.length > 0 && (

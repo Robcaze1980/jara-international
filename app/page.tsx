@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Script from 'next/script';
 import { SITE } from '@/lib/site';
 import { PRODUCTS } from '@/data/products';
 import { productSchema, webSiteSchema, jsonLdScript } from '@/lib/jsonld';
@@ -9,19 +8,19 @@ import { FeaturedProducts } from '@/components/FeaturedProducts';
 import { TrustBar } from '@/components/TrustBar';
 import { MaterialCalculator } from '@/components/MaterialCalculator';
 import { FinalCTA } from '@/components/FinalCTA';
-import { StickyCTABar } from '@/components/StickyCTABar';
 
 /**
  * Home page composition — per Round 6 ADR-025 HD2 section ordering:
  *
  *   Hero → ValueProps → FeaturedProducts → TrustBar → Calculator → FinalCTA → Footer
  *
- * Per Round 6 F4.R6 + GLM finding: emit Product JSON-LD for each of the 6
- * featured products + WebSite JSON-LD on home (Organization + LocalBusiness
- * already in root layout per ADR-014).
+ * Per Round 7 F4.R7 fix: JSON-LD now rendered as plain <script> tags inside
+ * the page (not via next/script with strategy=beforeInteractive, which was
+ * duplicating script registration). Plain script in <head> is Next.js's own
+ * recommended pattern for static JSON-LD per their App Router docs.
  *
- * StickyCTABar is a client component appended at the end (per ADR-026 HE2 —
- * appears after scroll past hero, hides when virtual keyboard is open).
+ * Per Round 7 cleanup: StickyCTABar moved to root layout so it renders on
+ * /es and other pages too (not just home).
  *
  * Page-specific metadata: title is the default from layout (`%s | JARA`),
  * description is overridden to be more home-specific. Canonical and hreflang
@@ -35,18 +34,17 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  // Build JSON-LD payloads at request time
+  // Build JSON-LD payloads at request time (Org + LocalBusiness in root layout)
   const allSchemas = [webSiteSchema(), ...PRODUCTS.map((p) => productSchema(p))];
 
   return (
     <>
-      {/* JSON-LD: WebSite + 6 Product schemas (Organization + LocalBusiness in root layout) */}
+      {/* JSON-LD: WebSite + 6 Product schemas. Plain <script> per Next.js App
+          Router docs — avoids next/script duplication issue (Round 7 F4.R7). */}
       {allSchemas.map((schema, i) => (
-        <Script
+        <script
           key={`jsonld-${i}`}
-          id={`jsonld-${i}`}
           type="application/ld+json"
-          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{ __html: jsonLdScript(schema) }}
         />
       ))}
@@ -58,9 +56,6 @@ export default function HomePage() {
       <TrustBar />
       <MaterialCalculator />
       <FinalCTA />
-
-      {/* Sticky CTA bar — client component, appears after scroll past hero */}
-      <StickyCTABar />
     </>
   );
 }
