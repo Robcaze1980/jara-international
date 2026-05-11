@@ -33,6 +33,30 @@ from pathlib import Path
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 
+def _load_env_local() -> None:
+    """Auto-load OPENROUTER_API_KEY from .env.local if not already in env.
+
+    Walks up from cwd to find the nearest .env.local (handles git worktrees
+    where the file may live in the main repo, not the worktree).
+    """
+    if os.environ.get("OPENROUTER_API_KEY"):
+        return
+    here = Path.cwd().resolve()
+    for d in [here, *here.parents]:
+        env_file = d / ".env.local"
+        if env_file.is_file():
+            for line in env_file.read_text(encoding="utf-8").splitlines():
+                line = line.strip()
+                if not line or line.startswith("#") or "=" not in line:
+                    continue
+                k, _, v = line.partition("=")
+                k = k.strip()
+                v = v.strip().strip('"').strip("'")
+                if k and k not in os.environ:
+                    os.environ[k] = v
+            return
+
+
 def _call_once(prompt: str, model: str, temperature: float, api_key: str) -> dict:
     payload = {
         "model": model,
@@ -87,9 +111,13 @@ def main() -> int:
     p.add_argument("--temperature", type=float, default=0.3)
     args = p.parse_args()
 
+    _load_env_local()
     api_key = os.environ.get("OPENROUTER_API_KEY")
     if not api_key:
-        print("ERROR: OPENROUTER_API_KEY env var not set", file=sys.stderr)
+        print(
+            "ERROR: OPENROUTER_API_KEY not set (checked env + .env.local up the directory tree)",
+            file=sys.stderr,
+        )
         return 2
 
     prompt = args.prompt.read_text(encoding="utf-8")
