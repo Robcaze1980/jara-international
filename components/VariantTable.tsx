@@ -15,6 +15,13 @@ import type { Product, ProductVariant } from '@/data/products';
  * Variants are pre-sorted by thickness ascending in render (server component,
  * no client state). Launch-day scope skips interactive sortable headers; can
  * upgrade to a sortable client component in a later sprint if data justifies.
+ *
+ * Round 9 C5 (Claude single-voter low-severity): this pre-sort delivers the
+ * same user-facing default state as PA1's "sortable by thickness" goal for the
+ * common case. Upgrade path = wrap in a 'use client' component with useState
+ * for column + direction, swap <th> into clickable buttons with aria-sort.
+ * Justified when (a) a product gains >10 variants, OR (b) analytics show users
+ * frequently re-sorting (which the current static table cannot measure).
  */
 
 function formatEdgeProfile(profile: ProductVariant['edgeProfile']): string {

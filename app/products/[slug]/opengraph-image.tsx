@@ -18,8 +18,14 @@ export function generateStaticParams() {
   return PRODUCTS.map((p) => ({ slug: p.slug }));
 }
 
-export default async function OpengraphImage({ params }: { params: { slug: string } }) {
-  const product = getProductBySlug(params.slug);
+// Next.js 16 — params is a Promise in dynamic route metadata files (Round 9
+// cleanup F2.R9: original Sprint 3 used the synchronous shape, which silently
+// returned undefined and rendered an identical fallback for all 6 slugs).
+type Params = Promise<{ slug: string }>;
+
+export default async function OpengraphImage({ params }: { params: Params }) {
+  const { slug } = await params;
+  const product = getProductBySlug(slug);
   const name = product?.name ?? 'JARA International';
   const thicknesses = product
     ? [...new Set(product.variants.map((v) => v.thicknessMm))]
@@ -71,7 +77,7 @@ export default async function OpengraphImage({ params }: { params: { slug: strin
           {thicknesses && (
             <div
               style={{
-                display: 'inline-flex',
+                display: 'flex',
                 alignSelf: 'flex-start',
                 padding: '12px 22px',
                 border: '2px solid rgba(255,255,255,0.45)',

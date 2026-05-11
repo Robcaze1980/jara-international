@@ -124,8 +124,8 @@ PHASE 6    — Launch + Post-launch (30-day review)   [Round 5]
 | 1 | ✅ Complete | `round1_synthesis.md` + `round1_5_synthesis.md` — 9/9 items locked | 2026-05-10 |
 | 2 | ✅ Complete | Round 2 — 4/4 resolved (3 consensus + 1 user-strategic) | 2026-05-10 |
 | 3 | ✅ Complete | Round 3 — 6/6 locked (5 unanimous, 1 at 3/4). Full SEO+AI playbook + sprint checklist | 2026-05-10 |
-| 4 | 🔄 Sprint 1 ✅ COMPLETE + reviewed (Round 5) | Sprint 2 next | 2026-05-10 (Sprint 1) |
-| 5 | ⏸ Blocked on Phase 4 | Pre-launch ship/hold vote | — |
+| 4 | 🔄 Sprints 1–3 ✅ DONE + audited (Round 5 / Round 7 / Round 9). Sprint 4 next | Sprint 4 (/resources + /contact) | 2026-05-10 / 2026-05-10 / 2026-05-11 |
+| 5 | ⏸ Blocked on Phase 4 Sprint 4 + 5 | Pre-launch ship/hold vote | — |
 | 6 | ⏸ Blocked on Phase 5 | Launch + analytics review | — |
 
 ---
@@ -192,11 +192,44 @@ These ship-blockers are **the floor**. The consensus rounds decide everything **
 - [x] Convergent constraints catalogued (5 cross-cutting items)
 - [ ] Next: Phase 2 — Visual Design + Stitch integration
 
-### [🔄 NEXT] PHASE 2: Visual Design System
+### [✅ COMPLETE] PHASE 2: Visual Design System — Round 2
 
-**Status:** Ready to begin
-**Pre-requisites met:** Stack locked (A1 Next.js + Tailwind), brand identity defined (JARA navy/steel-blue palette, Montserrat/Inter typography), product catalog defined (6 products from Plycem PDFs), user-provided visuals workflow established.
-**Owner of voter prompt:** Claude Opus 4.7 to draft `round2_prompt.md` covering: hero treatment, typography display choice, product card pattern, iconography library, three-panel symbol motif treatment, Stitch integration go/no-go.
+**Status:** Completed 2026-05-10. 4/4 items resolved (3 unanimous + 1 user-strategic on split).
+**Round 2:** [`history/consensus/round2_prompt.md`](history/consensus/round2_prompt.md) → [`round2_synthesis.md`](history/consensus/round2_synthesis.md)
+- Hero composition (VA1), Stitch usage (VC3 NO Stitch), Three-panel symbol UI (VD1) all 4/4
+- Product card layout (VB1) user-locked after 2-2 split
+
+### [✅ COMPLETE] PHASE 3: Content + SEO/AI Strategy — Round 3
+
+**Status:** Completed 2026-05-10. 6/6 items locked (5 unanimous, 1 at 3/4).
+**Round 3:** [`history/consensus/round3_prompt.md`](history/consensus/round3_prompt.md) → [`round3_synthesis.md`](history/consensus/round3_synthesis.md)
+- Schema depth (SA2), AI crawler permissions (SB3), Pillar pages (SC2), Local SEO (SD2), FAQ strategy (SF2), Performance (SH2)
+- ADRs 014–019 locked
+
+### [🔄 IN PROGRESS] PHASE 4: Implementation Sprints
+
+**Status:** Sprints 1–3 done + audited. Sprint 4 next.
+
+#### Sprint 1 ✅ COMPLETE (2026-05-10) — foundation scaffold
+- Round 4 (Cloudflare adapter), Round 5 (review) → 2 cleanup commits
+- Commit refs: scaffold + `df322e3` (Round 5 cleanup)
+
+#### Sprint 2 ✅ COMPLETE (2026-05-10) — home page composition
+- Round 6 (planning, 5 items locked), Round 7 (review, 2-2 split resolved pragmatically)
+- 8 components shipped: Hero, ValueProps, FeaturedProducts, TrustBar, MaterialCalculator, FinalCTA, StickyCTABar, SiteFooter
+- Commit refs: `c359e85` (build), `1091fa1` (Round 7 cleanup)
+
+#### Sprint 3 ✅ COMPLETE (2026-05-11) — product detail pages
+- Round 8 (planning, 5 items locked: PA1 flat table / PB1 inline FAQs / PC1 Jaccard / PD1 email-on-request / PE1 specs-first ordering)
+- Round 9 (review, 3/4 ship + 1 F2.R9 OG image params bug found in cleanup)
+- 7 components shipped: Breadcrumbs, ProductDetailHero, VariantTable, ComplianceSection, ProductFAQ, RelatedProducts + dynamic OG image route
+- 26 hand-authored FAQ items across 6 products (human-reviewed by Robertson before merge)
+- Commit refs: `c6e3914` (consensus tooling), `c09ca25` (Sprint 3 build), plus Sprint 3 cleanup commit (this)
+
+#### Sprint 4 🔄 NEXT — /resources + /contact
+- Round 10 planning round drafts after Sprint 3 cleanup
+- Voting items to include per Round 9 C7/C8: production secret management + form state persistence
+- Builds: 3-step submittal form (calculator URL prefill receiver) + full /contact page (replaces Sprint 2 cleanup stub)
 
 ---
 
@@ -226,6 +259,17 @@ All 9 Phase 1 items locked. ADR files to be written from these locks:
 | **ADR-018** FAQ strategy | SF2 — Per-product FAQs + global FAQ, all with FAQPage schema | Round 3 4/4 |
 | **ADR-019** Performance targets | SH2 — Excellent CWV (LCP <1.5s, INP <100ms, CLS <0.05) | Round 3 4/4 |
 | **ADR-020** Cloudflare adapter | OpenNext (`@opennextjs/cloudflare`) deploy to Workers; Next.js bumped to 16.2.6; Wrangler 4.x | Round 4 user-strategic (split 2-2 → user choice B) |
+| **ADR-021** Home calculator UX | HA1 single-screen calculator (no progressive disclosure) | Round 6 4/4 |
+| **ADR-022** Home featured products | HB2 top-3 featured with "View all 6 products" link | Round 6 |
+| **ADR-023** Home value props | HC1 — 3 props (in-stock + compliance + bilingual support) | Round 6 4/4 |
+| **ADR-024** Home section ordering | HD2 — Hero → ValueProps → FeaturedProducts → TrustBar → Calculator → FinalCTA | Round 6 |
+| **ADR-025** Sticky CTA bar trigger | HE2 — appears after scroll past hero | Round 6 |
+| **ADR-026** Phone strategy | Anna AI agent primary CTA + Robertson direct as secondary; WhatsApp on Robertson number | 2026-05-10 user lock |
+| **ADR-027** Product detail variant presentation | PA1 — flat sortable table with WCAG AA scrollable region | Round 8 4/4 |
+| **ADR-028** Product FAQ source | PB1 — inline `faqs[]` field on Product type (tiebreak from 2-2 split) | Round 8 + tiebreak §1 |
+| **ADR-029** Related products algorithm | PC1 — Jaccard similarity on applications[] with alphabetical-by-slug tiebreak | Round 8 3/4 |
+| **ADR-030** Datasheet handling | PD1 — email-on-request CTA (no PDF hosting at launch) | Round 8 4/4 |
+| **ADR-031** Product detail section ordering | PE1 — Breadcrumbs → Hero → Variants → Compliance → FAQ → Related → Final CTA | Round 8 4/4 |
 
 **Convergent constraints (cross-cutting, applied as Phase implementation requirements):**
 - C1: n8n webhook production migration + domain whitelist update before any form ships (Phase 4 blocker)
@@ -250,6 +294,6 @@ All 9 Phase 1 items locked. ADR files to be written from these locks:
 
 - All dates in ISO 8601 (`YYYY-MM-DD`)
 - Round artifacts named `roundN_<voter>.{md,json}` and `roundN_synthesis.md`
-- `MASTER_AUDIT.md` is the single source of truth for phase status — update it when status changes
+- `MASTER_AUDIT.md` is the single source of truth for phase status — **update it in every sprint cleanup commit** (process note added Round 9 C1 — previous drift cost 2 sprints of stale state)
 - Voter prompts live in `docs/history/consensus/`, never modified after sent (immutable)
 - Synthesis docs reference vote files by exact filename for reproducibility
