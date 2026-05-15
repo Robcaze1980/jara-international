@@ -1,0 +1,27 @@
+{
+  "model": "deepseek/deepseek-v4-pro",
+  "content": "{\n  \"model\": \"claude-opus-4.7\",\n  \"agent\": \"Claude Opus 4.7\",\n  \"votes\": {\n    \"A\": \"A1\",\n    \"B\": \"B1\",\n    \"C\": \"C2\",\n    \"E\": \"E2\",\n    \"F\": \"F4\",\n    \"J\": \"J1\",\n    \"P\": \"P2\",\n    \"R\": \"R3\",\n    \"T\": \"T2\",\n    \"V\": \"V3\",\n    \"Y\": \"Y2\"\n  },\n  \"reasoning\": {\n    \"A\": \"Porting the v0 scroll-spy SectionNav is the fastest path to a proven high-value UX for long-form pages, and the 3-hour investment is trivial against launch timeline.\",\n    \"B\": \"3-step form with progress chips matches the v0 conversion-tested pattern and reliably guides B2B users through required fields; 6 hours is acceptable.\",\n    \"C\": \"C2 adds the cost-narrative (schedule-risk, no dollar amounts) to reference cards, restoring dossier-noted authority without crossing SB‑4 or requiring video-approval gates.\",\n    \"E\": \"Slim 4-doc list retains the architect-critical certifications (UL R15140, ASTM E84, IAPMO ER-360) while dropping Plycem-branded brochure and redundant certs, minimizing brand-risk and maintenance.\",\n    \"F\": \"F4 delivers a compliant index page now, then uses real-world traffic to justify per-city expansion post-launch—best launch-pace vs. SEO trade-off.\",\n    \"J\": \"J1 instantly restores the CSI specifier hook with a manufacturer-agnostic block; the full 3-part spec can be a post-launch enhancement when bandwidth permits.\",\n    \"P\": \"P2 preserves inbound /pricing SEO and presents a branded quote-only explanation compliant with SB‑4, a small 1-hour lift.\",\n    \"R\": \"R3 folds installation content into the Subfloor pillar—aligned with ADR-016—keeping launch surface low while giving the pillar its full authority.\",\n    \"T\": \"Turnstile alone provides modern, invisible bot defense that’s free on Cloudflare and more robust than a honeypot against AI scrapers, without the complexity of layering.\",\n    \"V\": \"V3 gives the IAPMO ER-360 certificate both above-fold home visibility (TrustBar) and a deep-dive card in the pillar, maximizing specifier trust signals for a 1.5-hour cost.\",\n    \"Y\": \"Y2 adds pre-commit WCAG contrast linting at zero runtime cost and prevents silent drift without the integration complexity of auto-export in a single-contributor project.\"\n  },\n  \"additional_findings\": [\n    {\n      \"title\": \"Turnstile token verification on Cloudflare Workers\",\n      \"description\": \"The Turnstile server-side verification must run behind /api/submittal in the Next.js Edge runtime; ensure the fetch call to Cloudflare's siteverify endpoint (POST) uses the same AbortController + 10s timeout pattern required by C12.\",\n      \"severity\": \"medium\",\n      \"applies_to_phase\": \"4\"\n    },\n    {\n      \"title\": \"SubmittalForm field-state persistence across steps\",\n      \"description\": \"If B1 (3-step) is adopted, step navigation should persist user-entered data across back/forward transitions to prevent data loss; use a lightweight React context or single form state object.\",\n      \"severity\": \"medium\",\n      \"applies_to_phase\": \"4\"\n    },\n    {\n      \"title\": \"Safari IntersectionObserver rootMargin quirk\",\n      \"description\": \"v0's scroll-spy uses rootMargin '-80px 0px -60% 0px'; test on Safari 17+ for threshold fire-around when the page uses sticky positioning—some Safari versions exhibit off-by-one rootMargin behavior with percentage bottom margins.\",\n      \"severity\": \"low\",\n      \"applies_to_phase\": \"4\"\n    }\n  ],\n  \"verdict\": \"ship\",\n  \"verdict_reason\": \"All Sprint-4 and Sprint-5 items have a launch-appropriate option that balances speed, brand compliance, and specifier UX without introducing approval gates or high engineering drag.\"\n}",
+  "usage": {
+    "prompt_tokens": 7098,
+    "completion_tokens": 2443,
+    "total_tokens": 9541,
+    "cost": 0.0051609096,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.00521304,
+      "upstream_inference_prompt_cost": 0.00308763,
+      "upstream_inference_completions_cost": 0.00212541
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 1521,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}
