@@ -405,13 +405,22 @@ components:
     h2: "{components.heading-2}"
 
   TrustBar:
-    description: "Text-only certification wordmark row. SB-7 compliant (no Plycem logo)."
+    description: "Text-only certification wordmark row. SB-7 compliant (no Plycem logo). Per ADR-043 V3 (Round 10 5-0), one cert can be marked `featured: true` to render with a small steel-filled star glyph and optional inline subtext beneath the wordmark."
     file: "components/TrustBar.tsx"
-    adr: "ADR-024 (Round 6 HD2 ordering) + Round 6 F3.R6 text-only mandate"
+    adr: "ADR-024 (Round 6 HD2 ordering) + Round 6 F3.R6 text-only mandate + ADR-043 (Round 10 V3 IAPMO ER-360 featured pattern)"
     sectionBackground: "{colors.bg-soft}"
     border: "border-y border-{colors.bluegray}/30"
     eyebrow: "{components.heading-eyebrow}"
     certText: "{typography.fonts.display} {typography.sizes.sm} {typography.weights.semibold} color {colors.navy}"
+    featuredCert:
+      starIcon: "lucide-react Star, h-3.5 w-3.5, fill-{colors.steel} text-{colors.steel} strokeWidth 1.5"
+      subtext: "{typography.sizes.[11px]-custom} {typography.weights.medium} color {colors.steel} margin-top 0.125rem"
+      usage: "One cert at a time. Currently IAPMO ER-360 (per ADR-043 + C2 expiration display). Star is aria-labelled 'Featured certification' for screen reader context."
+    certListContract:
+      - "Position 1: foundational fire-rating classification (currently UL R15140)"
+      - "Position 2: featured architect-salience cert (currently IAPMO ER-360 with star + expiration subtext)"
+      - "Remaining positions: descending US-architect relevance order"
+      - "Total: 6 certs (intentional design choice trading manufacturer ISO certs for US-architect certs vs v0's 7 — documented in TrustBar.tsx header comment + C11 audit)"
 
   MaterialCalculator:
     description: "Single-screen calculator: SF + construction type + thickness → panels/weight/trucks (no $)."
