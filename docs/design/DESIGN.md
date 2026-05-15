@@ -527,18 +527,123 @@ components:
     answerBody: "{components.body-small}"
     divider: "divide-y divide-{colors.bluegray}/30"
 
-  # ----- COMPONENTS NOT YET BUILT (Sprint 4–5 forward placeholders) -----
-  # The Round 10 ballot will lock the form/layout decisions for these.
-  # Once built, replace this comment with full token definitions.
+  # ----- COMPONENTS NOT YET BUILT (Sprint 5 forward placeholders) -----
+  # The Round 10 + future round ballots will lock the layout decisions for
+  # these. Once built, replace the placeholder with full token definitions.
+
   SubmittalForm:
-    description: "[Sprint 4 — pending Round 10 R10-B vote.] Multi-step lead form."
-    status: "not yet implemented"
-    pending_adr: "R10-B (3-step / single-screen / calculator-first)"
+    description: "Three-step B2B project quote-request form. Step 1 = Project Information (project name, location, building/construction type, square footage); Step 2 = Product Requirements (application type, panel thickness multi-select, edge profile, fire rating, framing); Step 3 = Contact + Timeline + Documents requested + Turnstile widget."
+    file: "components/SubmittalForm.tsx"
+    adr: "ADR-035 (Round 10 B1, 4-1 strong — Codex dissent B2 single-screen) + ADR-042 (T2 Turnstile) + C12 (10s n8n timeout) + C14 (inline panel-estimate UX) + DeepSeek R10 single-voter (single form-state object across steps)"
+    composition:
+      container: "{components.card-default} variant with progress chips header"
+      progressChips:
+        wrapper: "border-b border-{colors.bluegray}/30 padding 1rem"
+        completedChip:
+          backgroundColor: "{colors.navy}"
+          textColor: "{colors.white}"
+          size: "h-7 w-7 rounded-full text-xs font-bold"
+        pendingChip:
+          backgroundColor: "{colors.bg-soft}"
+          textColor: "{colors.ink} at 60% opacity"
+        connectorRail:
+          completed: "h-px bg-{colors.navy}"
+          pending: "h-px bg-{colors.bluegray}/40"
+      stepBody: "padding 1.5rem md:2rem; space-y-5 between fields"
+    primitives:
+      Label:
+        textColor: "{colors.navy}"
+        typography: "{typography.sizes.sm} {typography.weights.semibold}"
+        requiredAsterisk: "color {colors.steel}, aria-hidden, ml-1"
+      Input:
+        pattern: "{components.input-text}"
+      Select:
+        pattern: "{components.input-text} with native <select> styling"
+      RadioGroup:
+        layout: "flex flex-wrap gap-x-5 gap-y-2"
+        radioAccentColor: "{colors.navy}"
+      CheckboxItem:
+        accentColor: "{colors.navy}"
+        layout: "inline-flex gap-2 cursor-pointer"
+    inlinePanelEstimate:
+      placement: "Step 1, beneath estimatedArea input"
+      role: "status (aria-live='polite')"
+      typography: "{typography.sizes.xs} {typography.weights.medium} color {colors.steel}"
+      formula: "Math.ceil(squareFootage / 32) panels @ 32 SF / 20mm panel"
+    turnstileWidget:
+      placement: "Step 3, just before the Submit button"
+      script: "next/script src='https://challenges.cloudflare.com/turnstile/v0/api.js' strategy=afterInteractive"
+      siteKey: "process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY"
+      theme: "light"
+      callbackHandling: "token written to React state; submit blocked until token present"
+    honeypot:
+      field: "_honey (text input, name='_honey')"
+      positioning: "absolute -left-[9999px], tabIndex=-1, autoComplete=off"
+      serverHandling: "Silent success — bots get { success: true } with no n8n delivery"
+    submitFlow:
+      endpoint: "/api/submittal"
+      contentType: "application/json"
+      payloadShape: "FormData + cf-turnstile-response"
+      successState: "{components.card-emphasis} with CheckCircle2 icon, personalized name, estimatedPanels, fallback phone CTA"
+      errorState: "alert banner above form, {colors.error-bg} + {colors.error-border} + {colors.error-text}"
+    a11y:
+      - "fieldset/legend.sr-only per step grouping"
+      - "aria-required + aria-invalid + aria-describedby pattern on every required field"
+      - "aria-current='step' on the active progress chip"
+      - "aria-live='polite' on inline panel-estimate AND on success card"
+      - "Visible asterisks for required marked aria-hidden so screen reader uses aria-required"
+      - "Submit button aria-busy during in-flight submission"
+    prefillAPI:
+      prop: "prefill?: Partial<Pick<FormData, 'applicationType' | 'panelThickness' | 'estimatedArea' | 'documentsRequested'>>"
+      usage: "/resources page reads calculator URL prefill params and constructs prefill object"
 
   DocumentLibrary:
-    description: "[Sprint 4 — pending Round 10 R10-E vote.] Email-request document list."
-    status: "stub only"
-    pending_adr: "R10-E (verbatim port / slim 4-doc / skip)"
+    description: "Slim 4-doc compliance library with 4-state per-doc request buttons. Single invisible Turnstile widget (appearance='execute') generates fresh tokens for each request via reset+execute pattern."
+    file: "components/DocumentLibrary.tsx"
+    adr: "ADR-037 (Round 10 E2, 4-1 strong — Gemini dissent E1 verbatim port) + ADR-042 (T2 Turnstile)"
+    docsListed:
+      - "UL R15140 Certificate of Compliance (UL Classification)"
+      - "ASTM E-84 Class A Fire Testing Certificate (Fire Testing)"
+      - "IAPMO ER-360 Evaluation Report (Code Compliance, featured architect signal)"
+      - "Product Technical Data Sheet (Material Specification)"
+    docCard:
+      pattern: "{components.card-default}"
+      layout: "flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between"
+      iconColor: "{colors.steel}"
+      titleColor: "{colors.navy}"
+      typeBadge: "{components.heading-eyebrow} miniaturized — text-xs font-medium uppercase tracking-wider color {colors.steel}"
+      descriptionColor: "{colors.ink} at 75% opacity"
+    requestButton:
+      stateMachine: "idle → sending → (sent | error) → idle (auto-reset after 4s)"
+      idle:
+        label: "Request via email (with Mail icon)"
+        backgroundColor: "{colors.navy}"
+        textColor: "{colors.white}"
+        hoverBackgroundColor: "{colors.navy-dark}"
+      sending:
+        label: "Sending… (with Loader2 spinning)"
+        backgroundColor: "{colors.navy}"
+        textColor: "{colors.white}"
+        disabled: true
+        ariaAttribute: "aria-busy='true'"
+      sent:
+        label: "Sent (with Check icon)"
+        backgroundColor: "green-700 (Tailwind)"
+        textColor: "{colors.white}"
+        disabled: true
+      error:
+        label: "Retry (with AlertCircle icon)"
+        backgroundColor: "red-700 hover:red-800"
+        textColor: "{colors.white}"
+    turnstileWidget:
+      placement: "single invisible widget at bottom of library"
+      appearance: "execute (no visible UI until interactive challenge needed)"
+      tokenFlow: "click button → reset(widgetId) → execute(widgetId) → callback writes token to Promise resolver → resolver returns token to handler → POST /api/document-request"
+      timeoutFallback: "20s hard timeout; on no-callback resolve('') so button enters error state"
+    submitFlow:
+      endpoint: "/api/document-request"
+      payloadShape: "{ documentName, documentType, fileName, cf-turnstile-response }"
+      fulfillment: "n8n workflow sends PDF by email to robert@jarainternational.com triage queue (manual fulfillment at launch)"
 
   SectionNav:
     description: "Scroll-spy table of contents for long pages. Sticky sidebar on desktop + horizontal scrolling pill row on mobile, IntersectionObserver-driven active-section tracking with RAF throttle and Safari <16.4 fallback."
