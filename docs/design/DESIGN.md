@@ -532,9 +532,49 @@ components:
     pending_adr: "R10-E (verbatim port / slim 4-doc / skip)"
 
   SectionNav:
-    description: "[Sprint 4–5 — pending Round 10 R10-A vote.] Scroll-spy TOC for long pages."
-    status: "not yet implemented"
-    pending_adr: "R10-A (port verbatim / Radix Tabs alt / skip)"
+    description: "Scroll-spy table of contents for long pages. Sticky sidebar on desktop + horizontal scrolling pill row on mobile, IntersectionObserver-driven active-section tracking with RAF throttle and Safari <16.4 fallback."
+    file: "components/SectionNav.tsx"
+    adr: "ADR-034 (Round 10 A1, 5-0 unanimous) + Round 10 F2.R10 Safari quirks fix (3/5 voter convergent)"
+    desktopSidebar:
+      width: "14rem"                                # w-56
+      stickyOffset: "5rem"                          # top-20 — pairs with scroll-mt-20 on each section
+      backgroundColor: "{colors.bg-soft}"
+      padding: "1rem"                               # p-4
+      rounded: "{shapes.radius.lg}"
+      itemRest:
+        textColor: "{colors.ink} at 75% opacity"
+        hoverTextColor: "{colors.navy}"
+        hoverBackgroundColor: "{colors.white}"
+      itemActive:
+        backgroundColor: "{colors.white}"
+        textColor: "{colors.navy}"
+        leftAccent: "3px solid {colors.steel}"      # border-l-[3px] border-steel
+        weight: "{typography.weights.semibold}"
+    mobilePillRow:
+      placement: "sticky top-16 z-30"
+      backgroundColor: "{colors.bg}"
+      borderBottom: "1px solid {colors.bluegray}/40"
+      pillRest:
+        backgroundColor: "{colors.bg-soft}"
+        textColor: "{colors.ink} at 75% opacity"
+        rounded: "{shapes.radius.full}"
+        padding: "0.375rem 0.75rem"                  # py-1.5 px-3
+      pillActive:
+        backgroundColor: "{colors.steel}"
+        textColor: "{colors.white}"
+    scrollOffset: "80px"                            # SCROLL_OFFSET_PX
+    fallbackTimeoutMs: 1500                         # FALLBACK_TIMEOUT_MS — Safari <16.4 catch
+    a11y:
+      - "Both nav landmarks have aria-label (configurable via ariaLabel prop)"
+      - "Active item carries aria-current='true'"
+      - "All controls are <button type='button'> with visible focus rings"
+      - "Mobile pill row uses role='navigation'"
+      - "F2.R10 Gemini fix: observer.disconnect() in useEffect cleanup; rafRef cancelled on unmount; timeout cleared"
+      - "F2.R10 GLM fix: 1.5s fallback timer ensures the rail never appears inert on Safari <16.4 (negative rootMargin silent ignore)"
+      - "F2.R10 DeepSeek note: Safari 17+ off-by-one with percentage rootMargin under sticky positioning is accepted as cosmetic; fallback path catches the worst case"
+    composition_notes:
+      - "Sections in the page MUST have matching id='...' on the container AND scroll-mt-20 utility so smooth-scroll offset matches sticky-header allowance"
+      - "Hash-link landing supported (visiting /foo#bar smooth-scrolls to #bar with 100ms layout-settle delay)"
 
   PillarPageLayout:
     description: "[Sprint 5 — pending Round 10 R10-C vote.] Subfloor pillar page composition."
