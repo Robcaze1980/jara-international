@@ -228,7 +228,7 @@ These ship-blockers are **the floor**. The consensus rounds decide everything **
 
 ### [🔄 IN PROGRESS] PHASE 4: Implementation Sprints
 
-**Status:** Sprints 1–3 done + audited. Sprint 4 next (Round 10 planning prompt drafting from `docs/audit/legacy_v0_dossier.md` §6 inputs).
+**Status:** Sprints 1–3 done + audited. **Round 10 complete (5-voter, 2026-05-14) — 11/11 items locked → ADR-034..044.** Sprint 4 ready to build.
 
 #### Sprint 1 ✅ COMPLETE (2026-05-10) — foundation scaffold
 - Round 4 (Cloudflare adapter), Round 5 (review) → 2 cleanup commits
@@ -246,11 +246,27 @@ These ship-blockers are **the floor**. The consensus rounds decide everything **
 - 26 hand-authored FAQ items across 6 products (human-reviewed by Robertson before merge)
 - Commit refs: `c6e3914` (consensus tooling), `c09ca25` (Sprint 3 build), plus Sprint 3 cleanup commit (this)
 
-#### Sprint 4 🔄 NEXT — /resources + /contact + legacy-port items
-- **Round 10 is the first 5-voter round** (Codex joins per §2 migration note).
-- Inputs: `docs/audit/legacy_v0_dossier.md` §6 (24 candidate ballot items, narrowed via rubric to 10) + `docs/design/DESIGN.md` (capturing Round 2 visual decisions + Sprint 2-3 implementation state).
-- **Round 10 ballot (11 items):** A SectionNav port / B Submittal form shape / C Pillar page scope / E Document library port / F /service-areas content / J CSI MasterFormat block / P /pricing route handling / R /installation scope / T Honeypot vs Turnstile / V IAPMO ER-360 prominence / **Y DESIGN.md integration depth (ADR-033)**.
-- Builds: 3-step submittal form (calculator URL prefill receiver) + full /contact page (replaces Sprint 2 cleanup stub) + selected K-* legacy-port items per Round 10 locks.
+#### Sprint 4 🔄 NEXT (Round 10 locked, ready to build) — /resources + /contact + form architecture
+- **Round 10 outcome (2026-05-14):** 11/11 items locked. 5 unanimous (A/F/T/V/Y), 4 strong (B/E/J/P), 2 bare-quorum (C/R). 5/5 ship verdicts. Synthesis: [`history/consensus/round10_synthesis.md`](history/consensus/round10_synthesis.md). Codex first appearance functional.
+- **Sprint 4 commit sequence** (driven by ADR-035 + ADR-042 + C1 + F1.R10 dependency chain):
+  1. n8n production webhook migration (closes C1)
+  2. Cloudflare Turnstile integration (ADR-042 T2) — server-side siteverify with hostname+cdata check, 15s timeout budget per F1.R10
+  3. Port v0 `SectionNav` with Safari quirks fixed per F2.R10 (ADR-034 A1)
+  4. 3-step `SubmittalForm` (ADR-035 B1) — fieldset/legend pattern from MaterialCalculator, single form-state object across steps per DeepSeek finding, panel-estimate inline UX (C14)
+  5. `/resources` page = SubmittalForm + slim 4-doc DocumentLibrary (ADR-037 E2) + ContactCard
+  6. `/contact` full page (replaces Sprint 2 stub) — Anna primary CTA + Robertson direct + email + warehouse
+  7. `/pricing` stub page (ADR-040 P2) — SB-4 compliant quote-only copy + 2 CTAs
+  8. `/service-areas` single page (ADR-038 F4) — 10 areas + LocalBusiness schema + lead-time table
+  9. TrustBar audit (C11) — surface IAPMO ER-360 (ADR-043 V3 home half)
+  10. DESIGN.md CLI install + pre-commit lint hook (ADR-044 Y2)
+- **Cross-cutting Sprint 4:** all new routes (`/resources`, `/contact`, `/pricing`, `/service-areas`) MUST include `/es/` counterparts in route map + hreflang `alternates` metadata (C15). DESIGN.md placeholder blocks for SubmittalForm / DocumentLibrary / SectionNav become real token definitions in the same commits that ship those components.
+- **Estimated effort:** ~22h focused work.
+
+#### Sprint 5 — Subfloor pillar page (ADR-016) + /service-areas expansion
+- **Round 10 locked scope:** pillar = ADR-036 C2 (reference cards + schedule-risk narrative, no videos) + ADR-039 J1 (single-paragraph CSI block) + ADR-041 R3 (installation merged into pillar) + ADR-043 V3 pillar half (ER-360 featured card).
+- **Pillar page section order:** Breadcrumbs → Hero → SectionNav → UL Design table → IBC code cards → CBC chapter refs → CSI MasterFormat block → Schedule-risk narrative cards → Installation content → IAPMO ER-360 featured card → Related products → Final CTA.
+- **Hard dependency:** Pillar authoring blocked on Sprint 4 SectionNav (ADR-034 A1) shipping first. If A1 slips, pillar ships in degraded scroll-only state per ADR-041 implementation note.
+- **Estimated effort:** ~13h focused (pillar content 10h + installation merge 3h).
 
 #### Sprint 5 — Subfloor pillar page (ADR-016) + /service-areas (ADR-017)
 - Driven by dossier §5.4 — close the reference-authority gap vs v0
@@ -297,6 +313,17 @@ All 9 Phase 1 items locked. ADR files to be written from these locks:
 | **ADR-031** Product detail section ordering | PE1 — Breadcrumbs → Hero → Variants → Compliance → FAQ → Related → Final CTA | Round 8 4/4 |
 | **ADR-032** Voter pool (5-voter, 3/5 quorum) | Add Codex `openai/gpt-5.1-codex` as 5th voter, forward-only from Round 10; quorum lowered from 3/4 to 3/5 simple majority. | 2026-05-14 user-strategic |
 | **ADR-033** DESIGN.md adoption (Google Labs methodology) | Adopt `docs/design/DESIGN.md` (Google Labs spec: YAML token front-matter + Markdown prose, 8 sections — Overview/Colors/Typography/Layout/Elevation/Shapes/Components/Do's-Don'ts) as canonical visual-design single-source-of-truth. Replaces token drift across `globals.css` + `tailwind.config.ts` + `lib/site.ts` + Round 2 synthesis + Brand Guideline PDF. **Integration depth** (file-only / +CLI lint / +auto-export to tailwind / full CI pipeline) deferred to Round 10 R10-Y vote. Methodology source: `https://github.com/google-labs-code/design.md`. | 2026-05-14 user-strategic + R10-Y |
+| **ADR-034** SectionNav port (Item A) | A1 — port v0 `components/section-nav.tsx` verbatim (IntersectionObserver + RAF throttle + hash-link landing + -80px sticky offset). Restyle with JARA tokens. Used in Sprint 4 /resources + /contact and Sprint 5 pillar. Implementation MUST fix F2.R10 Safari quirks (disconnect-on-unmount + Safari <16.4 feature-detect + Safari 17+ off-by-one test). | Round 10 5-0 unanimous |
+| **ADR-035** SubmittalForm shape (Item B) | B1 — 3-step form with progress chips (Project Info / Product Requirements / Contact+Timeline+Documents). Per-step validation, honeypot supplemented by Turnstile, calculator panel-estimate inline UX (C14), n8n production webhook with AbortController timeout pattern. Single form-state object across steps per DeepSeek finding. | Round 10 4-1 strong (Codex dissent B2) |
+| **ADR-036** Pillar page scope (Item C) | C2 — reference cards (UL Design table, IBC section cards, CBC chapter refs, CSI MasterFormat block) + no-currency schedule-risk narrative section (3 cards: lead time / proximity / in-stock). No videos at launch (defer until Plycem SB-7 approval). | Round 10 3-2 bare quorum (Gemini+GLM dissent C1) |
+| **ADR-037** Document library (Item E) | E2 — slim 4-doc list (UL R15140 cert, ASTM E-84 cert, IAPMO ER-360, generic tech sheet). Drop Plycem-branded brochure (SB-2/SB-7 risk surface) and redundant UL CERZ/BQXR variants. Port v0 DocumentRequestButton 4-state pattern with JARA styling. | Round 10 4-1 strong (Gemini dissent E1) |
+| **ADR-038** /service-areas content (Item F) | F4 — single `/service-areas` page at Sprint 4 (10 areas + LocalBusiness JSON-LD per ADR-017 + lead-time table). Per-city expansion (`/service-areas/{city}`) backlogged to Phase 6 once analytics ground the content. | Round 10 5-0 unanimous |
+| **ADR-039** CSI MasterFormat block (Item J) | J1 — single-paragraph manufacturer-agnostic CSI 06 16 00 block on Subfloor pillar. SB-2 + SB-5 compliant wording ("Fiber cement subfloor panels shall be non-combustible per ASTM E136…"). | Round 10 4-1 strong (Codex dissent J2) |
+| **ADR-040** /pricing route handling (Item P) | P2 — `/pricing` exists as brand-compliant stub: quote-only copy + 2 CTAs (call Anna + submit form). SB-4 compliant. Preserves SEO juice from inbound /pricing links. | Round 10 4-1 strong (GLM dissent P3) |
+| **ADR-041** /installation content (Item R) | R3 — installation content merges into Subfloor pillar (ADR-016). No standalone /installation route at launch. Non-subfloor installation deferred to Phase 6. **Dependency:** pillar authoring blocks on Sprint 4 SectionNav (A1) shipping. | Round 10 3-2 bare quorum (Gemini→R1, Codex→R2) |
+| **ADR-042** Form bot prevention (Item T) | T2 — Cloudflare Turnstile only (no honeypot). Free with Workers deployment, transparent for ~95% users, modern AI-scraper-resistant. Server-side siteverify call MUST check `success === true AND hostname === SITE.url's hostname` per F1.R10. | Round 10 5-0 unanimous |
+| **ADR-043** IAPMO ER-360 prominence (Item V) | V3 — surface ER-360 on home TrustBar (replacing one of 6 current certs, likely ASTM E-136 or CBC Chapter 7A) AND as dedicated featured card on Subfloor pillar. Maximum architect funnel saturation. Expires 2026-07-31 per C2. | Round 10 5-0 unanimous |
+| **ADR-044** DESIGN.md integration depth (Item Y, resolves ADR-033 R10-Y) | Y2 — install Google Labs `design.md` CLI as devDependency; add pre-commit hook running `design lint docs/design/DESIGN.md`. Catches WCAG contrast violations + structural errors before commit. `tailwind.config.ts` + `globals.css` + `lib/site.ts` remain hand-maintained; MASTER_AUDIT §8 convention enforces same-commit DESIGN.md sync. | Round 10 5-0 unanimous |
 
 **Convergent constraints (cross-cutting, applied as Phase implementation requirements):**
 - C1: n8n webhook production migration + domain whitelist update before any form ships (Phase 4 blocker)
@@ -309,6 +336,11 @@ All 9 Phase 1 items locked. ADR files to be written from these locks:
 - C8: sitemap.xml submission to GSC + Bing on day 1 (Phase 4 Sprint 1)
 - C9: Performance data feedback loop scripts stubbed pre-launch, fully activated Month 2+ (Phase 6)
 - C10: Sprint 4 `/resources` PDF library must not list any document whose filename or display name contains a price or currency string (per dossier §3 X-14 carry-forward of SB-4)
+- C11: Sprint 4 cleanup — TrustBar audit for 7-cert parity vs v0 dossier K-12; verify all 7 certs surface on home (or document why fewer is intentional after ADR-043 V3 IAPMO ER-360 swap)
+- C12: Sprint 4 — port AbortController + 10s timeout pattern + `isAbortError` type guard from v0 to all external HTTP calls (form webhook, GSC pull, Turnstile siteverify) — Turnstile siteverify path gets 15s budget per F1.R10
+- C13: Sprint 4 cleanup — add optional `referenceUrl` slot to `ComplianceCert` type in `data/products.ts` for ISO/UL/IAPMO deep-links in JSON-LD `additionalProperty[]` + UI external-link icons
+- C14: Sprint 4 — port `MaterialCalculator` panel-estimate inline UX into Sprint 4 SubmittalForm (live "X panels needed (32 SF/panel)" feedback)
+- C15: Sprint 4 route scaffolding for `/resources`, `/contact`, `/service-areas`, `/pricing` MUST include `/es/` counterparts (`/es/resources`, `/es/contact`, `/es/service-areas`, `/es/pricing`) in the route map + hreflang `alternates` Metadata even if content is English-only at launch (extends C6 with Sprint 4 specifics; raised by GLM Round 10 high-severity finding)
 
 **Performance Feedback Loop (planned — implementation phased):**
 - Pre-launch (Phase 4 Sprint 1): GSC + Bing Webmaster verification (DNS TXT) + sitemap submission + `scripts/pull_gsc.py` stub
