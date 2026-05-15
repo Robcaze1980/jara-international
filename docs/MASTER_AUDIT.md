@@ -248,9 +248,9 @@ These ship-blockers are **the floor**. The consensus rounds decide everything **
 
 #### Sprint 4 🔄 NEXT — /resources + /contact + legacy-port items
 - **Round 10 is the first 5-voter round** (Codex joins per §2 migration note).
-- Inputs: `docs/audit/legacy_v0_dossier.md` §6 — 24 candidate ballot items; prompt will narrow to 8–10 highest-leverage.
-- Voting items to include per Round 9 C7/C8: production secret management + form state persistence
-- Builds: 3-step submittal form (calculator URL prefill receiver) + full /contact page (replaces Sprint 2 cleanup stub) + selected K-* legacy-port items
+- Inputs: `docs/audit/legacy_v0_dossier.md` §6 (24 candidate ballot items, narrowed via rubric to 10) + `docs/design/DESIGN.md` (capturing Round 2 visual decisions + Sprint 2-3 implementation state).
+- **Round 10 ballot (11 items):** A SectionNav port / B Submittal form shape / C Pillar page scope / E Document library port / F /service-areas content / J CSI MasterFormat block / P /pricing route handling / R /installation scope / T Honeypot vs Turnstile / V IAPMO ER-360 prominence / **Y DESIGN.md integration depth (ADR-033)**.
+- Builds: 3-step submittal form (calculator URL prefill receiver) + full /contact page (replaces Sprint 2 cleanup stub) + selected K-* legacy-port items per Round 10 locks.
 
 #### Sprint 5 — Subfloor pillar page (ADR-016) + /service-areas (ADR-017)
 - Driven by dossier §5.4 — close the reference-authority gap vs v0
@@ -296,6 +296,7 @@ All 9 Phase 1 items locked. ADR files to be written from these locks:
 | **ADR-030** Datasheet handling | PD1 — email-on-request CTA (no PDF hosting at launch) | Round 8 4/4 |
 | **ADR-031** Product detail section ordering | PE1 — Breadcrumbs → Hero → Variants → Compliance → FAQ → Related → Final CTA | Round 8 4/4 |
 | **ADR-032** Voter pool (5-voter, 3/5 quorum) | Add Codex `openai/gpt-5.1-codex` as 5th voter, forward-only from Round 10; quorum lowered from 3/4 to 3/5 simple majority. | 2026-05-14 user-strategic |
+| **ADR-033** DESIGN.md adoption (Google Labs methodology) | Adopt `docs/design/DESIGN.md` (Google Labs spec: YAML token front-matter + Markdown prose, 8 sections — Overview/Colors/Typography/Layout/Elevation/Shapes/Components/Do's-Don'ts) as canonical visual-design single-source-of-truth. Replaces token drift across `globals.css` + `tailwind.config.ts` + `lib/site.ts` + Round 2 synthesis + Brand Guideline PDF. **Integration depth** (file-only / +CLI lint / +auto-export to tailwind / full CI pipeline) deferred to Round 10 R10-Y vote. Methodology source: `https://github.com/google-labs-code/design.md`. | 2026-05-14 user-strategic + R10-Y |
 
 **Convergent constraints (cross-cutting, applied as Phase implementation requirements):**
 - C1: n8n webhook production migration + domain whitelist update before any form ships (Phase 4 blocker)
@@ -325,3 +326,4 @@ All 9 Phase 1 items locked. ADR files to be written from these locks:
 - Voter prompts live in `docs/history/consensus/`, never modified after sent (immutable)
 - Synthesis docs reference vote files by exact filename for reproducibility
 - Synthesis docs MUST call out the vote margin (e.g., "locked 5-0 unanimous" vs "locked 3-2 bare quorum") so confidence is visible to future readers (added Round 10 with the 3/5 quorum change)
+- Visual design decisions are codified in `docs/design/DESIGN.md` (Google Labs methodology, ADR-033). **Any commit that introduces a new color, typography size, spacing token, or named component must update `docs/design/DESIGN.md` in the same commit**; PRs touching design without DESIGN.md sync should be flagged in review. The Round 10 R10-Y vote determines whether this rule is enforced manually (file-only), via pre-commit linting (Y2), or via CI auto-export to `tailwind.config.ts` (Y3/Y4).
