@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+# JARA pre-commit hook (per ADR-044 Y2 — Round 10 5-0 unanimous).
+# Runs the Google Labs design.md linter against the canonical design system
+# file. Catches WCAG contrast violations and structural errors before they
+# reach a PR.
+#
+# Spec source: https://github.com/google-labs-code/design.md (alpha)
+# To skip in an emergency: `git commit --no-verify` (then fix in a follow-up).
+
+npm run design:lint

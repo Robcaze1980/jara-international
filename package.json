@@ -17,7 +17,9 @@
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "cf:build": "opennextjs-cloudflare build",
     "cf:deploy": "opennextjs-cloudflare deploy",
-    "cf:upload": "opennextjs-cloudflare upload"
+    "cf:upload": "opennextjs-cloudflare upload",
+    "design:lint": "design.md lint docs/design/DESIGN.md",
+    "prepare": "husky"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "1.2.2",
@@ -42,11 +44,13 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@google/design.md": "^0.1.1",
     "@opennextjs/cloudflare": "^1.0.0",
     "@types/node": "^22",
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
     "autoprefixer": "^10.4.20",
+    "husky": "^9.1.7",
     "postcss": "^8.5",
     "tailwindcss": "^3.4.17",
     "typescript": "5.7.3",
