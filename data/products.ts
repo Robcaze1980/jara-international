@@ -337,6 +337,155 @@ export const PRODUCTS: Product[] = [
       },
     ],
   },
+  {
+    slug: 'deck-modular',
+    name: 'Deck Modular',
+    shortDescription:
+      'Interlocking fiber-cement floor tiles (30×30 cm) for outdoor terraces, balconies, and rooftop decks. Tool-free installation.',
+    longDescription:
+      'Plycem Deck Modular is a 300×300×14mm interlocking fiber-cement tile system for outdoor floors. Tiles snap together without tools, fasteners, or adhesive — ideal for terraces, balconies, rooftop decks, and gardens where a removable, replaceable surface is preferred over a permanent plank deck. Available in graphite ("GRAF") or wood-look ("MAD") textures. Manufactured at Plycem facilities in Costa Rica, El Salvador, and Honduras.',
+    applications: [
+      'Rooftop decks and balconies',
+      'Outdoor terraces and patios',
+      'Garden walkways and pool decks',
+      'Removable architectural floor accents',
+    ],
+    variants: [
+      { thicknessMm: 14, thicknessImperial: '9/16"', widthMm: 300, lengthMm: 300, weightKg: 9.21, weightLbs: 20.3, sku: '1330393' },
+      { thicknessMm: 14, thicknessImperial: '9/16"', widthMm: 300, lengthMm: 300, weightKg: 9.21, weightLbs: 20.3, sku: '1330392' },
+    ],
+    density: { min: 1.0, max: 1.18, unit: 'kg/dm³' },
+    flexuralStrengthMin: { value: 7.0, unit: 'N/mm²' },
+    compliance: [
+      { standard: 'ASTM C1186-08', detail: 'Type A, Grade I' },
+      { standard: 'ISO 8336:2018', detail: 'Category A, Class 1, Level 1' },
+      { standard: 'ASTM E-84', detail: 'Tested per surface burning characteristics standard' },
+      { standard: 'ISO 9001:2015 / 14001:2015 / 45001:2018', detail: 'Manufacturing certified (Costa Rica, El Salvador, Honduras plants)' },
+    ],
+    manufacturer: 'Plycem',
+    faqs: [
+      {
+        question: 'How does this differ from the standard Plycem Deck plank product?',
+        answer:
+          'Plycem Deck (plank) is a 150×3657mm long-grain plank fastened to joists with hidden clips — a permanent fiber-cement plank-deck system. Deck Modular is a 300×300mm tile that interlocks without fasteners — ideal when you need a removable surface (rooftop terrace where you may need under-floor access) or a fast-install pattern floor over an existing flat surface like a concrete slab. Both share ASTM C1186 fiber-cement durability.',
+      },
+      {
+        question: 'Do I need adhesive or fasteners to install Deck Modular tiles?',
+        answer:
+          'No. The interlocking edge engages adjacent tiles mechanically; the assembly is held in place by its own weight (9.21 kg per tile) and the perimeter constraints of the deck area. For high-wind rooftop installations or pool surrounds, perimeter edge fixing or weighted border tiles are recommended — consult our technical team for the specific anchoring detail.',
+      },
+      {
+        question: 'Can I remove individual tiles for under-deck access?',
+        answer:
+          'Yes — that is a key advantage of the modular system. Individual tiles can be lifted to access waterproofing membranes, drains, or services below. This makes Deck Modular well-suited for rooftop terraces above occupied spaces where maintenance access matters, where a permanent plank deck would require destructive removal.',
+      },
+      {
+        question: 'How does fiber-cement modular compare to plastic interlocking deck tiles?',
+        answer:
+          'Plastic modular tiles (Trex, IKEA Runnen, polypropylene grids, etc.) are lighter and cheaper but degrade under UV exposure and do not carry the load or long-term weather resistance of fiber-cement. Plycem Deck Modular delivers wood-look or graphite aesthetics with the long-term durability of cementitious material — will not warp, soften, or fade like polymer tiles.',
+      },
+    ],
+  },
+  {
+    slug: 'lap-siding-tongue-and-groove',
+    name: 'Lap Siding — Tongue-and-Groove',
+    shortDescription:
+      'Fiber-cement tongue-and-groove plank siding for exterior and interior wall finishes. Wood-look "Clásico" smooth or "Cedro" wood-grain textures.',
+    longDescription:
+      'Plycem Siding Machihembrado is a horizontal fiber-cement plank with tongue-and-groove edges for exterior or interior wall cladding, ceilings, and soffits. Available in 246.5mm or 306.5mm widths × 2444.5mm length × 14mm thickness, with "Clásico" smooth or "Cedro" wood-grain finish. The T&G profile enables hidden-fastener installation for a clean uninterrupted wall plane. Manufactured at Plycem facilities in Costa Rica and El Salvador.',
+    applications: [
+      'Exterior wall siding (residential and light commercial)',
+      'Interior architectural wall finishes',
+      'Ceiling and soffit applications',
+      'Eaves and porch ceilings',
+    ],
+    variants: [
+      { thicknessMm: 14, thicknessImperial: '9/16"', widthMm: 306.5, lengthMm: 2444.5, weightKg: 11.3, weightLbs: 24.9, sku: '960199', edgeProfile: 'tongue-and-groove', panelsPerPallet: 4 },
+      { thicknessMm: 14, thicknessImperial: '9/16"', widthMm: 246.5, lengthMm: 2444.5, weightKg: 9.1, weightLbs: 20.1, sku: '960190', edgeProfile: 'tongue-and-groove', panelsPerPallet: 5 },
+      { thicknessMm: 14, thicknessImperial: '9/16"', widthMm: 246.5, lengthMm: 2444.5, weightKg: 9.1, weightLbs: 20.1, sku: '960192', edgeProfile: 'tongue-and-groove', panelsPerPallet: 5 },
+    ],
+    density: { min: 1.0, max: 1.18, unit: 'kg/dm³' },
+    flexuralStrengthMin: { value: 7.0, unit: 'N/mm²' },
+    compliance: [
+      { standard: 'ASTM C1186-08', detail: 'Type A, Grade I' },
+      { standard: 'ISO 8336:2018', detail: 'Category A, Class 1, Level 1' },
+      { standard: 'ASTM E-84', detail: 'Tested per surface burning characteristics standard' },
+      { standard: 'ISO 9001:2015 / 14001:2015 / 45001:2018', detail: 'Manufacturing certified' },
+    ],
+    manufacturer: 'Plycem',
+    faqs: [
+      {
+        question: 'How does this compare to James Hardie HardiePlank?',
+        answer:
+          'Both are fiber-cement lap siding certified to ASTM C1186 Type A. The primary technical difference is that HardiePlank carries a current ICC-ES Evaluation Service Report (ESR-2290) that documents specific assembly testing for US building codes, while Plycem Siding Machihembrado is certified to ASTM C1186 + ISO 8336 without an equivalent US ESR. For projects where AHJs accept manufacturer ASTM documentation directly, both products perform comparably. For projects requiring an ESR-referenced wall assembly (insurance specs, larger commercial), HardiePlank is the safer specification — confirm acceptance with your AHJ before specifying.',
+      },
+      {
+        question: 'What is the difference between "Clásico" and "Cedro" finish?',
+        answer:
+          '"Clásico" is a smooth or lightly textured finish suitable for paint applications. "Cedro" has a deeper wood-grain texture mimicking cedar plank — ideal when a natural-wood aesthetic is desired without the maintenance of real cedar. Both share the same fiber-cement substrate and accept exterior-grade paints, stains, and integral dyes.',
+      },
+      {
+        question: 'Can it be used for ceilings and soffits in addition to walls?',
+        answer:
+          'Yes. The 14mm thickness and T&G profile work equally well for horizontal soffit and ceiling applications. For exterior eaves and porch ceilings, fiber-cement is preferred over wood because it resists insect damage, rot, and moisture-driven warping. Fastening schedule changes for overhead applications — refer to the Plycem installation manual.',
+      },
+      {
+        question: 'Which width is more common — 246.5mm or 306.5mm?',
+        answer:
+          'The narrower 246.5mm width (about 9-3/4") matches the visual proportion of traditional 8-inch lap siding and is the more frequently specified profile for residential exteriors. The 306.5mm width (about 12") creates a bolder horizontal line — preferred for modern architectural designs and when fewer joints are desired. Both widths share the same T&G mechanical interlock.',
+      },
+    ],
+  },
+  {
+    slug: 'corrugated-roof-tile',
+    name: 'Corrugated Roof Tile (Eureka Sevillana)',
+    shortDescription:
+      'Sinusoidal corrugated fiber-cement roof panel with Spanish-tile aesthetic. International / Caribbean market — NOT currently UL-classified for US Class A fire-rated roof assemblies.',
+    longDescription:
+      'Plycem Techos Eureka Sevillana is a sinusoidal corrugated fiber-cement roofing panel that replicates the look of traditional Spanish clay tile at lower weight (12.5 kg/m²) and cost. Manufactured under the Eternit brand within the Plycem family. Available in six architectural colors (Cerámico, Ladrillo, Naranja, Ocre Otoño, Rojo Teja, Verde Aceituna) in 1.04m and 1.34m panel lengths. Minimum roof slope 27%. IMPORTANT US-market disclosure: this product is currently certified to international and regional standards (Plycem manufacturing ISO 9001/14001/45001 + Costa Rica RTCR 491:2017 + INTE/ISO 8336:2018) and does NOT carry UL 263 or UL 790 Class A fire-rated roof classification. US installations should confirm AHJ acceptance; jurisdictions enforcing Class A fire-rated roof assemblies — notably California Chapter 7A WUI zones, Florida Miami-Dade HVHZ, and most insurance-driven specifications — will require alternative product selection.',
+    applications: [
+      'Residential roofs with Spanish-tile architectural aesthetic',
+      'Caribbean, Central American, and international export markets',
+      'Re-roofing where traditional clay tile weight is impractical',
+      'US installations only where AHJ does not require UL Class A fire-rated roof',
+    ],
+    variants: [
+      { thicknessMm: 5.7, thicknessImperial: '7/32"', widthMm: 920, lengthMm: 1040, weightKg: 12.0, weightLbs: 26.5, sku: '1316260' },
+      { thicknessMm: 5.7, thicknessImperial: '7/32"', widthMm: 920, lengthMm: 1040, weightKg: 12.0, weightLbs: 26.5, sku: '1316168' },
+      { thicknessMm: 5.7, thicknessImperial: '7/32"', widthMm: 920, lengthMm: 1340, weightKg: 15.4, weightLbs: 34.0, sku: '1315994' },
+      { thicknessMm: 5.7, thicknessImperial: '7/32"', widthMm: 920, lengthMm: 1340, weightKg: 15.4, weightLbs: 34.0, sku: '1316230' },
+    ],
+    density: { min: 1.5, max: 1.7, unit: 'kg/dm³' },
+    flexuralStrengthMin: { value: 18.0, unit: 'MPa' },
+    compliance: [
+      { standard: 'ISO 9001:2015 / 14001:2015 / 45001:2018', detail: 'Plycem manufacturing certified' },
+      { standard: 'INTE/ISO 8336:2018', detail: 'Fiber-cement roofing standard (Category A, Class 1, Level 1)' },
+      { standard: 'RTCR 491:2017', detail: 'Costa Rica National Technical Regulation' },
+    ],
+    manufacturer: 'Plycem',
+    faqs: [
+      {
+        question: 'Why does this product not have a US Class A roof fire rating?',
+        answer:
+          'The Eureka Sevillana product family is certified to international and regional standards (ISO 8336, Costa Rica RTCR 491) without an accompanying UL 263 or UL 790 Class A roof assembly test. US roofing fire ratings require US-specific assembly testing that Plycem has not pursued for this SKU. For US projects in jurisdictions enforcing Class A roof requirements (California WUI zones, most metro fire codes, insurance-driven specs), this product cannot be specified — alternative roof products are needed. For the Caribbean and international export market where local codes apply, the product is fully approved.',
+      },
+      {
+        question: 'What colors are available?',
+        answer:
+          'Six standard colors: Cerámico (clay-tone), Ladrillo (brick red), Naranja (orange), Ocre Otoño (autumn ochre), Rojo Teja (tile red), and Verde Aceituna (olive green). Color is integral to the panel — not a surface coating — so weathering and abrasion do not expose contrasting substrate. Custom colors are not available; minimum order quantities apply per color and per shipment.',
+      },
+      {
+        question: 'What is the minimum roof slope for installation?',
+        answer:
+          'Minimum 27% slope (approximately 15° pitch or 3:12). Below this slope, water can travel sideways under the corrugation and bypass the lap, causing leaks. For low-slope roofs, a different roof system (Plycem Roof Sheathing with a separate waterproof membrane, for example) is the appropriate product family.',
+      },
+      {
+        question: 'How does fiber-cement Spanish tile compare to clay tile in weight and performance?',
+        answer:
+          'Plycem Eureka Sevillana weighs about 12.5 kg/m² versus 40–50 kg/m² for traditional clay tile — roughly one-third the weight. This allows installation on residential framing that could not support clay tile without structural upgrades and reduces seismic mass. Aesthetic trade-offs: corrugated panels create a different shadow line than individual clay tiles up close, and panels span larger areas so the visual rhythm of "tiles" is coarser than discrete clay tile.',
+      },
+    ],
+  },
 ];
 
 export function getProductBySlug(slug: string): Product | undefined {
