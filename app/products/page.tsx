@@ -35,12 +35,15 @@ export default function ProductsStubPage() {
           Product Catalog
         </p>
         <h1 className="mt-3 font-display text-3xl font-bold text-navy md:text-4xl text-balance">
-          Six PLYCEM product lines, direct from factory to your jobsite
+          PLYCEM Entrepiso Alto Desempeño subfloor — plus the complete panel envelope
         </h1>
         <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink/80">
-          Detailed specifications, fire-rated assembly references, and per-product
-          datasheets are publishing this week. For immediate quotes, call or
-          email — Robertson responds within 1 business day.
+          JARA distributes the full PLYCEM line: non-combustible fiber-cement
+          structural subfloor (the lead product, UL R15140 / IAPMO / CBC
+          Chapter 7A), plus roof sheathing, exterior cladding, cement board,
+          deck, and Fibroxton. Detailed product pages are publishing this
+          week. For immediate quotes, call or email — Robertson responds
+          within 1 business day.
         </p>
 
         <div className="mt-10 grid gap-4 sm:grid-cols-2">

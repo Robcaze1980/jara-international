@@ -12,13 +12,17 @@ import Link from 'next/link';
  * until user delivers AI-generated final at /public/images/hero/hero.{webp|jpg}.
  *
  * Per Round 6 F4.R6 / DeepSeek finding: hero placeholder must hit LCP <1.5s.
- * Solution: SVG placeholder is small (~3KB), inlined intrinsic dimensions,
- * `priority` flag set on <Image> to preload.
  *
  * 2026-05-16 positioning correction: body copy no longer claims a Long Beach
  * warehouse. JARA supplies via direct factory shipping from Plycem plants in
- * Costa Rica, El Salvador, and Honduras with 3–4 week typical door-to-door
- * delivery. Supersedes the warehouse portion of ADR-017.
+ * Costa Rica, El Salvador, and Honduras.
+ *
+ * 2026-05-16 subfloor-hero strategy: Hero now leads explicitly with the
+ * PLYCEM Entrepiso Alto Desempeño / High Performance Subfloor product —
+ * Jara's most spec-driven SKU and the only product in the catalog with
+ * a complete US compliance package (UL R15140 + ASTM E-136 + IAPMO ER-360
+ * + CBC Chapter 7A). The other five products are framed as "Complete the
+ * envelope" cross-sell in FeaturedProducts below.
  */
 
 export function Hero() {
@@ -47,39 +51,51 @@ export function Hero() {
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
         <div className="max-w-3xl">
           <p className="font-display text-sm font-medium uppercase tracking-wider text-bluegray">
-            Premium Fiber-Cement Panel Distribution · United States
+            PLYCEM Entrepiso Alto Desempeño · Multifamily · Hotel · Type I/II Commercial
           </p>
           <h1
             id="hero-heading"
             className="mt-4 font-display text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl text-balance"
             style={{ textShadow: '0 2px 8px rgba(4, 35, 61, 0.5)' }}
           >
-            Non-Combustible Fiber-Cement Panels for Type I &amp; II Construction
+            Non-Combustible Fiber-Cement Subfloor for Multifamily and Commercial Construction
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/90 md:text-xl">
-            We distribute the full PLYCEM product line — subfloor, roof
-            sheathing, deck, exterior cladding, cement board, and fibroxton —
-            sourced direct from manufacturing plants in Costa Rica, El
-            Salvador, and Honduras to contractors, architects, and developers
-            across the United States.
+            PLYCEM Entrepiso Alto Desempeño — the UL R15140 classified
+            structural subfloor specified for Type V over podium, hotels,
+            steel-joist commercial floors, and modular construction. Direct
+            from manufacturing in Costa Rica with the complete US compliance
+            package: UL, ASTM, IAPMO, IBC, and California Building Code
+            Chapter 7A.
           </p>
+
+          {/* Thickness / edge profile callout strip (Plycem-style spec teaser) */}
+          <p className="mt-5 inline-flex flex-wrap items-center gap-x-3 gap-y-2 text-sm font-medium text-white/85">
+            <span className="rounded-full border border-white/30 px-3 py-1">20mm</span>
+            <span className="rounded-full border border-white/30 px-3 py-1">22mm</span>
+            <span className="rounded-full border border-white/30 px-3 py-1">25mm</span>
+            <span className="rounded-full border border-white/30 px-3 py-1">30mm</span>
+            <span className="text-white/70">Straight or tongue-and-groove edge</span>
+          </p>
+
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
               href="#material-calculator"
               className="inline-flex items-center justify-center rounded-md bg-white px-6 py-3 text-sm font-semibold text-navy hover:bg-bluegray transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
-              Estimate My Project →
+              Calculate My Project →
             </Link>
             <Link
-              href="#featured-products"
+              href="/products/high-performance-subfloor"
               className="inline-flex items-center justify-center rounded-md border border-white/40 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
-              View Products
+              View Subfloor Specs
             </Link>
           </div>
           <p className="mt-6 text-xs text-white/70">
-            UL R15140 · ASTM C1186 Type A Grade I · IAPMO ER-360 · Direct
-            factory shipping · 3–4 week typical door-to-door delivery
+            UL R15140 · ASTM E-136 Non-Combustible · IAPMO ER-360 · CBC
+            Chapter 7A · Direct factory shipping · 3–4 week typical
+            door-to-door delivery
           </p>
         </div>
       </div>

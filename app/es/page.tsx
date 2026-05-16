@@ -16,13 +16,16 @@ import { SITE } from '@/lib/site';
  */
 
 export const metadata: Metadata = {
-  title: `${SITE.name} — Distribuidor de Paneles Fibrocemento en EE.UU.`,
+  title: `${SITE.name} — PLYCEM Entrepiso Alto Desempeño Subfloor en EE.UU.`,
   description:
-    'JARA International Inc. distribuye paneles de fibrocemento PLYCEM ' +
-    'para construcción no combustible en EE.UU. Subfloor, cubierta, ' +
-    'cladding exterior, deck, cement board y fibroxton. Envío directo ' +
+    'JARA International Inc. distribuye el PLYCEM Entrepiso Alto Desempeño ' +
+    '— entrepiso de fibrocemento no combustible para construcción ' +
+    'multifamiliar Tipo V sobre podio, hoteles y Tipo I/II comercial en ' +
+    'EE.UU. UL R15140 clasificado, ASTM E-136 no combustible, IAPMO ' +
+    'ER-360, CBC Capítulo 7A. Plus el resto del envolvente PLYCEM ' +
+    '(cubiertas, cladding, cement board, deck, Fibroxton). Envío directo ' +
     'desde planta en Costa Rica, El Salvador y Honduras — entrega típica ' +
-    'puerta-a-puerta 3–4 semanas. Certificación UL R15140 y ASTM C1186.',
+    'puerta-a-puerta 3–4 semanas.',
   alternates: {
     canonical: `${SITE.url}/es`,
     languages: {
@@ -60,23 +63,37 @@ export default function SpanishLandingPage() {
         </header>
 
         <h1 className="font-display text-4xl font-bold leading-tight md:text-5xl">
-          Paneles de Fibrocemento <span className="text-[#B8C7D6]">PLYCEM</span> para
-          Construcción Profesional en Estados Unidos
+          <span className="text-[#B8C7D6]">PLYCEM</span> Entrepiso Alto Desempeño
+          — Subfloor No Combustible para Construcción Multifamiliar y
+          Comercial en EE.UU.
         </h1>
 
         <p className="mt-6 text-lg leading-relaxed text-white/85 md:text-xl">
-          <strong className="text-white">JARA International Inc.</strong> es distribuidor B2B de
-          paneles de fibrocemento PLYCEM en el mercado estadounidense. Envío
-          directo desde planta PLYCEM en{' '}
-          <strong className="text-white">Costa Rica, El Salvador y Honduras</strong>.
-          Entrega típica puerta-a-puerta en 3–4 semanas a cualquier punto de
-          EE.UU. continental.
+          <strong className="text-white">JARA International Inc.</strong>{' '}
+          distribuye el PLYCEM Entrepiso Alto Desempeño — entrepiso
+          estructural de fibrocemento clasificado UL R15140 para
+          ensamblajes de piso/cielo con clasificación al fuego de 1 y 2
+          horas. Especificado para construcción multifamiliar Tipo V sobre
+          podio, hoteles, pisos comerciales con vigueta metálica, y
+          construcción modular. Plus el resto del envolvente PLYCEM:
+          cubiertas, cladding exterior, cement board, deck y Fibroxton.
+          Envío directo desde planta PLYCEM en{' '}
+          <strong className="text-white">Costa Rica, El Salvador y Honduras</strong>{' '}
+          — entrega puerta-a-puerta en 3–4 semanas.
         </p>
 
         <section className="mt-12">
           <h2 className="font-display text-2xl font-bold">Productos que distribuimos</h2>
-          <ul className="mt-4 space-y-2 text-white/85">
-            <li>• <strong>Subfloor de Alto Desempeño</strong> — entrepiso no combustible para construcción Tipo I y II</li>
+          <p className="mt-3 text-sm leading-relaxed text-white/70">
+            Producto principal:
+          </p>
+          <ul className="mt-2 space-y-2 text-white/85">
+            <li>★ <strong className="text-white">PLYCEM Entrepiso Alto Desempeño</strong> — entrepiso no combustible para construcción Tipo I/II, multifamiliar y comercial. UL R15140 · ASTM E-136 · IAPMO ER-360 · CBC Capítulo 7A.</li>
+          </ul>
+          <p className="mt-5 text-sm leading-relaxed text-white/70">
+            Complete el envolvente:
+          </p>
+          <ul className="mt-2 space-y-2 text-white/85">
             <li>• <strong>Roof Sheathing</strong> — cubierta estructural para techos</li>
             <li>• <strong>Deck</strong> — terrazas y pisos exteriores con apariencia de madera</li>
             <li>• <strong>Exterior Hidden Joint</strong> — fachadas con acabado monolítico</li>

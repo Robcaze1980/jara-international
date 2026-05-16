@@ -16,7 +16,7 @@ export const SITE = {
   legalName: 'JARA International Inc.',
   tagline: 'Global Sourcing. Built on Trust.',
   description:
-    'B2B distributor of premium PLYCEM fiber-cement panels for US construction. Subfloor, roof sheathing, deck, exterior cladding, cement board, and fibroxton — sourced direct from manufacturing plants in Costa Rica, El Salvador, and Honduras. Typical door-to-door delivery 3–4 weeks. UL R15140 classified, ASTM C1186 Type A Grade I, IAPMO ER-360.',
+    'US distributor of PLYCEM non-combustible fiber-cement structural subfloor for multifamily, hotel, and commercial construction — UL R15140 classified, ASTM E-136 non-combustible, CBC Chapter 7A compliant, ASTM C1186 Type A Grade I. Plus the complete PLYCEM panel envelope: roof sheathing, exterior cladding, cement board, deck, and Fibroxton. Sourced direct from manufacturing in Costa Rica with 3–4 week door-to-door delivery.',
 
   // Domain (ADR-002)
   url: 'https://jarainternational.com',

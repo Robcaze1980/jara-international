@@ -73,7 +73,7 @@ ${variants}
 
 ## About JARA International Inc.
 
-JARA International Inc. is a US-based B2B distributor of premium fiber-cement panels manufactured by ${PRODUCTS[0].manufacturer} (Costa Rica, El Salvador, and Honduras facilities). We supply contractors, architects, engineers, developers, general contractors, distributors, and procurement managers across the United States.
+JARA International Inc. is a US-based B2B distributor of premium fiber-cement panels manufactured by ${PRODUCTS[0].manufacturer} (Costa Rica, El Salvador, and Honduras facilities). Our lead product is the **PLYCEM Entrepiso Alto Desempeño** non-combustible structural subfloor — UL R15140 classified, ASTM E-136 non-combustible, IAPMO ER-360 evaluated, IBC 2021 Type I/II compliant, and California Building Code Chapter 7A compliant for wildfire zones. It is the only fiber-cement subfloor in the catalog with the complete US compliance package and is specified for multifamily Type V over podium, hotels, steel-joist commercial floors, and modular construction. Beyond the subfloor anchor, JARA distributes the rest of the PLYCEM panel envelope — roof sheathing, exterior hidden-joint cladding, cement board, deck planks, and Fibroxton — to contractors, architects, engineers, developers, and procurement managers across the United States.
 
 **Supply model:** Direct factory shipping. JARA does not operate a US warehouse — material ships container-direct from PLYCEM manufacturing plants to a US port of entry, then by truck to the jobsite. Typical door-to-door delivery is 3–4 weeks.
 
@@ -86,10 +86,11 @@ ${SITE.serviceAreas.map((a) => `- ${a}`).join('\n')}
 
 ## Why JARA
 
+- **Spec-driven subfloor anchor** — PLYCEM Entrepiso Alto Desempeño is the only non-combustible fiber-cement subfloor in our catalog with the complete US compliance dossier (UL R15140 fire-rated assembly designs H502, H504, H511, U449, U487 · ASTM C1186 Type A Grade I · ASTM E-136 non-combustibility · IAPMO ER-360 evaluation report · IBC 2021 Type I/II · CBC Chapter 7A wildfire compliance)
+- **Complete the envelope from one source** — beyond subfloor, JARA supplies the rest of the PLYCEM panel system (roof sheathing, exterior cladding, cement board, deck, Fibroxton) so floor, walls, façade, and roof pull through on the same container from the same distributor
 - **Direct factory pricing** — sourced direct from PLYCEM manufacturing in Costa Rica, El Salvador, and Honduras; no US-warehouse markup
 - **3–4 week door-to-door** — typical container delivery from factory to US jobsite, with ocean freight, customs clearance, and final-mile trucking coordinated end-to-end
 - **Three manufacturing origins** (Costa Rica, El Salvador, Honduras) for supply resilience
-- **Full compliance documentation**: UL R15140, ASTM C1186, ASTM E-84, IAPMO ER-360, IBC 2021, California Building Code
 - **Technical sales support** in English and Spanish
 - **B2B-grade transparency**: full spec sheets, code compliance reports, and submittal packages on request
 

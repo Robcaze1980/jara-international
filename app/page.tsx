@@ -28,9 +28,9 @@ import { FinalCTA } from '@/components/FinalCTA';
  */
 
 export const metadata: Metadata = {
-  title: 'PLYCEM Fiber-Cement Panel Distributor — Direct from Factory',
+  title: 'PLYCEM Non-Combustible Subfloor — Multifamily & Commercial USA',
   description:
-    'JARA International distributes the full PLYCEM fiber-cement product line — subfloor, roof sheathing, deck, exterior cladding, cement board, and fibroxton — to US contractors, architects, and developers. UL R15140, ASTM C1186, IAPMO ER-360. Sourced direct from manufacturing plants in Costa Rica, El Salvador, and Honduras. Typical door-to-door delivery 3–4 weeks.',
+    'US distributor of PLYCEM Entrepiso Alto Desempeño — non-combustible fiber-cement structural subfloor for multifamily Type V over podium, hotels, and Type I/II commercial. UL R15140 classified, ASTM E-136, IAPMO ER-360, CBC Chapter 7A. Plus the complete PLYCEM panel envelope: roof sheathing, exterior cladding, cement board, deck, and Fibroxton. Direct factory shipping from Costa Rica with 3–4 week door-to-door delivery.',
 };
 
 export default function HomePage() {
