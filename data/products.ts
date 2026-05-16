@@ -345,6 +345,7 @@ export const PRODUCTS: Product[] = [
     longDescription:
       'Plycem Deck Modular is a 300×300×14mm interlocking fiber-cement tile system for outdoor floors. Tiles snap together without tools, fasteners, or adhesive — ideal for terraces, balconies, rooftop decks, and gardens where a removable, replaceable surface is preferred over a permanent plank deck. Available in graphite ("GRAF") or wood-look ("MAD") textures. Manufactured at Plycem facilities in Costa Rica, El Salvador, and Honduras.',
     applications: [
+      'Outdoor decks',
       'Rooftop decks and balconies',
       'Outdoor terraces and patios',
       'Garden walkways and pool decks',
@@ -394,6 +395,7 @@ export const PRODUCTS: Product[] = [
     longDescription:
       'Plycem Siding Machihembrado is a horizontal fiber-cement plank with tongue-and-groove edges for exterior or interior wall cladding, ceilings, and soffits. Available in 246.5mm or 306.5mm widths × 2444.5mm length × 14mm thickness, with "Clásico" smooth or "Cedro" wood-grain finish. The T&G profile enables hidden-fastener installation for a clean uninterrupted wall plane. Manufactured at Plycem facilities in Costa Rica and El Salvador.',
     applications: [
+      'Exterior facade cladding',
       'Exterior wall siding (residential and light commercial)',
       'Interior architectural wall finishes',
       'Ceiling and soffit applications',
@@ -444,6 +446,7 @@ export const PRODUCTS: Product[] = [
     longDescription:
       'Plycem Techos Eureka Sevillana is a sinusoidal corrugated fiber-cement roofing panel that replicates the look of traditional Spanish clay tile at lower weight (12.5 kg/m²) and cost. Manufactured under the Eternit brand within the Plycem family. Available in six architectural colors (Cerámico, Ladrillo, Naranja, Ocre Otoño, Rojo Teja, Verde Aceituna) in 1.04m and 1.34m panel lengths. Minimum roof slope 27%. IMPORTANT US-market disclosure: this product is currently certified to international and regional standards (Plycem manufacturing ISO 9001/14001/45001 + Costa Rica RTCR 491:2017 + INTE/ISO 8336:2018) and does NOT carry UL 263 or UL 790 Class A fire-rated roof classification. US installations should confirm AHJ acceptance; jurisdictions enforcing Class A fire-rated roof assemblies — notably California Chapter 7A WUI zones, Florida Miami-Dade HVHZ, and most insurance-driven specifications — will require alternative product selection.',
     applications: [
+      'Residential roofing',
       'Residential roofs with Spanish-tile architectural aesthetic',
       'Caribbean, Central American, and international export markets',
       'Re-roofing where traditional clay tile weight is impractical',
