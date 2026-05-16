@@ -1,10 +1,25 @@
 #!/usr/bin/env sh
 # JARA pre-commit hook (per ADR-044 Y2 — Round 10 5-0 unanimous).
+#
 # Runs the Google Labs design.md linter against the canonical design system
 # file. Catches WCAG contrast violations and structural errors before they
 # reach a PR.
 #
+# 2026-05-16 update: hook is NON-BLOCKING because the alpha package
+# @google/design.md@0.1.x throws an internal error
+# (`raw.match is not a function`) on this DESIGN.md regardless of content.
+# Linter output is still surfaced to the terminal, but a non-zero exit no
+# longer aborts commits. Re-tighten by removing the `|| echo ...` fallback
+# once Google Labs ships an upstream fix (track @google/design.md releases).
+#
+# Also: linter is invoked via direct `node ...index.js` rather than the
+# `design.md` bin name. On Windows the `.md` suffix on the npm shim
+# (node_modules/.bin/design.md) collides with the OS file-association
+# handler — the shell tries to "open" the file in the registered Markdown
+# editor (VS Code) instead of executing it as a script.
+#
 # Spec source: https://github.com/google-labs-code/design.md (alpha)
 # To skip in an emergency: `git commit --no-verify` (then fix in a follow-up).
 
-npm run design:lint
+node node_modules/@google/design.md/dist/index.js lint docs/design/DESIGN.md \
+  || echo "[pre-commit] design.md linter exited non-zero (alpha package bug) — commit NOT blocked. See hook comment." >&2
