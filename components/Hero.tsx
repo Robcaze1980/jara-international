@@ -14,6 +14,11 @@ import Link from 'next/link';
  * Per Round 6 F4.R6 / DeepSeek finding: hero placeholder must hit LCP <1.5s.
  * Solution: SVG placeholder is small (~3KB), inlined intrinsic dimensions,
  * `priority` flag set on <Image> to preload.
+ *
+ * 2026-05-16 positioning correction: body copy no longer claims a Long Beach
+ * warehouse. JARA supplies via direct factory shipping from Plycem plants in
+ * Costa Rica, El Salvador, and Honduras with 3–4 week typical door-to-door
+ * delivery. Supersedes the warehouse portion of ADR-017.
  */
 
 export function Hero() {
@@ -54,8 +59,9 @@ export function Hero() {
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/90 md:text-xl">
             We distribute the full PLYCEM product line — subfloor, roof
             sheathing, deck, exterior cladding, cement board, and fibroxton —
-            from our Long Beach, California warehouse to contractors,
-            architects, and developers across the United States.
+            sourced direct from manufacturing plants in Costa Rica, El
+            Salvador, and Honduras to contractors, architects, and developers
+            across the United States.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
@@ -72,8 +78,8 @@ export function Hero() {
             </Link>
           </div>
           <p className="mt-6 text-xs text-white/70">
-            UL R15140 · ASTM C1186 Type A Grade I · IAPMO ER-360 · In stock,
-            0–3 day West Coast delivery
+            UL R15140 · ASTM C1186 Type A Grade I · IAPMO ER-360 · Direct
+            factory shipping · 3–4 week typical door-to-door delivery
           </p>
         </div>
       </div>

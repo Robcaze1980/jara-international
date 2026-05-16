@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter, Montserrat } from 'next/font/google';
 import { SITE } from '@/lib/site';
-import { organizationSchema, localBusinessSchema, jsonLdScript } from '@/lib/jsonld';
+import { organizationSchema, jsonLdScript } from '@/lib/jsonld';
 import { SiteFooter } from '@/components/SiteFooter';
 import { StickyCTABar } from '@/components/StickyCTABar';
 
@@ -38,8 +38,9 @@ export const metadata: Metadata = {
     'non-combustible subfloor USA',
     'UL R15140',
     'ASTM C1186',
-    'fiber cement supplier California',
-    'cement board Long Beach',
+    'IAPMO ER-360',
+    'PLYCEM panels USA',
+    'direct factory fiber cement',
   ],
   referrer: 'strict-origin-when-cross-origin',
   // ADR-015 SB3 + meta robots per Round 3 finding
@@ -111,10 +112,8 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: jsonLdScript(organizationSchema()) }}
         />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: jsonLdScript(localBusinessSchema()) }}
-        />
+        {/* 2026-05-16 positioning correction: LocalBusiness schema removed.
+            JARA has no US physical location — see ADR superseding ADR-017. */}
       </head>
       <body className="font-sans antialiased">
         <main>{children}</main>

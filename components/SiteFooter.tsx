@@ -44,8 +44,9 @@ export function SiteFooter() {
             <p className="font-display text-lg font-bold text-white">{SITE.name}</p>
             <p className="mt-2 text-sm text-bluegray italic">{SITE.tagline}</p>
             <p className="mt-4 text-sm leading-relaxed text-white/75">
-              B2B distributor of premium fiber-cement panels for US construction.
-              Warehouse in Long Beach, CA.
+              B2B distributor of premium PLYCEM fiber-cement panels for US
+              construction. Direct factory shipping from Costa Rica, El
+              Salvador, and Honduras.
             </p>
           </div>
 
@@ -100,14 +101,6 @@ export function SiteFooter() {
                 >
                   {SITE.email}
                 </a>
-              </li>
-              <li>
-                <span className="block text-xs uppercase tracking-wider text-white/50">
-                  Warehouse
-                </span>
-                <span className="text-white">
-                  {SITE.warehouse.city}, {SITE.warehouse.region}, {SITE.warehouse.country}
-                </span>
               </li>
             </ul>
           </div>

@@ -28,9 +28,9 @@ import { FinalCTA } from '@/components/FinalCTA';
  */
 
 export const metadata: Metadata = {
-  title: 'Fiber-Cement Panel Distributor — In Stock Long Beach CA',
+  title: 'PLYCEM Fiber-Cement Panel Distributor — Direct from Factory',
   description:
-    'JARA International distributes the full PLYCEM fiber-cement product line — subfloor, roof sheathing, deck, exterior cladding, cement board, and fibroxton — to US contractors, architects, and developers. UL R15140, ASTM C1186, IAPMO ER-360. In stock at Long Beach, CA. 0–3 day West Coast delivery.',
+    'JARA International distributes the full PLYCEM fiber-cement product line — subfloor, roof sheathing, deck, exterior cladding, cement board, and fibroxton — to US contractors, architects, and developers. UL R15140, ASTM C1186, IAPMO ER-360. Sourced direct from manufacturing plants in Costa Rica, El Salvador, and Honduras. Typical door-to-door delivery 3–4 weeks.',
 };
 
 export default function HomePage() {

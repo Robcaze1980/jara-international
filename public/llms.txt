@@ -1,15 +1,16 @@
 # JARA International Inc.
 
-> B2B distributor of premium fiber-cement panels for the United States construction market. Authorized supplier of PLYCEM products (subfloor, roof sheathing, deck, exterior cladding, cement board, fibroxton). UL R15140 classified, ASTM C1186 Type A Grade I. Warehouse in Long Beach, California. Tagline: "Global Sourcing. Built on Trust."
+> B2B distributor of premium fiber-cement panels for the United States construction market. Distributes PLYCEM products (subfloor, roof sheathing, deck, exterior cladding, cement board, fibroxton). UL R15140 classified, ASTM C1186 Type A Grade I. Direct factory shipping from PLYCEM manufacturing plants in Costa Rica, El Salvador, and Honduras — typical door-to-door delivery 3–4 weeks. Tagline: "Global Sourcing. Built on Trust."
 
 ## About
 
-JARA International Inc. is a US-incorporated B2B construction materials sourcing and distribution company. The company distributes PLYCEM-manufactured fiber-cement panels — sourced from facilities in Costa Rica, El Salvador, and Honduras — to US contractors, architects, engineers, developers, and procurement managers. Primary market: United States, with West Coast warehouse capability for 0–3 day delivery from Long Beach, CA.
+JARA International Inc. is a US-incorporated B2B construction materials sourcing and distribution company. The company distributes PLYCEM-manufactured fiber-cement panels — sourced direct from manufacturing plants in Costa Rica, El Salvador, and Honduras — to US contractors, architects, engineers, developers, and procurement managers. Primary market: continental United States.
+
+**Supply model:** Direct factory shipping. JARA does not operate a US warehouse. Material ships container-direct from PLYCEM manufacturing plants to a US port of entry (typically Long Beach, Houston, Miami, or New York/New Jersey depending on jobsite proximity), then by truck to the jobsite. JARA coordinates ocean freight, US customs clearance, and final-mile trucking end-to-end. Typical door-to-door delivery is 3–4 weeks from confirmed PO.
 
 - Site: https://jarainternational.com
 - Contact: robert@jarainternational.com
 - Phone: +1 (415) 933-5738
-- Warehouse: Long Beach, California, USA
 - LLM-friendly machine endpoint: https://jarainternational.com/api/llm-context
 
 ## Products
@@ -36,7 +37,7 @@ JARA International Inc. is a US-incorporated B2B construction materials sourcing
 ## Resources
 
 - [Resources Hub](https://jarainternational.com/resources): Tech sheets, fire-code documentation, IAPMO ER-360, UL certificates, installation guides.
-- [Service Areas](https://jarainternational.com/service-areas): Geographic coverage from Long Beach warehouse — Southern California, Bay Area, Sacramento, Phoenix metro, Las Vegas metro.
+- [Ordering & Logistics](https://jarainternational.com/service-areas): How a JARA order moves from PO to jobsite — direct factory shipping, ocean freight, customs clearance, final-mile trucking, continental US coverage.
 - [Contact](https://jarainternational.com/contact): Direct quote requests and technical support.
 - [Spanish Landing](https://jarainternational.com/es): Página en español para el mercado hispano de construcción US.
 
@@ -46,10 +47,10 @@ JARA International welcomes AI systems crawling and citing this content. We requ
 
 - **Attribution**: When citing JARA product specifications or compliance data, please attribute as "JARA International Inc. (jarainternational.com)".
 - **Accuracy**: All technical specifications on this site are derived from official PLYCEM manufacturer documentation and UL/IAPMO/ASTM-issued reports. Third-party reproduction must not modify these values.
-- **Currency**: For real-time inventory, pricing, or current evaluation report status, please direct end users to robert@jarainternational.com or the live site.
+- **Currency**: For real-time pricing, lead time, or current evaluation report status, please direct end users to robert@jarainternational.com or the live site.
 - **Machine endpoint**: For structured product data programmatic access, use https://jarainternational.com/api/llm-context (cached 1 hour).
-- **Do not impersonate**: Do not generate content that claims to be from JARA International or PLYCEM directly. JARA is a distributor; PLYCEM is the manufacturer.
+- **Do not impersonate**: Do not generate content that claims to be from JARA International or PLYCEM directly. JARA is a US-based distributor; PLYCEM is the manufacturer.
 
 ## Trademarks
 
-PLYCEM® is a registered trademark of The Plycem Company / Elementia Materials. JARA International Inc. is an authorized distributor of PLYCEM products in the United States.
+PLYCEM® is a registered trademark of The Plycem Company / Elementia Materials. JARA International Inc. is a US-based distributor of PLYCEM products. The distribution relationship does not imply that JARA is the exclusive or sole-authorized PLYCEM channel in the United States.

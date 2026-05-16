@@ -1,6 +1,13 @@
 /**
  * Single source of truth for site-wide constants.
  * Used by metadata, JSON-LD, sitemap, llms.txt, etc.
+ *
+ * 2026-05-16 positioning correction: removed `warehouse` object and narrowed
+ * `serviceAreas` to broader US regions served via direct factory shipping.
+ * JARA does not operate a US warehouse — earlier copy claiming Long Beach
+ * inventory was based on a one-time pass-through of a third-party
+ * distributor's stock, not a durable operational footprint. See new ADR
+ * superseding ADR-017.
  */
 
 export const SITE = {
@@ -9,7 +16,7 @@ export const SITE = {
   legalName: 'JARA International Inc.',
   tagline: 'Global Sourcing. Built on Trust.',
   description:
-    'B2B distributor of premium fiber-cement panels for US construction. PLYCEM products: subfloor, roof sheathing, deck, exterior cladding, cement board, fibroxton. UL R15140 classified, ASTM C1186 Type A Grade I. In stock Long Beach, CA.',
+    'B2B distributor of premium PLYCEM fiber-cement panels for US construction. Subfloor, roof sheathing, deck, exterior cladding, cement board, and fibroxton — sourced direct from manufacturing plants in Costa Rica, El Salvador, and Honduras. Typical door-to-door delivery 3–4 weeks. UL R15140 classified, ASTM C1186 Type A Grade I, IAPMO ER-360.',
 
   // Domain (ADR-002)
   url: 'https://jarainternational.com',
@@ -33,30 +40,22 @@ export const SITE = {
   phoneSecondary: '+1 (415) 933-5738', // Robertson direct — footer secondary
   phoneSecondaryRaw: '+14159335738',
 
-  // Warehouse / LocalBusiness (ADR-017)
-  warehouse: {
-    name: 'JARA International Long Beach Warehouse',
-    streetAddress: '', // TODO: fill exact warehouse address
-    city: 'Long Beach',
-    region: 'CA',
-    postalCode: '', // TODO
-    country: 'US',
-    latitude: 33.7701, // Long Beach approximate
-    longitude: -118.1937,
-  },
-
-  // Service area (ADR-017)
+  // Service area — continental US, served via direct factory shipping from
+  // Plycem manufacturing plants. Door-to-door lead time averages 3–4 weeks
+  // (factory → ocean freight → US port → customs → trucking to jobsite).
+  // Listed at region level rather than city level because there is no
+  // warehouse anchoring a delivery radius.
   serviceAreas: [
-    'Long Beach, CA',
-    'Los Angeles, CA',
-    'Orange County, CA',
-    'San Diego, CA',
-    'Inland Empire, CA',
-    'San Francisco Bay Area, CA',
-    'Sacramento, CA',
-    'Central Valley, CA',
-    'Phoenix, AZ',
-    'Las Vegas, NV',
+    'California',
+    'Pacific Northwest',
+    'Mountain West',
+    'Arizona & Nevada',
+    'Texas',
+    'Southeast',
+    'Florida',
+    'Midwest',
+    'Northeast',
+    'Mid-Atlantic',
   ],
 
   // Social / external (placeholder — populate as channels go live)

@@ -17,7 +17,7 @@ import { SITE } from '@/lib/site';
 export const metadata: Metadata = {
   title: 'Precios y Cotizaciones',
   description:
-    'JARA International cotiza por proyecto. Para precios, contáctenos directamente — Anna (recepcionista AI 24/7) o enviando los datos del proyecto. Respuesta en 1 día hábil desde nuestra bodega en Long Beach, California.',
+    'JARA International cotiza por proyecto. Para precios, contáctenos directamente — Anna (recepcionista AI 24/7) o enviando los datos del proyecto. Respuesta en 1 día hábil. Envío directo desde planta PLYCEM en Centroamérica con entrega puerta-a-puerta típica de 3–4 semanas.',
   alternates: {
     canonical: `${SITE.url}/es/pricing`,
     languages: {
@@ -47,7 +47,8 @@ export default function SpanishPricingStubPage() {
         <p className="mt-4 text-lg leading-relaxed text-white/85">
           JARA International no publica lista de precios. El costo de material
           depende de volumen, espesor de panel y perfil de borde, tiempo de
-          entrega, y distancia desde nuestra bodega en Long Beach, California.
+          entrega del contenedor, y distancia del puerto de entrada de EE.UU.
+          al sitio de obra.
         </p>
         <p className="mt-4 text-base leading-relaxed text-white/80">
           Las cotizaciones se entregan típicamente en 1 día hábil. Contratos

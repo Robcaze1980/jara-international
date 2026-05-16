@@ -35,7 +35,7 @@ export default function ProductsStubPage() {
           Product Catalog
         </p>
         <h1 className="mt-3 font-display text-3xl font-bold text-navy md:text-4xl text-balance">
-          Six product lines from one US warehouse
+          Six PLYCEM product lines, direct from factory to your jobsite
         </h1>
         <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink/80">
           Detailed specifications, fire-rated assembly references, and per-product

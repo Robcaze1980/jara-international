@@ -51,16 +51,16 @@ const FAQS = [
       'Project type (multifamily, commercial, hotel, modular), location (city + state), estimated square footage, target construction date, and required panel thickness if known. Drawings or spec books are welcome but not required for an initial estimate.',
   },
   {
-    question: 'Do you serve outside California, Arizona, and Nevada?',
+    question: 'Where do you ship?',
     answer:
-      'Yes — for projects east of our standard West Coast coverage we coordinate container orders directly from our manufacturing facilities (Costa Rica, El Salvador, Honduras). Container lead time is 6–8 weeks. Bring us your project specs and we will route the shipment that makes sense.',
+      'Continental US. We coordinate container orders direct from PLYCEM manufacturing plants in Costa Rica, El Salvador, and Honduras to your jobsite, with typical door-to-door delivery of 3–4 weeks (ocean freight, US customs clearance, and final-mile trucking handled end-to-end). Bring us your project location and we will route the shipment that makes sense.',
   },
 ];
 
 export const metadata: Metadata = {
   title: 'Contact JARA International',
   description:
-    'Contact JARA International Inc. — call our 24/7 AI sales line (Anna), reach Robertson directly, WhatsApp in English or Spanish, or email. Bilingual technical support. Response within 1 business day on every channel. Warehouse in Long Beach, California serving the US construction market.',
+    'Contact JARA International Inc. — call our 24/7 AI sales line (Anna), reach Robertson directly, WhatsApp in English or Spanish, or email. Bilingual technical support. Response within 1 business day on every channel. Serving the US construction market via direct factory shipping from PLYCEM plants in Central America.',
   alternates: {
     canonical: `${SITE.url}/contact`,
     languages: {
@@ -361,7 +361,9 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Warehouse strip */}
+      {/* Supply strip — direct factory shipping (replaces former Long Beach
+          warehouse strip per 2026-05-16 positioning correction; JARA holds
+          no US inventory). */}
       <section className="bg-navy py-12 lg:py-16 text-white">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-8">
@@ -372,19 +374,20 @@ export default function ContactPage() {
             />
             <div className="flex-1">
               <h2 className="font-display text-xl font-bold md:text-2xl">
-                Warehouse — {SITE.warehouse.city}, {SITE.warehouse.region}
+                Direct factory shipping from Central America
               </h2>
               <p className="mt-2 text-base leading-relaxed text-white/85">
-                Inventory in stock for 0–3 day delivery to West Coast US.
-                Container orders to other US regions: 6–8 week lead time
-                from manufacturing facilities in Costa Rica, El Salvador,
-                and Honduras.
+                Material ships container-direct from PLYCEM manufacturing
+                plants in Costa Rica, El Salvador, and Honduras to US ports
+                of entry. Typical door-to-door delivery is 3–4 weeks
+                including ocean freight, customs clearance, and final-mile
+                trucking to your jobsite.
               </p>
               <Link
                 href="/service-areas"
                 className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-bluegray hover:text-white transition-colors"
               >
-                See full coverage map
+                See how ordering and logistics work
                 <ArrowRight className="h-4 w-4" aria-hidden="true" strokeWidth={2} />
               </Link>
             </div>

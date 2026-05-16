@@ -1,11 +1,17 @@
 /**
  * JSON-LD schema builders (per ADR-014 SA2 + F4.R3 entity linking).
  * All entities use @id for cross-referencing per F4.R3.
+ *
+ * 2026-05-16 positioning correction: removed `localBusinessSchema` and the
+ * `availability: InStock` signal on Product offers. JARA has no US physical
+ * location — earlier LocalBusiness emission was a misrepresentation. The
+ * Organization schema retains a minimal addressCountry: 'US' marker to
+ * reflect US incorporation without claiming a specific physical address.
+ * Supersedes the LocalBusiness portion of ADR-017.
  */
 import { SITE } from './site';
 
 const ORG_ID = `${SITE.url}/#organization`;
-const LOCAL_BUSINESS_ID = `${SITE.url}/#localbusiness`;
 
 export function organizationSchema() {
   return {
@@ -21,40 +27,13 @@ export function organizationSchema() {
     telephone: SITE.phone,
     address: {
       '@type': 'PostalAddress',
-      addressLocality: SITE.warehouse.city,
-      addressRegion: SITE.warehouse.region,
-      addressCountry: SITE.warehouse.country,
+      addressCountry: 'US',
     },
     areaServed: SITE.serviceAreas.map((area) => ({
       '@type': 'Place',
       name: area,
     })),
     foundingDate: '2026',
-  };
-}
-
-export function localBusinessSchema() {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    '@id': LOCAL_BUSINESS_ID,
-    name: SITE.warehouse.name,
-    parentOrganization: { '@id': ORG_ID },
-    url: SITE.url,
-    telephone: SITE.phone,
-    email: SITE.email,
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: SITE.warehouse.city,
-      addressRegion: SITE.warehouse.region,
-      addressCountry: SITE.warehouse.country,
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: SITE.warehouse.latitude,
-      longitude: SITE.warehouse.longitude,
-    },
-    areaServed: SITE.serviceAreas.map((area) => ({ '@type': 'Place', name: area })),
   };
 }
 
@@ -108,14 +87,17 @@ export function productSchema(product: import('@/data/products').Product) {
       name: cert.standard,
       value: cert.detail,
     })),
-    // Distributor relationship (Plycem ship blocker compliant — no "Authorized" claim).
+    // Distributor relationship — Plycem ship blocker compliant (no "Authorized" claim).
     // Per ship blocker SB-4: NO price, NO priceCurrency, NO priceSpecification —
-    // a quote-only model. availability=InStock is the only commercial signal we
-    // expose; pricing is communicated privately via the submittal form path.
+    // a quote-only model.
+    // 2026-05-16 positioning correction: removed `availability: InStock` —
+    // JARA holds no US inventory; product is supplied via direct factory
+    // shipping (3–4 week typical door-to-door). Omitting availability is
+    // the most defensible signal; Google may suppress the In-Stock rich
+    // snippet eligibility but that is preferable to a false claim.
     offers: {
       '@type': 'Offer',
       seller: { '@id': ORG_ID },
-      availability: 'https://schema.org/InStock',
       areaServed: SITE.serviceAreas.map((a) => ({ '@type': 'Place', name: a })),
     },
   };

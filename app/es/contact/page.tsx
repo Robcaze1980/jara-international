@@ -13,7 +13,7 @@ import { SITE } from '@/lib/site';
 export const metadata: Metadata = {
   title: 'Contacto · JARA International',
   description:
-    'Contacta a JARA International Inc. — Anna (recepcionista AI 24/7), Robertson directo, WhatsApp, o email. Soporte técnico bilingüe en inglés y español. Respuesta en 1 día hábil. Bodega en Long Beach, California.',
+    'Contacta a JARA International Inc. — Anna (recepcionista AI 24/7), Robertson directo, WhatsApp, o email. Soporte técnico bilingüe en inglés y español. Respuesta en 1 día hábil. Distribución en EE.UU. con envío directo desde planta PLYCEM en Centroamérica.',
   alternates: {
     canonical: `${SITE.url}/es/contact`,
     languages: {

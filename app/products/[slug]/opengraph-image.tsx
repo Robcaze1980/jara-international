@@ -101,7 +101,7 @@ export default async function OpengraphImage({ params }: { params: Params }) {
           }}
         >
           <div style={{ display: 'flex' }}>jarainternational.com</div>
-          <div style={{ display: 'flex' }}>In stock · Long Beach, CA</div>
+          <div style={{ display: 'flex' }}>Direct factory · 3–4 wk delivery</div>
         </div>
       </div>
     ),

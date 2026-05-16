@@ -20,8 +20,9 @@ export const metadata: Metadata = {
   description:
     'JARA International Inc. distribuye paneles de fibrocemento PLYCEM ' +
     'para construcción no combustible en EE.UU. Subfloor, cubierta, ' +
-    'cladding exterior, deck, cement board y fibroxton. Bodega en ' +
-    'Long Beach, California. Certificación UL R15140 y ASTM C1186.',
+    'cladding exterior, deck, cement board y fibroxton. Envío directo ' +
+    'desde planta en Costa Rica, El Salvador y Honduras — entrega típica ' +
+    'puerta-a-puerta 3–4 semanas. Certificación UL R15140 y ASTM C1186.',
   alternates: {
     canonical: `${SITE.url}/es`,
     languages: {
@@ -38,8 +39,8 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     title: `${SITE.name} — Distribuidor de Paneles Fibrocemento en EE.UU.`,
     description:
-      'Distribuidor B2B de paneles de fibrocemento PLYCEM. ' +
-      'Bodega en Long Beach, CA. Entrega 0-3 días en costa oeste.',
+      'Distribuidor B2B de paneles de fibrocemento PLYCEM. Envío directo ' +
+      'desde planta — entrega puerta-a-puerta en 3–4 semanas en EE.UU.',
     images: [{ url: '/images/og/og-default.svg', width: 1200, height: 630, alt: SITE.name }],
   },
 };
@@ -65,9 +66,11 @@ export default function SpanishLandingPage() {
 
         <p className="mt-6 text-lg leading-relaxed text-white/85 md:text-xl">
           <strong className="text-white">JARA International Inc.</strong> es distribuidor B2B de
-          paneles de fibrocemento PLYCEM en el mercado estadounidense. Bodega en{' '}
-          <strong className="text-white">Long Beach, California</strong>. Entrega 0–3 días en
-          costa oeste de EE.UU.
+          paneles de fibrocemento PLYCEM en el mercado estadounidense. Envío
+          directo desde planta PLYCEM en{' '}
+          <strong className="text-white">Costa Rica, El Salvador y Honduras</strong>.
+          Entrega típica puerta-a-puerta en 3–4 semanas a cualquier punto de
+          EE.UU. continental.
         </p>
 
         <section className="mt-12">

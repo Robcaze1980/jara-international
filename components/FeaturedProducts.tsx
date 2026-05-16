@@ -26,8 +26,8 @@ export function FeaturedProducts() {
           </h2>
           <p className="mt-3 text-ink/75 leading-relaxed">
             From non-combustible structural subfloor to monolithic exterior
-            cladding to outdoor decking — all from one warehouse, one
-            distributor, one compliance documentation packet.
+            cladding to outdoor decking — one distributor, one direct-factory
+            supply line, one compliance documentation packet.
           </p>
         </div>
 

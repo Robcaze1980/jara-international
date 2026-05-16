@@ -150,7 +150,7 @@ export const PRODUCTS: Product[] = [
       {
         question: 'Is it suitable for high-humidity or coastal environments?',
         answer:
-          'Yes. Fiber-cement composition (ASTM C1186 Type A) is dimensionally stable in humid and coastal conditions where wood-based sheathing can swell, delaminate, or rot. Long Beach warehouse stock has been specified for projects throughout coastal Southern California and the Bay Area.',
+          'Yes. Fiber-cement composition (ASTM C1186 Type A) is dimensionally stable in humid and coastal conditions where wood-based sheathing can swell, delaminate, or rot — a key reason it is specified in coastal, hurricane-prone, and high-humidity climates throughout the US and Caribbean.',
       },
     ],
   },

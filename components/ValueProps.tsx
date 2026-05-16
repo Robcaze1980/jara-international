@@ -1,32 +1,38 @@
-import { Truck, ShieldCheck, MessageCircle } from 'lucide-react';
+import { Wallet, Ship, ShieldCheck } from 'lucide-react';
 
 /**
- * Value props — per ADR-024 HC1 (3 props) Round 6 4/4 unanimous.
+ * Value props — 2026-05-16 positioning rewrite.
  *
- * The 3 props that won consensus over alternatives:
- * - In stock + 0-3 day delivery (concrete competitive advantage)
- * - Compliance-ready (UL/ASTM/IAPMO documentation)
- * - Bilingual technical sales support (US Hispanic construction labor)
+ * The three props that win deals for JARA today:
+ * - Direct factory pricing (no US-warehouse markup, container-direct)
+ * - 3–4 week door-to-door delivery (direct from Plycem plants in Costa Rica)
+ * - Spec & code documentation ready for AHJ submittal (UL, ASTM, IAPMO, IBC)
+ *
+ * Supersedes the Round 6 ADR-024 HC1 selection (which led with "In Stock,
+ * Long Beach CA" — a claim that turned out to depend on a third-party
+ * pass-through stock position, not a durable JARA operation). Bilingual
+ * technical support remains a real differentiator but lives on /contact
+ * rather than as a homepage value prop.
  */
 
 const props = [
   {
-    icon: Truck,
-    title: 'In Stock, Long Beach CA',
+    icon: Wallet,
+    title: 'Direct factory pricing',
     body:
-      '0–3 day delivery to West Coast US. No 6-week lead times. Eliminate schedule risk for your project.',
+      'Sourced direct from PLYCEM manufacturing in Costa Rica, El Salvador, and Honduras — no US-warehouse markup. Competitive pricing on container orders.',
+  },
+  {
+    icon: Ship,
+    title: '3–4 week door-to-door',
+    body:
+      'Typical door-to-door delivery from factory to your US jobsite: ocean freight, customs clearance, and final trucking coordinated end-to-end.',
   },
   {
     icon: ShieldCheck,
-    title: 'Compliance-Ready',
+    title: 'Spec & code ready',
     body:
-      'UL R15140, ASTM C1186 Type A Grade I, IAPMO ER-360, and IBC code documentation packages provided on request.',
-  },
-  {
-    icon: MessageCircle,
-    title: 'Technical Sales Support',
-    body:
-      'Bilingual English / Spanish team. Architect & specifier inquiries answered with engineering-certified data within 1 business day.',
+      'UL R15140, ASTM C1186 Type A Grade I, ASTM E-84 Class A, IAPMO ER-360, and IBC 2021 documentation packets provided for AHJ submittal.',
   },
 ];
 
@@ -44,8 +50,9 @@ export function ValueProps() {
           Why specifiers and contractors choose JARA International
         </h2>
         <p className="mt-3 max-w-2xl text-ink/75 leading-relaxed">
-          A US-focused fiber-cement distributor with the inventory, compliance
-          documentation, and responsiveness commercial projects need.
+          A US-focused fiber-cement distributor with direct factory sourcing,
+          end-to-end logistics, and complete compliance documentation for
+          commercial and multifamily projects.
         </p>
 
         <div className="mt-10 grid gap-6 md:grid-cols-3">

@@ -40,12 +40,13 @@ export async function GET() {
         email: SITE.email,
         phone: SITE.phone,
       },
-      warehouse: {
-        city: SITE.warehouse.city,
-        region: SITE.warehouse.region,
-        country: SITE.warehouse.country,
-        latitude: SITE.warehouse.latitude,
-        longitude: SITE.warehouse.longitude,
+      supplyModel: {
+        type: 'direct-factory-shipping',
+        manufacturingOrigins: ['Costa Rica', 'El Salvador', 'Honduras'],
+        manufacturer: 'PLYCEM',
+        typicalDoorToDoorWeeks: { min: 3, max: 4 },
+        notes:
+          'JARA does not operate a US warehouse. Material ships container-direct from Plycem manufacturing plants in Central America; JARA coordinates ocean freight, US customs clearance, and final-mile trucking end-to-end.',
       },
       serviceAreas: SITE.serviceAreas,
     },

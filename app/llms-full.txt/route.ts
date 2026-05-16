@@ -12,6 +12,10 @@ import { PRODUCTS } from '@/data/products';
  * truth — no copy drift between HTML pages and AI manifest).
  *
  * Cached at edge for 1 hour (matches /api/llm-context).
+ *
+ * 2026-05-16 positioning correction: removed Long Beach warehouse references
+ * and "in-stock inventory" claims. JARA supplies via direct factory shipping
+ * from Plycem manufacturing in Costa Rica, El Salvador, and Honduras.
  */
 
 export async function GET() {
@@ -69,9 +73,9 @@ ${variants}
 
 ## About JARA International Inc.
 
-JARA International Inc. is a US-based B2B distributor of premium fiber-cement panels manufactured by ${PRODUCTS[0].manufacturer} (Costa Rica, El Salvador, and Honduras facilities). We supply contractors, architects, engineers, developers, general contractors, distributors, and procurement managers across the United States — primarily the West Coast, expanding nationally.
+JARA International Inc. is a US-based B2B distributor of premium fiber-cement panels manufactured by ${PRODUCTS[0].manufacturer} (Costa Rica, El Salvador, and Honduras facilities). We supply contractors, architects, engineers, developers, general contractors, distributors, and procurement managers across the United States.
 
-**Warehouse:** ${SITE.warehouse.city}, ${SITE.warehouse.region}, ${SITE.warehouse.country} (lat ${SITE.warehouse.latitude}, lon ${SITE.warehouse.longitude})
+**Supply model:** Direct factory shipping. JARA does not operate a US warehouse — material ships container-direct from PLYCEM manufacturing plants to a US port of entry, then by truck to the jobsite. Typical door-to-door delivery is 3–4 weeks.
 
 **Service area:**
 ${SITE.serviceAreas.map((a) => `- ${a}`).join('\n')}
@@ -82,7 +86,8 @@ ${SITE.serviceAreas.map((a) => `- ${a}`).join('\n')}
 
 ## Why JARA
 
-- **In-stock inventory** at Long Beach warehouse for 0–3 day delivery in West Coast US
+- **Direct factory pricing** — sourced direct from PLYCEM manufacturing in Costa Rica, El Salvador, and Honduras; no US-warehouse markup
+- **3–4 week door-to-door** — typical container delivery from factory to US jobsite, with ocean freight, customs clearance, and final-mile trucking coordinated end-to-end
 - **Three manufacturing origins** (Costa Rica, El Salvador, Honduras) for supply resilience
 - **Full compliance documentation**: UL R15140, ASTM C1186, ASTM E-84, IAPMO ER-360, IBC 2021, California Building Code
 - **Technical sales support** in English and Spanish

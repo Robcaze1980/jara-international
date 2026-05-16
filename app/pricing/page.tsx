@@ -20,7 +20,7 @@ import { buildTelUrl } from '@/lib/whatsapp';
 export const metadata: Metadata = {
   title: 'Pricing & Quotes',
   description:
-    'JARA International provides per-project pricing. Quote requests typically return within 1 business day. Call Anna (24/7 AI receptionist) or submit a project brief — pricing depends on volume, panel thickness, edge profile, lead time, and delivery distance from our Long Beach, California warehouse.',
+    'JARA International provides per-project pricing. Quote requests typically return within 1 business day. Call Anna (24/7 AI receptionist) or submit a project brief — pricing depends on volume, panel thickness, edge profile, container lead time, and final-mile delivery distance.',
   alternates: {
     canonical: `${SITE.url}/pricing`,
     languages: {
@@ -43,8 +43,9 @@ export default function PricingStubPage() {
         </h1>
         <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink/80">
           JARA International does not publish list prices. Material cost
-          depends on volume, panel thickness and edge profile, lead time,
-          and delivery distance from our Long Beach, California warehouse.
+          depends on volume, panel thickness and edge profile, container
+          lead time, and final-mile delivery distance from the US port of
+          entry to your jobsite.
         </p>
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink/75">
           Quotes typically return within one business day. Multi-project
