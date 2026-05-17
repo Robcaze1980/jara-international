@@ -52,6 +52,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: 'high-performance-subfloor',
     name: 'High Performance Subfloor',
+    image: '/images/products/panel-detail.webp',
     shortDescription:
       'Non-combustible fiber-cement structural panels for fire-rated floor assemblies in Type I and II construction.',
     longDescription:

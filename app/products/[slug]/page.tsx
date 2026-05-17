@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { SITE } from '@/lib/site';
 import { PRODUCTS, getProductBySlug } from '@/data/products';
@@ -130,6 +131,56 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
         <div className="mt-12 grid gap-6 lg:gap-8">
           <VariantTable product={product} />
           <ComplianceSection product={product} />
+          {/* Per-slug Applications context — only rendered for the lead
+              product (subfloor) where the Type V multifamily over-podium
+              application story carries weight. Other slugs surface their
+              own application story via shortDescription + FAQ. */}
+          {product.slug === 'high-performance-subfloor' && (
+            <section
+              aria-labelledby="applications-heading"
+              className="overflow-hidden rounded-lg bg-navy"
+            >
+              <div className="grid lg:grid-cols-2">
+                <div className="relative aspect-[16/10] lg:aspect-auto lg:min-h-[420px]">
+                  <Image
+                    src="/images/hero/multifamily-wood-frame-interior.webp"
+                    alt=""
+                    role="presentation"
+                    fill
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="flex flex-col justify-center p-8 lg:p-12">
+                  <p className="font-display text-xs font-semibold uppercase tracking-[0.18em] text-bluegray">
+                    Where it's specified
+                  </p>
+                  <h2
+                    id="applications-heading"
+                    className="mt-3 font-display text-2xl font-bold text-white md:text-3xl"
+                  >
+                    Type V over podium — multifamily and hotel construction
+                  </h2>
+                  <p className="mt-4 text-base leading-relaxed text-white/85">
+                    Specified across wood-framed apartment, condo, and hotel
+                    projects building over a concrete podium. The
+                    non-combustible classification, ASTM E-136, and CBC
+                    Chapter 7A compliance make High Performance Subfloor
+                    the structural deck of record for the unit floors above
+                    the podium — replacing the noise transmission and
+                    fire-rating compromises of plywood subfloor in this
+                    assembly.
+                  </p>
+                  <p className="mt-4 text-base leading-relaxed text-white/85">
+                    Equally specified in steel-joist Type I/II commercial
+                    floors where UL R15140 fire-rated assemblies and a
+                    dry-install schedule matter more than wet-pour concrete
+                    cure times.
+                  </p>
+                </div>
+              </div>
+            </section>
+          )}
           <ProductFAQ product={product} pageUrl={canonical} />
         </div>
 
