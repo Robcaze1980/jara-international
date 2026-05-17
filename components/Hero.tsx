@@ -18,7 +18,7 @@ import Link from 'next/link';
  * Costa Rica, El Salvador, and Honduras.
  *
  * 2026-05-16 subfloor-hero strategy: Hero now leads explicitly with the
- * PLYCEM Entrepiso Alto Desempeño / High Performance Subfloor product —
+ * PLYCEM High Performance Subfloor / High Performance Subfloor product —
  * Jara's most spec-driven SKU and the only product in the catalog with
  * a complete US compliance package (UL R15140 + ASTM E-136 + IAPMO ER-360
  * + CBC Chapter 7A). The other five products are framed as "Complete the
@@ -51,7 +51,7 @@ export function Hero() {
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
         <div className="max-w-3xl">
           <p className="font-display text-sm font-medium uppercase tracking-wider text-bluegray">
-            PLYCEM Entrepiso Alto Desempeño · Multifamily · Hotel · Type I/II Commercial
+            PLYCEM High Performance Subfloor · Multifamily · Hotel · Type I/II Commercial
           </p>
           <h1
             id="hero-heading"
@@ -61,7 +61,7 @@ export function Hero() {
             Non-Combustible Fiber-Cement Subfloor for Multifamily and Commercial Construction
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/90 md:text-xl">
-            PLYCEM Entrepiso Alto Desempeño — the UL R15140 classified
+            PLYCEM High Performance Subfloor — the UL R15140 classified
             structural subfloor specified for Type V over podium, hotels,
             steel-joist commercial floors, and modular construction. Direct
             from manufacturing in Costa Rica with the complete US compliance

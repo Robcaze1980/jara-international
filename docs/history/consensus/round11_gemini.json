@@ -1,0 +1,27 @@
+{
+  "model": "google/gemini-3.1-flash-lite",
+  "content": "```json\n{\n  \"model\": \"claude-3-5-sonnet-20241022\",\n  \"agent\": \"Claude Opus 4.7\",\n  \"votes\": {\n    \"A\": \"A1\",\n    \"B\": \"B2\",\n    \"C\": \"C1\",\n    \"D\": \"D2\",\n    \"E\": \"E2\",\n    \"F\": \"F1\",\n    \"G\": \"G2\",\n    \"H\": \"H1\"\n  },\n  \"reasoning\": {\n    \"A\": \"The subfloor-led strategy is the correct pivot for commercial specifiers; keeping it as-is maintains the focus established by the founder.\",\n    \"B\": \"Parenthetical naming (B2) balances professional English-first UX with the necessary brand-authenticity link to official Plycem datasheets.\",\n    \"C\": \"Deck Modular is a low-risk, high-margin add-on that complements the subfloor pull-through strategy.\",\n    \"D\": \"Adding a visual badge (D2) is the most responsible way to handle the lack of ESR while keeping the product available for non-critical applications.\",\n    \"E\": \"The amber warning banner (E2) is essential for high-risk roofing products to prevent liability in US jurisdictions requiring Class A fire ratings.\",\n    \"F\": \"The current hidden landing page is a clean, temporary solution for paid-ads that avoids polluting the main site's brand positioning.\",\n    \"G\": \"Using 'MadeToOrder' (G2) restores rich-snippet eligibility while accurately reflecting the container-direct business model without false 'InStock' claims.\",\n    \"H\": \"Regional coverage (H1) is more honest and scalable than city-level targeting given the new direct-import operational model.\"\n  },\n  \"additional_findings\": [\n    {\n      \"title\": \"Schema.org Availability Consistency\",\n      \"description\": \"If 'MadeToOrder' is implemented, ensure the same availability signal is reflected in the product detail page UI to avoid mismatch between JSON-LD and user-facing text.\",\n      \"severity\": \"low\",\n      \"applies_to_phase\": \"post-launch\"\n    },\n    {\n      \"title\": \"Canonical URL check for /long-beach-stock\",\n      \"description\": \"Ensure the noindex/nofollow page does not accidentally become the canonical URL for the products it lists, which could dilute SEO for the main product pages.\",\n      \"severity\": \"medium\",\n      \"applies_to_phase\": \"post-launch\"\n    }\n  ],\n  \"verdict\": \"tune\",\n  \"verdict_reason\": \"The site's core strategy is sound, but the product catalog requires clearer visual warnings for cert-gap items to ensure professional liability is managed.\"\n}\n```",
+  "usage": {
+    "prompt_tokens": 8415,
+    "completion_tokens": 628,
+    "total_tokens": 9043,
+    "cost": 0.0030152925,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.00304575,
+      "upstream_inference_prompt_cost": 0.00210375,
+      "upstream_inference_completions_cost": 0.000942
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}

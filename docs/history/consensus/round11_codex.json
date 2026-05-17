@@ -1,0 +1,27 @@
+{
+  "model": "openai/gpt-5.1-codex",
+  "content": "```json\n{\n  \"model\": \"gpt-4.1\",\n  \"agent\": \"ChatGPT\",\n  \"votes\": {\n    \"A\": \"A1\",\n    \"B\": \"B1\",\n    \"C\": \"C1\",\n    \"D\": \"D2\",\n    \"E\": \"E2\",\n    \"F\": \"F1\",\n    \"G\": \"G2\",\n    \"H\": \"H1\"\n  },\n  \"reasoning\": {\n    \"A\": \"Hero, value props, and featured layout now align with the founder’s mandated subfloor-first strategy and read cleanly without excess weight, so keep as-is.\",\n    \"B\": \"Using the English product name everywhere in English locales removes unnecessary friction for US specifiers while still allowing the brand to mention Plycem; Spanish copy can remain on /es.\",\n    \"C\": \"Deck Modular has credible US-standard compliance and fills a differentiating niche without added risk, so no changes needed.\",\n    \"D\": \"Product is useful but the missing ESR must be impossible to miss; an ESR warning badge mirrors the Long Beach disclosure pattern and mitigates risk without removing the SKU.\",\n    \"E\": \"Similarly, an always-visible amber banner is needed so no Class-A jurisdiction specifier can miss the lack of UL/ESR, balancing transparency with keeping the product live.\",\n    \"F\": \"The hidden page matches the founder's paid-ads intent and already makes the limitations explicit, so leave the implementation alone until ads are wired up.\",\n    \"G\": \"Adding schema.org MadeToOrder accurately reflects the supply model while regaining structured-data benefits, giving Google the availability signal without lying.\",\n    \"H\": \"Regional service areas are the honest reflection of container-direct coverage and prevent reintroducing the old warehouse narrative, so keep the regional list.\"\n  },\n  \"additional_findings\": [],\n  \"verdict\": \"ship\",\n  \"verdict_reason\": \"Changes align with the clarified positioning and only need minor safety tweaks (badges/banners and schema availability). No blockers detected.\"\n}\n```",
+  "usage": {
+    "prompt_tokens": 7794,
+    "completion_tokens": 447,
+    "total_tokens": 8241,
+    "cost": 0.014070375,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.0142125,
+      "upstream_inference_prompt_cost": 0.0097425,
+      "upstream_inference_completions_cost": 0.00447
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}

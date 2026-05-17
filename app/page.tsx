@@ -30,7 +30,7 @@ import { FinalCTA } from '@/components/FinalCTA';
 export const metadata: Metadata = {
   title: 'PLYCEM Non-Combustible Subfloor — Multifamily & Commercial USA',
   description:
-    'US distributor of PLYCEM Entrepiso Alto Desempeño — non-combustible fiber-cement structural subfloor for multifamily Type V over podium, hotels, and Type I/II commercial. UL R15140 classified, ASTM E-136, IAPMO ER-360, CBC Chapter 7A. Plus the complete PLYCEM panel envelope: roof sheathing, exterior cladding, cement board, deck, and Fibroxton. Direct factory shipping from Costa Rica with 3–4 week door-to-door delivery.',
+    'US distributor of PLYCEM High Performance Subfloor — non-combustible fiber-cement structural subfloor for multifamily Type V over podium, hotels, and Type I/II commercial. UL R15140 classified, ASTM E-136, IAPMO ER-360, CBC Chapter 7A. Plus the complete PLYCEM panel envelope: roof sheathing, exterior cladding, cement board, deck, and Fibroxton. Direct factory shipping from Costa Rica with 3–4 week door-to-door delivery.',
 };
 
 export default function HomePage() {

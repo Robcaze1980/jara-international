@@ -11,6 +11,27 @@ import { ComplianceSection } from '@/components/ComplianceSection';
 import { ProductFAQ } from '@/components/ProductFAQ';
 import { RelatedProducts } from '@/components/RelatedProducts';
 import { FinalCTA } from '@/components/FinalCTA';
+import { CertGapWarning, type CertGapWarningContent } from '@/components/CertGapWarning';
+
+/**
+ * Per-slug cert-gap warning content (Round 11 R11-D + R11-E).
+ *
+ * Slugs NOT in this map render no warning. Slugs IN this map render a
+ * persistent amber callout above the product hero so US specifiers cannot
+ * skim past the cert gap to the FAQ.
+ */
+const CERT_GAP_WARNINGS: Record<string, CertGapWarningContent | undefined> = {
+  'lap-siding-tongue-and-groove': {
+    title: 'No ICC-ES Evaluation Service Report — confirm AHJ acceptance',
+    body:
+      'PLYCEM Lap Siding is certified to ASTM C1186-08 Type A Grade I and ASTM E-84 surface burning, but does NOT carry an ICC-ES Evaluation Service Report equivalent to James Hardie HardiePlank\'s ESR-2290. For projects requiring an ESR-referenced wall assembly — most insurance-driven specifications and larger commercial work — confirm acceptance with your Authority Having Jurisdiction (AHJ) before specifying. Suitable for residential and light commercial applications where AHJ accepts manufacturer ASTM documentation directly.',
+  },
+  'corrugated-roof-tile': {
+    title: 'Not US Class A fire-rated — international / Caribbean / export use only',
+    body:
+      'PLYCEM Eureka Sevillana corrugated roof tile is NOT certified to UL 263 or UL 790 Class A roof assembly testing. It CANNOT be specified for California Building Code Chapter 7A WUI (Wildland-Urban Interface) zones, Florida Miami-Dade HVHZ, or any US jurisdiction enforcing Class A fire-rated roof requirements. Approved for Caribbean, Central American, and international export markets where local codes apply, and for US installations only where the AHJ explicitly does not require a Class A roof assembly.',
+  },
+};
 
 /**
  * /products/[slug] — full product detail page (Sprint 3 / Round 8).
@@ -92,6 +113,15 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
             { name: product.name, path: `/products/${product.slug}` },
           ]}
         />
+
+        {CERT_GAP_WARNINGS[product.slug] && (
+          <div className="mt-8">
+            <CertGapWarning
+              title={CERT_GAP_WARNINGS[product.slug]!.title}
+              body={CERT_GAP_WARNINGS[product.slug]!.body}
+            />
+          </div>
+        )}
 
         <div className="mt-8 lg:mt-12">
           <ProductDetailHero product={product} />

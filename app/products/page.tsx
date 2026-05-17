@@ -35,7 +35,7 @@ export default function ProductsStubPage() {
           Product Catalog
         </p>
         <h1 className="mt-3 font-display text-3xl font-bold text-navy md:text-4xl text-balance">
-          PLYCEM Entrepiso Alto Desempeño subfloor — plus the complete panel envelope
+          PLYCEM High Performance Subfloor — plus the complete panel envelope
         </h1>
         <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink/80">
           JARA distributes the full PLYCEM line: non-combustible fiber-cement

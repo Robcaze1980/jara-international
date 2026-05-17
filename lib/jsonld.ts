@@ -90,14 +90,16 @@ export function productSchema(product: import('@/data/products').Product) {
     // Distributor relationship — Plycem ship blocker compliant (no "Authorized" claim).
     // Per ship blocker SB-4: NO price, NO priceCurrency, NO priceSpecification —
     // a quote-only model.
-    // 2026-05-16 positioning correction: removed `availability: InStock` —
-    // JARA holds no US inventory; product is supplied via direct factory
-    // shipping (3–4 week typical door-to-door). Omitting availability is
-    // the most defensible signal; Google may suppress the In-Stock rich
-    // snippet eligibility but that is preferable to a false claim.
+    // 2026-05-16 history: removed `availability: InStock` after ADR-049
+    // (warehouse positioning correction).
+    // 2026-05-16 Round 11 G2 (5-0 unanimous): restored as `MadeToOrder` —
+    // semantically honest for container-direct supply with 3–4 week typical
+    // door-to-door lead time, and re-eligible for Google Product
+    // rich-snippet surfaces under an accurate schema.org value.
     offers: {
       '@type': 'Offer',
       seller: { '@id': ORG_ID },
+      availability: 'https://schema.org/MadeToOrder',
       areaServed: SITE.serviceAreas.map((a) => ({ '@type': 'Place', name: a })),
     },
   };

@@ -8,7 +8,7 @@ import { ProductCard } from './ProductCard';
  * Featured products section — per ADR-023 HB1 (all 6 visible).
  *
  * 2026-05-16 subfloor-hero restructure: the lead product (High Performance
- * Subfloor / PLYCEM Entrepiso Alto Desempeño) gets its own prominent
+ * Subfloor / PLYCEM High Performance Subfloor) gets its own prominent
  * featured card with richer specification surface and dual CTAs. The
  * other five products render below in a "Complete the envelope" grid as
  * supporting catalog. Mirrors plycem.com's positioning where the Alto
@@ -55,7 +55,7 @@ export function FeaturedProducts() {
             id="featured-products-heading"
             className="mt-3 font-display text-2xl font-bold text-navy md:text-3xl text-balance"
           >
-            PLYCEM Entrepiso Alto Desempeño — the subfloor that goes on US spec drawings
+            PLYCEM High Performance Subfloor — the subfloor that goes on US spec drawings
           </h2>
           <p className="mt-3 text-ink/75 leading-relaxed">
             JARA&apos;s catalog is anchored by the only non-combustible

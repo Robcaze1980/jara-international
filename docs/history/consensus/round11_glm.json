@@ -1,0 +1,27 @@
+{
+  "model": "z-ai/glm-5.1",
+  "content": "```json\n{\n  \"model\": \"claude-opus-4-7\",\n  \"agent\": \"Claude Opus 4.7\",\n  \"votes\": {\n    \"A\": \"A1\",\n    \"B\": \"B2\",\n    \"C\": \"C1\",\n    \"D\": \"D2\",\n    \"E\": \"E4\",\n    \"F\": \"F2\",\n    \"G\": \"G2\",\n    \"H\": \"H1\"\n  },\n  \"reasoning\": {\n    \"A\": \"Founder locked the subfloor-hero strategy; implementation is clean and the two-tier FeaturedProducts correctly signals subfloor primacy without hiding the envelope. No modification warranted.\",\n    \"B\": \"English primary with Spanish parenthetical on first mention per page preserves datasheet cross-reference for specifiers while eliminating the ESL-clutter problem the founder flagged. Pure removal loses a legitimate cross-referencing thread.\",\n    \"C\": \"ASTM C1186 + outdoor-no-fire-rating-needed = clean entry. Niche but pull-through with subfloor podium projects is real. Ship as-is.\",\n    \"D\": \"HardiePlank-alternative without ESR is sellable but risky; an amber warning badge matching the /long-beach-stock pattern makes the cert gap visually unavoidable and is proportionate to the liability exposure.\",\n    \"E\": \"No UL Class A on a roofing product is the highest-risk cert gap in the catalog. Export-only hiding removes US liability surface while preserving the international revenue stream via direct-URL sharing.\",\n    \"F\": \"Page structure is sound but three equal-weight CTAs underperform in paid-ads funnels. Single dominant CTA (phone) with secondary channels is standard conversion practice and costs nothing to implement.\",\n    \"G\": \"MadeToOrder is semantically honest for container-direct 3–4 week supply and restores Product rich-snippet eligibility. Omitting availability entirely sacrifices SEO for no accuracy gain over this equally-accurate alternative.\",\n    \"H\": \"Regional list is honest about continental US container-direct reality. City-level granularity implied a warehouse radius that no longer exists; reverting contradicts ADR-049.\"\n  },\n  \"additional_findings\": [\n    {\n      \"title\": \"Product schema `areaServed` may conflict with E4 export-only designation\",\n      \"description\": \"If corrugated-roof-tile is marked export-only per vote E4, its Product JSON-LD `areaServed` should NOT list continental US regions. Current `lib/jsonld.ts` applies `serviceAreas` uniformly to all products. A per-product override or exclusion mechanism is needed to avoid schema dishonesty on export-only SKUs.\",\n      \"severity\": \"medium\",\n      \"applies_to_phase\": \"5\"\n    },\n    {\n      \"title\": \"MadeToOrder availability on Deck Modular may be semantically loose\",\n      \"description\": \"Deck Modular (2 SKUs) could conceivably be in the Long Beach partner stock as pass-through items. If G2 passes and MadeToOrder is applied uniformly, any product that IS physically available via the partner gets a slightly inaccurate schema signal. Consider per-product availability granularity in `productSchema()` rather than a blanket value.\",\n      \"severity\": \"low\",\n      \"applies_to_phase\": \"5\"\n    },\n    {\n      \"title\": \"Lap Siding ESR warning badge needs accessible color contrast verification\",\n      \"description\": \"If D2 passes, the amber warning badge pattern from /long-beach-stock must meet WCAG 2.1 AA contrast on both light and dark mode. The existing amber-on-white implementation was not audited for contrast ratio in the rush commit. Verify before next deploy.\",\n      \"severity\": \"medium\",\n      \"applies_to_phase\": \"5\"\n    }\n  ],\n  \"verdict\": \"tune\",\n  \"verdict_reason\": \"Core strategy is sound and ships clean, but B2 (language), D2 (ESR badge), E4 (export-only), F2 (CTA), and G2 (MadeToOrder) are targeted modifications that reduce liability, improve conversion, and restore honest SEO signals without reverting any founder-locked direction.\"\n}\n```",
+  "usage": {
+    "prompt_tokens": 7891,
+    "completion_tokens": 1380,
+    "total_tokens": 9271,
+    "cost": 0.016948206,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.0171194,
+      "upstream_inference_prompt_cost": 0.0110474,
+      "upstream_inference_completions_cost": 0.006072
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 546,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}
