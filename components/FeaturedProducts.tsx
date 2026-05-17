@@ -71,15 +71,17 @@ export function FeaturedProducts() {
         {subfloor && (
           <article className="mt-10 overflow-hidden rounded-xl border border-navy/20 bg-bg-soft shadow-sm">
             <div className="grid gap-0 md:grid-cols-5">
-              {/* Image side */}
+              {/* Image side — uses product.image when set (delivered 2026-05-17);
+                  falls back to placeholder for products that don't have a hero
+                  image yet. */}
               <div className="relative aspect-[4/3] md:aspect-auto md:col-span-2 md:min-h-[360px] bg-navy">
                 <Image
-                  src="/images/products/_placeholder.svg"
+                  src={subfloor.image ?? '/images/products/_placeholder.svg'}
                   alt={`${subfloor.name} fiber cement subfloor — distributed by JARA International`}
                   fill
                   sizes="(max-width: 768px) 100vw, 40vw"
                   className="object-cover"
-                  unoptimized
+                  unoptimized={!subfloor.image}
                 />
                 <span className="absolute left-4 top-4 rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wider text-navy shadow-sm">
                   Featured · spec-driven
