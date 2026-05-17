@@ -1,0 +1,27 @@
+{
+  "model": "openai/gpt-5.1-codex",
+  "content": "**Primary Prompt**\n\n```\nVertical 3:4 photoreal construction scene, camera at 1.5 m, showing a Type I/II steel office tower floor during installation of JARA High Performance Subfloor. Foreground: exposed flat-top steel joists running horizontally with NOTHING attached beneath them—open void below, no concrete pan or decking. Mid-ground: light-gray 4×8 ft fiber-cement panels, distinctly rectangular with a 1:2 aspect ratio, twice as long as wide, being screwed perpendicular onto the joists; seams and fasteners clearly visible, a few panels still lifted or partially seated. Panel edges align precisely over joist centerlines so adjacent panels share the same joist, with two parallel screw rows at each joint. Steel framing engineered correctly: parallel C-channel or open-web bar joists at 24 in. on center, realistic depth-to-span proportion, bearing on a deeper W-shape or HSS beam running perpendicular across the back; joist connections show clip angles or bolted plates. Background: finished area of the same panels forming a crisp rectangular grid of tongue-and-groove joints extending to curtain-wall glass with an overcast city skyline. Dry assembly only—no wet concrete, no topping slab—cool daylight, documentary architectural style.\n```\n\n**Fallback Prompt**\n\n```\nSame setup, but emphasize long 4×8 ft Plycem panels (1:2 rectangles, clearly elongated) perfectly aligned so every edge lands on a joist centerline with paired screw rows, and strongly highlight realistic structural framing: 24 in. o.c. C-channel/open-web joists of believable depth bearing into a perpendicular W-beam with clip angles/bolts, no material under the joists.\n```\n\n**Rationale (≤80 words)**  \nAdded “nothing beneath joists” to keep the underside open (fix #1). Specified 4×8 ft, 1:2 aspect ratio panels to ensure rectangular geometry (fix #2). Directed panel edges to sit on joist centerlines with paired screw rows for shared support (fix #3). Described engineered steel framing—24\" o.c. joists, realistic depth, supported by perpendicular W-beam with visible connections—to remove fantasy framing (fix #4).",
+  "usage": {
+    "prompt_tokens": 1131,
+    "completion_tokens": 528,
+    "total_tokens": 1659,
+    "cost": 0.0066268125,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.00669375,
+      "upstream_inference_prompt_cost": 0.00141375,
+      "upstream_inference_completions_cost": 0.00528
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "model": "openai/gpt-5.1-codex",
+  "content": "Vertical 3:4 photoreal construction scene, camera at 1.5 m, showing a Type I/II steel office tower floor during installation of JARA High Performance Subfloor. Foreground: exposed flat-top steel joists running horizontally with NOTHING attached beneath them—open void below, no concrete pan or decking. Mid-ground: light-gray 4×8 ft fiber-cement panels, distinctly rectangular with a 1:2 aspect ratio, twice as long as wide, being screwed perpendicular onto the joists; seams and fasteners clearly visible, a few panels still lifted or partially seated. Panel edges align precisely over joist centerlines so adjacent panels share the same joist, with two parallel screw rows at each joint. Steel framing engineered correctly: parallel C-channel or open-web bar joists at 24 in. on center, realistic depth-to-span proportion, bearing on a deeper W-shape or HSS beam running perpendicular across the back; joist connections show clip angles or bolted plates. Joists are visibly DEEP and structurally substantial—approximately 12 inches (300 mm) deep, clearly taller than wide, resembling real load-bearing floor joists (either open-web with diagonal web members or solid C-channel/I-section profiles with prominent flanges) so their structural depth is unmistakable in profile. Background: finished area of the same panels forming a crisp rectangular grid of tongue-and-groove joints extending to curtain-wall glass with an overcast city skyline. Dry assembly only—no wet concrete, no topping slab—cool daylight, documentary architectural style. NO shallow flat metal strips, NO decorative bar grilles, NO ceiling furring channels mistaken for floor joists.\n\n**Rationale:** Added the required joist-depth sentence immediately after the framing description and appended the explicit exclusion list to enforce substantial structural profiles without expanding other sections.",
+  "usage": {
+    "prompt_tokens": 833,
+    "completion_tokens": 507,
+    "total_tokens": 1340,
+    "cost": 0.0060501375,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.00611125,
+      "upstream_inference_prompt_cost": 0.00104125,
+      "upstream_inference_completions_cost": 0.00507
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 64,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}

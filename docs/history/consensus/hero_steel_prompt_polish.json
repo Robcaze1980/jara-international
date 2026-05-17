@@ -1,0 +1,27 @@
+{
+  "model": "openai/gpt-5.1-codex",
+  "content": "**Primary prompt (paste directly):**  \n“Vertical 3:4 photoreal construction scene, camera at 1.5 m, showing a Type I/II steel office tower floor during installation of JARA High Performance Subfloor. Foreground: exposed flat-top steel joists running horizontally, NO corrugated metal deck, workers absent. Mid-ground: light-gray 4×8 ft fiber-cement panels being screwed perpendicular onto the joists, seams and fasteners clearly visible, a few panels still lifted or partially seated. Background: finished area of the same panels forming a crisp rectangular grid of tongue-and-groove joints extending to curtain-wall glass with an overcast city skyline. Dry assembly only—no wet concrete, no topping slab—cool daylight, documentary architectural style.”\n\n**Fallback prompt A:**  \n“Documentary vertical photograph of a commercial steel frame floor with dry-installed fiber-cement panels replacing concrete. Show bare parallel steel joists in front, installers just screwed down rectangular 4×8 ft panels forming a grid; unfinished gaps reveal the joists. Insist: no corrugated decking, no poured slab, just fiber-cement sheets with visible seams and screws, city skyline through glazing, cool diffused light.”\n\n**Fallback prompt B:**  \n“Hyper-detailed construction progress shot, portrait 3:4, highlighting JARA fiber-cement subfloor panels aligned perpendicular to exposed steel I-joists. Panels are 22 mm thick, light gray, discrete rectangles with tongue-and-groove seams forming a chessboard pattern; screws at edges. Foreground joists uncovered, mid-zone panels mid-install, background fully decked—absolutely no metal deck or concrete pour, only dry bolted panels, against a glass façade.”\n\n**What to verify in the render:**  \n1. Foreground shows bare steel joists with no corrugated sheet beneath.  \n2. Installed areas display clear rectangular panel seams and screw lines (not a monolithic slab).  \n3. No concrete topping, wet mud, or rebar—only fiber-cement panels over joists.\n\n**Rationale:**  \nI foregrounded “no corrugated metal deck” and “no poured concrete” as explicit negatives, repeatedly anchored “dry assembly,” and tied panels to distinctive cues (4×8 ft size, perpendicular orientation, seams, screws) to bias the model toward discrete sheets. The composition instructions mirror the earlier success so only the structural system shifts.",
+  "usage": {
+    "prompt_tokens": 1317,
+    "completion_tokens": 570,
+    "total_tokens": 1887,
+    "cost": 0.0072727875,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.00734625,
+      "upstream_inference_prompt_cost": 0.00164625,
+      "upstream_inference_completions_cost": 0.0057
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}

@@ -8,10 +8,12 @@ import Link from 'next/link';
  * Overlay is a SOLID-TO-TRANSPARENT GRADIENT (navy 88% left → 60% right) +
  * text-shadow on H1 to guarantee AA contrast regardless of photo brightness.
  *
- * Per memory `user_provides_visuals.md`: hero image is a placeholder SVG
- * until user delivers AI-generated final at /public/images/hero/hero.{webp|jpg}.
+ * 2026-05-17: hero photo delivered — empty Type I/II commercial floor with
+ * fiber-cement subfloor surface + curtain-wall city skyline, sunny daylight.
+ * 1920×1434 WebP at 200 KB hits LCP target. The dark gradient overlay still
+ * carries the WCAG AA contrast guarantee from Round 5 GLM finding.
  *
- * Per Round 6 F4.R6 / DeepSeek finding: hero placeholder must hit LCP <1.5s.
+ * Per Round 6 F4.R6 / DeepSeek finding: hero must hit LCP <1.5s.
  *
  * 2026-05-16 positioning correction: body copy no longer claims a Long Beach
  * warehouse. JARA supplies via direct factory shipping from Plycem plants in
@@ -31,15 +33,18 @@ export function Hero() {
       className="relative isolate overflow-hidden bg-navy"
       aria-labelledby="hero-heading"
     >
-      {/* Background image (placeholder until user delivers AI hero) */}
+      {/* Background image — empty Type I/II commercial floor (subfloor as
+          surface) with sunny city skyline through curtain wall. Full opacity
+          so the cityscape blue + fiber-cement floor read clearly; the
+          gradient overlay below handles WCAG AA text contrast. */}
       <Image
-        src="/images/hero/_placeholder-hero.svg"
+        src="/images/hero/hero-home.webp"
         alt=""
         role="presentation"
         fill
         priority
         sizes="100vw"
-        className="absolute inset-0 -z-10 h-full w-full object-cover opacity-50"
+        className="absolute inset-0 -z-10 h-full w-full object-cover"
       />
 
       {/* Solid-to-transparent gradient overlay for AA contrast (Round 5 GLM finding) */}
