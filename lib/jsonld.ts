@@ -21,6 +21,10 @@ export function organizationSchema() {
     name: SITE.name,
     legalName: SITE.legalName,
     url: SITE.url,
+    // Round 12 R12-S2 follow-up (2026-05-17): logo asset delivered;
+    // Google Knowledge Panel can now surface the brand logo when JARA
+    // appears in SERPs.
+    logo: `${SITE.url}/images/logo/Jara_logo_transparent.png`,
     description: SITE.description,
     slogan: SITE.tagline,
     email: SITE.email,
