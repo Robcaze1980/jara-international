@@ -34,9 +34,10 @@ export function Hero() {
       aria-labelledby="hero-heading"
     >
       {/* Background image — empty Type I/II commercial floor (subfloor as
-          surface) with sunny city skyline through curtain wall. Full opacity
-          so the cityscape blue + fiber-cement floor read clearly; the
-          gradient overlay below handles WCAG AA text contrast. */}
+          surface) with sunny city skyline through curtain wall. The
+          gradient overlay below intentionally darkens the background so
+          the floating product-detail circle (right side, above the
+          overlay) reads as the brightest, sharpest element on the page. */}
       <Image
         src="/images/hero/hero-home.webp"
         alt=""
@@ -52,6 +53,27 @@ export function Hero() {
         aria-hidden="true"
         className="absolute inset-0 -z-10 bg-gradient-to-r from-navy/90 via-navy/75 to-navy/55"
       />
+
+      {/* Floating product-detail circle (right side, lg+ only).
+          Positioned ABOVE the dark overlay so the T&G close-up pops
+          against the shadowed background — the contrast carries the
+          "premium product anchored in real construction" narrative. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-4 top-1/2 z-10 hidden -translate-y-1/2 lg:right-8 lg:block xl:right-16"
+      >
+        <div className="relative h-[340px] w-[340px] xl:h-[420px] xl:w-[420px] 2xl:h-[480px] 2xl:w-[480px]">
+          <Image
+            src="/images/products/panel-detail.webp"
+            alt=""
+            role="presentation"
+            fill
+            priority
+            sizes="(min-width: 1536px) 480px, (min-width: 1280px) 420px, 340px"
+            className="rounded-full object-cover shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] ring-4 ring-white/15"
+          />
+        </div>
+      </div>
 
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
         <div className="max-w-3xl">
