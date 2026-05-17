@@ -1,0 +1,27 @@
+{
+  "model": "google/gemini-3.1-flash-lite",
+  "content": "{\n  \"voter\": \"Codex (GPT-5.1)\",\n  \"round\": 12,\n  \"audit_summary\": \"The site maintains strong compliance with contractual constraints and core SEO architecture, but suffers from significant gaps in automated sitemap generation and edge caching configuration. While the content strategy is well-aligned with the 'subfloor-as-hero' mandate, the technical infrastructure requires immediate attention to ensure proper indexing and performance.\",\n  \"findings\": [\n    {\n      \"id\": \"F1\",\n      \"dimension\": \"technical_seo\",\n      \"severity\": \"high\",\n      \"title\": \"Stale and incomplete static sitemap\",\n      \"evidence\": \"§4.12 shows a static sitemap.xml with only the homepage; §4.4 lists 15+ routes.\",\n      \"issue\": \"The sitemap is not dynamically generated, leading to poor discovery of product and resource pages by search engines.\",\n      \"fix\": \"Implement app/sitemap.ts using Next.js metadata API to dynamically generate the sitemap at build time.\",\n      \"ship_blocker_impact\": null\n    },\n    {\n      \"id\": \"F2\",\n      \"dimension\": \"performance\",\n      \"severity\": \"high\",\n      \"title\": \"Missing Cloudflare edge caching\",\n      \"evidence\": \"§4.2 shows 'x-nextjs-cache: MISS' and no 'CF-Cache-Status' header for HTML routes.\",\n      \"issue\": \"The site is not effectively utilizing Cloudflare's edge cache, causing every request to hit the origin worker, increasing latency and CPU costs.\",\n      \"fix\": \"Configure open-next.config.ts to enable S3/R2 or KV-based incremental cache and ensure Cloudflare cache rules are active for HTML content.\",\n      \"ship_blocker_impact\": null\n    },\n    {\n      \"id\": \"F3\",\n      \"dimension\": \"ai_friendliness\",\n      \"severity\": \"medium\",\n      \"title\": \"llms.txt product list mismatch\",\n      \"evidence\": \"§4.13 shows llms.txt lists 6 products, but §4.4 confirms 9 products exist.\",\n      \"issue\": \"The llms.txt file is manually maintained and out of sync with the actual product catalog, providing inaccurate context to AI agents.\",\n      \"fix\": \"Update app/llms-full.txt/route.ts to dynamically pull the product list from the same source of truth as the website.\",\n      \"ship_blocker_impact\": null\n    },\n    {\n      \"id\": \"F4\",\n      \"dimension\": \"schema\",\n      \"severity\": \"medium\",\n      \"title\": \"Potential @id collision in JSON-LD\",\n      \"evidence\": \"§4.6 and §4.7 show multiple scripts injecting schema blocks with potentially non-unique or overlapping @id references.\",\n      \"issue\": \"While the code attempts to use unique IDs, the root layout injects Organization schema while pages inject Product/FAQ schemas; ensure all @id values are globally unique per page.\",\n      \"fix\": \"Audit lib/jsonld.ts to ensure every @id is strictly unique (e.g., appending slug or type) to prevent graph merging errors in Google Search Console.\",\n      \"ship_blocker_impact\": null\n    }\n  ],\n  \"strengths\": [\n    \"Strict adherence to SB-1 through SB-9 contractual constraints.\",\n    \"Excellent use of specialized AI-friendly endpoints (/api/llm-context).\",\n    \"Correct implementation of MadeToOrder availability schema.\",\n    \"Strong, keyword-rich metadata for the subfloor-as-hero strategy.\",\n    \"Proper use of robots.txt for AI crawler allowlisting.\"\n  ],\n  \"open_questions\": [\n    \"Are the 9 errors observed in Cloudflare metrics (4.1) related to the missing cache configuration or specific route failures?\",\n    \"Does the current image pipeline automatically generate alt text, or are images missing descriptive attributes?\",\n    \"Is the 'x-nextjs-stale-time: 300' header in 4.2 intended for production, or should it be longer for static content?\"\n  ]\n}",
+  "usage": {
+    "prompt_tokens": 9439,
+    "completion_tokens": 937,
+    "total_tokens": 10376,
+    "cost": 0.0037275975,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.00376525,
+      "upstream_inference_prompt_cost": 0.00235975,
+      "upstream_inference_completions_cost": 0.0014055
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}

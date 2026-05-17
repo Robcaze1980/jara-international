@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     description: SITE.description,
     images: [
       {
-        url: '/images/og/og-default.svg',
+        url: '/images/og/og-default.png',
         width: 1200,
         height: 630,
         alt: SITE.name,
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: `${SITE.name} | ${SITE.tagline}`,
     description: SITE.description,
-    images: ['/images/og/og-default.svg'],
+    images: ['/images/og/og-default.png'],
   },
   alternates: {
     canonical: SITE.url,
@@ -99,6 +99,12 @@ export const viewport: Viewport = {
   colorScheme: 'light',
 };
 
+// Round 12 R12-S5 (deferred): /es/* pages currently inherit lang="en-US"
+// from this root layout, a WCAG 3.1.1 issue. Fixing requires either a
+// route-groups refactor (app/(en) and app/(es) with parallel root layouts)
+// or making this layout dynamic — the latter would break SSG for the entire
+// site and negate the R12-U3 R2 cache work. Tracked for a focused follow-up
+// commit; do NOT fix by adding `await headers()` here.
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {

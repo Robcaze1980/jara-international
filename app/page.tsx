@@ -27,10 +27,17 @@ import { FinalCTA } from '@/components/FinalCTA';
  * cascade from root layout.
  */
 
+// Round 12: title uses { absolute: ... } because Next.js title.template does NOT
+// apply to the root segment (only nested children). Without absolute the brand
+// suffix is missing from the homepage (R12-A7). Also resolves R12-C1 SB-5 by
+// removing "PLYCEM" from the title (and A5/A6 by trimming description ≤155 chars
+// and listing all three manufacturing countries).
 export const metadata: Metadata = {
-  title: 'PLYCEM Non-Combustible Subfloor — Multifamily & Commercial USA',
+  title: {
+    absolute: 'Non-Combustible Fiber-Cement Subfloor — Multifamily & Commercial USA | JARA International Inc.',
+  },
   description:
-    'US distributor of PLYCEM High Performance Subfloor — non-combustible fiber-cement structural subfloor for multifamily Type V over podium, hotels, and Type I/II commercial. UL R15140 classified, ASTM E-136, IAPMO ER-360, CBC Chapter 7A. Plus the complete PLYCEM panel envelope: roof sheathing, exterior cladding, cement board, deck, and Fibroxton. Direct factory shipping from Costa Rica with 3–4 week door-to-door delivery.',
+    'US distributor of non-combustible fiber-cement subfloor — UL R15140, ASTM E-136, IAPMO ER-360, CBC Chapter 7A. Direct factory shipping from Costa Rica, El Salvador, and Honduras; 3–4 week door-to-door delivery.',
 };
 
 export default function HomePage() {

@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const canonical = `${SITE.url}/products/${product.slug}`;
 
   return {
-    title: `${product.name} — PLYCEM Fiber-Cement Panel`,
+    title: `${product.name} — Fiber-Cement Panel`,
     description: product.shortDescription,
     alternates: {
       canonical,
@@ -73,7 +73,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
       },
     },
     openGraph: {
-      title: `${product.name} — PLYCEM Fiber-Cement Panel`,
+      title: `${product.name} — Fiber-Cement Panel`,
       description: product.shortDescription,
       url: canonical,
       siteName: SITE.name,
@@ -82,7 +82,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${product.name} — PLYCEM Fiber-Cement Panel`,
+      title: `${product.name} — Fiber-Cement Panel`,
       description: product.shortDescription,
     },
   };

@@ -24,7 +24,12 @@ import { buildTelUrl, buildWhatsAppUrl } from '@/lib/whatsapp';
  */
 
 export const metadata: Metadata = {
-  title: 'PLYCEM Fiber-Cement Panels in Long Beach, CA',
+  // Round 12 R12-C1 (strict SB-5): "PLYCEM" removed from <title>. The hidden
+  // noindex,nofollow status of this page does not exempt it from SB-5 —
+  // the ship blocker is contractual with no exception for ads-only pages.
+  // Paid-search keyword targeting still works via ad copy and on-page body
+  // text (which still references PLYCEM where legally permitted).
+  title: 'Fiber-Cement Panels in Long Beach, CA',
   description:
     'Limited PLYCEM fiber-cement panel stock currently available in Long Beach, California via JARA International\'s distribution partner. While supplies last. Contact us for current availability, sizing, and pricing.',
   // CRITICAL: noindex + nofollow — this page is for paid traffic only,

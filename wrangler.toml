@@ -4,7 +4,7 @@
 
 name = "jara-international"
 main = ".open-next/worker.js"
-compatibility_date = "2025-12-01"
+compatibility_date = "2026-05-01"
 compatibility_flags = ["nodejs_compat"]
 
 # Static assets (per OpenNext convention)
@@ -21,6 +21,16 @@ binding = "ASSETS"
 # Observability — enable Cloudflare Web Analytics + Workers logs (per ADR Phase 2 finding)
 [observability]
 enabled = true
+
+# R2 incremental cache binding (Round 12 R12-U3 4/4 unanimous).
+# The bucket itself must exist in the Cloudflare account before the first
+# deploy after this change. Suggested bucket name:
+# jara-international-next-cache. The binding name `NEXT_INC_CACHE_R2_BUCKET`
+# is the convention expected by OpenNext's r2IncrementalCache override
+# (see open-next.config.ts).
+[[r2_buckets]]
+binding = "NEXT_INC_CACHE_R2_BUCKET"
+bucket_name = "jara-international-next-cache"
 
 # Smart Placement (Cloudflare auto-routes Worker close to data sources for lower latency)
 # [placement]

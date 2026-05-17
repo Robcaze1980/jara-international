@@ -15,8 +15,12 @@ import { SITE } from '@/lib/site';
  * expansion AND satisfies hreflang contract (es-US target must return 200).
  */
 
+// Round 12 R12-C1 (SB-5) + R12-S4: remove "PLYCEM" AND the leading "${SITE.name} —"
+// — the latter caused a duplicate brand suffix because the root layout template
+// appends "| ${SITE.name}" anyway. Resolved title is now
+// "Entrepiso Alto Desempeño — Subfloor en EE.UU. | JARA International Inc."
 export const metadata: Metadata = {
-  title: `${SITE.name} — PLYCEM Entrepiso Alto Desempeño Subfloor en EE.UU.`,
+  title: 'Entrepiso Alto Desempeño — Subfloor en EE.UU.',
   description:
     'JARA International Inc. distribuye el PLYCEM Entrepiso Alto Desempeño ' +
     '— entrepiso de fibrocemento no combustible para construcción ' +
@@ -44,7 +48,7 @@ export const metadata: Metadata = {
     description:
       'Distribuidor B2B de paneles de fibrocemento PLYCEM. Envío directo ' +
       'desde planta — entrega puerta-a-puerta en 3–4 semanas en EE.UU.',
-    images: [{ url: '/images/og/og-default.svg', width: 1200, height: 630, alt: SITE.name }],
+    images: [{ url: '/images/og/og-default.png', width: 1200, height: 630, alt: SITE.name }],
   },
 };
 

@@ -18,7 +18,7 @@ export const metadata = {
 
 const tiles = [
   { href: '/', icon: Home, title: 'Home', body: 'Back to the JARA International homepage with calculator and product overview.' },
-  { href: '/products', icon: Package, title: 'Products', body: 'Six PLYCEM fiber-cement product lines — subfloor, cladding, deck, and more.' },
+  { href: '/products', icon: Package, title: 'Products', body: 'Nine fiber-cement product lines — subfloor, roof sheathing, cladding, deck, and more.' },
   { href: '/contact', icon: Mail, title: 'Contact', body: 'Phone, WhatsApp, email — pick your preferred channel for a 1-business-day reply.' },
 ];
 
