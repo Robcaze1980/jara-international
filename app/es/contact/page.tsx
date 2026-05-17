@@ -13,7 +13,7 @@ import { SITE } from '@/lib/site';
 export const metadata: Metadata = {
   title: 'Contacto · JARA International',
   description:
-    'Contacta a JARA International Inc. — Anna (recepcionista AI 24/7), Robertson directo, WhatsApp, o email. Soporte técnico bilingüe en inglés y español. Respuesta en 1 día hábil. Distribución en EE.UU. con envío directo desde planta PLYCEM en Centroamérica.',
+    'Contacta a JARA International Inc. — línea de ventas 24/7, Robertson directo, WhatsApp, o email. Soporte técnico bilingüe en inglés y español. Respuesta en 1 día hábil. Distribución en EE.UU. con envío directo desde planta PLYCEM en Centroamérica.',
   alternates: {
     canonical: `${SITE.url}/es/contact`,
     languages: {
@@ -47,7 +47,7 @@ export default function SpanishContactStubPage() {
         </p>
 
         <div className="mt-10 space-y-4">
-          {/* Anna sales line */}
+          {/* Primary sales line */}
           <a
             href={`tel:${SITE.phonePrimaryRaw}`}
             className="block rounded-lg border-2 border-white/40 bg-white/5 p-5 hover:bg-white/10 transition-colors"
@@ -59,9 +59,9 @@ export default function SpanishContactStubPage() {
               {SITE.phonePrimary}
             </p>
             <p className="mt-2 text-sm text-white/80">
-              Anna (recepcionista AI) atiende, captura los datos de tu
-              proyecto, y le pasa el caso a Robertson para el callback.
-              Atiende en inglés y español.
+              Nuestro primer punto de contacto — captura los datos de tu
+              proyecto las 24 horas y le pasa el caso a Robertson para el
+              callback. Atiende en inglés y español.
             </p>
           </a>
 
@@ -78,7 +78,7 @@ export default function SpanishContactStubPage() {
             </p>
             <p className="mt-2 text-sm text-white/80">
               Si prefieres hablar directamente con Robertson en lugar de la
-              recepcionista.
+              línea de ventas.
             </p>
           </a>
 

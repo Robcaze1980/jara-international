@@ -223,8 +223,8 @@ export default async function ResourcesPage({
               </h2>
               <p className="mt-2 max-w-2xl leading-relaxed text-white/85">
                 If your project is moving fast or you want to verify product
-                fit before filling out the form, talk to Anna (24/7 AI
-                receptionist) or email Robertson directly.
+                fit before filling out the form, call our 24/7 sales line or
+                email Robertson directly.
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
                 <a

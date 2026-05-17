@@ -26,6 +26,7 @@ import { buildTelUrl } from '@/lib/whatsapp';
  */
 
 const NAV_LINKS = [
+  { href: '/', label: 'Home' },
   { href: '/products', label: 'Products' },
   { href: '/products/high-performance-subfloor', label: 'Subfloor' },
   { href: '/resources', label: 'Resources' },

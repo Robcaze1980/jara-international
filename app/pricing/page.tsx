@@ -20,7 +20,7 @@ import { buildTelUrl } from '@/lib/whatsapp';
 export const metadata: Metadata = {
   title: 'Pricing & Quotes',
   description:
-    'JARA International provides per-project pricing. Quote requests typically return within 1 business day. Call Anna (24/7 AI receptionist) or submit a project brief — pricing depends on volume, panel thickness, edge profile, container lead time, and final-mile delivery distance.',
+    'JARA International provides per-project pricing. Quote requests typically return within 1 business day. Call our 24/7 sales line or submit a project brief — pricing depends on volume, panel thickness, edge profile, container lead time, and final-mile delivery distance.',
   alternates: {
     canonical: `${SITE.url}/pricing`,
     languages: {

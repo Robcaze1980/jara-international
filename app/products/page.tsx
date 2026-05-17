@@ -71,8 +71,8 @@ export default function ProductsStubPage() {
             Need a quote now?
           </h2>
           <p className="mt-2 text-sm text-ink/75">
-            Talk to our sales line (24/7 AI receptionist captures your project
-            details) or email Robertson directly.
+            Talk to our 24/7 sales line — we capture your project details and
+            Robertson follows up — or email Robertson directly.
           </p>
           <div className="mt-5 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a

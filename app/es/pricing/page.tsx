@@ -17,7 +17,7 @@ import { SITE } from '@/lib/site';
 export const metadata: Metadata = {
   title: 'Precios y Cotizaciones',
   description:
-    'JARA International cotiza por proyecto. Para precios, contáctenos directamente — Anna (recepcionista AI 24/7) o enviando los datos del proyecto. Respuesta en 1 día hábil. Envío directo desde planta PLYCEM en Centroamérica con entrega puerta-a-puerta típica de 3–4 semanas.',
+    'JARA International cotiza por proyecto. Para precios, contáctenos directamente — línea de ventas 24/7 o enviando los datos del proyecto. Respuesta en 1 día hábil. Envío directo desde planta PLYCEM en Centroamérica con entrega puerta-a-puerta típica de 3–4 semanas.',
   alternates: {
     canonical: `${SITE.url}/es/pricing`,
     languages: {
@@ -63,7 +63,7 @@ export default function SpanishPricingStubPage() {
               href={`tel:${SITE.phonePrimaryRaw}`}
               className="hover:text-white transition-colors"
             >
-              ☎ {SITE.phonePrimary} · Anna (24/7, atiende en inglés y español)
+              ☎ {SITE.phonePrimary} · Línea de ventas 24/7 (inglés y español)
             </a>
             <a
               href={`mailto:${SITE.email}`}

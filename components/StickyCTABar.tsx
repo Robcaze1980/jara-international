@@ -79,7 +79,9 @@ export function StickyCTABar({ lang = 'en' }: { lang?: 'en' | 'es' }) {
               href={buildWhatsAppUrl()}
               target="_blank"
               rel="noopener"
-              className="inline-flex flex-1 items-center justify-center gap-2 rounded-md border border-white/30 px-3 py-2.5 text-sm font-semibold text-white hover:bg-white/10 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:flex-none sm:px-4"
+              // WhatsApp brand green (#25D366) for instant recognition.
+              // Hover darkens to brand pressed-state green (#1EAE54).
+              className="inline-flex flex-1 items-center justify-center gap-2 rounded-md bg-[#25D366] px-3 py-2.5 text-sm font-semibold text-white hover:bg-[#1EAE54] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:flex-none sm:px-4"
               aria-label={`${labels.whatsapp} ${SITE.phoneSecondary}`}
             >
               <MessageCircle className="h-4 w-4" aria-hidden="true" strokeWidth={2.25} />

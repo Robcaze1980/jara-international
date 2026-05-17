@@ -6,8 +6,10 @@ import { buildTelUrl } from '@/lib/whatsapp';
 /**
  * Final CTA section — end-of-page conversion ask.
  *
- * Per ADR-005 E3 lock: emphasizes phone (Anna AI agent) + form path.
+ * Per ADR-005 E3 lock: emphasizes phone (primary sales line) + form path.
  * NO PRICE per Plycem ship blocker SB-4.
+ * 2026-05-17: removed public-facing mentions of the AI receptionist; the
+ * sales line is presented as JARA's first point of contact, period.
  */
 
 export function FinalCTA() {
@@ -21,9 +23,9 @@ export function FinalCTA() {
           Ready to spec fiber-cement panels for your project?
         </h2>
         <p className="mt-4 text-lg leading-relaxed text-white/85">
-          Talk to our sales line now (24/7 AI receptionist screens, captures
-          your project details, and tees up Robertson for callback within 1
-          business day) — or send us your specs by email.
+          Talk to our sales line — available 24/7. We capture your project
+          details and Robertson responds personally within 1 business day.
+          Prefer email? Send us your specs.
         </p>
 
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">

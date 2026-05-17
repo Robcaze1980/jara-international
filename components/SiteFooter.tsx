@@ -37,7 +37,10 @@ export function SiteFooter() {
         Site footer
       </h2>
 
-      <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8 lg:py-16">
+      {/* pb-28 lg:pb-24 reserves space at the bottom so the fixed
+          StickyCTABar (~72-80px tall) doesn't overlap the legal /
+          copyright line when the user scrolls all the way down. */}
+      <div className="mx-auto max-w-7xl px-6 pt-12 pb-28 lg:px-8 lg:pt-16 lg:pb-24">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand block */}
           <div className="lg:col-span-1">
@@ -58,7 +61,7 @@ export function SiteFooter() {
             <ul className="mt-4 space-y-3 text-sm">
               <li>
                 <span className="block text-xs uppercase tracking-wider text-white/50">
-                  Sales line (24/7 AI receptionist)
+                  Sales line · available 24/7
                 </span>
                 <a
                   href={buildTelUrl(SITE.phonePrimaryRaw)}

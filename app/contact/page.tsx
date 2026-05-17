@@ -38,12 +38,12 @@ const FAQS = [
   {
     question: 'How fast will I get a response?',
     answer:
-      'Robertson responds personally within 1 business day on every channel. For quotes submitted before 3 PM Pacific, expect same-day reply. For urgent project deadlines, call Anna at the 24/7 sales line.',
+      'Robertson responds personally within 1 business day on every channel. For quotes submitted before 3 PM Pacific, expect same-day reply. For urgent project deadlines, call our 24/7 sales line.',
   },
   {
     question: 'Do you provide bilingual technical support?',
     answer:
-      'Yes. Robertson and Anna both work in English and Spanish. WhatsApp messages, emails, and calls in either language receive responses in the same language. For project drawings or specifications in Spanish, send via WhatsApp or email for fastest turnaround.',
+      'Yes. Our team handles English and Spanish on every channel. WhatsApp messages, emails, and calls in either language receive responses in the same language. For project drawings or specifications in Spanish, send via WhatsApp or email for fastest turnaround.',
   },
   {
     question: 'What information should I include in my first inquiry?',
@@ -60,7 +60,7 @@ const FAQS = [
 export const metadata: Metadata = {
   title: 'Contact JARA International',
   description:
-    'Contact JARA International Inc. — call our 24/7 AI sales line (Anna), reach Robertson directly, WhatsApp in English or Spanish, or email. Bilingual technical support. Response within 1 business day on every channel. Serving the US construction market via direct factory shipping from PLYCEM plants in Central America.',
+    'Contact JARA International Inc. — call our 24/7 sales line, reach Robertson directly, WhatsApp in English or Spanish, or email. Bilingual technical support. Response within 1 business day on every channel. Serving the US construction market via direct factory shipping from PLYCEM plants in Central America.',
   alternates: {
     canonical: `${SITE.url}/contact`,
     languages: {
@@ -118,7 +118,7 @@ export default function ContactPage() {
           Contact channels
         </h2>
         <div className="grid gap-4 sm:grid-cols-2">
-          {/* Anna sales line — featured */}
+          {/* Primary sales line — featured first point of contact */}
           <a
             href={buildTelUrl(SITE.phonePrimaryRaw)}
             className="group rounded-lg border-2 border-navy bg-white p-6 hover:bg-bg-soft transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
@@ -134,9 +134,9 @@ export default function ContactPage() {
               {SITE.phonePrimary}
             </p>
             <p className="mt-2 text-sm text-ink/70">
-              AI receptionist (Anna) screens calls, captures your project
-              details, and tees up Robertson for callback. Works in English
-              and Spanish.
+              Our first point of contact — captures your project details
+              around the clock and tees up Robertson for callback. Bilingual
+              English and Spanish.
             </p>
           </a>
 
@@ -236,8 +236,8 @@ export default function ContactPage() {
                   Monday–Friday.
                 </p>
                 <p className="mt-1 text-sm text-ink/80 leading-relaxed">
-                  Anna sales line: 24/7 (captures details outside business
-                  hours, Robertson follows up next business day).
+                  Sales line: 24/7 (captures details outside business hours,
+                  Robertson follows up next business day).
                 </p>
               </div>
             </div>
