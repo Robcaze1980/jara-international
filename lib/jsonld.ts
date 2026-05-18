@@ -13,6 +13,27 @@ import { SITE } from './site';
 
 const ORG_ID = `${SITE.url}/#organization`;
 
+// R13-F8: Plycem manufacturer surfaced as a linked Organization entity so AI
+// extractors recognize the supply chain as a single coherent graph across all
+// 9 products (was previously an inline string per Product, which AI parsers
+// could not de-duplicate). The @id is JARA-namespaced so it resolves whether
+// or not plycem.com publishes a matching schema.org Organization. Brand stays
+// inline because Google's Product rich-result parser prefers it that way.
+const PLYCEM_ORG_ID = `${SITE.url}/#plycem-manufacturer`;
+
+export function plycemOrganizationSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': PLYCEM_ORG_ID,
+    name: 'PLYCEM',
+    legalName: 'The Plycem Company (Elementia Materials)',
+    url: 'https://www.plycem.com',
+    description:
+      'Manufacturer of fiber-cement structural and architectural panels. Plants in Costa Rica, El Salvador, and Honduras under ISO 9001/14001/45001 quality systems.',
+  };
+}
+
 export function organizationSchema() {
   return {
     '@context': 'https://schema.org',
@@ -85,19 +106,24 @@ export function productSchema(product: import('@/data/products').Product) {
     sku: firstVariant?.sku,
     mpn: firstVariant?.sku, // SKU and MPN are equivalent for Plycem product codes
     category: 'Fiber Cement Building Panel',
-    manufacturer: {
-      '@type': 'Organization',
-      name: product.manufacturer,
-    },
+    // R13-F8: link by @id to the Plycem Organization schema (emitted once per
+    // page by plycemOrganizationSchema()). Brand intentionally stays inline —
+    // Google's Product rich-result parser handles inline Brand better than @id.
+    manufacturer: { '@id': PLYCEM_ORG_ID },
     brand: {
       '@type': 'Brand',
       name: product.manufacturer,
     },
-    // Per Round 3 GLM finding: compliance certifications as additionalProperty
+    // Per Round 3 GLM finding: compliance certifications as additionalProperty.
+    // R13-F7: emit `validThrough` for time-bound evaluation reports (IAPMO
+    // ER-360 expires 2026-07-31). PropertyValue does not formally specify
+    // validThrough but AI extractors and our own /api/llm-context surface
+    // pick up the extra field cleanly.
     additionalProperty: product.compliance.map((cert) => ({
       '@type': 'PropertyValue',
       name: cert.standard,
       value: cert.detail,
+      ...(cert.validThrough && { validThrough: cert.validThrough }),
     })),
     // Distributor relationship — Plycem ship blocker compliant (no "Authorized" claim).
     // Per ship blocker SB-4: NO price, NO priceCurrency, NO priceSpecification —
@@ -164,6 +190,36 @@ export function faqSchema(
         '@type': 'Answer',
         text: item.answer,
       },
+    })),
+  };
+}
+
+/**
+ * R13-F3: HowTo schema. AI overviews answering procedural queries ("how to
+ * import fiber cement from Costa Rica", "container freight lead time to US")
+ * lift HowTo blocks preferentially. Used on /service-areas for the PO→jobsite
+ * freight workflow. Steps must include name + text; totalTime is ISO 8601
+ * duration format (e.g. "P3W4D" for 3–4 weeks).
+ */
+export function howToSchema(args: {
+  pageUrl: string;
+  name: string;
+  description: string;
+  totalTime?: string;
+  steps: Array<{ name: string; text: string }>;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    '@id': `${args.pageUrl}#howto`,
+    name: args.name,
+    description: args.description,
+    ...(args.totalTime && { totalTime: args.totalTime }),
+    step: args.steps.map((s, idx) => ({
+      '@type': 'HowToStep',
+      position: idx + 1,
+      name: s.name,
+      text: s.text,
     })),
   };
 }

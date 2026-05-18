@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Ship, Anchor, Truck, ClipboardCheck, Phone, ArrowRight } from 'lucide-react';
 import { SITE } from '@/lib/site';
 import { buildTelUrl } from '@/lib/whatsapp';
+import { howToSchema, jsonLdScript } from '@/lib/jsonld';
 
 /**
  * /service-areas — ordering & logistics page.
@@ -71,8 +72,28 @@ const STAGES = [
 ];
 
 export default function OrderingLogisticsPage() {
+  // R13-F3: HowTo JSON-LD for the freight workflow. Source-of-truth for the
+  // step text is the STAGES array above so the rendered cards and the JSON-LD
+  // never drift. Targets the procedural-query class ("how to import fiber
+  // cement from Costa Rica", "container freight lead time") which AI overviews
+  // lift HowTo blocks for preferentially.
+  const pageUrl = `${SITE.url}/service-areas`;
+  const orderingHowTo = howToSchema({
+    pageUrl,
+    name: 'How a JARA order moves from PO to jobsite',
+    description:
+      'End-to-end direct factory shipping of PLYCEM fiber-cement panels from manufacturing plants in Costa Rica, El Salvador, or Honduras to a US jobsite. Typical door-to-door 3–4 weeks.',
+    totalTime: 'P4W',
+    steps: STAGES.map((s) => ({ name: s.title, text: s.body })),
+  });
+
   return (
     <div className="bg-bg-soft">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(orderingHowTo) }}
+      />
+
       {/* Header strip */}
       <section className="bg-navy text-white">
         <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">

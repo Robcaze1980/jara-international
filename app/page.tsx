@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { SITE } from '@/lib/site';
 import { PRODUCTS } from '@/data/products';
-import { productSchema, webSiteSchema, jsonLdScript } from '@/lib/jsonld';
+import { productSchema, webSiteSchema, plycemOrganizationSchema, jsonLdScript } from '@/lib/jsonld';
 import { Hero } from '@/components/Hero';
 import { ValueProps } from '@/components/ValueProps';
 import { FeaturedProducts } from '@/components/FeaturedProducts';
@@ -41,8 +41,14 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  // Build JSON-LD payloads at request time (Org + LocalBusiness in root layout)
-  const allSchemas = [webSiteSchema(), ...PRODUCTS.map((p) => productSchema(p))];
+  // Build JSON-LD payloads at request time (Org in root layout).
+  // R13-F8: plycemOrganizationSchema() emitted once so every Product's
+  // manufacturer @id reference resolves to a concrete entity on the page.
+  const allSchemas = [
+    webSiteSchema(),
+    plycemOrganizationSchema(),
+    ...PRODUCTS.map((p) => productSchema(p)),
+  ];
 
   return (
     <>

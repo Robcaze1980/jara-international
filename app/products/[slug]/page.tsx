@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { SITE } from '@/lib/site';
 import { PRODUCTS, getProductBySlug } from '@/data/products';
-import { productSchema, jsonLdScript } from '@/lib/jsonld';
+import { productSchema, plycemOrganizationSchema, jsonLdScript } from '@/lib/jsonld';
 import { getRelatedProducts } from '@/lib/related-products';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { ProductDetailHero } from '@/components/ProductDetailHero';
@@ -99,7 +99,13 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
 
   return (
     <div className="bg-bg-soft">
-      {/* Per-product Product JSON-LD (kept from Sprint 2 cleanup stub). */}
+      {/* Per-product Product JSON-LD (kept from Sprint 2 cleanup stub).
+          R13-F8: emit Plycem Organization once so the Product's manufacturer
+          @id reference resolves to a concrete entity on this page. */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(plycemOrganizationSchema()) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdScript(productSchema(product)) }}

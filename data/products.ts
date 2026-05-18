@@ -11,6 +11,13 @@
 export type ComplianceCert = {
   standard: string;
   detail: string;
+  /**
+   * R13-F7: ISO-8601 expiration date for time-bound evaluation reports
+   * (e.g. IAPMO ER-360 expires 2026-07-31). Surfaced in productSchema()
+   * additionalProperty as `validThrough` so AI extractors can warn on
+   * stale citations.
+   */
+  validThrough?: string;
 };
 
 export type ProductVariant = {
@@ -261,7 +268,7 @@ export const PRODUCTS: Product[] = [
     density: { min: 1.0, max: 1.4, unit: 'g/cm³' },
     flexuralStrengthMin: { value: 7.0, unit: 'MPa (equilibrium)' },
     compliance: [
-      { standard: 'IAPMO ER-360', detail: 'Evaluation Report (valid through 2026-07-31)' },
+      { standard: 'IAPMO ER-360', detail: 'Evaluation Report', validThrough: '2026-07-31' },
       { standard: 'ICC IBC 2015/2012', detail: 'Recognized alternative material' },
       { standard: 'ICC IRC 2015/2012', detail: 'Residential code compliant' },
       { standard: 'ASTM E-84', detail: 'Flame spread 0, smoke developed ≤5 (Class A)' },
