@@ -36,9 +36,38 @@ const SUBFLOOR_HIGHLIGHTS = [
   },
 ];
 
+/**
+ * Display order for the "Complete the envelope" grid (2026-05-19 founder
+ * request). Drives visual prominence — the first 3 slugs land in the first
+ * row on lg+ (3-column grid). Any slugs not listed here fall through to the
+ * end in their natural data/products.ts order. Adjusting this array reorders
+ * the grid without touching the canonical PRODUCTS array (which still drives
+ * sitemap order and llms.txt cataloging).
+ */
+const ENVELOPE_DISPLAY_ORDER: readonly string[] = [
+  'deck',
+  'siding',
+  'corrugated-roof-tile',
+  'roof-sheathing',
+  'exterior-hidden-joint',
+  'exterior-cement-board',
+  'fibroxton',
+  'deck-modular',
+];
+
 export function FeaturedProducts() {
   const subfloor = getProductBySlug('high-performance-subfloor');
-  const otherProducts = PRODUCTS.filter((p) => p.slug !== 'high-performance-subfloor');
+  const otherProducts = PRODUCTS
+    .filter((p) => p.slug !== 'high-performance-subfloor')
+    .slice()
+    .sort((a, b) => {
+      const aIdx = ENVELOPE_DISPLAY_ORDER.indexOf(a.slug);
+      const bIdx = ENVELOPE_DISPLAY_ORDER.indexOf(b.slug);
+      // Missing slugs go to the end, preserving each other's relative order
+      const aOrder = aIdx === -1 ? Number.MAX_SAFE_INTEGER : aIdx;
+      const bOrder = bIdx === -1 ? Number.MAX_SAFE_INTEGER : bIdx;
+      return aOrder - bOrder;
+    });
 
   return (
     <section

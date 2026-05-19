@@ -54,22 +54,22 @@ export function Hero() {
         className="absolute inset-0 -z-10 bg-gradient-to-r from-navy/90 via-navy/75 to-navy/55"
       />
 
-      {/* Floating product-detail circle (right side, lg+ only).
-          Positioned ABOVE the dark overlay so the T&G close-up pops
-          against the shadowed background — the contrast carries the
-          "premium product anchored in real construction" narrative.
-          2026-05-17 v2: shrunk + lowered + captioned per design review.
-          The circle now sits below the headline midline so it reads as
-          a supporting visual, not a co-headline. */}
-      <div className="pointer-events-none absolute right-8 top-[58%] z-10 hidden -translate-y-1/2 lg:right-12 lg:block xl:right-20">
-        <div className="relative h-[260px] w-[260px] xl:h-[300px] xl:w-[300px] 2xl:h-[340px] 2xl:w-[340px]">
+      {/* Floating product-detail circle (right side, md+ to surface the
+          visual on tablets as well as desktop — 2026-05-19 founder noted
+          the image wasn't appearing at narrower viewports). Positioned
+          ABOVE the dark overlay so the T&G close-up pops against the
+          shadowed background. 2026-05-17 v2: shrunk + lowered + captioned
+          per design review; the circle sits below the headline midline so
+          it reads as a supporting visual, not a co-headline. */}
+      <div className="pointer-events-none absolute right-4 top-[58%] z-10 hidden -translate-y-1/2 md:right-8 md:block lg:right-12 xl:right-20">
+        <div className="relative h-[200px] w-[200px] md:h-[220px] md:w-[220px] lg:h-[260px] lg:w-[260px] xl:h-[300px] xl:w-[300px] 2xl:h-[340px] 2xl:w-[340px]">
           <Image
             src="/images/products/panel-detail.webp"
             alt=""
             role="presentation"
             fill
             priority
-            sizes="(min-width: 1536px) 340px, (min-width: 1280px) 300px, 260px"
+            sizes="(min-width: 1536px) 340px, (min-width: 1280px) 300px, (min-width: 1024px) 260px, (min-width: 768px) 220px, 200px"
             className="rounded-full object-cover shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] ring-4 ring-white/15"
           />
         </div>
@@ -133,6 +133,22 @@ export function Hero() {
             UL R15140 · ASTM E-136 Non-Combustible · IAPMO ER-360 · CBC
             Chapter 7A · Direct factory shipping · 3–4 week typical
             door-to-door delivery
+          </p>
+          {/* Cross-sell to the broader PLYCEM fiber-cement envelope without
+              demoting subfloor's hero status (per the founder-locked
+              subfloor-as-hero strategy in CLAUDE.md). The line is small,
+              de-emphasized, and links to the FeaturedProducts section
+              anchor so visitors who want the full catalog can find it
+              instantly. 2026-05-19 founder request. */}
+          <p className="mt-4 text-sm text-white/75">
+            Plus the complete PLYCEM fiber-cement panel envelope —{' '}
+            <Link
+              href="#featured-products"
+              className="underline decoration-white/40 underline-offset-4 hover:decoration-white hover:text-white transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm"
+            >
+              roof, siding, deck, façade, cement board, corrugated roof tile, and more
+            </Link>
+            .
           </p>
         </div>
       </div>
