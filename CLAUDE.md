@@ -107,7 +107,7 @@ In English copy use **"High Performance Subfloor"**, not "Entrepiso Alto Desempe
 
 Products without complete US compliance must surface the gap via `components/CertGapWarning.tsx` rendered above the product detail page hero. Currently active for:
 
-- **lap-siding-tongue-and-groove** — missing ICC-ES ESR (HardiePlank has ESR-2290).
+- **siding** — missing ICC-ES ESR (HardiePlank has ESR-2290). Slug was renamed from `lap-siding-tongue-and-groove` on 2026-05-19 when the catalog expanded to the full 4-profile family (Traslapado, Machihembrado, Victoriano, Tablilla); the old slug 301-redirects via `LEGACY_SLUG_REDIRECTS` in `app/products/[slug]/page.tsx`.
 - **corrugated-roof-tile** — missing UL 263/790 Class A fire-rated roof classification.
 
 Do NOT remove these warnings without consensus. The amber visual pattern matches `/long-beach-stock` for brand-consistency cueing. WCAG 2.1 AA verified (~10.6:1 contrast).
@@ -133,7 +133,7 @@ Quick post-deploy spot-check pattern (use after any commit that touches position
 ```bash
 curl -s -A "Mozilla/5.0" https://jarainternational.com/ | grep -o "<title>[^<]*</title>"
 curl -sI -A "Mozilla/5.0" https://jarainternational.com/ | grep -i cache-control
-for slug in high-performance-subfloor deck-modular corrugated-roof-tile lap-siding-tongue-and-groove; do
+for slug in high-performance-subfloor deck-modular corrugated-roof-tile siding; do
   echo -n "$slug: "; curl -s -o /dev/null -w "%{http_code}\n" -A "Mozilla/5.0" "https://jarainternational.com/products/$slug"
 done
 ```

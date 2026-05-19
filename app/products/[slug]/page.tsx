@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import { SITE } from '@/lib/site';
 import { PRODUCTS, getProductBySlug } from '@/data/products';
 import { productSchema, plycemOrganizationSchema, jsonLdScript } from '@/lib/jsonld';
@@ -8,12 +8,27 @@ import { getRelatedProducts } from '@/lib/related-products';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { ProductDetailHero } from '@/components/ProductDetailHero';
 import { ProductGallery } from '@/components/ProductGallery';
+import { SidingArchitecturalRange } from '@/components/SidingArchitecturalRange';
+import { SidingProfileGrid } from '@/components/SidingProfileGrid';
+import { ShippingDetail } from '@/components/ShippingDetail';
 import { VariantTable } from '@/components/VariantTable';
 import { ComplianceSection } from '@/components/ComplianceSection';
 import { ProductFAQ } from '@/components/ProductFAQ';
 import { RelatedProducts } from '@/components/RelatedProducts';
 import { FinalCTA } from '@/components/FinalCTA';
 import { CertGapWarning, type CertGapWarningContent } from '@/components/CertGapWarning';
+
+/**
+ * Legacy slug → current slug 301 mapping (2026-05-19 Siding expansion).
+ * The Siding product was renamed from `lap-siding-tongue-and-groove` to
+ * `siding` when the catalog expanded from a single T&G variant to the full
+ * 4-profile family (Traslapado, Machihembrado, Victoriano, Tablilla).
+ * Inbound traffic on the old URL must 301 to the new canonical to preserve
+ * SEO equity and avoid 404s on existing backlinks.
+ */
+const LEGACY_SLUG_REDIRECTS: Record<string, string> = {
+  'lap-siding-tongue-and-groove': 'siding',
+};
 
 /**
  * Per-slug cert-gap warning content (Round 11 R11-D + R11-E).
@@ -23,10 +38,10 @@ import { CertGapWarning, type CertGapWarningContent } from '@/components/CertGap
  * skim past the cert gap to the FAQ.
  */
 const CERT_GAP_WARNINGS: Record<string, CertGapWarningContent | undefined> = {
-  'lap-siding-tongue-and-groove': {
+  siding: {
     title: 'No ICC-ES Evaluation Service Report — confirm AHJ acceptance',
     body:
-      'PLYCEM Lap Siding is certified to ASTM C1186-08 Type A Grade I and ASTM E-84 surface burning, but does NOT carry an ICC-ES Evaluation Service Report equivalent to James Hardie HardiePlank\'s ESR-2290. For projects requiring an ESR-referenced wall assembly — most insurance-driven specifications and larger commercial work — confirm acceptance with your Authority Having Jurisdiction (AHJ) before specifying. Suitable for residential and light commercial applications where AHJ accepts manufacturer ASTM documentation directly.',
+      'PLYCEM Siding is certified to ASTM C1186-08 Type A Grade I and ASTM E-84 surface burning, but does NOT carry an ICC-ES Evaluation Service Report equivalent to James Hardie HardiePlank\'s ESR-2290. For projects requiring an ESR-referenced wall assembly — most insurance-driven specifications and larger commercial work — confirm acceptance with your Authority Having Jurisdiction (AHJ) before specifying. Suitable for residential, light commercial, historic restoration, and interior accent applications where AHJ accepts manufacturer ASTM documentation directly.',
   },
   'corrugated-roof-tile': {
     title: 'Not US Class A fire-rated — international / Caribbean / export use only',
@@ -53,7 +68,11 @@ type Params = Promise<{ slug: string }>;
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  // Legacy slug → produce metadata for the canonical destination so OG/title
+  // are correct on the rare race where a crawler hits the old URL before the
+  // 301 fires (e.g. when previewing without HTTP redirect handling).
+  const canonicalSlug = LEGACY_SLUG_REDIRECTS[slug] ?? slug;
+  const product = getProductBySlug(canonicalSlug);
   if (!product) return { title: 'Product Not Found' };
 
   const canonical = `${SITE.url}/products/${product.slug}`;
@@ -92,6 +111,14 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 
 export default async function ProductDetailPage({ params }: { params: Params }) {
   const { slug } = await params;
+
+  // 301 redirect legacy slugs (e.g. lap-siding-tongue-and-groove → siding)
+  // before any data resolution. Next.js's redirect() throws, so this short-
+  // circuits the rest of the function on legacy hits.
+  if (LEGACY_SLUG_REDIRECTS[slug]) {
+    redirect(`/products/${LEGACY_SLUG_REDIRECTS[slug]}`);
+  }
+
   const product = getProductBySlug(slug);
   if (!product) notFound();
 
@@ -134,6 +161,18 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
         <div className="mt-8 lg:mt-12">
           <ProductDetailHero product={product} />
         </div>
+
+        {/* Siding-specific sections — only render for the /products/siding
+            page where the 4-profile lineup, architectural-range visual story,
+            and palletized factory-direct supply chain narrative are the
+            primary selling surfaces. Other product slugs skip these. */}
+        {product.slug === 'siding' && (
+          <div className="mt-12 lg:mt-16 grid gap-12 lg:gap-16">
+            <SidingArchitecturalRange product={product} />
+            <SidingProfileGrid product={product} />
+            <ShippingDetail product={product} />
+          </div>
+        )}
 
         <div className="mt-12 grid gap-6 lg:gap-8">
           <ProductGallery product={product} />

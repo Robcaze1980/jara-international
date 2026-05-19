@@ -19,7 +19,11 @@ Per ADR-013: VB1 photo-first product cards with brand-compliant placeholder fall
 | `exterior-hidden-joint.webp` | `/products/exterior-hidden-joint` | Phase 4.5 | ⏳ Pending |
 | `exterior-cement-board.webp` | `/products/exterior-cement-board` | Phase 4.5 | ⏳ Pending |
 | `fibroxton.webp` | `/products/fibroxton` | Phase 4.5 | ⏳ Pending |
-| `lap-siding-tongue-and-groove.webp` | `/products/lap-siding-tongue-and-groove` | Phase 4.5 | ⏳ Pending |
+| `siding-hero.webp` | `/products/siding` | Day-1 launch (4-profile parent page hero) | ✅ Delivered 2026-05-19 |
+| `siding-tongue-and-groove.webp` | `/products/siding#machihembrado` | Profile grid card | ✅ Delivered 2026-05-19 |
+| `siding-tongue-and-groove-alt.webp` | `/products/siding` | Specifier-detail (thickness profile) | ✅ Delivered 2026-05-19 |
+| `siding-installation-cedro-stained.webp` | `/products/siding` | Architectural range — Cedro stained | ✅ Delivered 2026-05-19 |
+| `siding-pallet.webp` | `/products/siding` | "How it ships" supply-chain section | ✅ Delivered 2026-05-19 |
 
 If a product image is NOT delivered by launch, the card uses `_placeholder.svg` (navy gradient + product name overlay) — **layout never changes**, only the image swaps.
 

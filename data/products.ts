@@ -37,6 +37,30 @@ export type ProductFaq = {
   answer: string;
 };
 
+/**
+ * Optional sub-profile descriptor (used by /products/siding to render the
+ * 4-profile selector: Traslapado, Machihembrado, Victoriano, Tablilla).
+ * For products that have a single profile this field stays undefined.
+ */
+export type ProductProfile = {
+  /** English profile name shown in the H3 (e.g. "Lap") */
+  name: string;
+  /** Spanish proprietary name preserved (e.g. "Traslapado") */
+  spanishName: string;
+  /** Anchor slug used for deep-linking (#traslapado, etc.) */
+  anchor: string;
+  /** Short positioning sentence rendered below the name */
+  positioning: string;
+  /** Body paragraph with the architectural use-case */
+  description: string;
+  /** Inline dimension copy ("247–307 mm × 2438 mm · 8–14 mm thick") */
+  dimensions: string;
+  /** Optional close-up image; falls back to text-only when undefined */
+  image?: string;
+  /** Optional differentiator badge (e.g. "No HardiePlank equivalent") */
+  badge?: string;
+};
+
 export type Product = {
   slug: string;
   name: string;
@@ -55,6 +79,12 @@ export type Product = {
   image?: string;
   /** Optional supporting gallery images rendered below the hero on the detail page */
   images?: { src: string; alt: string; caption?: string }[];
+  /** Optional sub-profile lineup (multi-profile products like Siding) */
+  profiles?: ProductProfile[];
+  /** Optional second architectural-context image for the "range" section */
+  installationImage?: { src: string; alt: string; caption?: string };
+  /** Optional palletized shipment image for the "How it ships" section */
+  palletImage?: { src: string; alt: string; caption?: string };
 };
 
 export const PRODUCTS: Product[] = [
@@ -398,23 +428,83 @@ export const PRODUCTS: Product[] = [
     ],
   },
   {
-    slug: 'lap-siding-tongue-and-groove',
-    name: 'Lap Siding — Tongue-and-Groove',
+    slug: 'siding',
+    name: 'Plycem Siding',
+    image: '/images/products/siding-hero.webp',
+    installationImage: {
+      src: '/images/products/siding-installation-cedro-stained.webp',
+      alt: 'Modern mountain residence corner with Plycem Siding in Cedro wood-grain finish stained in warm cedar tone, dark stone wainscot, dark-framed window',
+      caption: 'Cedro wood-grain finish in cedar stain — Pacific Northwest / mountain modern residential context.',
+    },
+    palletImage: {
+      src: '/images/products/siding-pallet.webp',
+      alt: 'Plycem Siding planks stacked on shipping pallet, ready for direct factory freight from Costa Rica, El Salvador, or Honduras',
+      caption: 'Direct factory shipment — typical door-to-door delivery 3–4 weeks. No US warehouse markup.',
+    },
+    profiles: [
+      {
+        name: 'Lap',
+        spanishName: 'Traslapado',
+        anchor: 'traslapado',
+        positioning: 'The workhorse exterior profile.',
+        description:
+          'Each plank overlaps the one below, creating the classic horizontal shadow line found on American residential architecture from coast to coast. The direct equivalent of James Hardie HardiePlank, in 8 mm to 14 mm thicknesses for projects that need a thinner or thicker substrate. Specified across Bay Area Craftsman, New England Coastal, Pacific Northwest modern, and Charleston/Garden District restoration work.',
+        dimensions: '247–307 mm wide · 2438 mm long · 8 / 10 / 11 / 14 mm thick',
+      },
+      {
+        name: 'Tongue-and-Groove',
+        spanishName: 'Machihembrado',
+        anchor: 'machihembrado',
+        positioning: 'Hidden-fastener flush wall plane.',
+        description:
+          'Tongue-and-groove edges enable concealed fastening for a clean uninterrupted wall surface — preferred for modern minimalist architecture and for interior accent walls, ceilings, and soffits where exposed fasteners would compromise the design. The only profile in the family suitable for both exterior cladding AND interior architectural finishes.',
+        dimensions: '247–307 mm wide · 2438 mm long · 14 mm thick',
+        image: '/images/products/siding-tongue-and-groove.webp',
+      },
+      {
+        name: 'Victorian',
+        spanishName: 'Victoriano',
+        anchor: 'victoriano',
+        positioning: 'Historic restoration profile — no HardiePlank equivalent.',
+        description:
+          'Decorative channel-cut profile creating a double-shadow line at every plank seam — the visual signature of historic Victorian and Edwardian wood siding. The only profile in the Plycem family with no direct James Hardie equivalent, making it the specification of choice for historic restoration in Charleston, Savannah, New Orleans Garden District, and the San Francisco Painted Ladies. Narrower 185–207 mm width matches the visual rhythm of original Victorian-era lumber.',
+        dimensions: '185–207 mm wide · 2438 mm long · 11 mm thick',
+        badge: 'No HardiePlank equivalent',
+      },
+      {
+        name: 'Slat',
+        spanishName: 'Tablilla',
+        anchor: 'tablilla',
+        positioning: 'Narrow-strip accent profile.',
+        description:
+          'Narrow 200 mm slat profile for accent walls, eave soffits, and vertical-strip modern applications. The high-rhythm visual line is distinct from the broader lap profiles — specified when fine detail matters and when the wall composition benefits from a denser, more articulated shadow pattern.',
+        dimensions: '200 mm wide · 2438 mm long · 10 mm thick',
+      },
+    ],
     shortDescription:
-      'Fiber-cement tongue-and-groove plank siding for exterior and interior wall finishes. Wood-look "Clásico" smooth or "Cedro" wood-grain textures.',
+      'Fiber-cement plank siding in four architectural profiles — Lap, Tongue-and-Groove, Victorian, and Slat. Wood look without the wood. Specified for exterior cladding and interior accent walls.',
     longDescription:
-      'Plycem Siding Machihembrado is a horizontal fiber-cement plank with tongue-and-groove edges for exterior or interior wall cladding, ceilings, and soffits. Available in 246.5mm or 306.5mm widths × 2444.5mm length × 14mm thickness, with "Clásico" smooth or "Cedro" wood-grain finish. The T&G profile enables hidden-fastener installation for a clean uninterrupted wall plane. Manufactured at Plycem facilities in Costa Rica and El Salvador.',
+      'Plycem Siding is the complete fiber-cement plank siding family — four distinct architectural profiles (Traslapado / Lap, Machihembrado / Tongue-and-Groove, Victoriano / Victorian, Tablilla / Slat) manufactured at Plycem facilities in Costa Rica, El Salvador, and Honduras. The substrate is non-combustible fiber-cement; the face accepts smooth Clásico or wood-grain Cedro texture in any exterior-grade paint or stain. Specified across Bay Area residential, Pacific Northwest modern, mountain contemporary, and historic restoration projects. The wood look architects and designers prefer, with the durability and fire resistance of cement.',
     applications: [
-      'Exterior facade cladding',
-      'Exterior wall siding (residential and light commercial)',
-      'Interior architectural wall finishes',
+      'Exterior facade cladding (residential and light commercial)',
+      'Interior architectural accent walls',
       'Ceiling and soffit applications',
       'Eaves and porch ceilings',
+      'Historic restoration (Victoriano profile)',
+      'Modern flush-wall design (Machihembrado profile)',
+      'Vertical strip / accent wall (Tablilla profile)',
     ],
     variants: [
-      { thicknessMm: 14, thicknessImperial: '9/16"', widthMm: 306.5, lengthMm: 2444.5, weightKg: 11.3, weightLbs: 24.9, sku: '960199', edgeProfile: 'tongue-and-groove', panelsPerPallet: 4 },
-      { thicknessMm: 14, thicknessImperial: '9/16"', widthMm: 246.5, lengthMm: 2444.5, weightKg: 9.1, weightLbs: 20.1, sku: '960190', edgeProfile: 'tongue-and-groove', panelsPerPallet: 5 },
-      { thicknessMm: 14, thicknessImperial: '9/16"', widthMm: 246.5, lengthMm: 2444.5, weightKg: 9.1, weightLbs: 20.1, sku: '960192', edgeProfile: 'tongue-and-groove', panelsPerPallet: 5 },
+      { thicknessMm: 8, thicknessImperial: '5/16"', widthMm: 247, lengthMm: 2438, weightKg: 6.6, weightLbs: 14.6, sku: 'TRA-8-247', edgeProfile: 'straight' },
+      { thicknessMm: 10, thicknessImperial: '3/8"', widthMm: 247, lengthMm: 2438, weightKg: 8.2, weightLbs: 18.1, sku: 'TRA-10-247', edgeProfile: 'straight' },
+      { thicknessMm: 11, thicknessImperial: '7/16"', widthMm: 307, lengthMm: 2438, weightKg: 11.2, weightLbs: 24.7, sku: 'TRA-11-307', edgeProfile: 'straight' },
+      { thicknessMm: 14, thicknessImperial: '9/16"', widthMm: 247, lengthMm: 2438, weightKg: 11.5, weightLbs: 25.4, sku: 'TRA-14-247', edgeProfile: 'straight' },
+      { thicknessMm: 14, thicknessImperial: '9/16"', widthMm: 307, lengthMm: 2438, weightKg: 14.3, weightLbs: 31.5, sku: 'TRA-14-307', edgeProfile: 'straight' },
+      { thicknessMm: 14, thicknessImperial: '9/16"', widthMm: 247, lengthMm: 2438, weightKg: 11.5, weightLbs: 25.4, sku: '960190', edgeProfile: 'tongue-and-groove', panelsPerPallet: 5 },
+      { thicknessMm: 14, thicknessImperial: '9/16"', widthMm: 307, lengthMm: 2438, weightKg: 14.3, weightLbs: 31.5, sku: '960199', edgeProfile: 'tongue-and-groove', panelsPerPallet: 4 },
+      { thicknessMm: 11, thicknessImperial: '7/16"', widthMm: 185, lengthMm: 2438, weightKg: 5.4, weightLbs: 11.9, sku: 'VIC-11-185', edgeProfile: 'straight' },
+      { thicknessMm: 11, thicknessImperial: '7/16"', widthMm: 207, lengthMm: 2438, weightKg: 6.0, weightLbs: 13.2, sku: 'VIC-11-207', edgeProfile: 'straight' },
+      { thicknessMm: 10, thicknessImperial: '3/8"', widthMm: 200, lengthMm: 2438, weightKg: 5.3, weightLbs: 11.7, sku: 'TAB-10-200', edgeProfile: 'straight' },
     ],
     density: { min: 1.0, max: 1.18, unit: 'kg/dm³' },
     flexuralStrengthMin: { value: 7.0, unit: 'N/mm²' },
@@ -427,24 +517,34 @@ export const PRODUCTS: Product[] = [
     manufacturer: 'Plycem',
     faqs: [
       {
-        question: 'How does this compare to James Hardie HardiePlank?',
+        question: 'Which profile do I use for what?',
         answer:
-          'Both are fiber-cement lap siding certified to ASTM C1186 Type A. The primary technical difference is that HardiePlank carries a current ICC-ES Evaluation Service Report (ESR-2290) that documents specific assembly testing for US building codes, while Plycem Siding Machihembrado is certified to ASTM C1186 + ISO 8336 without an equivalent US ESR. For projects where AHJs accept manufacturer ASTM documentation directly, both products perform comparably. For projects requiring an ESR-referenced wall assembly (insurance specs, larger commercial), HardiePlank is the safer specification — confirm acceptance with your AHJ before specifying.',
+          'Lap (Traslapado) for traditional exterior cladding — the everyday choice that matches American residential architecture from coast to coast. Tongue-and-Groove (Machihembrado) for hidden-fastener walls and the only profile suitable for interior accent walls and ceilings. Victorian (Victoriano) for historic restoration projects where the channel-cut profile is the architectural signature. Slat (Tablilla) for narrow-strip accent walls and soffits where fine visual rhythm matters.',
       },
       {
         question: 'What is the difference between "Clásico" and "Cedro" finish?',
         answer:
-          '"Clásico" is a smooth or lightly textured finish suitable for paint applications. "Cedro" has a deeper wood-grain texture mimicking cedar plank — ideal when a natural-wood aesthetic is desired without the maintenance of real cedar. Both share the same fiber-cement substrate and accept exterior-grade paints, stains, and integral dyes.',
+          '"Clásico" is a smooth or lightly textured face suitable for any paint or solid stain application. "Cedro" has an integral wood-grain texture mimicking stained cedar plank — ideal when a natural-wood aesthetic is desired without the maintenance burden of real cedar. Both share the identical fiber-cement substrate and accept exterior-grade paints, stains, and integral dyes. The two installation references on this page show the same product family in two finishes: white Clásico-painted (Bay Area Craftsman) and warm cedar-stained Cedro (mountain modern).',
       },
       {
-        question: 'Can it be used for ceilings and soffits in addition to walls?',
+        question: 'How does this compare to James Hardie HardiePlank?',
         answer:
-          'Yes. The 14mm thickness and T&G profile work equally well for horizontal soffit and ceiling applications. For exterior eaves and porch ceilings, fiber-cement is preferred over wood because it resists insect damage, rot, and moisture-driven warping. Fastening schedule changes for overhead applications — refer to the Plycem installation manual.',
+          'Both are ASTM C1186 fiber-cement plank siding. HardiePlank carries a current ICC-ES Evaluation Service Report (ESR-2290) that documents specific assembly testing for US building codes — important for insurance-driven specs and larger commercial work. Plycem Siding is certified to ASTM C1186 + ISO 8336 without an equivalent US ESR; AHJ acceptance of ASTM documentation directly is sufficient for residential and light commercial. Where Plycem outperforms: four architectural profiles in one product family vs HardiePlank\'s lap-only offering (Victoriano has no Hardie equivalent), interior-suitable T&G profile, and direct factory shipping without distributor markup. For residential, light commercial, and historic-restoration projects, the choice is profile range and supply chain economics; for large commercial with strict ESR requirements, HardiePlank is the safer spec.',
       },
       {
-        question: 'Which width is more common — 246.5mm or 306.5mm?',
+        question: 'Can it be used for interior applications?',
         answer:
-          'The narrower 246.5mm width (about 9-3/4") matches the visual proportion of traditional 8-inch lap siding and is the more frequently specified profile for residential exteriors. The 306.5mm width (about 12") creates a bolder horizontal line — preferred for modern architectural designs and when fewer joints are desired. Both widths share the same T&G mechanical interlock.',
+          'Yes — this is one of Plycem Siding\'s structural advantages over James Hardie, which is positioned strictly as exterior cladding. The Machihembrado (T&G) profile especially is suitable for interior accent walls, ceilings, and decorative paneling. The fiber-cement substrate is moisture- and pest-resistant, doesn\'t off-gas like wood composites, and accepts interior or exterior paint systems. Use Tablilla for narrow-strip interior accent walls where the visual rhythm should be tighter.',
+      },
+      {
+        question: 'Can I paint or stain it?',
+        answer:
+          'Yes — and both Clásico and Cedro finishes accept any exterior-grade paint or stain in any color. The Cedro wood-grain texture is integral to the panel; the color is the project\'s choice. The two installation references on this page demonstrate the range: the same product family painted crisp white for Bay Area Craftsman residential, and stained warm cedar for mountain-modern contemporary. Specify the paint or stain system based on the project, not the substrate.',
+      },
+      {
+        question: 'How does it ship and how long does delivery take?',
+        answer:
+          'Plycem Siding ships palletized direct from manufacturing facilities in Costa Rica, El Salvador, or Honduras. Typical timeline is 3–4 weeks door-to-door: factory → ocean freight → US port of entry → customs clearance → trucking to jobsite. JARA coordinates the full chain. There is no US warehouse — pricing reflects direct factory economics without mid-supply-chain stocking markup. Submit project sheets for delivered pricing within 48 hours.',
       },
     ],
   },
