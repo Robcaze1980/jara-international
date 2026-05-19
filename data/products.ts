@@ -53,6 +53,8 @@ export type Product = {
   faqs: ProductFaq[];
   /** Optional AI-generated hero image path; falls back to placeholder when undefined */
   image?: string;
+  /** Optional supporting gallery images rendered below the hero on the detail page */
+  images?: { src: string; alt: string; caption?: string }[];
 };
 
 export const PRODUCTS: Product[] = [
@@ -449,6 +451,19 @@ export const PRODUCTS: Product[] = [
   {
     slug: 'corrugated-roof-tile',
     name: 'Corrugated Roof Tile (Eureka Sevillana)',
+    image: '/images/products/corrugated-roof-tile.webp',
+    images: [
+      {
+        src: '/images/products/corrugated-roof-tile-pallet.webp',
+        alt: 'Plycem Eureka Sevillana roof tiles stacked on shipping pallet — orange terracotta with burgundy accent tiles',
+        caption: 'How it ships — palletized for direct factory freight from Costa Rica, El Salvador, or Honduras',
+      },
+      {
+        src: '/images/products/corrugated-roof-tile-profile.webp',
+        alt: 'Close-up of four Plycem Eureka Sevillana tiles showing the orange and burgundy color blend and barrel profile',
+        caption: 'Color blend — Rojo Teja primary with scattered burgundy accent tiles; color is integral to the panel, not a surface coating',
+      },
+    ],
     shortDescription:
       'Sinusoidal corrugated fiber-cement roof panel with Spanish-tile aesthetic. International / Caribbean market — NOT currently UL-classified for US Class A fire-rated roof assemblies.',
     longDescription:

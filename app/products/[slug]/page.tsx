@@ -7,6 +7,7 @@ import { productSchema, plycemOrganizationSchema, jsonLdScript } from '@/lib/jso
 import { getRelatedProducts } from '@/lib/related-products';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { ProductDetailHero } from '@/components/ProductDetailHero';
+import { ProductGallery } from '@/components/ProductGallery';
 import { VariantTable } from '@/components/VariantTable';
 import { ComplianceSection } from '@/components/ComplianceSection';
 import { ProductFAQ } from '@/components/ProductFAQ';
@@ -135,6 +136,7 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
         </div>
 
         <div className="mt-12 grid gap-6 lg:gap-8">
+          <ProductGallery product={product} />
           <VariantTable product={product} />
           <ComplianceSection product={product} />
           {/* Per-slug Applications context — only rendered for the lead

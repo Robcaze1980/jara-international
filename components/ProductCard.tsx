@@ -21,12 +21,10 @@ export function ProductCard({ product }: { product: Product }) {
     .map((t) => `${t}mm`)
     .join(' · ');
 
-  // Brand-compliant placeholder — every card uses this until user delivers
-  // per-product AI-generated photos. Per memory `user_provides_visuals.md`,
-  // user will drop final images at /public/images/products/{slug}.webp;
-  // when that happens, update this helper to prefer those over the placeholder.
-  // (Server-component-safe: no client-side onError fallback needed.)
-  const imageSrc = '/images/products/_placeholder.svg';
+  // Prefer per-product hero image when present; fall back to brand-compliant
+  // placeholder when product.image is undefined. (Server-component-safe.)
+  const imageSrc = product.image ?? '/images/products/_placeholder.svg';
+  const isPlaceholder = !product.image;
 
   return (
     <Link
@@ -41,7 +39,7 @@ export function ProductCard({ product }: { product: Product }) {
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
           className="object-cover transition-transform duration-300 group-hover:scale-105"
-          unoptimized // SVG placeholder — no need to send through Next image optimizer
+          unoptimized={isPlaceholder}
         />
       </div>
       <div className="flex flex-1 flex-col p-5">
