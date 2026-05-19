@@ -150,6 +150,33 @@ export function Hero() {
             </Link>
             .
           </p>
+
+          {/* Mobile-only inline render of the panel-detail circle (2026-05-19
+              founder request — image must show on phones too). On md+ the
+              absolute-positioned version above takes over; below md we stack
+              this inline block below the CTAs so it doesn't fight the
+              headline for space. Smaller (180px) and centered to fit the
+              narrow viewport gracefully. */}
+          <div className="mt-10 flex flex-col items-center md:hidden">
+            <div className="relative h-[180px] w-[180px]">
+              <Image
+                src="/images/products/panel-detail.webp"
+                alt=""
+                role="presentation"
+                fill
+                sizes="180px"
+                className="rounded-full object-cover shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] ring-4 ring-white/15"
+              />
+            </div>
+            <div className="mt-3 text-center">
+              <p className="font-display text-[11px] font-semibold uppercase tracking-[0.18em] text-white/90">
+                Tongue-and-groove edge
+              </p>
+              <p className="mt-1 text-[11px] text-white/70">
+                20–30 mm structural panel
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
