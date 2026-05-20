@@ -337,7 +337,24 @@ export function SubmittalForm({ prefill, turnstileSiteKey }: SubmittalFormProps)
         error?: string;
         estimatedPanels?: number | null;
         reason?: string;
+        webhook?: {
+          delivered?: boolean;
+          status?: number | null;
+          error?: string | null;
+          bodyPreview?: string | null;
+        };
       };
+
+      // Log webhook delivery for operator visibility (v0 pattern). The webhook
+      // is fail-soft on the server — success card shows regardless, but if
+      // delivered === false the operator needs to know to debug n8n.
+      if (data.webhook) {
+        if (data.webhook.delivered) {
+          console.log('[JARA] ✅ Webhook delivered', data.webhook);
+        } else {
+          console.error('[JARA] ❌ Webhook NOT delivered', data.webhook);
+        }
+      }
 
       if (!res.ok || !data.success) {
         setError(data.error || data.reason || 'Something went wrong. Please try again.');

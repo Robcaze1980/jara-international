@@ -91,22 +91,27 @@ function getRemoteIp(request: Request): string | undefined {
 }
 
 export async function POST(request: Request): Promise<Response> {
+  console.log('[SUBMITTAL] ▶ POST received');
+
   let data: SubmittalPayload;
   try {
     data = (await request.json()) as SubmittalPayload;
   } catch {
+    console.error('[SUBMITTAL] ❌ Invalid JSON body');
     return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
   }
 
-  // Honeypot — silent success
+  // Honeypot — silent success (do NOT call webhook for bots)
   if (data._honey) {
-    return NextResponse.json({ success: true });
+    console.log('[SUBMITTAL] 🤖 Bot blocked (honeypot triggered)');
+    return NextResponse.json({ success: true, blocked: 'honeypot' });
   }
 
   // Required field validation
   for (const field of REQUIRED_FIELDS) {
     const value = data[field];
     if (!value || (Array.isArray(value) && value.length === 0)) {
+      console.error(`[SUBMITTAL] ❌ Missing required field: ${String(field)}`);
       return NextResponse.json(
         { error: `Missing required field: ${String(field)}` },
         { status: 400 },
@@ -117,6 +122,7 @@ export async function POST(request: Request): Promise<Response> {
   // Email format
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(data.email)) {
+    console.error('[SUBMITTAL] ❌ Invalid email format');
     return NextResponse.json(
       { error: 'Invalid email address' },
       { status: 400 },
@@ -149,9 +155,10 @@ export async function POST(request: Request): Promise<Response> {
     source: 'jarainternational.com',
   };
 
-  // Await verify
+  // Await Turnstile verify — strict gate, blocks on fail
   const verify = await verifyPromise;
   if (!verify.success) {
+    console.error(`[SUBMITTAL] ❌ Turnstile verify failed: ${verify.reason}`);
     return NextResponse.json(
       {
         error: 'Bot verification failed',
@@ -161,65 +168,77 @@ export async function POST(request: Request): Promise<Response> {
       { status: 403 },
     );
   }
+  console.log(`[SUBMITTAL] ✅ Turnstile verified (hostname: ${verify.hostname})`);
 
-  // POST to n8n
+  // Fail-soft webhook delivery (v0 pattern — user always sees success card,
+  // webhook delivery details returned in response for debugging).
+  // If n8n is misconfigured, the form submission still confirms to the user
+  // and the operator can debug n8n side via Cloudflare Worker logs + the
+  // response.webhook object visible in browser DevTools Network tab.
+  let webhookDelivered = false;
+  let webhookStatus: number | null = null;
+  let webhookError: string | null = null;
+  let webhookBodyPreview: string | null = null;
+
   const webhookUrl = await getCfEnv('N8N_SUBMITTAL_WEBHOOK_URL');
   if (!webhookUrl || webhookUrl.includes('PRODUCTION_ID_HERE')) {
-    return NextResponse.json(
-      { error: 'N8N_SUBMITTAL_WEBHOOK_URL not configured' },
-      { status: 500 },
-    );
-  }
+    webhookError = 'N8N_SUBMITTAL_WEBHOOK_URL not configured';
+    console.error(`[SUBMITTAL] ❌ ${webhookError}`);
+  } else {
+    console.log(`[SUBMITTAL] 📤 POSTing to webhook (${webhookUrl.length} char URL, ${JSON.stringify(webhookPayload).length} byte payload)`);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), N8N_TIMEOUT_MS);
 
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), N8N_TIMEOUT_MS);
+    try {
+      const headers: Record<string, string> = {
+        'Content-Type': 'application/json',
+        'User-Agent': 'JARA-Submittal-API/1.0',
+      };
+      const secret = await getCfEnv('N8N_WEBHOOK_SECRET');
+      if (secret) headers['X-Webhook-Secret'] = secret;
 
-  try {
-    const headers: Record<string, string> = {
-      'Content-Type': 'application/json',
-      'User-Agent': 'JARA-Submittal-API/1.0',
-    };
-    const secret = await getCfEnv('N8N_WEBHOOK_SECRET');
-    if (secret) headers['X-Webhook-Secret'] = secret;
+      const res = await fetch(webhookUrl, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify(webhookPayload),
+        signal: controller.signal,
+      });
 
-    const res = await fetch(webhookUrl, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify(webhookPayload),
-      signal: controller.signal,
-    });
-
-    if (!res.ok) {
+      webhookStatus = res.status;
       const body = await res.text();
-      return NextResponse.json(
-        {
-          error: 'Webhook delivery failed',
-          status: res.status,
-          bodyPreview: body.substring(0, 200),
-        },
-        { status: 502 },
-      );
-    }
+      webhookBodyPreview = body.substring(0, 200);
 
-    return NextResponse.json({
-      success: true,
-      estimatedPanels,
-    });
-  } catch (err) {
-    if (isAbortError(err)) {
-      return NextResponse.json(
-        { error: `Webhook timeout after ${N8N_TIMEOUT_MS}ms` },
-        { status: 504 },
-      );
+      if (res.ok) {
+        webhookDelivered = true;
+        console.log(`[SUBMITTAL] ✅ Webhook delivered [${webhookStatus}]: ${webhookBodyPreview}`);
+      } else {
+        webhookError = `HTTP ${webhookStatus}`;
+        console.error(`[SUBMITTAL] ❌ Webhook rejected [${webhookStatus}]: ${webhookBodyPreview}`);
+      }
+    } catch (err) {
+      if (isAbortError(err)) {
+        webhookError = `Timeout after ${N8N_TIMEOUT_MS}ms`;
+        console.error(`[SUBMITTAL] ⏱️ ${webhookError}`);
+      } else {
+        webhookError = isError(err) ? err.message : 'Unknown webhook error';
+        console.error(`[SUBMITTAL] ❌ Webhook error: ${webhookError}`);
+      }
+    } finally {
+      clearTimeout(timeoutId);
     }
-    return NextResponse.json(
-      {
-        error: 'Webhook delivery error',
-        detail: isError(err) ? err.message : 'unknown',
-      },
-      { status: 502 },
-    );
-  } finally {
-    clearTimeout(timeoutId);
   }
+
+  // Always return success to client (v0 fail-soft pattern). Webhook delivery
+  // status is surfaced in the response so the operator can inspect it in
+  // browser DevTools Network tab without affecting user experience.
+  return NextResponse.json({
+    success: true,
+    estimatedPanels,
+    webhook: {
+      delivered: webhookDelivered,
+      status: webhookStatus,
+      error: webhookError,
+      bodyPreview: webhookBodyPreview,
+    },
+  });
 }
