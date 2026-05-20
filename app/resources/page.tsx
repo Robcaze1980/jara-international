@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Phone, Mail, ArrowRight } from 'lucide-react';
-import { getCfEnv } from '@/lib/cf-env';
 import { SITE } from '@/lib/site';
 import { buildTelUrl } from '@/lib/whatsapp';
 import { SectionNav } from '@/components/SectionNav';
@@ -80,9 +79,6 @@ export default async function ResourcesPage({
     prefill.panelThickness = [thicknessLabel];
   }
 
-  // Read Turnstile site key via the helper (see lib/cf-env.ts for why
-  // process.env alone doesn't work in the OpenNext worker).
-  const turnstileSiteKey = (await getCfEnv('NEXT_PUBLIC_TURNSTILE_SITE_KEY')) ?? '';
 
   return (
     <div className="bg-bg-soft">
@@ -187,7 +183,7 @@ export default async function ResourcesPage({
                 personally and responds within 1 business day.
               </p>
               <div className="mt-6">
-                <SubmittalForm prefill={prefill} turnstileSiteKey={turnstileSiteKey} />
+                <SubmittalForm prefill={prefill} />
               </div>
             </section>
 
@@ -210,7 +206,7 @@ export default async function ResourcesPage({
                 Robertson sends the PDF to your email within 1 business day.
               </p>
               <div className="mt-6">
-                <DocumentLibrary turnstileSiteKey={turnstileSiteKey} />
+                <DocumentLibrary />
               </div>
             </section>
 

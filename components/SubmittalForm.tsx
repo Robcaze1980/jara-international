@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useCallback, useEffect, useRef, useId } from 'react';
-import Script from 'next/script';
+import { useState, useCallback, useId } from 'react';
 import {
   ArrowLeft,
   ArrowRight,
@@ -14,28 +13,12 @@ import { SITE } from '@/lib/site';
 import { buildTelUrl } from '@/lib/whatsapp';
 
 /**
- * SubmittalForm — Sprint 4 step 4 (ADR-035 B1, Round 10 4-1 strong).
+ * SubmittalForm — three-step B2B project quote request.
  *
- * Three-step form for B2B project quote requests. Matches v0 conversion-
- * proven pattern (legacy dossier K-2) with:
- *   - Single form-state object across steps (DeepSeek single-voter finding
- *     R10 — no React Context needed for 3 steps)
- *   - Per-step validation (only blocks Next on missing required, not on
- *     individual blur events)
- *   - Honeypot anti-bot field (`_honey`)
- *   - Cloudflare Turnstile widget (ADR-042 T2) on step 3, with explicit
- *     rendering after script load
- *   - Inline panel estimate UX (C14) — live "X panels needed (32 SF/panel)"
- *     feedback on step 1 estimatedArea input
- *   - WCAG 2.1 AA a11y patterns from MaterialCalculator (Round 7 F3.R7):
- *     fieldset/legend grouping, aria-required, aria-invalid,
- *     aria-describedby on errors, aria-live=polite on success card
- *   - Success state with personalized name + computed panel estimate +
- *     phone CTA fallback
- *
- * Per ADR-033 §8 convention, the DESIGN.md SubmittalForm placeholder
- * block is promoted to real tokens in the same commit that ships this
- * component.
+ * Wiring matches v0 plycemca.com (proven in production): honeypot-only
+ * bot protection, hardcoded n8n webhook URL in the API route, no
+ * Turnstile, no Cloudflare env vars. JARA design tokens + a11y patterns
+ * preserved.
  */
 
 const STEPS = ['Project Information', 'Product Requirements', 'Contact & Timeline'] as const;
@@ -144,45 +127,13 @@ const initialFormData: FormData = {
   _honey: '',
 };
 
-// Minimal typing for the global Turnstile object Cloudflare injects.
-// Shared with components/DocumentLibrary.tsx which uses the execute() method
-// for invisible-mode token generation.
-declare global {
-  interface Window {
-    turnstile?: {
-      render: (
-        container: string | HTMLElement,
-        options: {
-          sitekey: string;
-          callback?: (token: string) => void;
-          'error-callback'?: () => void;
-          'expired-callback'?: () => void;
-          theme?: 'light' | 'dark' | 'auto';
-          appearance?: 'always' | 'execute' | 'interaction-only';
-        },
-      ) => string;
-      reset: (widgetId: string) => void;
-      remove: (widgetId: string) => void;
-      execute: (widgetId: string) => void;
-      getResponse: (widgetId: string) => string | undefined;
-    };
-  }
-}
-
-const TURNSTILE_SCRIPT_SRC = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
-
 type SubmittalFormProps = {
   /** Optional initial values to pre-fill (used by /resources page reading
    *  calculator prefill URL params). */
   prefill?: Partial<Pick<FormData, 'applicationType' | 'panelThickness' | 'estimatedArea' | 'documentsRequested'>>;
-  /** Turnstile site key, threaded from the server page so it works with
-   *  Cloudflare Workers' runtime env vars (NEXT_PUBLIC_* would require
-   *  build-time inlining, which the Workers "Variables and Secrets" panel
-   *  does not provide). */
-  turnstileSiteKey?: string;
 };
 
-export function SubmittalForm({ prefill, turnstileSiteKey }: SubmittalFormProps) {
+export function SubmittalForm({ prefill }: SubmittalFormProps) {
   const [step, setStep] = useState(0);
   const [form, setForm] = useState<FormData>(() => ({
     ...initialFormData,
@@ -192,14 +143,10 @@ export function SubmittalForm({ prefill, turnstileSiteKey }: SubmittalFormProps)
   const [submitted, setSubmitted] = useState(false);
   const [estimatedPanels, setEstimatedPanels] = useState<number | null>(null);
   const [error, setError] = useState('');
-  const [turnstileToken, setTurnstileToken] = useState('');
-  const [turnstileLoaded, setTurnstileLoaded] = useState(false);
-  const widgetIdRef = useRef<string | null>(null);
 
   const formId = useId();
   const errorRegionId = useId();
   const successRegionId = useId();
-  const turnstileContainerId = `${formId}-turnstile`;
 
   const updateField = useCallback(
     <K extends keyof FormData>(field: K, value: FormData[K]) => {
@@ -226,31 +173,6 @@ export function SubmittalForm({ prefill, turnstileSiteKey }: SubmittalFormProps)
   const areaNumber = parseFloat(form.estimatedArea);
   const panelEstimate =
     Number.isFinite(areaNumber) && areaNumber > 0 ? Math.ceil(areaNumber / 32) : null;
-
-  // Render Turnstile widget when we reach step 3 (and script is loaded)
-  useEffect(() => {
-    if (step !== 2 || !turnstileLoaded) return;
-    if (widgetIdRef.current) return; // already rendered
-    if (!window.turnstile) return;
-    if (!turnstileSiteKey) {
-      setError('Turnstile site key not configured. Contact site administrator.');
-      return;
-    }
-    const id = window.turnstile.render(`#${turnstileContainerId}`, {
-      sitekey: turnstileSiteKey,
-      callback: (token: string) => setTurnstileToken(token),
-      'error-callback': () => setTurnstileToken(''),
-      'expired-callback': () => setTurnstileToken(''),
-      theme: 'light',
-    });
-    widgetIdRef.current = id;
-    return () => {
-      if (widgetIdRef.current && window.turnstile) {
-        window.turnstile.remove(widgetIdRef.current);
-        widgetIdRef.current = null;
-      }
-    };
-  }, [step, turnstileLoaded, turnstileContainerId, turnstileSiteKey]);
 
   function validateStep(): string {
     if (step === 0) {
@@ -292,9 +214,6 @@ export function SubmittalForm({ prefill, turnstileSiteKey }: SubmittalFormProps)
       if (!emailRegex.test(form.email)) {
         return 'Please enter a valid email address.';
       }
-      if (!turnstileToken) {
-        return 'Please complete the verification challenge.';
-      }
     }
     return '';
   }
@@ -327,42 +246,18 @@ export function SubmittalForm({ prefill, turnstileSiteKey }: SubmittalFormProps)
       const res = await fetch('/api/submittal', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...form,
-          'cf-turnstile-response': turnstileToken,
-        }),
+        body: JSON.stringify(form),
       });
       const data = (await res.json()) as {
         success?: boolean;
         error?: string;
         estimatedPanels?: number | null;
-        reason?: string;
-        webhook?: {
-          delivered?: boolean;
-          status?: number | null;
-          error?: string | null;
-          bodyPreview?: string | null;
-        };
+        webhook?: { delivered?: boolean; status?: number | null; error?: string | null };
       };
-
-      // Log webhook delivery for operator visibility (v0 pattern). The webhook
-      // is fail-soft on the server — success card shows regardless, but if
-      // delivered === false the operator needs to know to debug n8n.
-      if (data.webhook) {
-        if (data.webhook.delivered) {
-          console.log('[JARA] ✅ Webhook delivered', data.webhook);
-        } else {
-          console.error('[JARA] ❌ Webhook NOT delivered', data.webhook);
-        }
-      }
+      console.log('[JARA] Submittal API response:', data);
 
       if (!res.ok || !data.success) {
-        setError(data.error || data.reason || 'Something went wrong. Please try again.');
-        // Reset Turnstile widget on submission failure so user can re-verify
-        if (widgetIdRef.current && window.turnstile) {
-          window.turnstile.reset(widgetIdRef.current);
-          setTurnstileToken('');
-        }
+        setError(data.error || 'Something went wrong. Please try again.');
         return;
       }
 
@@ -413,23 +308,16 @@ export function SubmittalForm({ prefill, turnstileSiteKey }: SubmittalFormProps)
   }
 
   return (
-    <>
-      <Script
-        src={TURNSTILE_SCRIPT_SRC}
-        strategy="afterInteractive"
-        onLoad={() => setTurnstileLoaded(true)}
-      />
-
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (step < 2) handleNext();
-          else void handleSubmit();
-        }}
-        noValidate
-        aria-labelledby={`${formId}-step-label`}
-        className="rounded-lg border border-bluegray/40 bg-white shadow-sm"
-      >
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (step < 2) handleNext();
+        else void handleSubmit();
+      }}
+      noValidate
+      aria-labelledby={`${formId}-step-label`}
+      className="rounded-lg border border-bluegray/40 bg-white shadow-sm"
+    >
         {/* Step progress chips */}
         <div className="border-b border-bluegray/30 p-4">
           <div className="flex items-center gap-2" role="list">
@@ -827,18 +715,6 @@ export function SubmittalForm({ prefill, turnstileSiteKey }: SubmittalFormProps)
                   />
                 </div>
 
-                {/* Turnstile widget */}
-                <div className="pt-2">
-                  <Label asLegend required>Bot verification</Label>
-                  <div
-                    id={turnstileContainerId}
-                    className="cf-turnstile"
-                    aria-label="Cloudflare bot verification widget"
-                  />
-                  {!turnstileLoaded && (
-                    <p className="mt-2 text-xs text-ink/60">Loading verification…</p>
-                  )}
-                </div>
               </div>
             </fieldset>
           )}
@@ -891,10 +767,9 @@ export function SubmittalForm({ prefill, turnstileSiteKey }: SubmittalFormProps)
                 )}
               </button>
             )}
-          </div>
         </div>
-      </form>
-    </>
+      </div>
+    </form>
   );
 }
 

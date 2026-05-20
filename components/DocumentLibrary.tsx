@@ -1,32 +1,16 @@
 'use client';
 
-import { useEffect, useId, useRef, useState } from 'react';
-import Script from 'next/script';
+import { useState } from 'react';
 import { Mail, Check, Loader2, AlertCircle, FileText } from 'lucide-react';
 import { SITE } from '@/lib/site';
 
 /**
- * DocumentLibrary — Sprint 4 step 5 (ADR-037 E2, Round 10 4-1 strong).
+ * DocumentLibrary — 4-document email-request flow.
  *
- * Slim 4-document email-request flow. Ports v0 DocumentRequestButton's
- * 4-state pattern (idle / sending / sent / error) with JARA styling and
- * routes each request through /api/document-request (which forwards to
- * the production n8n jara-document-request webhook).
- *
- * Per ADR-042 + F1.R10, each request carries a fresh Turnstile token.
- * Implementation: single invisible Turnstile widget rendered in
- * `appearance: execute` mode; on each button click we reset + execute
- * the widget to generate a fresh token, then POST. Multiple doc
- * requests in one session each get their own token (Cloudflare's
- * siteverify call invalidates each token on use).
- *
- * Per ADR-037 lock: 4-doc list = UL R15140, ASTM E-84, IAPMO ER-360,
- * generic technical data sheet. Plycem-branded brochure dropped per
- * SB-2/SB-7 risk surface; redundant UL CERZ/BQXR variants merged into
- * the single UL R15140 entry.
+ * Wiring matches v0 plycemca.com (proven in production): honeypot-only
+ * bot protection in the API route, hardcoded n8n webhook URL, no
+ * Turnstile, no Cloudflare env vars.
  */
-
-const TURNSTILE_SCRIPT_SRC = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
 
 type DocumentMeta = {
   name: string;
@@ -68,66 +52,8 @@ const DOCUMENTS: DocumentMeta[] = [
 
 type Status = 'idle' | 'sending' | 'sent' | 'error';
 
-declare global {
-  // turnstile global typed in components/SubmittalForm.tsx
-}
-
-type DocumentLibraryProps = {
-  /** Turnstile site key threaded from the server page — see SubmittalForm
-   *  for the Cloudflare Workers runtime-vs-build env var rationale. */
-  turnstileSiteKey?: string;
-};
-
-export function DocumentLibrary({ turnstileSiteKey }: DocumentLibraryProps = {}) {
+export function DocumentLibrary() {
   const [statuses, setStatuses] = useState<Record<string, Status>>({});
-  const [turnstileLoaded, setTurnstileLoaded] = useState(false);
-  const widgetIdRef = useRef<string | null>(null);
-  const tokenResolveRef = useRef<((token: string) => void) | null>(null);
-
-  const containerId = useId();
-  const turnstileContainerId = `${containerId}-doc-library-turnstile`;
-
-  // Render invisible Turnstile widget once on mount (after script loads)
-  useEffect(() => {
-    if (!turnstileLoaded || widgetIdRef.current) return;
-    if (!window.turnstile) return;
-    if (!turnstileSiteKey) return;
-    const id = window.turnstile.render(`#${turnstileContainerId}`, {
-      sitekey: turnstileSiteKey,
-      appearance: 'execute',
-      callback: (token: string) => {
-        tokenResolveRef.current?.(token);
-        tokenResolveRef.current = null;
-      },
-      'error-callback': () => {
-        tokenResolveRef.current?.('');
-        tokenResolveRef.current = null;
-      },
-    });
-    widgetIdRef.current = id;
-    return () => {
-      if (widgetIdRef.current && window.turnstile) {
-        window.turnstile.remove(widgetIdRef.current);
-        widgetIdRef.current = null;
-      }
-    };
-  }, [turnstileLoaded, turnstileContainerId, turnstileSiteKey]);
-
-  async function getFreshToken(): Promise<string> {
-    if (!widgetIdRef.current || !window.turnstile) return '';
-    return new Promise<string>((resolve) => {
-      tokenResolveRef.current = resolve;
-      window.turnstile!.reset(widgetIdRef.current!);
-      window.turnstile!.execute(widgetIdRef.current!);
-      // Hard timeout — if no callback within 20s, give up
-      window.setTimeout(() => {
-        if (tokenResolveRef.current) {
-          tokenResolveRef.current('');
-          tokenResolveRef.current = null;
-        }
-      }, 20_000);
-    });
-  }
 
   async function handleRequest(doc: DocumentMeta) {
     const current = statuses[doc.fileName];
@@ -136,11 +62,6 @@ export function DocumentLibrary({ turnstileSiteKey }: DocumentLibraryProps = {})
     setStatuses((prev) => ({ ...prev, [doc.fileName]: 'sending' }));
 
     try {
-      const token = await getFreshToken();
-      if (!token) {
-        throw new Error('Verification failed — please try again');
-      }
-
       const res = await fetch('/api/document-request', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -148,14 +69,15 @@ export function DocumentLibrary({ turnstileSiteKey }: DocumentLibraryProps = {})
           documentName: doc.name,
           documentType: doc.type,
           fileName: doc.fileName,
-          'cf-turnstile-response': token,
         }),
       });
+
+      const data = await res.json().catch(() => ({}));
+      console.log('[JARA] Document request API response:', data);
 
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
       setStatuses((prev) => ({ ...prev, [doc.fileName]: 'sent' }));
-      // Reset to idle after 4 seconds so the user can request another
       window.setTimeout(() => {
         setStatuses((prev) => ({ ...prev, [doc.fileName]: 'idle' }));
       }, 4000);
@@ -169,12 +91,6 @@ export function DocumentLibrary({ turnstileSiteKey }: DocumentLibraryProps = {})
 
   return (
     <>
-      <Script
-        src={TURNSTILE_SCRIPT_SRC}
-        strategy="afterInteractive"
-        onLoad={() => setTurnstileLoaded(true)}
-      />
-
       <div className="space-y-3">
         {DOCUMENTS.map((doc) => {
           const status = statuses[doc.fileName] ?? 'idle';
@@ -207,14 +123,9 @@ export function DocumentLibrary({ turnstileSiteKey }: DocumentLibraryProps = {})
         })}
       </div>
 
-      {/* Invisible Turnstile widget container — appearance='execute' means
-          nothing renders until executed; on managed-challenge pass it stays
-          invisible, on interactive-challenge fail it pops a modal. */}
-      <div id={turnstileContainerId} className="cf-turnstile" />
-
       <p className="mt-6 text-xs leading-relaxed text-ink/55">
-        Each request is verified server-side and sent to Robertson. Full PDF
-        delivered by email within 1 business day to{' '}
+        Each request is sent to Robertson. Full PDF delivered by email within 1
+        business day. Email{' '}
         <a href={`mailto:${SITE.email}`} className="underline underline-offset-2 hover:text-navy">
           {SITE.email}
         </a>{' '}

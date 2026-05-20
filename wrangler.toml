@@ -36,15 +36,6 @@ bucket_name = "jara-international-next-cache"
 # [placement]
 # mode = "smart"
 
-# Worker env vars.
-#
-# The Turnstile SITE key is a public credential intended to be exposed in
-# client JS (Cloudflare's own docs publish it in HTML examples). Putting
-# it here guarantees it's available at runtime via env.* on the Worker
-# regardless of dashboard configuration. The PRIVATE secret key still
-# lives in dashboard Variables and Secrets as type: Secret.
-#
-# All other secrets (TURNSTILE_SECRET_KEY, N8N webhook URLs/secret) MUST
-# stay in the Cloudflare dashboard, never here.
-[vars]
-NEXT_PUBLIC_TURNSTILE_SITE_KEY = "0x4AAAAAADOAZm2iZ8nLhEFq"
+# No Worker env vars needed — webhook URLs are hardcoded in the API
+# routes (matches v0 plycemca.com pattern; n8n production webhook URL
+# is not a secret).

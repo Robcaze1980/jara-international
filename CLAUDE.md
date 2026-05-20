@@ -114,29 +114,32 @@ Do NOT remove these warnings without consensus. The amber visual pattern matches
 
 ---
 
-## Environment variables — canonical pattern (Round 14 lock)
+## Form / webhook architecture (v0 pattern)
 
-**All server-side env reads MUST go through `lib/cf-env.ts`'s `getCfEnv(name)` helper, not `process.env.NAME` directly.**
+Both submittal and document-request flows mirror the proven
+plycemca.com v0 implementation:
 
-Why: OpenNext's `process.env` shim does NOT expose Cloudflare dashboard "Variables and Secrets" entries to the production worker at runtime. The helper wraps `getCloudflareContext({async:true}).env` (which sees both dashboard vars AND `wrangler.toml [vars]`) and falls back to `process.env` for `next dev` (which reads `.env.local`). Confirmed empirically in deploys `9f5a6ec` / `b3d5683`; documented in `docs/history/consensus/round14_synthesis.md`.
+- **Webhook URLs are hardcoded** in `app/api/submittal/route.ts` and
+  `app/api/document-request/route.ts`. The n8n production webhook URL
+  is not a secret — committing it is fine.
+- **Honeypot only** for bot protection (`_honey` field, visually
+  hidden, server returns silent success if filled).
+- **Fail-soft webhook delivery** — user always sees the success card
+  after Turnstile-free validation passes. Webhook delivery status is
+  surfaced in the API response (`webhook: {delivered, status, error,
+  bodyPreview}`) for operator debugging via DevTools Network tab and
+  in Cloudflare Workers logs (verbose `[SUBMITTAL]` / `[DOC-REQ]`
+  console output).
+- **No Turnstile, no Cloudflare env vars, no `lib/cf-env.ts`.** Earlier
+  Turnstile-based architecture (Rounds 10/14, commits `9f5a6ec` →
+  `e6d2068` → `b3d5683` → `d19550f`) was abandoned in favor of v0
+  simplicity after repeated env-var-visibility issues with the
+  Cloudflare dashboard "Variables and Secrets" panel + plaintext
+  entries not propagating to the OpenNext worker.
 
-### Source-of-truth rules per env var type
-
-| Value type | Where it lives | Example |
-|------------|---------------|---------|
-| Public client-side (`NEXT_PUBLIC_*`) | `wrangler.toml [vars]` (committed) | `NEXT_PUBLIC_TURNSTILE_SITE_KEY` |
-| Secret (NEVER commit) | Cloudflare dashboard "Variables and Secrets" as Type: **Secret** | `TURNSTILE_SECRET_KEY` |
-| Non-secret server-only (URLs, flags) | Cloudflare dashboard as Type: **Plaintext** OR `wrangler.toml [vars]` — pick one, never both | `N8N_SUBMITTAL_WEBHOOK_URL` |
-
-### Dashboard environment scope (Round 14 §A2 — top finding)
-
-When adding a var via Cloudflare dashboard, the "Environment" dropdown above the variable list MUST be set to **Production** for the live worker to see it. Vars added under Preview / a custom environment are invisible to production. This is the most common cause of "I set the var but it's still empty" issues.
-
-`wrangler.toml [vars]` are always scoped to all environments — no dropdown trap.
-
-### Avoid dual sources
-
-If a var is in BOTH `wrangler.toml [vars]` AND the dashboard, the dashboard value wins (Cloudflare deploy-time override). Pick one home per var; never both.
+If spam becomes a problem, the next escalation is a server-side IP
+rate-limiter (e.g., `@upstash/ratelimit` on Cloudflare KV), not
+Turnstile.
 
 ---
 
@@ -186,4 +189,4 @@ See `docs/history/consensus/round11_synthesis.md` §"Additional findings — tri
 
 ---
 
-**Last updated:** 2026-05-20 (post Round 14 — env var canonical pattern via `lib/cf-env.ts`).
+**Last updated:** 2026-05-20 (post-Round 14 revert — adopted v0 form/webhook architecture, removed Turnstile + env-var indirection).
