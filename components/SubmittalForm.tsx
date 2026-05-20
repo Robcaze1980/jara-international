@@ -97,8 +97,6 @@ type FormData = {
   neededByDate: string;
   documentsRequested: string[];
   additionalNotes: string;
-  // Hidden
-  _honey: string;
 };
 
 const initialFormData: FormData = {
@@ -124,7 +122,6 @@ const initialFormData: FormData = {
   neededByDate: '',
   documentsRequested: ['Product Data Sheet', 'Custom Quote'],
   additionalNotes: '',
-  _honey: '',
 };
 
 type SubmittalFormProps = {
@@ -358,18 +355,6 @@ export function SubmittalForm({ prefill }: SubmittalFormProps) {
         </div>
 
         <div className="p-6 md:p-8">
-          {/* Honeypot — visually hidden, NOT display:none (some bots skip those) */}
-          <div className="absolute -left-[9999px]" aria-hidden="true">
-            <input
-              type="text"
-              name="_honey"
-              tabIndex={-1}
-              autoComplete="off"
-              value={form._honey}
-              onChange={(e) => updateField('_honey', e.target.value)}
-            />
-          </div>
-
           {/* Error region */}
           {error && (
             <div
