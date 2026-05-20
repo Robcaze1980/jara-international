@@ -9,7 +9,7 @@ import { NextResponse } from 'next/server';
  * for operator debugging via DevTools Network tab).
  */
 
-const WEBHOOK_URL = 'https://8n8-n8n.80r4dr.easypanel.host/webhook/jara-submittal';
+const WEBHOOK_URL = 'https://8n8-n8n.80r4dr.easypanel.host/webhook-test/jara-submittal';
 const WEBHOOK_TIMEOUT_MS = 10_000;
 
 const REQUIRED_FIELDS = [
