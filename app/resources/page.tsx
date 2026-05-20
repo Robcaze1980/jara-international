@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Phone, Mail, ArrowRight } from 'lucide-react';
+import { getCloudflareContext } from '@opennextjs/cloudflare';
 import { SITE } from '@/lib/site';
 import { buildTelUrl } from '@/lib/whatsapp';
 import { SectionNav } from '@/components/SectionNav';
@@ -79,11 +80,21 @@ export default async function ResourcesPage({
     prefill.panelThickness = [thicknessLabel];
   }
 
-  // Read Turnstile site key server-side so it works with Cloudflare Workers
-  // runtime env vars (the "Variables and Secrets" panel is runtime-only;
-  // NEXT_PUBLIC_* would need build-time inlining which that panel doesn't
-  // provide). Threaded into client components via props.
-  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? '';
+  // Read Turnstile site key from the Cloudflare Worker env binding so it
+  // works with the dashboard "Variables and Secrets" panel (runtime-only).
+  // OpenNext's process.env shim does NOT auto-expose dashboard vars in the
+  // production worker — confirmed in deploy 9f5a6ec where the server-
+  // rendered HTML serialized turnstileSiteKey as "". getCloudflareContext
+  // reads the worker's actual env binding object where the dashboard vars
+  // live. Falls back to process.env for `next dev` (which reads .env.local).
+  const cf = await getCloudflareContext({ async: true }).catch(() => null);
+  const cfEnvKey = cf?.env
+    ? (cf.env as Record<string, unknown>).NEXT_PUBLIC_TURNSTILE_SITE_KEY
+    : undefined;
+  const turnstileSiteKey =
+    (typeof cfEnvKey === 'string' && cfEnvKey) ||
+    process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ||
+    '';
 
   return (
     <div className="bg-bg-soft">
