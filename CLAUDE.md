@@ -114,6 +114,32 @@ Do NOT remove these warnings without consensus. The amber visual pattern matches
 
 ---
 
+## Environment variables — canonical pattern (Round 14 lock)
+
+**All server-side env reads MUST go through `lib/cf-env.ts`'s `getCfEnv(name)` helper, not `process.env.NAME` directly.**
+
+Why: OpenNext's `process.env` shim does NOT expose Cloudflare dashboard "Variables and Secrets" entries to the production worker at runtime. The helper wraps `getCloudflareContext({async:true}).env` (which sees both dashboard vars AND `wrangler.toml [vars]`) and falls back to `process.env` for `next dev` (which reads `.env.local`). Confirmed empirically in deploys `9f5a6ec` / `b3d5683`; documented in `docs/history/consensus/round14_synthesis.md`.
+
+### Source-of-truth rules per env var type
+
+| Value type | Where it lives | Example |
+|------------|---------------|---------|
+| Public client-side (`NEXT_PUBLIC_*`) | `wrangler.toml [vars]` (committed) | `NEXT_PUBLIC_TURNSTILE_SITE_KEY` |
+| Secret (NEVER commit) | Cloudflare dashboard "Variables and Secrets" as Type: **Secret** | `TURNSTILE_SECRET_KEY` |
+| Non-secret server-only (URLs, flags) | Cloudflare dashboard as Type: **Plaintext** OR `wrangler.toml [vars]` — pick one, never both | `N8N_SUBMITTAL_WEBHOOK_URL` |
+
+### Dashboard environment scope (Round 14 §A2 — top finding)
+
+When adding a var via Cloudflare dashboard, the "Environment" dropdown above the variable list MUST be set to **Production** for the live worker to see it. Vars added under Preview / a custom environment are invisible to production. This is the most common cause of "I set the var but it's still empty" issues.
+
+`wrangler.toml [vars]` are always scoped to all environments — no dropdown trap.
+
+### Avoid dual sources
+
+If a var is in BOTH `wrangler.toml [vars]` AND the dashboard, the dashboard value wins (Cloudflare deploy-time override). Pick one home per var; never both.
+
+---
+
 ## Pre-commit hook
 
 The `@google/design.md` alpha linter has a known upstream bug (`raw.match is not a function`) that fires on every commit. The husky pre-commit hook (`.husky/pre-commit`) is **non-blocking** — it runs the linter, surfaces output to stderr, and exits 0 regardless. Re-tighten by removing the `|| echo ...` fallback once Google Labs ships an upstream fix. Until then, do NOT bypass the hook with `--no-verify` — let it fail gracefully.
@@ -160,4 +186,4 @@ See `docs/history/consensus/round11_synthesis.md` §"Additional findings — tri
 
 ---
 
-**Last updated:** 2026-05-16 (post Round 11 application commit `fcea3c6`).
+**Last updated:** 2026-05-20 (post Round 14 — env var canonical pattern via `lib/cf-env.ts`).
