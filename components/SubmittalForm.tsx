@@ -175,9 +175,14 @@ type SubmittalFormProps = {
   /** Optional initial values to pre-fill (used by /resources page reading
    *  calculator prefill URL params). */
   prefill?: Partial<Pick<FormData, 'applicationType' | 'panelThickness' | 'estimatedArea' | 'documentsRequested'>>;
+  /** Turnstile site key, threaded from the server page so it works with
+   *  Cloudflare Workers' runtime env vars (NEXT_PUBLIC_* would require
+   *  build-time inlining, which the Workers "Variables and Secrets" panel
+   *  does not provide). */
+  turnstileSiteKey?: string;
 };
 
-export function SubmittalForm({ prefill }: SubmittalFormProps) {
+export function SubmittalForm({ prefill, turnstileSiteKey }: SubmittalFormProps) {
   const [step, setStep] = useState(0);
   const [form, setForm] = useState<FormData>(() => ({
     ...initialFormData,
@@ -227,13 +232,12 @@ export function SubmittalForm({ prefill }: SubmittalFormProps) {
     if (step !== 2 || !turnstileLoaded) return;
     if (widgetIdRef.current) return; // already rendered
     if (!window.turnstile) return;
-    const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
-    if (!siteKey) {
+    if (!turnstileSiteKey) {
       setError('Turnstile site key not configured. Contact site administrator.');
       return;
     }
     const id = window.turnstile.render(`#${turnstileContainerId}`, {
-      sitekey: siteKey,
+      sitekey: turnstileSiteKey,
       callback: (token: string) => setTurnstileToken(token),
       'error-callback': () => setTurnstileToken(''),
       'expired-callback': () => setTurnstileToken(''),
@@ -246,7 +250,7 @@ export function SubmittalForm({ prefill }: SubmittalFormProps) {
         widgetIdRef.current = null;
       }
     };
-  }, [step, turnstileLoaded, turnstileContainerId]);
+  }, [step, turnstileLoaded, turnstileContainerId, turnstileSiteKey]);
 
   function validateStep(): string {
     if (step === 0) {

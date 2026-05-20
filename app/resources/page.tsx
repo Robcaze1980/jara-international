@@ -79,6 +79,12 @@ export default async function ResourcesPage({
     prefill.panelThickness = [thicknessLabel];
   }
 
+  // Read Turnstile site key server-side so it works with Cloudflare Workers
+  // runtime env vars (the "Variables and Secrets" panel is runtime-only;
+  // NEXT_PUBLIC_* would need build-time inlining which that panel doesn't
+  // provide). Threaded into client components via props.
+  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? '';
+
   return (
     <div className="bg-bg-soft">
       {/* Header strip */}
@@ -182,7 +188,7 @@ export default async function ResourcesPage({
                 personally and responds within 1 business day.
               </p>
               <div className="mt-6">
-                <SubmittalForm prefill={prefill} />
+                <SubmittalForm prefill={prefill} turnstileSiteKey={turnstileSiteKey} />
               </div>
             </section>
 
@@ -205,7 +211,7 @@ export default async function ResourcesPage({
                 Robertson sends the PDF to your email within 1 business day.
               </p>
               <div className="mt-6">
-                <DocumentLibrary />
+                <DocumentLibrary turnstileSiteKey={turnstileSiteKey} />
               </div>
             </section>
 

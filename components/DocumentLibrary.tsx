@@ -72,7 +72,13 @@ declare global {
   // turnstile global typed in components/SubmittalForm.tsx
 }
 
-export function DocumentLibrary() {
+type DocumentLibraryProps = {
+  /** Turnstile site key threaded from the server page — see SubmittalForm
+   *  for the Cloudflare Workers runtime-vs-build env var rationale. */
+  turnstileSiteKey?: string;
+};
+
+export function DocumentLibrary({ turnstileSiteKey }: DocumentLibraryProps = {}) {
   const [statuses, setStatuses] = useState<Record<string, Status>>({});
   const [turnstileLoaded, setTurnstileLoaded] = useState(false);
   const widgetIdRef = useRef<string | null>(null);
@@ -85,10 +91,9 @@ export function DocumentLibrary() {
   useEffect(() => {
     if (!turnstileLoaded || widgetIdRef.current) return;
     if (!window.turnstile) return;
-    const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
-    if (!siteKey) return;
+    if (!turnstileSiteKey) return;
     const id = window.turnstile.render(`#${turnstileContainerId}`, {
-      sitekey: siteKey,
+      sitekey: turnstileSiteKey,
       appearance: 'execute',
       callback: (token: string) => {
         tokenResolveRef.current?.(token);
@@ -106,7 +111,7 @@ export function DocumentLibrary() {
         widgetIdRef.current = null;
       }
     };
-  }, [turnstileLoaded, turnstileContainerId]);
+  }, [turnstileLoaded, turnstileContainerId, turnstileSiteKey]);
 
   async function getFreshToken(): Promise<string> {
     if (!widgetIdRef.current || !window.turnstile) return '';
