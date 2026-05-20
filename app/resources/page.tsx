@@ -99,7 +99,7 @@ export default async function ResourcesPage({
 
       {/* Main content with SectionNav */}
       <div className="mx-auto max-w-7xl px-6 pb-16 lg:px-8 lg:pb-24">
-        <div className="flex gap-8">
+        <div className="flex flex-col gap-8 lg:flex-row">
           <SectionNav sections={SECTIONS} ariaLabel="Resources sections" />
 
           <div className="min-w-0 flex-1 space-y-14">
