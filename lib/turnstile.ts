@@ -27,6 +27,8 @@
  *   - https://developers.cloudflare.com/turnstile/troubleshooting/testing/
  */
 
+import { getCfEnv } from './cf-env';
+
 const SITEVERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 const VERIFY_TIMEOUT_MS = 15_000;
 
@@ -58,7 +60,7 @@ export async function verifyTurnstileToken(
   token: string,
   remoteIp?: string,
 ): Promise<TurnstileVerifyResult> {
-  const secret = process.env.TURNSTILE_SECRET_KEY;
+  const secret = await getCfEnv('TURNSTILE_SECRET_KEY');
   if (!secret) {
     return {
       success: false,

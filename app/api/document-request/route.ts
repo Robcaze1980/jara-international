@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { verifyTurnstileToken } from '@/lib/turnstile';
+import { getCfEnv } from '@/lib/cf-env';
 
 /**
  * /api/document-request — production endpoint for Sprint 4 DocumentLibrary.
@@ -104,7 +105,7 @@ export async function POST(request: Request): Promise<Response> {
     );
   }
 
-  const webhookUrl = process.env.N8N_DOCUMENT_REQUEST_WEBHOOK_URL;
+  const webhookUrl = await getCfEnv('N8N_DOCUMENT_REQUEST_WEBHOOK_URL');
   if (!webhookUrl || webhookUrl.includes('PRODUCTION_ID_HERE')) {
     return NextResponse.json(
       { error: 'N8N_DOCUMENT_REQUEST_WEBHOOK_URL not configured' },
@@ -120,7 +121,7 @@ export async function POST(request: Request): Promise<Response> {
       'Content-Type': 'application/json',
       'User-Agent': 'JARA-DocumentRequest-API/1.0',
     };
-    const secret = process.env.N8N_WEBHOOK_SECRET;
+    const secret = await getCfEnv('N8N_WEBHOOK_SECRET');
     if (secret) headers['X-Webhook-Secret'] = secret;
 
     const res = await fetch(webhookUrl, {
