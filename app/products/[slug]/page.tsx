@@ -48,6 +48,16 @@ const CERT_GAP_WARNINGS: Record<string, CertGapWarningContent | undefined> = {
     body:
       'PLYCEM Eureka Sevillana corrugated roof tile is NOT certified to UL 263 or UL 790 Class A roof assembly testing. It CANNOT be specified for California Building Code Chapter 7A WUI (Wildland-Urban Interface) zones, Florida Miami-Dade HVHZ, or any US jurisdiction enforcing Class A fire-rated roof requirements. Approved for Caribbean, Central American, and international export markets where local codes apply, and for US installations only where the AHJ explicitly does not require a Class A roof assembly.',
   },
+  'exterior-hidden-joint': {
+    title: 'No ICC-ES Evaluation Service Report — confirm AHJ acceptance',
+    body:
+      'PLYCEM Exterior Hidden Joint is certified to ASTM C1186-08 Type A Grade I and ASTM E-84 Class A surface burning, but does NOT carry an ICC-ES Evaluation Service Report equivalent to James Hardie HardiePanel\'s ESR-2290 family. It is NOT documented to ASTM E-136 non-combustible, and is NOT listed for NFPA 285 assemblies. Suitable for residential and light-commercial facade cladding under 40 ft where the Authority Having Jurisdiction accepts manufacturer ASTM C1186 documentation directly, and for interior accent walls. Confirm AHJ acceptance before specifying for Type I/II construction, buildings above 40 ft (NFPA 285 required), or California Chapter 7A WUI zones.',
+  },
+  'exterior-cement-board': {
+    title: 'US certifications under manufacturer verification — confirm with JARA before specifying',
+    body:
+      'PLYCEM\'s June 2024 technical datasheet for Microconcreto Exterior lists Costa Rica RTCR 491:2017, INTE/ISO 8336:2018, and a Chilean NCh1914 non-combustibility test with manufacturer-claimed equivalence to ASTM E-136 / E-84. US-specific certifications previously cited for this product (IAPMO ER-360, ICC IBC 2015/2012 alternative-material recognition, US-accredited ASTM E-84 / ASTM E-136 lab reports, NFPA 285 assembly listings) are NOT listed on the manufacturer\'s current datasheet. JARA is in active communication with PLYCEM to confirm or supplement US documentation. Until verification lands, this product cannot be relied upon for projects subject to Authority Having Jurisdiction review of those specific US certifications. For applications requiring documented US compliance today (Type I/II construction, NFPA 285 assemblies, California Chapter 7A WUI), specify PLYCEM High Performance Subfloor where applicable, or contact JARA for the latest verification status and to discuss alternatives.',
+  },
 };
 
 /**

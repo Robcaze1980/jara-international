@@ -5,9 +5,8 @@ export type ConstructionType =
   | 'commercial-steel'
   | 'hotel-hospitality'
   | 'modular-prefab'
-  | 'roof-sheathing'
   | 'exterior-cladding'
   | 'outdoor-deck'
   | 'other';
 
-export type PanelThickness = 14 | 17 | 20 | 22 | 25 | 30;
+export type PanelThickness = 20 | 22 | 25 | 30;

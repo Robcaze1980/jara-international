@@ -53,7 +53,6 @@ const roles = [
 const applicationTypes = [
   'Interior Subfloor',
   'Exterior Deck',
-  'Roof Sheathing',
   'Other',
 ] as const;
 

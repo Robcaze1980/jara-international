@@ -45,8 +45,15 @@ export const metadata: Metadata = {
       follow: false,
     },
   },
-  // No canonical / hreflang — the page is intentionally outside the main
-  // information architecture.
+  // Explicit self-canonical — root layout sets canonical to SITE.url, which
+  // would otherwise cascade and have this noindex page point at the homepage.
+  // Functionally harmless (noindex blocks ranking either way) but semantically
+  // accurate. No hreflang — the page is intentionally outside the main
+  // information architecture and has no /es twin.
+  alternates: {
+    canonical: `${SITE.url}/long-beach-stock`,
+    languages: {},
+  },
 };
 
 export default function LongBeachStockPage() {

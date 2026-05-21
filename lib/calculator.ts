@@ -16,15 +16,12 @@ export const CONSTRUCTION_TYPES = [
   { value: 'commercial-steel', label: 'Commercial steel-joist floor', defaultThickness: 22 },
   { value: 'hotel-hospitality', label: 'Hotel / Hospitality', defaultThickness: 22 },
   { value: 'modular-prefab', label: 'Modular / Prefab construction', defaultThickness: 25 },
-  { value: 'roof-sheathing', label: 'Roof sheathing', defaultThickness: 17 },
   { value: 'exterior-cladding', label: 'Exterior cladding (hidden joint)', defaultThickness: 12 },
   { value: 'outdoor-deck', label: 'Outdoor deck', defaultThickness: 30 },
   { value: 'other', label: 'Other / I will specify', defaultThickness: 20 },
 ] as const;
 
 export const PANEL_THICKNESSES = [
-  { value: 14, label: '14 mm (9/16") — Roof Sheathing' },
-  { value: 17, label: '17 mm (11/16") — Roof Sheathing' },
   { value: 20, label: '20 mm (13/16") — Subfloor' },
   { value: 22, label: '22 mm (7/8") — Subfloor' },
   { value: 25, label: '25 mm (1") — Subfloor' },
@@ -39,8 +36,6 @@ export const MAX_SF = 500_000; // safety cap; alerts user above this
 export const SF_PER_PANEL = 32;
 // Approximate panel weight in lbs by thickness (from data/products.ts)
 const WEIGHT_LBS_BY_THICKNESS: Record<number, number> = {
-  14: 103.9,
-  17: 127.2,
   20: 149.6,
   22: 164.7,
   25: 187.1,
@@ -48,8 +43,6 @@ const WEIGHT_LBS_BY_THICKNESS: Record<number, number> = {
 };
 // Approximate truck load (40' high cube container) panel capacity by thickness
 const PANELS_PER_TRUCK: Record<number, number> = {
-  14: 360,
-  17: 320,
   20: 300,
   22: 270,
   25: 240,

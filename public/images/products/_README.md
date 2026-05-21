@@ -14,11 +14,8 @@ Per ADR-013: VB1 photo-first product cards with brand-compliant placeholder fall
 | `corrugated-roof-tile.webp` | `/products/corrugated-roof-tile` | Hero image | ✅ Delivered 2026-05-19 |
 | `corrugated-roof-tile-pallet.webp` | `/products/corrugated-roof-tile` | Detail page supporting image (pallet view) | ✅ Delivered 2026-05-19 |
 | `corrugated-roof-tile-profile.webp` | `/products/corrugated-roof-tile` | Detail page supporting image (profile close-up) | ✅ Delivered 2026-05-19 |
-| `roof-sheathing.webp` | `/products/roof-sheathing` | Phase 4.5 (week 1 post-launch) | ⏳ Pending |
-| `deck.webp` | `/products/deck` | Phase 4.5 | ⏳ Pending |
 | `exterior-hidden-joint.webp` | `/products/exterior-hidden-joint` | Phase 4.5 | ⏳ Pending |
 | `exterior-cement-board.webp` | `/products/exterior-cement-board` | Phase 4.5 | ⏳ Pending |
-| `fibroxton.webp` | `/products/fibroxton` | Phase 4.5 | ⏳ Pending |
 | `siding-hero.webp` | `/products/siding` | Day-1 launch (4-profile parent page hero) | ✅ Delivered 2026-05-19 |
 | `siding-tongue-and-groove.webp` | `/products/siding#machihembrado` | Profile grid card | ✅ Delivered 2026-05-19 |
 | `siding-tongue-and-groove-alt.webp` | `/products/siding` | Specifier-detail (thickness profile) | ✅ Delivered 2026-05-19 |
@@ -33,15 +30,6 @@ If a product image is NOT delivered by launch, the card uses `_placeholder.svg` 
 - Stacked gray fiber-cement panels in warehouse OR installed subfloor on steel/wood joists, mid-construction
 - Show panel thickness profile if possible
 
-### Roof Sheathing
-- Roof construction with gray fiber-cement boards being installed
-- Workers visible in safety harnesses (architectural distance, not close-up)
-
-### Deck
-- Outdoor terrace with fiber-cement plank deck
-- Wood-look but clearly cement texture
-- Daylight, neutral tones
-
 ### Exterior Hidden Joint
 - Modern building facade with monolithic panel finish (no visible joints)
 - Architectural exterior shot, neutral lighting
@@ -49,10 +37,6 @@ If a product image is NOT delivered by launch, the card uses `_placeholder.svg` 
 ### Exterior Cement Board
 - Wall system with cement board + basecoat application visible
 - Construction-in-progress feel
-
-### Fibroxton
-- Cladding panels on modern facade
-- Tapered edge detail visible if possible
 
 ### Corrugated Roof Tile (Eureka Sevillana)
 - See [[plycem-roof-tile-visual-spec]] memory for the locked master prompt and 3 reference images

@@ -2,7 +2,7 @@
 
 Production source of [jarainternational.com](https://jarainternational.com).
 
-B2B distributor of premium fiber-cement panels for the United States construction market. Multi-product PLYCEM catalog (subfloor, roof sheathing, deck, exterior cladding, cement board, fibroxton). UL R15140 classified. Direct factory shipping from PLYCEM manufacturing in Costa Rica, El Salvador, and Honduras — typical door-to-door delivery 3–4 weeks.
+B2B distributor of premium fiber-cement panels for the United States construction market. PLYCEM catalog (subfloor, exterior hidden joint, exterior cement board, plank siding, corrugated roof tile, modular deck tiles). UL R15140 classified. Direct factory shipping from PLYCEM manufacturing in Costa Rica, El Salvador, and Honduras — typical door-to-door delivery 3–4 weeks.
 
 > "Global Sourcing. Built on Trust."
 

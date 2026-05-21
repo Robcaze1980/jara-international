@@ -75,7 +75,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   };
 
-  // 9 product detail pages
+  // Product detail pages (count = PRODUCTS.length; roof-sheathing removed 2026-05-21)
   const productDetails: MetadataRoute.Sitemap = PRODUCTS.map((p) => ({
     url: `${SITE.url}/products/${p.slug}`,
     lastModified: now,

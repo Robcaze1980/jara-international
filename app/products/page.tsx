@@ -16,7 +16,7 @@ import { buildTelUrl } from '@/lib/whatsapp';
 export const metadata: Metadata = {
   title: 'Products — Fiber-Cement Panel Catalog',
   description:
-    'JARA International distributes 6 PLYCEM fiber-cement product lines: subfloor, roof sheathing, deck, exterior hidden joint, exterior cement board, and fibroxton. Full catalog and detailed product pages launching this week. Call or email for immediate quote.',
+    'JARA International distributes 6 PLYCEM fiber-cement product lines: high-performance subfloor, exterior hidden joint, exterior cement board, plank siding, corrugated roof tile, and modular deck tiles. Full catalog and detailed product pages launching this week. Call or email for immediate quote.',
   alternates: {
     canonical: `${SITE.url}/products`,
     languages: {
@@ -38,12 +38,12 @@ export default function ProductsStubPage() {
           PLYCEM High Performance Subfloor — plus the complete panel envelope
         </h1>
         <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink/80">
-          JARA distributes the full PLYCEM line: non-combustible fiber-cement
+          JARA distributes the PLYCEM line: non-combustible fiber-cement
           structural subfloor (the lead product, UL R15140 / IAPMO / CBC
-          Chapter 7A), plus roof sheathing, exterior cladding, cement board,
-          deck, and Fibroxton. Detailed product pages are publishing this
-          week. For immediate quotes, call or email — Robertson responds
-          within 1 business day.
+          Chapter 7A), plus exterior cladding, cement board, plank siding,
+          corrugated roof tile, and modular deck tiles. Detailed product
+          pages are publishing this week. For immediate quotes, call or
+          email — Robertson responds within 1 business day.
         </p>
 
         <div className="mt-10 grid gap-4 sm:grid-cols-2">
