@@ -37,17 +37,6 @@ const nextConfig = {
         destination: '/products/exterior-hidden-joint',
         permanent: true,
       },
-      {
-        // deck (plank) removed 2026-05-21 per R15.5-Q3 (4/4 unanimous after
-        // R15 Q3 failed quorum). Severe US product-market fit headwind:
-        // composite decking (Trex / TimberTech / AZEK) dominates. No
-        // ICC-ES ESR. R15-Q4 promotion of Deck Modular eliminated the
-        // consolidation argument. Redirect to /products/deck-modular as
-        // the closest functional substitute with no US regulatory gap.
-        source: '/products/deck',
-        destination: '/products/deck-modular',
-        permanent: true,
-      },
     ];
   },
 };

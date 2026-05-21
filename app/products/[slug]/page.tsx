@@ -58,6 +58,11 @@ const CERT_GAP_WARNINGS: Record<string, CertGapWarningContent | undefined> = {
     body:
       'PLYCEM\'s June 2024 technical datasheet for Microconcreto Exterior lists Costa Rica RTCR 491:2017, INTE/ISO 8336:2018, and a Chilean NCh1914 non-combustibility test with manufacturer-claimed equivalence to ASTM E-136 / E-84. US-specific certifications previously cited for this product (IAPMO ER-360, ICC IBC 2015/2012 alternative-material recognition, US-accredited ASTM E-84 / ASTM E-136 lab reports, NFPA 285 assembly listings) are NOT listed on the manufacturer\'s current datasheet. JARA is in active communication with PLYCEM to confirm or supplement US documentation. Until verification lands, this product cannot be relied upon for projects subject to Authority Having Jurisdiction review of those specific US certifications. For applications requiring documented US compliance today (Type I/II construction, NFPA 285 assemblies, California Chapter 7A WUI), specify PLYCEM High Performance Subfloor where applicable, or contact JARA for the latest verification status and to discuss alternatives.',
   },
+  deck: {
+    title: 'No ICC-ES ESR — fiber-cement decking requires AHJ alternative-materials approval per project',
+    body:
+      'PLYCEM Deck is certified to ASTM C1186-08 Type A, ASTM E-84 Class A surface burning, and ISO 8336:2018, but does NOT carry an ICC-ES Evaluation Service Report equivalent to Trex\'s ESR-2645 family. The US residential / commercial deck code (IRC R507 / IBC 1607) prescriptively lists wood, wood-plastic composite, and plastic decking — fiber-cement is not on that prescriptive list. Installations require approval from the local Authority Having Jurisdiction (AHJ) under IBC Section 104.11 "Alternative Materials, Design and Methods of Construction." JARA provides the ASTM C1186 + ASTM E-84 + ISO 8336 documentation needed for that submittal on request. Best fit for coastal, mountain, commercial, hotel, and multifamily amenity decks where fiber-cement durability outperforms composite or wood and the project team can coordinate the alternative-materials approval. For rooftop terraces, balconies, and pool decks over an already-engineered substrate where no AHJ submittal is required, specify Plycem Deck Modular instead.',
+  },
 };
 
 /**

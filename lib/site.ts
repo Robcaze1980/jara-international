@@ -16,7 +16,7 @@ export const SITE = {
   legalName: 'JARA International Inc.',
   tagline: 'Global Sourcing. Built on Trust.',
   description:
-    'US distributor of PLYCEM non-combustible fiber-cement structural subfloor for multifamily, hotel, and commercial construction — UL R15140 classified, ASTM E-136 non-combustible, CBC Chapter 7A compliant, ASTM C1186 Type A Grade I. Plus the PLYCEM panel envelope: exterior cladding, cement board, plank siding, corrugated roof tile, and modular deck tiles. Sourced direct from manufacturing in Costa Rica with 3–4 week door-to-door delivery.',
+    'US distributor of PLYCEM non-combustible fiber-cement structural subfloor for multifamily, hotel, and commercial construction — UL R15140 classified, ASTM E-136 non-combustible, CBC Chapter 7A compliant, ASTM C1186 Type A Grade I. Plus the PLYCEM panel envelope: exterior cladding, cement board, plank siding, corrugated roof tile, deck planks, and modular deck tiles. Sourced direct from manufacturing in Costa Rica with 3–4 week door-to-door delivery.',
 
   // Domain (ADR-002)
   url: 'https://jarainternational.com',

@@ -160,16 +160,72 @@ export const PRODUCTS: Product[] = [
   // structural roof deck in the US requires IBC 104.11 alternative-materials
   // approval on every project — not a viable repeat-sale position. Removed
   // from catalog rather than carry a CertGapWarning that would never close.
-  // Deck (plank) removed 2026-05-21 per Round 15.5 Q3 (4/4 unanimous after
-  // Round 15 Q3 failed quorum). Severe US product-market fit headwind:
-  // heavy, cold fiber-cement planks compete against composite-decking (Trex
-  // ESR-2645, TimberTech, AZEK) where the dominant products feel warm
-  // underfoot. No ICC-ES ESR. Round 15-Q4 promotion of Deck Modular to a
-  // clean-compliance tier eliminated the consolidation argument — combining
-  // a low-conversion plank with the newly-promoted tile would dilute the
-  // tier positioning. 301 redirect to /products/deck-modular preserves SEO
-  // equity for "deck" queries and routes users to the closest functional
-  // substitute with documented US demand.
+  // Deck (plank) — restored to catalog 2026-05-21 (founder direction,
+  // reversing R15.5-Q3). The R15.5 unanimous vote to drop was driven by
+  // product-market fit concerns (Trex/composite dominance, heaviness, cold
+  // feel underfoot), not by a documentation gap. The Jan 2023 Plycem Deck
+  // datasheet documents IDENTICAL US standards to Deck Modular (ASTM C1186
+  // Type A, ASTM E-84 Class A, ISO 8336) — the real distinction between the
+  // two is use case: Deck plank is structural (governed by IRC R507) so
+  // every project needs IBC 104.11 alternative-materials approval from the
+  // AHJ, while Deck Modular as a surface finish doesn't need an ESR at all.
+  // Both products are legally sellable in the US; Modular has a cleaner
+  // sales path, but Deck plank serves real niches (coastal, mountain,
+  // commercial / multifamily amenity decks, industrial walkways) where
+  // composite alternatives fail.
+  {
+    slug: 'deck',
+    name: 'Deck',
+    shortDescription:
+      'Fiber-cement plank system for outdoor decks and drained floors with the look and workability of wood.',
+    longDescription:
+      'Plycem Deck is a clip-based exterior structural plank system for terraces, outdoor walkways, and drained floors. Combines the appearance of wood with fiber-cement durability — paintable or dyeable. Maximum 40.6 cm (16") joist spacing.',
+    applications: ['Outdoor decks', 'Terraces', 'Drained outdoor floors', 'Indoor walkways'],
+    variants: [
+      { thicknessMm: 30, thicknessImperial: '1-3/16"', widthMm: 150, lengthMm: 3657, weightKg: 20.7, weightLbs: 45.6, sku: '982315' },
+      { thicknessMm: 30, thicknessImperial: '1-3/16"', widthMm: 150, lengthMm: 3657, weightKg: 20.7, weightLbs: 45.6, sku: '1323611' },
+    ],
+    density: { min: 1.0, max: 1.3, unit: 'kg/dm³' },
+    flexuralStrengthMin: { value: 10.0, unit: 'N/mm²' },
+    compliance: [
+      { standard: 'ASTM C1186-08', detail: 'Type A' },
+      { standard: 'ISO 8336:2018', detail: 'Category A, Class 1, Level 1' },
+      { standard: 'ASTM E-84', detail: 'Flame spread 0, smoke developed 0' },
+    ],
+    manufacturer: 'Plycem',
+    faqs: [
+      {
+        question: 'What is the maximum joist spacing for Plycem Deck planks?',
+        answer:
+          'Maximum 40.6 cm (16") on-center joist spacing. The 30mm (1-3/16") plank profile is engineered for this span under residential live-load conditions. For commercial applications with higher pedestrian loads, the design engineer should confirm joist spacing and connection details.',
+      },
+      {
+        question: 'Can the planks be painted, stained, or dyed?',
+        answer:
+          'Yes — the surface accepts paint, stain, and integral dye. Many specifiers prefer dyeing for a wood-tone finish that won\'t chip or peel. Use exterior-grade coatings rated for cementitious substrates; manufacturer technical bulletins list approved coating systems.',
+      },
+      {
+        question: 'How does the clip-based installation system work?',
+        answer:
+          'Planks are fastened to joists using hidden stainless-steel clips that engage grooves in the plank edges, leaving no exposed fasteners on the walking surface. This delivers a clean monolithic deck appearance and accommodates seasonal expansion/contraction without surface cracking. Clips are sold separately by the same manufacturer.',
+      },
+      {
+        question: 'How does fiber-cement deck compare to wood or composite for moisture resistance?',
+        answer:
+          'Fiber-cement is dimensionally stable in wet conditions and will not rot, warp, or harbor mold like wood, and will not soften under prolonged UV exposure like some wood-plastic composites. Density is 1.0–1.3 kg/dm³ and flexural strength is 10 N/mm² minimum — superior to most wood-composite decking products.',
+      },
+      {
+        question: 'How does this differ from Deck Modular?',
+        answer:
+          'Plycem Deck is a long-grain structural plank (150×3657mm) fastened to joists with hidden clips — it IS the structural floor of an outdoor deck. Plycem Deck Modular is a 300×300mm interlocking surface tile installed on top of an already-engineered substrate (concrete slab, OSB+membrane, pedestal pavers) — it is a finish, not a structural element. The same fiber-cement material, two different uses. Both share ASTM C1186 Type A and ASTM E-84 Class A. Choose plank when you are building the deck from joists up; choose Modular when you are finishing a rooftop terrace, balcony, or pool surround over an existing structural floor.',
+      },
+      {
+        question: 'What is the US code path for fiber-cement decking?',
+        answer:
+          'Wood and wood-plastic composite decking are prescriptively listed in IRC R507. Fiber-cement decking is not on that prescriptive list, so installations require approval from the local Authority Having Jurisdiction (AHJ) under IBC Section 104.11 "Alternative Materials, Design and Methods of Construction." JARA provides the manufacturer\'s ASTM C1186 + ASTM E-84 documentation needed for that approval. Best fit for coastal / mountain / commercial / multifamily amenity decks where fiber-cement durability outperforms composite or wood and the project team is willing to coordinate the alternative-materials submittal.',
+      },
+    ],
+  },
   {
     slug: 'exterior-hidden-joint',
     name: 'Exterior Hidden Joint',

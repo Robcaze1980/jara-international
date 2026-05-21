@@ -14,6 +14,7 @@ Per ADR-013: VB1 photo-first product cards with brand-compliant placeholder fall
 | `corrugated-roof-tile.webp` | `/products/corrugated-roof-tile` | Hero image | ✅ Delivered 2026-05-19 |
 | `corrugated-roof-tile-pallet.webp` | `/products/corrugated-roof-tile` | Detail page supporting image (pallet view) | ✅ Delivered 2026-05-19 |
 | `corrugated-roof-tile-profile.webp` | `/products/corrugated-roof-tile` | Detail page supporting image (profile close-up) | ✅ Delivered 2026-05-19 |
+| `deck.webp` | `/products/deck` | Phase 4.5 | ⏳ Pending |
 | `exterior-hidden-joint.webp` | `/products/exterior-hidden-joint` | Phase 4.5 | ⏳ Pending |
 | `exterior-cement-board.webp` | `/products/exterior-cement-board` | Phase 4.5 | ⏳ Pending |
 | `siding-hero.webp` | `/products/siding` | Day-1 launch (4-profile parent page hero) | ✅ Delivered 2026-05-19 |
@@ -29,6 +30,11 @@ If a product image is NOT delivered by launch, the card uses `_placeholder.svg` 
 ### High Performance Subfloor
 - Stacked gray fiber-cement panels in warehouse OR installed subfloor on steel/wood joists, mid-construction
 - Show panel thickness profile if possible
+
+### Deck
+- Outdoor terrace with fiber-cement plank deck (30mm × 150mm planks)
+- Hidden-clip installation visible if possible; wood-look but clearly cement texture
+- Daylight, neutral tones, coastal/mountain context
 
 ### Exterior Hidden Joint
 - Modern building facade with monolithic panel finish (no visible joints)

@@ -58,7 +58,7 @@ const ENVELOPE_DISPLAY_ORDER: readonly string[] = [
   'corrugated-roof-tile',
   'exterior-hidden-joint',
   'exterior-cement-board',
-  'deck-modular',
+  'deck',
 ];
 
 // Slugs that render as anchor cards above the "Complete the envelope" grid.
@@ -77,8 +77,8 @@ const TIER_SLUGS: readonly string[] = ['deck-modular'];
 const DECK_MODULAR_HIGHLIGHTS = [
   {
     icon: CheckCircle2,
-    label: 'No US regulatory gap',
-    detail: 'Surface tiles sit on top of an engineered substrate — no structural ICC-ES ESR required',
+    label: 'Fits the prescriptive US code path',
+    detail: 'Surface finish over an engineered substrate — no ICC-ES ESR required, no per-project AHJ submittal',
   },
   {
     icon: Layers,
@@ -238,16 +238,17 @@ export function FeaturedProducts() {
                   Specialty pick
                 </p>
                 <h3 className="mt-2 font-display text-xl font-bold text-navy md:text-2xl text-balance">
-                  {deckModular.name} — the niche pick with no US regulatory gap
+                  {deckModular.name} — the rooftop terrace pick that fits the prescriptive US code path
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-ink/80 md:text-base">
                   Interlocking 300×300×14mm fiber-cement tiles for rooftop
                   terraces, balconies, and pool decks where under-floor
                   access to waterproofing matters. Because they&apos;re a
-                  surface finish — not structural sheathing — they sit
-                  outside the ICC-ES ESR pathway that constrains the rest
-                  of the panel catalog. The cleanest US-market story after
-                  the subfloor anchor.
+                  surface finish over an already-engineered substrate — not
+                  structural decking — they don&apos;t require an ICC-ES
+                  ESR or per-project AHJ submittal the way structural deck
+                  planks do. The cleanest sales path after the subfloor
+                  anchor.
                 </p>
 
                 <ul className="mt-5 space-y-3">

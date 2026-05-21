@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     'multifamiliar Tipo V sobre podio, hoteles y Tipo I/II comercial en ' +
     'EE.UU. UL R15140 clasificado, ASTM E-136 no combustible, IAPMO ' +
     'ER-360, CBC Capítulo 7A. Plus el resto del envolvente PLYCEM ' +
-    '(cladding exterior, cement board, siding, deck modular, cubierta corrugada). Envío directo ' +
+    '(cladding exterior, cement board, siding, deck, deck modular, cubierta corrugada). Envío directo ' +
     'desde planta en Costa Rica, El Salvador y Honduras — entrega típica ' +
     'puerta-a-puerta 3–4 semanas.',
   alternates: {
@@ -80,7 +80,7 @@ export default function SpanishLandingPage() {
           horas. Especificado para construcción multifamiliar Tipo V sobre
           podio, hoteles, pisos comerciales con vigueta metálica, y
           construcción modular. Plus el resto del envolvente PLYCEM:
-          cladding exterior, cement board, siding, deck modular y cubierta corrugada.
+          cladding exterior, cement board, siding, deck plancha, deck modular y cubierta corrugada.
           Envío directo desde planta PLYCEM en{' '}
           <strong className="text-white">Costa Rica, El Salvador y Honduras</strong>{' '}
           — entrega puerta-a-puerta en 3–4 semanas.
@@ -98,7 +98,8 @@ export default function SpanishLandingPage() {
             Complete el envolvente:
           </p>
           <ul className="mt-2 space-y-2 text-white/85">
-            <li>• <strong>Deck Modular</strong> — losetas de fibrocemento entrelazadas para terrazas y balcones</li>
+            <li>• <strong>Deck</strong> — plancha estructural de fibrocemento para terrazas y pisos drenados (instalación con clip oculto)</li>
+            <li>• <strong>Deck Modular</strong> — losetas de fibrocemento entrelazadas para terrazas, balcones y áreas de piscina</li>
             <li>• <strong>Exterior Hidden Joint</strong> — fachadas con acabado monolítico</li>
             <li>• <strong>Exterior Cement Board</strong> — paredes interiores y exteriores con basecoat</li>
             <li>• <strong>Siding</strong> — tablilla de fibrocemento en 4 perfiles arquitectónicos</li>
