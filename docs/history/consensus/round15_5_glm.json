@@ -1,0 +1,27 @@
+{
+  "model": "z-ai/glm-5.1",
+  "content": "```json\n{\n  \"voter\": \"codex\",\n  \"round\": \"15.5\",\n  \"date_iso\": \"2026-05-21\",\n  \"verdict\": {\n    \"choice\": \"C\",\n    \"redirect_destination_if_C\": \"/products/deck-modular\",\n    \"consolidation_url_if_B\": null,\n    \"rationale\": \"The Round 15 Q4 promotion of Deck Modular to a clean-compliance-niche tier decisively shifts my calculus away from my original A vote—consolidating under /products/decking would tether a newly-promoted niche winner to a plank with no ICC-ES ESR and fundamental residential product-market fit failure, diluting the very positioning we just voted to elevate. The subfloor-as-hero, full-envelope catalog is better served by removing dead weight than by architecting variant selectors and dual-product JSON-LD for a segment where conversion is negligible. Redirecting to /products/deck-modular preserves SEO equity, routes users to the closest functional substitute with genuine US demand, and follows the Roof Sheathing + Fibroxton playbook already in motion this session.\"\n  },\n  \"changed_from_r15\": true,\n  \"previous_r15_q3_vote\": \"A\",\n  \"confidence\": \"high\"\n}\n```",
+  "usage": {
+    "prompt_tokens": 1634,
+    "completion_tokens": 2005,
+    "total_tokens": 3639,
+    "cost": 0.0076989528,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.00777672,
+      "upstream_inference_prompt_cost": 0.00160132,
+      "upstream_inference_completions_cost": 0.0061754
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 1738,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}

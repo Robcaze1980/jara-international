@@ -1,0 +1,27 @@
+{
+  "model": "openai/gpt-5.1-codex",
+  "content": "{\"voter\":\"n/a\",\"round\":\"15.5\",\"date_iso\":\"2026-05-21\",\"verdict\":{\"choice\":\"C\",\"redirect_destination_if_C\":\"/products/deck-modular\",\"consolidation_url_if_B\":\"\",\"rationale\":\"Dropping the plank removes a low-conversion outlier that fights the founder’s subfloor-centric, US-compliance-ready catalog story and avoids conflating a cold, heavy plank with the higher-fit modular tile. A straight 301 to /products/deck-modular keeps visitors in the outdoor fiber-cement flooring family without inventing new page architecture or diluting the tile’s Round 15 Q4 niche positioning. With Deck Modular already promoted, there is little upside to forcing coexistence on one page, so a clean excision is the least risky way to keep momentum on the envelope grid refresh.\"},\"changed_from_r15\":false,\"previous_r15_q3_vote\":\"N/A\",\"confidence\":\"medium\"}",
+  "usage": {
+    "prompt_tokens": 1629,
+    "completion_tokens": 317,
+    "total_tokens": 1946,
+    "cost": 0.0051541875,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.00520625,
+      "upstream_inference_prompt_cost": 0.00203625,
+      "upstream_inference_completions_cost": 0.00317
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 64,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "model": "deepseek/deepseek-v4-pro",
+  "content": "```json\n{\n  \"voter\": \"gemini\",\n  \"round\": \"15.5\",\n  \"date_iso\": \"2026-05-21\",\n  \"verdict\": {\n    \"choice\": \"C\",\n    \"redirect_destination_if_C\": \"/products/deck-modular\",\n    \"consolidation_url_if_B\": null,\n    \"rationale\": \"Dropping the deck plank is the cleanest execution of the founder's 'full envelope' mandate, which requires a catalog of high-confidence, shippable products, not a museum of every compliant SKU. The severe product-market fit headwinds for heavy, cold fiber-cement planks in the US composite-dominated deck market make this a distraction from the subfloor-as-hero core. A 301 redirect to /products/deck-modular is the logical move, as it's the closest functional substitute and preserves the SEO value for 'deck' queries while directing users to a product with genuine niche strength. The Round 15 Q4 promotion of Deck Modular reinforces this calculus; consolidating a low-conversion plank onto the same page would only dilute the 'clean compliance niche' positioning we just voted to establish, creating a mixed-message page that undermines both products. This drop is a permanent, surgical cut that strengthens the overall catalog narrative and avoids the unscoped page-architecture work of a consolidation that would likely be undone later anyway.\"\n  },\n  \"changed_from_r15\": false,\n  \"previous_r15_q3_vote\": \"C\",\n  \"confidence\": \"high\"\n}\n```",
+  "usage": {
+    "prompt_tokens": 1668,
+    "completion_tokens": 326,
+    "total_tokens": 1994,
+    "cost": 0.003996432,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.0040368,
+      "upstream_inference_prompt_cost": 0.00290232,
+      "upstream_inference_completions_cost": 0.00113448
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}

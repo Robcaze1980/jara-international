@@ -1,0 +1,27 @@
+{
+  "model": "google/gemini-3.1-flash-lite",
+  "content": "{\n  \"voter\": \"codex\",\n  \"round\": 15,\n  \"date_iso\": \"2026-05-21\",\n  \"verdicts\": {\n    \"Q1\": { \"choice\": \"B\", \"rationale\": \"Promoting a product with 6/7 unsupported US claims to a homepage anchor creates immediate liability. Reverting the promotion while keeping the rest of the site improvements allows for a stable, compliant deployment while awaiting manufacturer verification.\" },\n    \"Q2\": { \"choice\": \"A\", \"rationale\": \"Fibroxton lacks even basic ASTM C1186 fiber-cement compliance. In a US market where competitors like HardiePanel provide robust ESRs, keeping a product with only Chilean manufacturing certs creates a 'weakest link' liability that undermines the catalog's credibility.\" },\n    \"Q3\": { \"choice\": \"C\", \"rationale\": \"Fiber-cement plank decking is a poor product-market fit in the US due to weight and thermal properties compared to established composites. Dropping it reduces catalog bloat and focuses the user on the more viable Deck Modular.\" },\n    \"Q4\": { \"choice\": \"A\", \"rationale\": \"Deck Modular has no regulatory blockers and serves a specific, high-value niche (rooftop/balcony). Elevating it distinguishes it from the 'CertGap' products and highlights its utility as a non-structural finish.\" },\n    \"Q5\": {\n      \"i\": { \"choice\": \"INCLUDE\", \"rationale\": \"Historical ESR-3500 status is the most efficient path to closing the Siding gap if the supply chain remains valid.\" },\n      \"ii\": { \"choice\": \"SKIP\", \"rationale\": \"Fibroxton is being dropped; verification is no longer necessary.\" },\n      \"iii\": { \"choice\": \"SKIP\", \"rationale\": \"UL 790 pursuit is a long-term capital expenditure; not a priority for current catalog viability.\" },\n      \"iv\": { \"choice\": \"INCLUDE\", \"rationale\": \"Crucial to understand if JARA has the legal standing to pursue independent testing if Plycem remains passive.\" },\n      \"v\": { \"choice\": \"INCLUDE\", \"rationale\": \"Essential for risk management to know if current certs are being maintained or allowed to lapse.\" }\n    },\n    \"Q6\": { \"choice\": \"C\", \"rationale\": \"Directing users to the prescriptive US default (OSB/plywood) maintains professional credibility and provides a helpful, code-compliant alternative.\" },\n    \"Q7\": { \"choice\": \"C\", \"rationale\": \"Speculating on historical ESRs in public-facing warnings is risky. Wait for confirmation to either remove the warning or cite the ESR accurately.\" },\n    \"Q8\": { \"choice\": \"C\", \"count\": 6, \"rationale\": \"A 6-product catalog (Subfloor, Cement Board, Hidden Joint, Siding, Corrugated Tile, Deck Modular) focuses on the most viable products while removing the 'weakest link' items (Fibroxton, Deck Plank) that lack clear US market fit.\" },\n    \"Q9\": { \"free_response\": \"The current framing is excellent. I would suggest a future round specifically dedicated to 'Content Localization'—ensuring that the tone of the CertGapWarnings is helpful and educational rather than purely defensive, to maintain a premium brand voice.\" },\n    \"Q10\": { \"items\": [\"Update sitemap and 301 redirects for dropped products\", \"Draft 'Product Lifecycle' policy for future catalog additions\", \"Refine CertGapWarning copy to be more user-friendly once Plycem replies\"] }\n  },\n  \"overall_catalog_recommendation\": \"REVISE\",\n  \"highest_confidence_finding\": \"Subfloor is the only product with a fully defensible US regulatory dossier.\",\n  \"lowest_confidence_finding\": \"The status of the historical Allura ESR-3500 as it pertains to current Plycem-manufactured siding.\"\n}",
+  "usage": {
+    "prompt_tokens": 5627,
+    "completion_tokens": 884,
+    "total_tokens": 6511,
+    "cost": 0.0027054225,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.00273275,
+      "upstream_inference_prompt_cost": 0.00140675,
+      "upstream_inference_completions_cost": 0.001326
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}

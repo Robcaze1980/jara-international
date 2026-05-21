@@ -1,0 +1,27 @@
+{
+  "model": "openai/gpt-5.1-codex",
+  "content": "{\"voter\":\"codex\",\"round\":15,\"date_iso\":\"2026-05-21\",\"verdicts\":{\"Q1\":{\"choice\":\"B\",\"rationale\":\"The June 2024 Microconcreto Exterior datasheet lists only RTCR 491, INTE/ISO 8336, and NCh1914 equivalence notes, so none of the six US claims in data/products.ts:268-275 are presently documented. Rolling back just the promotion lets the verified fixes (Subfloor improvements, Roof Sheathing removal, Hidden Joint warning) deploy without hinging on an unresolved manufacturer confirmation.\"},\"Q2\":{\"choice\":\"A\",\"rationale\":\"Fibroxton’s entire dossier is a Chilean fire note plus ISO 9001/14001/45001 (data/products.ts:318-321). No ASTM C1186 or US code path exists, making it weaker than Hidden Joint or Siding; removing it protects catalog credibility until Plycem can supply fundamental compliance evidence.\"},\"Q3\":{\"choice\":\"A\",\"rationale\":\"Deck plank at least carries ASTM C1186 Type A and ASTM E-84 (data/products.ts:177-181) and is truthful about its niche. Keeping it in a deprioritized slot preserves the ‘full envelope’ story without extra warnings, while consolidation or removal would add work without regulatory urgency.\"},\"Q4\":{\"choice\":\"A\",\"rationale\":\"Deck Modular complies via ASTM C1186/ISO 8336 and doesn’t need ESRs because pedestal tiles aren’t structural; rooftop terrace demand is a credible US niche. A light promotion tier signals it as the most US-ready product after the two anchors without overstating compliance.\"},\"Q5\":{\"i\":{\"choice\":\"INCLUDE\",\"rationale\":\"If Allura’s ESR-3500 remains active for Plycem-manufactured siding, it could eliminate the current Siding cert gap; confirming status directly affects the warning text and marketability.\"},\"ii\":{\"choice\":\"SKIP\",\"rationale\":\"Fibroxton is slated for removal, so verifying ASTM C1186 now wastes Plycem bandwidth.\"},\"iii\":{\"choice\":\"INCLUDE\",\"rationale\":\"Understanding whether UL 790 Class A is technically and financially feasible for Eureka Sevillana determines whether the product can ever serve US WUI/HVHZ markets instead of remaining permanently niche.\"},\"iv\":{\"choice\":\"INCLUDE\",\"rationale\":\"Clarifying whether JARA may independently pursue US ESRs/IAPMO ERs affects long-term catalog autonomy if Plycem declines to do so.\"},\"v\":{\"choice\":\"INCLUDE\",\"rationale\":\"Knowing Plycem’s planned recertification cadence allows JARA to anticipate expirations like ER-360 and avoid future last-minute gaps.\"},\"Q6\":{\"choice\":\"C\",\"rationale\":\"Since Plycem Roof Sheathing no longer exists, pointing specifiers to the prescriptive US default—OSB or plywood sheathing plus a membrane—keeps the FAQ accurate while steering users toward code-accepted assemblies.\"},\"Q7\":{\"choice\":\"A\",\"rationale\":\"Allura ESR-3500 coverage is unverified; mentioning it now would be speculative. Keeping the current Hardie ESR comparison maintains honesty until Plycem confirms whether ESR-3500 can be cited.\"},\"Q8\":{\"choice\":\"B\",\"count\":7,\"rationale\":\"Dropping Fibroxton but retaining Deck keeps seven products: enough to tell a whole-envelope story anchored by Subfloor while pruning the weakest compliance liability. This matches the founder’s positioning without overstretching claims.\"},\"Q9\":{\"free_response\":\"I would have split Q3 into two steps—first assess whether the structural plank deck should exist, then separately ask whether modular tiles deserve their own landing page—because the consolidation option straddles both questions. Otherwise the framing was clear.\"},\"Q10\":{\"items\":[\"Implement the Deck Modular “specialty tier” design once this round settles.\",\"Update llms.txt, sitemap, and Spanish pages after Fibroxton removal and any Deck positioning tweaks.\",\"Prepare content changes contingent on Plycem’s response (cement-board claims fix, potential Siding ESR reference).\"]}},\"overall_catalog_recommendation\":\"REVISE\",\"highest_confidence_finding\":\"Fibroxton lacks any US-standard compliance evidence beyond a Chilean NCh1914 equivalence note, making it indefensible to keep in the catalog without major new documentation.\",\"lowest_confidence_finding\":\"The specific level of promotion Deck Modular should receive (light tier vs. remaining in-grid) depends on demand signals we have limited data for, so that prioritization carries more uncertainty.\"}",
+  "usage": {
+    "prompt_tokens": 5114,
+    "completion_tokens": 1564,
+    "total_tokens": 6678,
+    "cost": 0.021812175,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.0220325,
+      "upstream_inference_prompt_cost": 0.0063925,
+      "upstream_inference_completions_cost": 0.01564
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 576,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}

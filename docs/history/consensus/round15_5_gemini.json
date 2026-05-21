@@ -1,0 +1,27 @@
+{
+  "model": "google/gemini-3.1-flash-lite",
+  "content": "{\n  \"voter\": \"gemini\",\n  \"round\": \"15.5\",\n  \"date_iso\": \"2026-05-21\",\n  \"verdict\": {\n    \"choice\": \"C\",\n    \"redirect_destination_if_C\": \"/products/deck-modular\",\n    \"consolidation_url_if_B\": null,\n    \"rationale\": \"Dropping the deck plank aligns with the 'subfloor-as-hero' strategy by eliminating a product that lacks a clear US regulatory path and suffers from poor product-market fit. The Round 15 Q4 promotion of Deck Modular confirms that our catalog strength lies in high-compliance, niche-specific solutions rather than competing with established composite decking giants. Redirecting to the modular tile page preserves SEO equity for users searching for fiber-cement outdoor flooring while ensuring the catalog remains lean and focused. This approach avoids the architectural bloat of a combined page that would dilute the premium positioning of the modular tiles.\"\n  },\n  \"changed_from_r15\": false,\n  \"previous_r15_q3_vote\": \"C\",\n  \"confidence\": \"high\"\n}",
+  "usage": {
+    "prompt_tokens": 1761,
+    "completion_tokens": 260,
+    "total_tokens": 2021,
+    "cost": 0.0008219475,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.00083025,
+      "upstream_inference_prompt_cost": 0.00044025,
+      "upstream_inference_completions_cost": 0.00039
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}
