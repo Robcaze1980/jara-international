@@ -58,21 +58,41 @@ const ENVELOPE_DISPLAY_ORDER: readonly string[] = [
   'corrugated-roof-tile',
   'exterior-hidden-joint',
   'exterior-cement-board',
-  'deck',
 ];
 
 // Slugs that render as anchor cards above the "Complete the envelope" grid.
 // Filtered out of the grid so they don't appear twice on the page.
 const ANCHOR_SLUGS: readonly string[] = ['high-performance-subfloor'];
 
-// R15-Q4 (3/4 strong majority): Deck Modular promoted out of the envelope grid
-// into a "Specialty pick / clean-compliance niche" tier between the subfloor
-// anchor and the supporting-cast grid. Rationale: surface tiles don't require
-// ESRs (not structural, not penetrating), so Deck Modular is the only product
-// in the catalog besides Subfloor with no US regulatory gap. The tier treatment
-// signals "best of the rest" without overcommitting layout into a second
-// full-height anchor.
-const TIER_SLUGS: readonly string[] = ['deck-modular'];
+// 2026-05-21 founder direction: "Outdoor Decking" tier surfaces BOTH outdoor
+// decking products (Deck plank + Deck Modular) as a strategic category. Same
+// fiber-cement material, identical compliance dossier (ASTM C1186 Type A +
+// ASTM E-84 Class A + ISO 8336) — the differentiation is use case, not
+// paperwork. Plank is structural decking (IRC R507, requires AHJ alternative-
+// materials submittal under IBC 104.11); Modular is a surface finish over an
+// engineered substrate (no ESR or AHJ submittal required). Originated from
+// R15-Q4 (Modular-only tier) but expanded after the founder restored Deck
+// plank to the catalog, recognizing the asymmetric visual treatment implied
+// a hierarchy that didn't exist in the documentation.
+const TIER_SLUGS: readonly string[] = ['deck', 'deck-modular'];
+
+const DECK_HIGHLIGHTS = [
+  {
+    icon: Layers,
+    label: 'Structural plank — IS the deck surface',
+    detail: '30mm long-grain fiber-cement plank, 16″ joist spacing max, hidden stainless-steel clip installation',
+  },
+  {
+    icon: ShieldCheck,
+    label: 'Where wood/composite fails',
+    detail: 'Coastal humidity, mountain UV, hotel amenity decks, multifamily commercial — fiber-cement outlasts wood-plastic',
+  },
+  {
+    icon: Flame,
+    label: 'Requires AHJ alternative-materials approval',
+    detail: 'ASTM C1186 Type A + ASTM E-84 Class A — but not prescriptively listed in IRC R507; needs IBC 104.11 submittal',
+  },
+];
 
 const DECK_MODULAR_HIGHLIGHTS = [
   {
@@ -94,6 +114,7 @@ const DECK_MODULAR_HIGHLIGHTS = [
 
 export function FeaturedProducts() {
   const subfloor = getProductBySlug('high-performance-subfloor');
+  const deck = getProductBySlug('deck');
   const deckModular = getProductBySlug('deck-modular');
   const otherProducts = PRODUCTS
     .filter((p) => !ANCHOR_SLUGS.includes(p.slug) && !TIER_SLUGS.includes(p.slug))
@@ -207,85 +228,159 @@ export function FeaturedProducts() {
           </article>
         )}
 
-        {/* R15-Q4 Specialty tier — Deck Modular (3/4 strong majority).
-            Visually distinct from anchor (smaller, horizontal layout) and
-            from grid cards (full-width, eyebrow + checkmark accents). Sits
-            between the subfloor anchor and the supporting-cast grid. */}
-        {deckModular && (
-          <article className="mt-16 overflow-hidden rounded-xl border border-emerald-200 bg-emerald-50/40 shadow-sm">
-            <div className="grid gap-0 md:grid-cols-5">
-              {/* Image side — falls back to placeholder until a per-product
-                  hero photo is delivered to
-                  /public/images/products/deck-modular.webp */}
-              <div className="relative aspect-[4/3] md:aspect-auto md:col-span-2 md:min-h-[280px] bg-navy">
-                <Image
-                  src={deckModular.image ?? '/images/products/_placeholder.svg'}
-                  alt={`${deckModular.name} interlocking fiber-cement tiles — distributed by JARA International`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 40vw"
-                  className="object-cover"
-                  unoptimized={!deckModular.image}
-                />
-                <span className="absolute left-4 top-4 inline-flex items-center gap-1 rounded-full bg-emerald-700 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white shadow-sm">
-                  <CheckCircle2 className="h-3 w-3" aria-hidden="true" strokeWidth={2.5} />
-                  Clean compliance
-                </span>
-              </div>
-
-              {/* Content side */}
-              <div className="md:col-span-3 flex flex-col p-6 lg:p-8">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-800">
-                  Specialty pick
-                </p>
-                <h3 className="mt-2 font-display text-xl font-bold text-navy md:text-2xl text-balance">
-                  {deckModular.name} — the rooftop terrace pick that fits the prescriptive US code path
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-ink/80 md:text-base">
-                  Interlocking 300×300×14mm fiber-cement tiles for rooftop
-                  terraces, balconies, and pool decks where under-floor
-                  access to waterproofing matters. Because they&apos;re a
-                  surface finish over an already-engineered substrate — not
-                  structural decking — they don&apos;t require an ICC-ES
-                  ESR or per-project AHJ submittal the way structural deck
-                  planks do. The cleanest sales path after the subfloor
-                  anchor.
-                </p>
-
-                <ul className="mt-5 space-y-3">
-                  {DECK_MODULAR_HIGHLIGHTS.map((h) => {
-                    const Icon = h.icon;
-                    return (
-                      <li key={h.label} className="flex items-start gap-3">
-                        <Icon
-                          className="mt-0.5 h-5 w-5 shrink-0 text-emerald-700"
-                          aria-hidden="true"
-                          strokeWidth={1.75}
-                        />
-                        <div>
-                          <p className="font-display text-sm font-semibold text-navy">
-                            {h.label}
-                          </p>
-                          <p className="mt-0.5 text-sm leading-relaxed text-ink/70">
-                            {h.detail}
-                          </p>
-                        </div>
-                      </li>
-                    );
-                  })}
-                </ul>
-
-                <div className="mt-6">
-                  <Link
-                    href={`/products/${deckModular.slug}`}
-                    className="inline-flex items-center justify-center gap-1.5 rounded-md bg-navy px-5 py-2.5 text-sm font-semibold text-white hover:bg-navy-dark transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
-                  >
-                    View Deck Modular specs
-                    <ArrowRight className="h-4 w-4" aria-hidden="true" strokeWidth={2} />
-                  </Link>
-                </div>
-              </div>
+        {/* Outdoor Decking tier — both products, side by side. Both share the
+            same fiber-cement material and identical compliance dossier; the
+            differentiation is use case (structural vs surface finish), not
+            paperwork. Stacks vertically on small screens, side-by-side on md+. */}
+        {(deck || deckModular) && (
+          <>
+            <div className="mt-16 max-w-3xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-steel">
+                Outdoor decking
+              </p>
+              <h2 className="mt-3 font-display text-2xl font-bold text-navy md:text-3xl text-balance">
+                Two products, two US code paths
+              </h2>
+              <p className="mt-3 text-ink/75 leading-relaxed">
+                Both are PLYCEM fiber-cement — same ASTM C1186 Type A
+                substrate, same ASTM E-84 Class A surface burning, same
+                ISO 8336 international classification. The decision between
+                them isn&apos;t about paperwork. It&apos;s about how the
+                product is installed — and which US code path that triggers.
+              </p>
             </div>
-          </article>
+
+            <div className="mt-8 grid gap-6 md:grid-cols-2">
+              {deck && (
+                <article className="overflow-hidden rounded-xl border border-navy/20 bg-white shadow-sm">
+                  <div className="relative aspect-[16/9] bg-navy">
+                    <Image
+                      src={deck.image ?? '/images/products/_placeholder.svg'}
+                      alt={`${deck.name} fiber-cement plank — distributed by JARA International`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover"
+                      unoptimized={!deck.image}
+                    />
+                  </div>
+                  <div className="p-6 lg:p-7">
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-steel">
+                      Structural plank · for new builds
+                    </p>
+                    <h3 className="mt-2 font-display text-xl font-bold text-navy md:text-2xl text-balance">
+                      Deck — the plank that IS the deck floor
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-ink/80">
+                      Long-grain 30mm × 150mm fiber-cement planks fastened
+                      to wood or steel joists with hidden stainless-steel
+                      clips. Specified for coastal, mountain, hotel, and
+                      multifamily amenity decks where wood rots and
+                      composite softens. Requires the project team to
+                      coordinate AHJ alternative-materials approval under
+                      IBC 104.11.
+                    </p>
+
+                    <ul className="mt-4 space-y-3">
+                      {DECK_HIGHLIGHTS.map((h) => {
+                        const Icon = h.icon;
+                        return (
+                          <li key={h.label} className="flex items-start gap-3">
+                            <Icon
+                              className="mt-0.5 h-5 w-5 shrink-0 text-steel"
+                              aria-hidden="true"
+                              strokeWidth={1.75}
+                            />
+                            <div>
+                              <p className="font-display text-sm font-semibold text-navy">
+                                {h.label}
+                              </p>
+                              <p className="mt-0.5 text-sm leading-relaxed text-ink/70">
+                                {h.detail}
+                              </p>
+                            </div>
+                          </li>
+                        );
+                      })}
+                    </ul>
+
+                    <div className="mt-5">
+                      <Link
+                        href={`/products/${deck.slug}`}
+                        className="inline-flex items-center justify-center gap-1.5 rounded-md bg-navy px-5 py-2.5 text-sm font-semibold text-white hover:bg-navy-dark transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+                      >
+                        View Deck plank specs
+                        <ArrowRight className="h-4 w-4" aria-hidden="true" strokeWidth={2} />
+                      </Link>
+                    </div>
+                  </div>
+                </article>
+              )}
+
+              {deckModular && (
+                <article className="overflow-hidden rounded-xl border border-navy/20 bg-white shadow-sm">
+                  <div className="relative aspect-[16/9] bg-navy">
+                    <Image
+                      src={deckModular.image ?? '/images/products/_placeholder.svg'}
+                      alt={`${deckModular.name} interlocking fiber-cement tiles — distributed by JARA International`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover"
+                      unoptimized={!deckModular.image}
+                    />
+                  </div>
+                  <div className="p-6 lg:p-7">
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-steel">
+                      Surface tile · for rooftop terraces
+                    </p>
+                    <h3 className="mt-2 font-display text-xl font-bold text-navy md:text-2xl text-balance">
+                      Deck Modular — the tile that sits on top
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-ink/80">
+                      Interlocking 300×300×14mm fiber-cement tiles installed
+                      tool-free on top of an already-engineered substrate
+                      (concrete slab, OSB+membrane, pedestal pavers).
+                      Because they&apos;re a finish — not structural
+                      decking — they fit the prescriptive US code path
+                      with no ICC-ES ESR or per-project AHJ submittal.
+                    </p>
+
+                    <ul className="mt-4 space-y-3">
+                      {DECK_MODULAR_HIGHLIGHTS.map((h) => {
+                        const Icon = h.icon;
+                        return (
+                          <li key={h.label} className="flex items-start gap-3">
+                            <Icon
+                              className="mt-0.5 h-5 w-5 shrink-0 text-steel"
+                              aria-hidden="true"
+                              strokeWidth={1.75}
+                            />
+                            <div>
+                              <p className="font-display text-sm font-semibold text-navy">
+                                {h.label}
+                              </p>
+                              <p className="mt-0.5 text-sm leading-relaxed text-ink/70">
+                                {h.detail}
+                              </p>
+                            </div>
+                          </li>
+                        );
+                      })}
+                    </ul>
+
+                    <div className="mt-5">
+                      <Link
+                        href={`/products/${deckModular.slug}`}
+                        className="inline-flex items-center justify-center gap-1.5 rounded-md bg-navy px-5 py-2.5 text-sm font-semibold text-white hover:bg-navy-dark transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+                      >
+                        View Deck Modular specs
+                        <ArrowRight className="h-4 w-4" aria-hidden="true" strokeWidth={2} />
+                      </Link>
+                    </div>
+                  </div>
+                </article>
+              )}
+            </div>
+          </>
         )}
 
         {/* "Complete the envelope" — supporting catalog */}
