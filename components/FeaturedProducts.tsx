@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, ShieldCheck, Flame, Layers, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Flame, Layers, CheckCircle2, Wrench, Palette } from 'lucide-react';
 import { PRODUCTS, getProductBySlug } from '@/data/products';
 import { ProductCard } from './ProductCard';
 
@@ -76,21 +76,28 @@ const ANCHOR_SLUGS: readonly string[] = ['high-performance-subfloor'];
 // a hierarchy that didn't exist in the documentation.
 const TIER_SLUGS: readonly string[] = ['deck', 'deck-modular'];
 
+// Deck highlights — 2026-05-21 founder request: align with Plycem catalog's
+// three direct product claims (Acabado tipo madera / Fácil instalación sin
+// tornillos / Aplica el color de tu preferencia) so the JARA card opens with
+// the same simple language Plycem uses on plycem.com. The US-code-path
+// nuance (IBC 104.11 alternative-materials approval) was moved out of the
+// highlights and into the FAQ + descriptive paragraph — it's still surfaced,
+// just not the headline. Sales come first, specifier caveats second.
 const DECK_HIGHLIGHTS = [
   {
     icon: Layers,
-    label: 'Structural plank — IS the deck surface',
-    detail: '30mm long-grain fiber-cement plank, 16″ joist spacing max, hidden stainless-steel clip installation',
+    label: 'Wood-style finish',
+    detail: '"Acabado tipo madera" — the look and rhythm of wood plank decking with the durability of fiber-cement. No grain raise, no splintering, no rot.',
   },
   {
-    icon: ShieldCheck,
-    label: 'Where wood/composite fails',
-    detail: 'Coastal humidity, mountain UV, hotel amenity decks, multifamily commercial — fiber-cement outlasts wood-plastic',
+    icon: Wrench,
+    label: 'No surface screws — hidden-fastener clip system',
+    detail: '"Fácil instalación sin tornillos" — stainless-steel clips engage grooves in the plank edges, leaving the walking surface uninterrupted. Cleaner aesthetic and no rusted fastener heads telegraphing through paint.',
   },
   {
-    icon: Flame,
-    label: 'Requires AHJ alternative-materials approval',
-    detail: 'ASTM C1186 Type A + ASTM E-84 Class A — but not prescriptively listed in IRC R507; needs IBC 104.11 submittal',
+    icon: Palette,
+    label: 'Any color you specify',
+    detail: '"Aplica el color de tu preferencia" — factory ships natural gray; accepts any exterior-grade paint, stain, or integral dye. Same plank reads as warm cedar, charcoal modern, or weathered teak depending on finish.',
   },
 ];
 
@@ -271,13 +278,13 @@ export function FeaturedProducts() {
                       Deck — the plank that IS the deck floor
                     </h3>
                     <p className="mt-3 text-sm leading-relaxed text-ink/80">
-                      Long-grain 30mm × 150mm fiber-cement planks fastened
-                      to wood or steel joists with hidden stainless-steel
-                      clips. Specified for coastal, mountain, hotel, and
+                      Long-grain 30 mm × 150 mm × 3657 mm fiber-cement
+                      planks that look like wood, install without surface
+                      screws, and accept any paint or stain color.
+                      Specified for coastal, mountain, hotel, and
                       multifamily amenity decks where wood rots and
-                      composite softens. Requires the project team to
-                      coordinate AHJ alternative-materials approval under
-                      IBC 104.11.
+                      composite softens. Project team coordinates AHJ
+                      alternative-materials approval under IBC 104.11.
                     </p>
 
                     <ul className="mt-4 space-y-3">
