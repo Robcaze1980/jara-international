@@ -25,7 +25,7 @@ const certifications = [
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/products', label: 'Products' },
-  { href: '/resources', label: 'Resources' },
+  { href: '/resources', label: 'Submittal Package' },
   { href: '/contact', label: 'Contact' },
   { href: '/es', label: 'Español' },
 ];

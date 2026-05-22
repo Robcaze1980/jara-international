@@ -29,7 +29,7 @@ const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/products', label: 'Products' },
   { href: '/products/high-performance-subfloor', label: 'Subfloor' },
-  { href: '/resources', label: 'Resources' },
+  { href: '/resources', label: 'Submittal Package' },
   { href: '/service-areas', label: 'Service Areas' },
   { href: '/contact', label: 'Contact' },
 ];
