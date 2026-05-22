@@ -31,11 +31,20 @@ const LEGACY_SLUG_REDIRECTS: Record<string, string> = {
 };
 
 /**
- * Per-slug cert-gap warning content (Round 11 R11-D + R11-E).
+ * Per-slug cert-gap warning content (Round 11 R11-D + R11-E; placement
+ * rebalanced 2026-05-21 per founder direction).
  *
  * Slugs NOT in this map render no warning. Slugs IN this map render a
- * persistent amber callout above the product hero so US specifiers cannot
- * skim past the cert gap to the FAQ.
+ * persistent callout BELOW the Compliance & Certifications section — the
+ * natural "what it is → what it has → what it doesn't have" flow. Visitors
+ * see the product story and the certifications it carries before
+ * encountering the explicit gap disclosure. The warning is still well
+ * above the FAQ, preserving the original R11-D intent that specifiers
+ * cannot skim past it.
+ *
+ * Background switched to white (CertGapWarning.tsx, 2026-05-21) so the
+ * callout sits flat on the surrounding page surface rather than floating
+ * in a colored band — calmer visual, same disclosure weight.
  */
 const CERT_GAP_WARNINGS: Record<string, CertGapWarningContent | undefined> = {
   siding: {
@@ -54,9 +63,9 @@ const CERT_GAP_WARNINGS: Record<string, CertGapWarningContent | undefined> = {
       'PLYCEM Exterior Hidden Joint is certified to ASTM C1186-08 Type A Grade I and ASTM E-84 Class A surface burning, but does NOT carry an ICC-ES Evaluation Service Report equivalent to James Hardie HardiePanel\'s ESR-2290 family. It is NOT documented to ASTM E-136 non-combustible, and is NOT listed for NFPA 285 assemblies. Suitable for residential and light-commercial facade cladding under 40 ft where the Authority Having Jurisdiction accepts manufacturer ASTM C1186 documentation directly, and for interior accent walls. Confirm AHJ acceptance before specifying for Type I/II construction, buildings above 40 ft (NFPA 285 required), or California Chapter 7A WUI zones.',
   },
   'exterior-cement-board': {
-    title: 'US certifications under manufacturer verification — confirm with JARA before specifying',
+    title: 'Manufacturer-positioned for residential use only — not for commercial Type I/II construction',
     body:
-      'PLYCEM\'s June 2024 technical datasheet for Microconcreto Exterior lists Costa Rica RTCR 491:2017, INTE/ISO 8336:2018, and a Chilean NCh1914 non-combustibility test with manufacturer-claimed equivalence to ASTM E-136 / E-84. US-specific certifications previously cited for this product (IAPMO ER-360, ICC IBC 2015/2012 alternative-material recognition, US-accredited ASTM E-84 / ASTM E-136 lab reports, NFPA 285 assembly listings) are NOT listed on the manufacturer\'s current datasheet. JARA is in active communication with PLYCEM to confirm or supplement US documentation. Until verification lands, this product cannot be relied upon for projects subject to Authority Having Jurisdiction review of those specific US certifications. For applications requiring documented US compliance today (Type I/II construction, NFPA 285 assemblies, California Chapter 7A WUI), specify PLYCEM High Performance Subfloor where applicable, or contact JARA for the latest verification status and to discuss alternatives.',
+      'PLYCEM positions Microconcreto Exterior specifically for residential remodeling and addition projects per its current product documentation. The June 2024 technical datasheet lists Costa Rica RTCR 491:2017, INTE/ISO 8336:2018, and a Chilean NCh1914 non-combustibility test (manufacturer-claimed equivalence to ASTM E-136 / E-84) — no US-accredited ASTM lab reports, ICC-ES ESR, IAPMO ER, NFPA 285 assembly listings, or ICC IBC alternative-material recognition appears on the manufacturer\'s documentation. JARA is in communication with PLYCEM to confirm whether any US documentation exists separately. Suitable for one-family and two-family dwelling exterior facade work (remodel, addition, facade refinishing over existing wood / CMU) and residential interior wet areas / soffit cladding, where the local Authority Having Jurisdiction reviews manufacturer ASTM C1186 / ISO 8336 documentation and approves under residential code alternative-materials provisions. NOT a substitute for commercial fiber-cement substrate products (DensGlass Gold, DuRock, PermaBase, James Hardie HardieBacker) carrying US-issued evaluation reports and NFPA 285 assembly listings. Confirm with JARA before specifying for any project requiring commercial-grade documentation.',
   },
   deck: {
     title: 'No ICC-ES ESR — fiber-cement decking requires AHJ alternative-materials approval per project',
@@ -164,15 +173,6 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
           ]}
         />
 
-        {CERT_GAP_WARNINGS[product.slug] && (
-          <div className="mt-8">
-            <CertGapWarning
-              title={CERT_GAP_WARNINGS[product.slug]!.title}
-              body={CERT_GAP_WARNINGS[product.slug]!.body}
-            />
-          </div>
-        )}
-
         <div className="mt-8 lg:mt-12">
           <ProductDetailHero product={product} />
         </div>
@@ -193,6 +193,18 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
           <ProductGallery product={product} />
           <VariantTable product={product} />
           <ComplianceSection product={product} />
+          {/* Cert-gap warning placed BELOW Compliance & Certifications
+              (2026-05-21 placement rebalance). The natural flow is:
+              hero introduces the product → variant table shows specs →
+              compliance section lists what IS certified → THIS callout
+              discloses what is NOT. Visitor lands on the product story
+              first, then the regulatory honesty. */}
+          {CERT_GAP_WARNINGS[product.slug] && (
+            <CertGapWarning
+              title={CERT_GAP_WARNINGS[product.slug]!.title}
+              body={CERT_GAP_WARNINGS[product.slug]!.body}
+            />
+          )}
           {/* Per-slug Applications context — only rendered for the lead
               product (subfloor) where the Type V multifamily over-podium
               application story carries weight. Other slugs surface their

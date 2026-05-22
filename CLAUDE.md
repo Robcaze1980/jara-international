@@ -103,14 +103,21 @@ In English copy use **"High Performance Subfloor"**, not "Entrepiso Alto Desempe
 
 ---
 
-## Cert-gap discipline (Round 11 R11-D2 + R11-E2)
+## Cert-gap discipline (Round 11 R11-D2 + R11-E2; placement updated 2026-05-21)
 
-Products without complete US compliance must surface the gap via `components/CertGapWarning.tsx` rendered above the product detail page hero. Currently active for:
+Products without complete US compliance must surface the gap via `components/CertGapWarning.tsx`. **Placement: below the Compliance & Certifications section** (rebalanced 2026-05-21 per founder direction). The original R11-D placement was above the hero; the new placement preserves the R11-D intent that specifiers cannot skim past the disclosure (it sits above the FAQ, well above the fold on most viewports) while letting the product story land before the regulatory honesty.
+
+**Background: white** (`bg-white`) — switched from amber-50 on 2026-05-21. Border and text colors remain amber-toned so the callout still reads as a deliberate disclosure rather than a generic info box. WCAG contrast: amber-900 (#78350F) on white = ~12.6:1, exceeds AAA-normal (7:1).
+
+Currently active for:
 
 - **siding** — missing ICC-ES ESR (HardiePlank has ESR-2290). Slug was renamed from `lap-siding-tongue-and-groove` on 2026-05-19 when the catalog expanded to the full 4-profile family (Traslapado, Machihembrado, Victoriano, Tablilla); the old slug 301-redirects via `LEGACY_SLUG_REDIRECTS` in `app/products/[slug]/page.tsx`.
 - **corrugated-roof-tile** — missing UL 263/790 Class A fire-rated roof classification.
+- **exterior-hidden-joint** — missing ICC-ES ESR, ASTM E-136, NFPA 285. Suitable for residential and light commercial facade <40 ft.
+- **exterior-cement-board** — manufacturer-positioned for residential use only; lacks ICC-ES ESR, IAPMO ER, NFPA 285, ICC IBC alt-material recognition.
+- **deck** — no ICC-ES ESR; requires AHJ alternative-materials approval per project (IBC 104.11). Documentation package available on request.
 
-Do NOT remove these warnings without consensus. The amber visual pattern matches `/long-beach-stock` for brand-consistency cueing. WCAG 2.1 AA verified (~10.6:1 contrast).
+Do NOT remove these warnings without consensus.
 
 ---
 
