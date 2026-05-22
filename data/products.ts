@@ -235,6 +235,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: 'exterior-hidden-joint',
     name: 'Exterior Hidden Joint',
+    image: '/images/products/exterior-hidden-joint-panel-detail.webp',
     shortDescription:
       'Fiber-cement panels for monolithic-finish facade cladding with hidden joints.',
     longDescription:
