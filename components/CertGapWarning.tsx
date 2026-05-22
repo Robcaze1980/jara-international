@@ -9,11 +9,12 @@ import { AlertCircle } from 'lucide-react';
  * the gap above the fold — never relying solely on FAQ disclosure that
  * specifiers can skim past.
  *
- * Visual pattern intentionally mirrors the amber callout on `/long-beach-stock`
- * for brand-consistency cueing: a returning specifier sees one amber pattern,
- * recognizes "honest disclosure". Color choice (amber-50 bg + amber-900 text
- * on white) verified WCAG 2.1 AA — Tailwind amber-50 (#FFFBEB) / amber-900
- * (#78350F) = ~10.6:1 contrast ratio.
+ * 2026-05-21: Founder requested switch to a white background. Border and
+ * text retain amber tones so the callout still reads as a deliberate
+ * disclosure (not a generic info box), but the panel sits flat on the
+ * surrounding white surface instead of floating in a colored band. WCAG
+ * contrast improves — amber-900 (#78350F) on white (#FFFFFF) computes to
+ * ~12.6:1, exceeding AA-large (4.5:1) and AAA-normal (7:1).
  *
  * Used by `app/products/[slug]/page.tsx` via a per-slug content map; renders
  * only for products whose slug appears in that map.
@@ -31,7 +32,7 @@ export function CertGapWarning({ title, body }: CertGapWarningContent) {
     <div
       role="note"
       aria-label="Certification gap disclosure"
-      className="mb-8 rounded-lg border-2 border-amber-500/40 bg-amber-50 p-5 lg:p-6"
+      className="mb-8 rounded-lg border-2 border-amber-500/40 bg-white p-5 lg:p-6"
     >
       <div className="flex items-start gap-3">
         <AlertCircle
