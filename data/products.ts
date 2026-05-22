@@ -176,6 +176,12 @@ export const PRODUCTS: Product[] = [
   {
     slug: 'deck',
     name: 'Deck',
+    image: '/images/products/deck.webp',
+    installationImage: {
+      src: '/images/products/deck-installation.webp',
+      alt: 'Plycem Deck installed on a luxury coastal hospitality terrace at golden hour — warm wood-tone fiber-cement planks, glass railing, gas fire feature, Pacific Ocean view',
+      caption: 'Coastal California hospitality — fiber-cement deck installed for a wildfire-zone compatible terrace.',
+    },
     shortDescription:
       'Fiber-cement plank system for outdoor decks and drained floors with the look and workability of wood.',
     longDescription:
@@ -285,14 +291,30 @@ export const PRODUCTS: Product[] = [
   // docs/plycem-cert-verification-email.md sent 2026-05-21), this entry
   // surfaces only what the datasheet substantiates. Re-add the stripped
   // claims in a single commit if PLYCEM confirms.
+  // 2026-05-21 second cleanup pass: PLYCEM's product page (plycem.com)
+  // explicitly positions Microconcreto Exterior as a RESIDENTIAL remodel +
+  // expansion product, not a commercial substrate. Verbatim manufacturer
+  // copy: "diseñado para usarse en paredes y fachadas externas de obras
+  // residenciales" and "se adapta a las necesidades de remodelación y
+  // ampliación de proyectos residenciales." The prior site copy positioned
+  // this product against commercial competitors (DensGlass Gold, DuRock,
+  // PermaBase) — that was overreach. The stripped US claims (IAPMO ER-360,
+  // NFPA 285, ICC IBC) are not part of the manufacturer's positioning at
+  // all; they were likely assigned to this product in error.
   {
     slug: 'exterior-cement-board',
     name: 'Exterior Cement Board',
+    image: '/images/products/exterior-cement-board.jpg',
     shortDescription:
-      'Fiber-glass-mesh-reinforced cement board for interior and exterior walls with basecoat finish.',
+      'Residential cement-board panel with double fiber-glass mesh reinforcement for monolithic remodel/expansion facades with basecoat finish.',
     longDescription:
-      'Plycem Exterior Cement Board (manufacturer name: Microconcreto Exterior) is a Portland cement panel reinforced with fiber-glass mesh on both sides, designed for monolithic wall systems with basecoat coatings. High impact and humidity resistance. Manufactured at Plycem facilities in Costa Rica, El Salvador, and Honduras.',
-    applications: ['Exterior wall systems', 'Interior wet areas', 'Soffit cladding'],
+      'PLYCEM Exterior Cement Board (manufacturer name: Microconcreto Exterior) is a Portland cement panel reinforced with double fiber-glass mesh — one mesh layer embedded on each face. PLYCEM positions this product specifically for residential remodeling and addition projects: exterior walls and facades where a monolithic basecoat / stucco finish is desired. Single thickness 12mm. Ships on standard residential-job pallets direct from PLYCEM manufacturing in Costa Rica, El Salvador, and Honduras.',
+    applications: [
+      'Residential exterior facade remodel + additions',
+      'Residential facade refinishing over existing wood / CMU substrate',
+      'Residential interior wet areas (bathrooms, kitchens, laundry)',
+      'Residential soffit cladding',
+    ],
     variants: [
       { thicknessMm: 12, thicknessImperial: '15/32"', widthMm: 1220, lengthMm: 2440, weightKg: 46, weightLbs: 101.4, sku: '1323827' },
     ],
@@ -301,25 +323,30 @@ export const PRODUCTS: Product[] = [
     compliance: [
       { standard: 'INTE/ISO 8336:2018', detail: 'International fiber-cement standard' },
       { standard: 'RTCR 491:2017', detail: 'Costa Rica National Technical Regulation' },
-      { standard: 'NCh1914/1.Of84', detail: 'Chilean non-combustibility test — manufacturer-claimed equivalence to ASTM E-136 / E-84 (not independently certified for US market)' },
+      { standard: 'NCh1914/1.Of84', detail: 'Chilean non-combustibility test — manufacturer-claimed equivalence to ASTM E-136 / E-84 (not independently certified for US market; residential positioning does not require US fire-rated commercial cert)' },
       { standard: 'ISO 9001:2015 / 14001:2015 / 45001:2018', detail: 'Manufacturing certified (Costa Rica, El Salvador, Honduras plants)' },
     ],
     manufacturer: 'Plycem',
     faqs: [
       {
-        question: 'What is the current US-market compliance status of this product?',
+        question: 'Is this product positioned for commercial Type I/II construction?',
         answer:
-          'PLYCEM\'s June 2024 technical datasheet lists Costa Rica RTCR 491:2017, INTE/ISO 8336:2018, and a Chilean NCh1914 non-combustibility test with manufacturer-claimed equivalence to ASTM E-136 / E-84. US-specific certifications (IAPMO ER, ICC IBC alternative-material recognition, US-accredited ASTM lab reports, NFPA 285 assembly listings) are not currently documented on the manufacturer\'s datasheet. JARA is in active communication with PLYCEM to confirm or supplement US certification documentation; contact us for the latest status before specifying for US projects subject to Authority Having Jurisdiction review.',
+          'No. PLYCEM positions Microconcreto Exterior specifically for residential projects — exterior remodel and addition facades, residential interior wet areas, and residential soffit cladding. It is NOT positioned by the manufacturer for commercial Type I/II construction, NFPA 285 wall assemblies, or buildings above 40 ft. For commercial fiber-cement substrate needs, US-market specifiers typically use products with documented ICC-ES ESR or NFPA 285 assembly listings (DensGlass Gold, DuRock, PermaBase, James Hardie HardieBacker) — those are different competitive categories.',
+      },
+      {
+        question: 'What about US code compliance for residential use?',
+        answer:
+          'For one-family and two-family dwelling exterior facade work under the IRC residential code path, the Authority Having Jurisdiction typically reviews manufacturer ASTM C1186 / ISO 8336 documentation and approves under alternative-materials provisions. PLYCEM\'s June 2024 datasheet does not list a US-accredited ASTM lab report, ICC-ES ESR, or IAPMO ER for this product — it lists Costa Rica RTCR 491:2017, INTE/ISO 8336:2018, and a Chilean NCh1914 non-combustibility note. Contact JARA for current verification status before specifying; if your AHJ requires a US-issued evaluation report, this product is not a match for your project.',
       },
       {
         question: 'How is basecoat or stucco applied to the panel?',
         answer:
-          'The fiber-glass mesh embedded on both faces of the panel provides a mechanical key for direct-applied basecoats, fiber-reinforced stucco systems, and acrylic finishes. Most exterior insulation finish system (EIFS) and Portland-cement plaster systems list this panel category as an approved substrate. Confirm specific compatibility with the finish manufacturer\'s technical specifications and with the Authority Having Jurisdiction.',
+          'The double fiber-glass mesh embedded on both faces of the panel provides a mechanical key for direct-applied basecoats, fiber-reinforced stucco systems, and acrylic finishes. For residential remodel and addition work, most one-component or two-component basecoat / acrylic stucco systems will adhere directly to the meshed face. Confirm specific compatibility with the finish manufacturer\'s technical specifications and with your local AHJ inspector.',
       },
       {
         question: 'Where is it typically used inside the building?',
         answer:
-          'Interior applications include wet areas (bathrooms, kitchens, locker rooms), soffit cladding, and high-impact corridors. The panel resists humidity and water damage substantially better than gypsum wallboard, making it the preferred substrate behind tile in commercial wet environments.',
+          'Residential interior applications include wet areas (bathrooms, kitchens, laundry rooms) where the panel\'s humidity resistance outperforms gypsum wallboard, and soffit cladding. For commercial wet areas (locker rooms, high-impact corridors, healthcare wet walls), US specifiers typically use a substrate with documented commercial ratings — this product is not positioned for that segment.',
       },
     ],
   },
@@ -335,6 +362,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: 'deck-modular',
     name: 'Deck Modular',
+    image: '/images/products/deck-modular.webp',
     shortDescription:
       'Interlocking fiber-cement floor tiles (30×30 cm) for outdoor terraces, balconies, and rooftop decks. Tool-free installation.',
     longDescription:
