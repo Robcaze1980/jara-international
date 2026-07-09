@@ -22,14 +22,7 @@ import { SITE } from '@/lib/site';
 export const metadata: Metadata = {
   title: 'Entrepiso Alto Desempeño — Subfloor en EE.UU.',
   description:
-    'JARA International Inc. distribuye el PLYCEM Entrepiso Alto Desempeño ' +
-    '— entrepiso de fibrocemento no combustible para construcción ' +
-    'multifamiliar Tipo V sobre podio, hoteles y Tipo I/II comercial en ' +
-    'EE.UU. UL R15140 clasificado, ASTM E-136 no combustible, IAPMO ' +
-    'ER-360, CBC Capítulo 7A. Plus el resto del envolvente PLYCEM ' +
-    '(cladding exterior, cement board, siding, deck, deck modular, cubierta corrugada). Envío directo ' +
-    'desde planta en Costa Rica, El Salvador y Honduras — entrega típica ' +
-    'puerta-a-puerta 3–4 semanas.',
+    'Distribuidor de PLYCEM Entrepiso Alto Desempeño — fibrocemento no combustible para construcción en EE.UU. Envío directo, entrega 3–4 semanas.',
   alternates: {
     canonical: `${SITE.url}/es`,
     languages: {

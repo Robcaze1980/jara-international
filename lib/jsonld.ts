@@ -115,6 +115,7 @@ export function breadcrumbSchema(
 function productOffers(product: import('@/data/products').Product) {
   const areaServed = SITE.serviceAreas.map((a) => ({ '@type': 'Place', name: a }));
   const priced = getPricedVariants(product);
+  const productUrl = `${SITE.url}/products/${product.slug}`;
   if (priced.length === 0) {
     return {
       '@type': 'Offer',
@@ -123,11 +124,16 @@ function productOffers(product: import('@/data/products').Product) {
       areaServed,
     };
   }
-  return priced.map((pv) => ({
+  // SEO audit 2026-07-09 (item 23): wrap per-variant Offers in an AggregateOffer
+  // so Google surfaces a price range (lowPrice/highPrice) in Product rich results.
+  // Each Offer carries itemCondition + url per acceptance criteria.
+  const offers = priced.map((pv) => ({
     '@type': 'Offer',
     sku: pv.variant.sku,
+    url: productUrl,
     seller: { '@id': ORG_ID },
     availability: 'https://schema.org/MadeToOrder',
+    itemCondition: 'https://schema.org/NewCondition',
     // Flat price + currency so Google's Product rich-result parser surfaces the
     // price (it does not read UnitPriceSpecification). The UnitPriceSpecification
     // below carries the full-container semantics for advanced parsers / AI. (SEO
@@ -151,6 +157,17 @@ function productOffers(product: import('@/data/products').Product) {
     },
     areaServed,
   }));
+  const prices = priced.map((pv) => pv.priceUsd);
+  return {
+    '@type': 'AggregateOffer',
+    seller: { '@id': ORG_ID },
+    availability: 'https://schema.org/MadeToOrder',
+    priceCurrency: PRICE_CURRENCY,
+    lowPrice: Math.min(...prices),
+    highPrice: Math.max(...prices),
+    offerCount: priced.length,
+    offers,
+  };
 }
 
 /** Per Round 6 F4.R6: Product schema for each featured product on home + product detail pages. */

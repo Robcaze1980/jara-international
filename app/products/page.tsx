@@ -18,7 +18,7 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 export const metadata: Metadata = {
   title: 'Products — Fiber-Cement Panel Catalog',
   description:
-    'PLYCEM fiber-cement panels for US construction: non-combustible subfloor, exterior cladding, cement board, plank siding, deck, and roof tile. Specs, compliance, and delivered (DDP) pricing.',
+    'Fiber-cement panels for US construction: subfloor, cladding, siding, deck, and roof tile. Specs, compliance, and delivered (DDP) pricing.',
   alternates: {
     canonical: `${SITE.url}/products`,
     languages: {

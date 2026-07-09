@@ -23,7 +23,7 @@ const PAGE_URL = `${SITE.url}/about`;
 export const metadata: Metadata = {
   title: 'About Us',
   description:
-    'JARA International Inc. is a California-based, direct-import distributor of PLYCEM non-combustible fiber-cement panels — founded by a logistics operator with 25+ years of experience.',
+    'California-based direct-import distributor of PLYCEM fiber-cement panels. Founded by a logistics operator with 25+ years of experience.',
   alternates: {
     canonical: PAGE_URL,
     languages: { 'en-US': PAGE_URL, 'x-default': PAGE_URL },

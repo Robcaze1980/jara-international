@@ -15,7 +15,7 @@ import { SITE } from '@/lib/site';
 export const metadata: Metadata = {
   title: 'Recursos y Paquete de Sometimiento',
   description:
-    'Solicita una cotización personalizada, ficha técnica, o documentación de cumplimiento (UL R15140, ASTM E-84, IAPMO ER-360) de JARA International. Soporte bilingüe inglés-español; respuesta en 1 día hábil.',
+    'Solicita cotización, ficha técnica o docs de cumplimiento (UL R15140, ASTM E-84, IAPMO ER-360) de JARA. Soporte bilingüe, respuesta en 1 día hábil.',
   alternates: {
     canonical: `${SITE.url}/es/resources`,
     languages: {

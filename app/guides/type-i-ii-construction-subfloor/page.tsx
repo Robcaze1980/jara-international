@@ -9,7 +9,7 @@ const PUBLISHED = '2026-07-09';
 const MODIFIED = '2026-07-09';
 const PAGE_URL = `${SITE.url}/guides/type-i-ii-construction-subfloor`;
 const DESC =
-  'Subfloor for Type I and II construction: why the deck must be non-combustible (ASTM E-136) and how a UL R15140 fiber-cement subfloor meets IBC 2021 and CBC Chapter 7A.';
+  'Subfloor for Type I & II construction: the deck must be non-combustible (ASTM E-136), and a UL R15140 fiber-cement subfloor meets IBC 2021 + CBC 7A.';
 
 export const metadata: Metadata = {
   title: 'Subfloor for Type I & II Construction',

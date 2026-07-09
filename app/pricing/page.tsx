@@ -35,7 +35,7 @@ import {
 export const metadata: Metadata = {
   title: 'Fiber-Cement Subfloor Price — DDP, US Delivered',
   description:
-    'Fiber-cement subfloor price from $74/panel — delivered (DDP) to your US port, import duty paid, full-container. See per-variant pricing; other panels by quote.',
+    'Fiber-cement subfloor from $74/panel — delivered (DDP) to your US port, duty paid, full-container. See per-variant pricing; other panels by quote.',
   alternates: {
     canonical: `${SITE.url}/pricing`,
     languages: {

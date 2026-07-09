@@ -477,7 +477,7 @@ export const PRODUCTS: Product[] = [
       },
     ],
     shortDescription:
-      'Fiber-cement plank siding in four architectural profiles — Lap, Tongue-and-Groove, Victorian, and Slat. Wood look without the wood. Specified for exterior cladding and interior accent walls.',
+      'Fiber-cement plank siding in 4 profiles — Lap, T&G, Victorian, Slat. Wood look without the wood. For exterior cladding and interior accent walls.',
     longDescription:
       'Plycem Siding is the complete fiber-cement plank siding family — four distinct architectural profiles (Traslapado / Lap, Machihembrado / Tongue-and-Groove, Victoriano / Victorian, Tablilla / Slat) manufactured at Plycem facilities in Costa Rica, El Salvador, and Honduras. The substrate is non-combustible fiber-cement; the face accepts smooth Clásico or wood-grain Cedro texture in any exterior-grade paint or stain. Specified across Bay Area residential, Pacific Northwest modern, mountain contemporary, and historic restoration projects. The wood look architects and designers prefer, with the durability and fire resistance of cement.',
     applications: [
@@ -561,7 +561,7 @@ export const PRODUCTS: Product[] = [
       },
     ],
     shortDescription:
-      'Sinusoidal corrugated fiber-cement roof panel with Spanish-tile aesthetic. International / Caribbean market — NOT currently UL-classified for US Class A fire-rated roof assemblies.',
+      'Corrugated fiber-cement roof panel with Spanish-tile aesthetic. International/Caribbean market — NOT UL-classified for US Class A fire-rated roofs.',
     longDescription:
       'Plycem Techos Eureka Sevillana is a sinusoidal corrugated fiber-cement roofing panel that replicates the look of traditional Spanish clay tile at lower weight (12.5 kg/m²) and cost. Manufactured under the Eternit brand within the Plycem family. Available in six architectural colors (Cerámico, Ladrillo, Naranja, Ocre Otoño, Rojo Teja, Verde Aceituna) in 1.04m and 1.34m panel lengths. Minimum roof slope 27%. IMPORTANT US-market disclosure: this product is currently certified to international and regional standards (Plycem manufacturing ISO 9001/14001/45001 + Costa Rica RTCR 491:2017 + INTE/ISO 8336:2018) and does NOT carry UL 263 or UL 790 Class A fire-rated roof classification. US installations should confirm AHJ acceptance; jurisdictions enforcing Class A fire-rated roof assemblies — notably California Chapter 7A WUI zones, Florida Miami-Dade HVHZ, and most insurance-driven specifications — will require alternative product selection.',
     applications: [

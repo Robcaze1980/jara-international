@@ -13,7 +13,7 @@ import { SITE } from '@/lib/site';
 export const metadata: Metadata = {
   title: 'Pedidos y Logística',
   description:
-    'JARA International sirve al mercado de construcción de Estados Unidos mediante envío directo desde planta PLYCEM en Costa Rica, El Salvador y Honduras. Entrega típica puerta-a-puerta 3–4 semanas. Flete marítimo, despacho aduanal en EE.UU. y transporte final coordinados de extremo a extremo.',
+    'Cómo JARA cumple pedidos de fibrocemento en EE.UU.: envío directo desde planta PLYCEM en Centroamérica, entrega puerta-a-puerta ~3–4 semanas.',
   alternates: {
     canonical: `${SITE.url}/es/service-areas`,
     languages: {

@@ -32,7 +32,7 @@ const PAGE_URL = `${SITE.url}/es/pricing`;
 export const metadata: Metadata = {
   title: 'Precio de Entrepiso de Fibrocemento — DDP',
   description:
-    'Precio de entrepiso de fibrocemento no combustible desde $74/panel, entregado (DDP) a puerto de EE.UU. con arancel pagado, contenedor completo. Resto por cotización.',
+    'Precio de entrepiso de fibrocemento desde $74/panel, entregado (DDP) a puerto de EE.UU. con arancel pagado. Resto por cotización.',
   alternates: {
     canonical: PAGE_URL,
     languages: {

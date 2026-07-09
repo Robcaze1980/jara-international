@@ -16,7 +16,7 @@ const PUBLISHED = '2026-07-09';
 const MODIFIED = '2026-07-09';
 const PAGE_URL = `${SITE.url}/guides/non-combustible-subfloor-cost`;
 const DESC =
-  'What non-combustible fiber-cement subfloor costs: delivered (DDP) from $74 per panel (about $2.30/SF), what the price includes, and how to estimate a project.';
+  'Non-combustible fiber-cement subfloor cost: from $74/panel (about $2.30/SF), delivered DDP. What the price includes and how to estimate a project.';
 
 export const metadata: Metadata = {
   title: 'Non-Combustible Subfloor Cost',
