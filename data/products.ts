@@ -96,6 +96,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: 'high-performance-subfloor',
     name: 'High Performance Subfloor',
+    seoTitle: 'Non-Combustible Fiber-Cement Subfloor',
     image: '/images/products/panel-detail.webp',
     shortDescription:
       'Non-combustible fiber-cement structural panels for fire-rated floor assemblies in Type I and II construction.',
@@ -181,6 +182,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: 'deck',
     name: 'Deck',
+    seoTitle: 'Fiber-Cement Deck Planks',
     image: '/images/products/deck.webp',
     installationImage: {
       src: '/images/products/deck-installation.webp',
@@ -240,6 +242,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: 'exterior-hidden-joint',
     name: 'Exterior Hidden Joint',
+    seoTitle: 'Fiber-Cement Hidden-Joint Cladding',
     image: '/images/products/exterior-hidden-joint-panel-detail.webp',
     shortDescription:
       'Fiber-cement panels for monolithic-finish facade cladding with hidden joints.',
@@ -310,6 +313,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: 'exterior-cement-board',
     name: 'Exterior Cement Board',
+    seoTitle: 'Exterior Fiber-Cement Board',
     image: '/images/products/exterior-cement-board.jpg',
     shortDescription:
       'Residential cement-board panel with double fiber-glass mesh reinforcement for monolithic remodel/expansion facades with basecoat finish.',
@@ -368,6 +372,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: 'deck-modular',
     name: 'Deck Modular',
+    seoTitle: 'Modular Fiber-Cement Deck Tiles',
     image: '/images/products/deck-modular.webp',
     shortDescription:
       'Interlocking fiber-cement floor tiles (30×30 cm) for outdoor terraces, balconies, and rooftop decks. Tool-free installation.',

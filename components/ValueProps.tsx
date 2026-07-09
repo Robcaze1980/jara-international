@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Wallet, Ship, ShieldCheck } from 'lucide-react';
 
 /**
@@ -76,6 +77,22 @@ export function ValueProps() {
             );
           })}
         </div>
+        <p className="mt-8 text-sm text-ink/75">
+          <Link
+            href="/pricing"
+            className="font-semibold text-navy underline decoration-bluegray underline-offset-4 hover:decoration-navy"
+          >
+            See delivered (DDP) pricing
+          </Link>{' '}
+          for the subfloor line and the rest of the envelope, or{' '}
+          <Link
+            href="/service-areas"
+            className="font-semibold text-navy underline decoration-bluegray underline-offset-4 hover:decoration-navy"
+          >
+            how ordering &amp; logistics work
+          </Link>
+          .
+        </p>
       </div>
     </section>
   );

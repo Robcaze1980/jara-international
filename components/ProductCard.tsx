@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import type { Product } from '@/data/products';
+import { getFromPriceUsd, formatUsd, priceUnitNoun } from '@/lib/pricing';
 
 /**
  * Product card — per ADR-013 VB1 (photo-first with brand-compliant placeholder).
@@ -16,6 +17,7 @@ import type { Product } from '@/data/products';
 
 export function ProductCard({ product }: { product: Product }) {
   const variantCount = product.variants.length;
+  const fromPrice = getFromPriceUsd(product);
   const thicknesses = [...new Set(product.variants.map((v) => v.thicknessMm))]
     .sort((a, b) => a - b)
     .map((t) => `${t}mm`)
@@ -57,6 +59,14 @@ export function ProductCard({ product }: { product: Product }) {
             {variantCount} {variantCount === 1 ? 'variant' : 'variants'}
           </span>
         </div>
+        {fromPrice != null ? (
+          <p className="mt-3 text-sm text-ink/70">
+            from <span className="font-bold text-navy">{formatUsd(fromPrice)}</span>
+            <span className="text-ink/55">/{priceUnitNoun(product.slug)} delivered</span>
+          </p>
+        ) : (
+          <p className="mt-3 text-sm text-ink/55">Delivered price by quote</p>
+        )}
         <span className="mt-auto pt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-navy group-hover:text-navy-dark">
           View specs
           <ArrowRight

@@ -20,7 +20,11 @@ import { PRODUCTS } from '@/data/products';
  * the sitemap.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
+  // SEO audit 2026-07-09 (item 24): stable content-derived date, NOT request-time
+  // `new Date()` — a wall-clock lastmod told Google every URL changed on every crawl
+  // (provably false), so Google learned to ignore the signal. Bump this when content
+  // materially changes.
+  const now = new Date('2026-07-09T00:00:00Z');
 
   // English routes that have direct Spanish counterparts at /es/<path>
   const enWithEsCounterpart: Array<{ path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency'] }> = [

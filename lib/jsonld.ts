@@ -59,6 +59,14 @@ export function organizationSchema() {
       '@type': 'Place',
       name: area,
     })),
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'sales',
+      telephone: SITE.phone,
+      email: SITE.email,
+      availableLanguage: ['en', 'es'],
+      areaServed: 'US',
+    },
     foundingDate: '2026',
   };
 }
@@ -191,17 +199,9 @@ export function webSiteSchema() {
     description: SITE.description,
     publisher: { '@id': ORG_ID },
     inLanguage: ['en-US', 'es-US'],
-    // Sitelinks Search Box eligibility (no actual search yet — Phase 6 backlog).
-    // Pointing to /products with `q` parameter signals search intent for Google;
-    // when /products gets a real search Sprint 4+, the URL template here matches.
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: `${SITE.url}/products?q={search_term_string}`,
-      },
-      'query-input': 'required name=search_term_string',
-    },
+    // SEO audit 2026-07-09 (critic #2): removed the SearchAction — no on-site search
+    // exists (no `q` handler), so a SearchAction to /products?q= is misleading markup
+    // that never yields the sitelinks searchbox. Re-add only when real search ships.
   };
 }
 

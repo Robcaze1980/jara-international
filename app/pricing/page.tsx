@@ -277,6 +277,16 @@ export default function PricingPage() {
           Prices are <strong className="text-navy">indicative</strong> — for full-container loads to a
           main US base port. Your <strong className="text-navy">final delivered price is confirmed by quote</strong>.
         </p>
+        <p className="mt-3 max-w-2xl text-sm text-ink/70">
+          Delivery is direct-import (made to order) —{' '}
+          <Link
+            href="/service-areas"
+            className="font-semibold text-navy underline decoration-bluegray underline-offset-4 hover:decoration-navy"
+          >
+            see how ordering &amp; logistics work
+          </Link>
+          .
+        </p>
 
         {/* Priced products */}
         <div className="mt-10 space-y-6">
