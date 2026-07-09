@@ -1,5 +1,6 @@
 import { ImageResponse } from 'next/og';
 import { getProductBySlug, PRODUCTS } from '@/data/products';
+import { getFromPriceUsd, isPricedProduct, formatUsd, priceUnitNoun } from '@/lib/pricing';
 
 /**
  * Dynamic per-product Open Graph image (Round 8 F4.R8 — 3/4 voters).
@@ -27,6 +28,10 @@ export default async function OpengraphImage({ params }: { params: Params }) {
   const { slug } = await params;
   const product = getProductBySlug(slug);
   const name = product?.name ?? 'JARA International';
+  // Price badge on OG card for list-priced products (SEO audit item 25)
+  const fromPrice =
+    product && isPricedProduct(product.slug) ? getFromPriceUsd(product) : undefined;
+  const unit = product ? priceUnitNoun(product.slug) : 'panel';
   const thicknesses = product
     ? [...new Set(product.variants.map((v) => v.thicknessMm))]
         .sort((a, b) => a - b)
@@ -87,6 +92,22 @@ export default async function OpengraphImage({ params }: { params: Params }) {
               }}
             >
               {thicknesses}
+            </div>
+          )}
+          {fromPrice != null && (
+            <div
+              style={{
+                display: 'flex',
+                alignSelf: 'flex-start',
+                padding: '12px 22px',
+                background: 'rgba(255,255,255,0.16)',
+                borderRadius: 999,
+                fontSize: 28,
+                fontWeight: 700,
+                color: '#FFFFFF',
+              }}
+            >
+              {`From ${formatUsd(fromPrice)}/${unit} · delivered DDP`}
             </div>
           )}
         </div>

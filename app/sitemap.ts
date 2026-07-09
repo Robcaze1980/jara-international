@@ -40,6 +40,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: now,
     changeFrequency: 'weekly',
     priority: 1.0,
+    images: [`${SITE.url}/images/og/og-default.png`],
     alternates: {
       languages: {
         'en-US': SITE.url,
@@ -84,6 +85,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: now,
     changeFrequency: 'monthly' as const,
     priority: p.slug === 'high-performance-subfloor' ? 0.95 : 0.8,
+    // Image sitemap entries (SEO audit item 41) — per-slug OG card (always 200)
+    // + the product hero photo when present. Absolute URLs.
+    images: [
+      `${SITE.url}/products/${p.slug}/opengraph-image`,
+      ...(p.image ? [`${SITE.url}${p.image}`] : []),
+    ],
     alternates: {
       languages: {
         'en-US': `${SITE.url}/products/${p.slug}`,

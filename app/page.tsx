@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { SITE } from '@/lib/site';
 import { PRODUCTS } from '@/data/products';
-import { productSchema, webSiteSchema, plycemOrganizationSchema, jsonLdScript } from '@/lib/jsonld';
+import { productSchema, webSiteSchema, plycemOrganizationSchema, howToSchema, jsonLdScript } from '@/lib/jsonld';
 import { Hero } from '@/components/Hero';
 import { ValueProps } from '@/components/ValueProps';
 import { FeaturedProducts } from '@/components/FeaturedProducts';
@@ -47,6 +47,20 @@ export default function HomePage() {
   const allSchemas = [
     webSiteSchema(),
     plycemOrganizationSchema(),
+    // HowTo for the on-page material calculator (SEO audit critic #6) — GEO for
+    // "how many subfloor panels do I need" queries; ends at delivered pricing.
+    howToSchema({
+      pageUrl: SITE.url,
+      name: 'How to estimate fiber-cement subfloor panels for your project',
+      description:
+        'Estimate the Plycem High Performance Subfloor panels, weight, and container loads for your floor area, then get a delivered (DDP) price.',
+      steps: [
+        { name: 'Enter your floor area', text: 'Enter the total floor area in square feet.' },
+        { name: 'Select panel thickness', text: 'Choose the panel thickness your assembly requires (20–30 mm).' },
+        { name: 'Review the estimate', text: 'The calculator returns panels needed (32 SF per 4×8 panel), total weight, and 40HQ container loads.' },
+        { name: 'Get your delivered price', text: 'See delivered (DDP) pricing or request a quote for your exact quantity and US port of entry.' },
+      ],
+    }),
     ...PRODUCTS.map((p) => productSchema(p)),
   ];
 

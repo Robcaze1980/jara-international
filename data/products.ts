@@ -131,6 +131,16 @@ export const PRODUCTS: Product[] = [
     manufacturer: 'Plycem',
     faqs: [
       {
+        question: 'How much does High Performance Subfloor cost?',
+        answer:
+          'JARA publishes delivered (DDP) pricing for High Performance Subfloor — duty paid, full-container (40HQ), with ~3–4 week delivery. See the pricing page for the current per-thickness table; the final delivered price is confirmed by quote.',
+      },
+      {
+        question: 'How does fiber-cement subfloor compare to plywood or OSB?',
+        answer:
+          'Plywood and OSB are combustible, so they cannot serve as the non-combustible deck in Type I and II construction. High Performance Subfloor is non-combustible (ASTM E-136) and UL R15140 classified for 1-hour and 2-hour fire-rated floor assemblies — specified where a fire rating, moisture resistance, or a non-combustible construction type rules wood out.',
+      },
+      {
         question: 'What fire-rated assemblies is High Performance Subfloor classified for?',
         answer:
           'UL R15140 Classified for use in 1-hour and 2-hour fire-rated floor/ceiling assemblies including H502, H504, H511, U449, and U487 designs. Suitable for Type I and Type II construction per IBC 2021 §602, §711, §803, and Table 601. Ask us for the full UL Assembly directory references and approved deck/joist combinations for your specific occupancy.',
@@ -208,6 +218,11 @@ export const PRODUCTS: Product[] = [
     manufacturer: 'Plycem',
     faqs: [
       {
+        question: 'How much does Plycem Deck cost?',
+        answer:
+          'JARA publishes delivered (DDP) pricing for Deck planks — duty paid, full-container, with ~3–4 week delivery. See the pricing page for the current price; the final delivered price is confirmed by quote.',
+      },
+      {
         question: 'What is the maximum joist spacing for Plycem Deck planks?',
         answer:
           'Maximum 40.6 cm (16") on-center joist spacing. The 30mm (1-3/16") plank profile is engineered for this span under residential live-load conditions. For commercial applications with higher pedestrian loads, the design engineer should confirm joist spacing and connection details.',
@@ -268,6 +283,11 @@ export const PRODUCTS: Product[] = [
     ],
     manufacturer: 'Plycem',
     faqs: [
+      {
+        question: 'How much does Exterior Hidden Joint cladding cost?',
+        answer:
+          'JARA publishes delivered (DDP) pricing for Exterior Hidden Joint panels — duty paid, full-container, with ~3–4 week delivery. See the pricing page for the current per-thickness table; the final delivered price is confirmed by quote.',
+      },
       {
         question: 'When should I use a tapered edge versus a straight edge?',
         answer:

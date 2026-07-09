@@ -267,13 +267,21 @@ export function MaterialCalculator() {
                 <p className="text-sm text-ink/75">
                   Quote with pricing, lead time, and full spec sheet sent within 1 business day.
                 </p>
-                <Link
-                  href={prefillUrl}
-                  className="inline-flex items-center justify-center gap-2 rounded-md bg-navy px-5 py-2.5 text-sm font-semibold text-white hover:bg-navy-dark transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
-                >
-                  Get full quote
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" strokeWidth={2.5} />
-                </Link>
+                <div className="flex flex-wrap gap-3">
+                  <Link
+                    href={prefillUrl}
+                    className="inline-flex items-center justify-center gap-2 rounded-md bg-navy px-5 py-2.5 text-sm font-semibold text-white hover:bg-navy-dark transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+                  >
+                    Get full quote
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" strokeWidth={2.5} />
+                  </Link>
+                  <Link
+                    href="/pricing"
+                    className="inline-flex items-center justify-center gap-2 rounded-md border border-navy/30 px-5 py-2.5 text-sm font-semibold text-navy hover:bg-bg-soft transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel"
+                  >
+                    See delivered pricing
+                  </Link>
+                </div>
               </div>
             </div>
           )}

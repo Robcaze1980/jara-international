@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { PRODUCTS } from '@/data/products';
+import { getFromPriceUsd, formatUsd } from '@/lib/pricing';
 
 /**
  * Hero — per ADR-010 VA1 (full-bleed photo + dark navy overlay + 2 CTAs).
@@ -28,6 +30,8 @@ import Link from 'next/link';
  */
 
 export function Hero() {
+  const subfloor = PRODUCTS.find((p) => p.slug === 'high-performance-subfloor');
+  const subfloorFrom = subfloor ? getFromPriceUsd(subfloor) : undefined;
   return (
     <section
       className="relative isolate overflow-hidden bg-navy"
@@ -113,6 +117,20 @@ export function Hero() {
             <span className="rounded-full border border-white/30 px-3 py-1">30mm</span>
             <span className="text-white/70">Straight or tongue-and-groove edge</span>
           </p>
+
+          {/* Price hook (SEO audit item 19) — concrete "from $X" on the highest-
+              authority page; derives from lib/pricing so it can't drift. */}
+          {subfloorFrom != null && (
+            <p className="mt-6 text-lg font-semibold text-white">
+              From {formatUsd(subfloorFrom)}/panel — delivered (DDP), duty paid.{' '}
+              <Link
+                href="/pricing"
+                className="underline decoration-white/50 underline-offset-4 hover:decoration-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm"
+              >
+                See delivered pricing →
+              </Link>
+            </p>
+          )}
 
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
