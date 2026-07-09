@@ -150,6 +150,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   }));
 
+  const about: MetadataRoute.Sitemap[number] = {
+    url: `${SITE.url}/about`,
+    lastModified: now,
+    changeFrequency: 'yearly',
+    priority: 0.6,
+    alternates: {
+      languages: { 'en-US': `${SITE.url}/about`, 'x-default': `${SITE.url}/about` },
+    },
+  };
+
   return [
     home,
     esLanding,
@@ -159,5 +169,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...esSecondary,
     guidesIndex,
     ...guides,
+    about,
   ];
 }

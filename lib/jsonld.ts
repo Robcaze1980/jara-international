@@ -53,6 +53,7 @@ export function organizationSchema() {
     telephone: SITE.phone,
     address: {
       '@type': 'PostalAddress',
+      addressRegion: 'CA',
       addressCountry: 'US',
     },
     areaServed: SITE.serviceAreas.map((area) => ({
@@ -68,6 +69,18 @@ export function organizationSchema() {
       areaServed: 'US',
     },
     foundingDate: '2026',
+    foundingLocation: {
+      '@type': 'Place',
+      name: 'California, United States',
+    },
+    founder: {
+      '@type': 'Person',
+      '@id': `${SITE.url}/#founder`,
+      name: 'Robertson Carrillo',
+      jobTitle: 'Founder',
+      description:
+        'Founder of JARA International. 25+ years in business, administration, and entrepreneurship, including 7 years in international logistics — founder of Asia Cargo S.A. (freight forwarding, Nicaragua) and formerly with Dimerco (US / San Francisco Bay Area). Logistics experience spans Asia, the United States, and Latin America, primarily ocean freight.',
+    },
   };
 }
 
