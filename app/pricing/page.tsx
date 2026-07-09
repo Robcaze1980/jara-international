@@ -289,6 +289,7 @@ export default function PricingPage() {
         </p>
 
         {/* Priced products */}
+        <h2 className="sr-only">Delivered prices by product</h2>
         <div className="mt-10 space-y-6">
           {priced.map((p) => (
             <PricedProductBlock key={p.slug} product={p} />

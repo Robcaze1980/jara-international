@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     absolute: 'Non-Combustible Fiber-Cement Subfloor, US Direct | JARA',
   },
   description:
-    'US distributor of non-combustible fiber-cement subfloor — UL R15140, ASTM E-136, IAPMO ER-360, CBC Chapter 7A. Direct factory shipping from Costa Rica, El Salvador, and Honduras; 3–4 week door-to-door delivery.',
+    'US distributor of non-combustible fiber-cement subfloor — UL R15140, ASTM E-136, IAPMO ER-360. Direct factory shipping, ~3–4 week US delivery.',
 };
 
 export default function HomePage() {

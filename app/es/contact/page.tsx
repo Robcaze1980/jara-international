@@ -11,9 +11,9 @@ import { SITE } from '@/lib/site';
  */
 
 export const metadata: Metadata = {
-  title: 'Contacto · JARA International',
+  title: 'Contacto',
   description:
-    'Contacta a JARA International Inc. — línea de ventas 24/7, Robertson directo, WhatsApp, o email. Soporte técnico bilingüe en inglés y español. Respuesta en 1 día hábil. Distribución en EE.UU. con envío directo desde planta PLYCEM en Centroamérica.',
+    'Contacta a JARA International — línea de ventas 24/7, WhatsApp, o email. Soporte bilingüe (inglés/español), respuesta en 1 día hábil.',
   alternates: {
     canonical: `${SITE.url}/es/contact`,
     languages: {

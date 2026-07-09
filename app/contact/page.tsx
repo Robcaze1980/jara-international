@@ -59,9 +59,9 @@ const FAQS = [
 ];
 
 export const metadata: Metadata = {
-  title: 'Contact JARA International',
+  title: 'Contact Us',
   description:
-    'Contact JARA International Inc. — call our 24/7 sales line, reach Robertson directly, WhatsApp in English or Spanish, or email. Bilingual technical support. Response within 1 business day on every channel. Serving the US construction market via direct factory shipping from PLYCEM plants in Central America.',
+    'Contact JARA International — 24/7 sales line, WhatsApp, or email. Bilingual (EN/ES) technical support, reply within 1 business day.',
   alternates: {
     canonical: `${SITE.url}/contact`,
     languages: {

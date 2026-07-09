@@ -30,7 +30,7 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 export const metadata: Metadata = {
   title: 'Ordering & Logistics — Direct Factory Shipping',
   description:
-    'How JARA International fulfills US fiber-cement orders: container-direct from PLYCEM manufacturing in Costa Rica, El Salvador, and Honduras. Typical door-to-door delivery 3–4 weeks. Ocean freight, US customs clearance, and final-mile trucking coordinated end-to-end. Continental US coverage.',
+    'How JARA fulfills US fiber-cement orders — container-direct from PLYCEM plants in Central America, ~3–4 week door-to-door. Continental US coverage.',
   alternates: {
     canonical: `${SITE.url}/service-areas`,
     languages: {

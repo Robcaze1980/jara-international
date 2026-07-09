@@ -4,6 +4,10 @@ const nextConfig = {
   poweredByHeader: false,
   images: {
     formats: ['image/avif', 'image/webp'],
+    // SEO/perf audit item 42: cache optimized images for a year (they are
+    // immutable per URL — Next fingerprints by src+params). Cuts repeat
+    // optimizer work + improves repeat-view LCP.
+    minimumCacheTTL: 31536000,
     remotePatterns: [
       { protocol: 'https', hostname: 'img.youtube.com', port: '', pathname: '/vi/**' },
     ],

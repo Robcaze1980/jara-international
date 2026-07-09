@@ -37,7 +37,7 @@ type SearchParams = Promise<{
 export const metadata: Metadata = {
   title: 'Resources & Submittal Package',
   description:
-    'Request a custom quote, project submittal package, UL R15140 certificate, ASTM E-84 fire testing certificate, IAPMO ER-360 evaluation report, or product technical data sheets from JARA International. 3-step submittal form + 4-doc library + bilingual support.',
+    'Request a quote, submittal package, UL R15140 / ASTM E-84 / IAPMO ER-360 certificates, or product data sheets from JARA. 3-step form + document library.',
   alternates: {
     canonical: `${SITE.url}/resources`,
     languages: {

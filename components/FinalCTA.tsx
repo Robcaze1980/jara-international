@@ -45,7 +45,17 @@ export function FinalCTA() {
           </Link>
         </div>
 
-        <p className="mt-6 text-xs text-white/60">
+        <p className="mt-6 text-sm text-white/70">
+          Or{' '}
+          <Link
+            href="/pricing"
+            className="font-semibold text-white underline decoration-white/40 underline-offset-4 hover:decoration-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm"
+          >
+            see delivered (DDP) pricing
+          </Link>
+          .
+        </p>
+        <p className="mt-4 text-xs text-white/60">
           Direct line: {SITE.phoneSecondary} · {SITE.email}
         </p>
       </div>
