@@ -18,6 +18,7 @@
     "cf:build": "opennextjs-cloudflare build",
     "cf:deploy": "opennextjs-cloudflare deploy",
     "cf:upload": "opennextjs-cloudflare upload",
+    "check:pricing": "node scripts/check_pricing_parity.mjs",
     "design:lint": "design.md lint docs/design/DESIGN.md",
     "prepare": "husky"
   },

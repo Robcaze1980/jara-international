@@ -21,5 +21,11 @@
 # Spec source: https://github.com/google-labs-code/design.md (alpha)
 # To skip in an emergency: `git commit --no-verify` (then fix in a follow-up).
 
+# Pricing parity (SEO audit item 43) — BLOCKING. public/llms.txt hardcodes the
+# AI-crawler summary prices; this guards them against drift from lib/pricing.ts
+# PRICE_BY_SKU (the single source of truth). Every other price surface derives
+# from lib/pricing at runtime and cannot drift.
+node scripts/check_pricing_parity.mjs || exit 1
+
 node node_modules/@google/design.md/dist/index.js lint docs/design/DESIGN.md \
   || echo "[pre-commit] design.md linter exited non-zero (alpha package bug) — commit NOT blocked. See hook comment." >&2

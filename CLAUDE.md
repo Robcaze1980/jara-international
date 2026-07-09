@@ -154,6 +154,8 @@ Turnstile.
 
 The `@google/design.md` alpha linter has a known upstream bug (`raw.match is not a function`) that fires on every commit. The husky pre-commit hook (`.husky/pre-commit`) is **non-blocking** — it runs the linter, surfaces output to stderr, and exits 0 regardless. Re-tighten by removing the `|| echo ...` fallback once Google Labs ships an upstream fix. Until then, do NOT bypass the hook with `--no-verify` — let it fail gracefully.
 
+**2026-07-09 (SEO audit item 43):** the hook now ALSO runs `scripts/check_pricing_parity.mjs` as a **BLOCKING** step — it aborts the commit if `public/llms.txt` prices drift from `lib/pricing.ts` `PRICE_BY_SKU` (the single price source of truth). Run `npm run check:pricing` to verify manually. If it blocks, sync the `## Pricing` section of `public/llms.txt` to `PRICE_BY_SKU`. All other price surfaces derive from `lib/pricing` and cannot drift.
+
 ---
 
 ## OG image generation
