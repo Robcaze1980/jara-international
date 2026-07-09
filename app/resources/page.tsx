@@ -6,6 +6,7 @@ import { buildTelUrl } from '@/lib/whatsapp';
 import { SectionNav } from '@/components/SectionNav';
 import { SubmittalForm } from '@/components/SubmittalForm';
 import { DocumentLibrary } from '@/components/DocumentLibrary';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 
 /**
  * /resources — Sprint 4 step 5 — full composition.
@@ -84,7 +85,14 @@ export default async function ResourcesPage({
     <div className="bg-bg-soft">
       {/* Header strip */}
       <section className="mx-auto max-w-7xl px-6 pt-16 pb-8 lg:px-8 lg:pt-20">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-steel">
+        <Breadcrumbs
+          pageUrl={`${SITE.url}/resources`}
+          items={[
+            { name: 'Home', path: '/' },
+            { name: 'Resources', path: '/resources' },
+          ]}
+        />
+        <p className="mt-6 text-xs font-semibold uppercase tracking-[0.18em] text-steel">
           Resources & Documentation
         </p>
         <h1 className="mt-3 font-display text-3xl font-bold text-navy md:text-4xl text-balance">

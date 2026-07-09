@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { SITE } from '@/lib/site';
 import { PRODUCTS } from '@/data/products';
+import { getVariantPriceUsd, isPricedProduct, PRICE_CAVEATS, PRICE_CURRENCY } from '@/lib/pricing';
 
 /**
  * Public LLM-context endpoint per ADR-004 (D2) + F5.R3.
@@ -69,8 +70,21 @@ export async function GET() {
         weightKg: v.weightKg,
         weightLbs: v.weightLbs,
         edgeProfile: v.edgeProfile,
+        priceUsd: getVariantPriceUsd(v.sku) ?? null,
       })),
+      priced: isPricedProduct(p.slug),
     })),
+    pricing: {
+      currency: PRICE_CURRENCY,
+      basis:
+        'DDP (delivered duty paid) to a main US base port, full-container (40HQ). Per panel; Deck per plank.',
+      indicative: true,
+      finalPriceBy: 'quote',
+      terms: PRICE_CAVEATS,
+      note:
+        'Published prices are indicative starting prices; the final delivered price is confirmed by quote. 3 of 7 products are currently list-priced (see each variant priceUsd; null = quote-only); the rest are quote-only.',
+      url: `${SITE.url}/pricing`,
+    },
     citationGuidance: {
       attributionRequired: true,
       preferredCitation: `${SITE.name} (${SITE.url})`,

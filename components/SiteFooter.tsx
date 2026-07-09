@@ -25,7 +25,10 @@ const certifications = [
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/products', label: 'Products' },
+  { href: '/pricing', label: 'Delivered (DDP) Pricing' },
+  { href: '/service-areas', label: 'Ordering & Logistics' },
   { href: '/resources', label: 'Submittal Package' },
+  { href: '/guides', label: 'Guides' },
   { href: '/contact', label: 'Contact' },
   { href: '/es', label: 'Español' },
 ];

@@ -34,7 +34,7 @@ import { FinalCTA } from '@/components/FinalCTA';
 // and listing all three manufacturing countries).
 export const metadata: Metadata = {
   title: {
-    absolute: 'Non-Combustible Fiber-Cement Subfloor — Multifamily & Commercial USA | JARA International Inc.',
+    absolute: 'Non-Combustible Fiber-Cement Subfloor, US Direct | JARA',
   },
   description:
     'US distributor of non-combustible fiber-cement subfloor — UL R15140, ASTM E-136, IAPMO ER-360, CBC Chapter 7A. Direct factory shipping from Costa Rica, El Salvador, and Honduras; 3–4 week door-to-door delivery.',

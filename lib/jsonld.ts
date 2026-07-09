@@ -10,6 +10,7 @@
  * Supersedes the LocalBusiness portion of ADR-017.
  */
 import { SITE } from './site';
+import { getPricedVariants, PRICE_CURRENCY, priceUnitNoun } from './pricing';
 
 const ORG_ID = `${SITE.url}/#organization`;
 
@@ -84,6 +85,53 @@ export function breadcrumbSchema(
   };
 }
 
+/**
+ * Product `offers` builder (Round 16, 2026-07-09). SB-4 authorized 2026-07-06:
+ * priced products emit one Offer per priced variant with a UnitPriceSpecification
+ * (price, USD, full-container eligibleQuantity) per R16-Q3=B. Quote-only products
+ * keep a single price-less MadeToOrder Offer.
+ */
+function productOffers(product: import('@/data/products').Product) {
+  const areaServed = SITE.serviceAreas.map((a) => ({ '@type': 'Place', name: a }));
+  const priced = getPricedVariants(product);
+  if (priced.length === 0) {
+    return {
+      '@type': 'Offer',
+      seller: { '@id': ORG_ID },
+      availability: 'https://schema.org/MadeToOrder',
+      areaServed,
+    };
+  }
+  return priced.map((pv) => ({
+    '@type': 'Offer',
+    sku: pv.variant.sku,
+    seller: { '@id': ORG_ID },
+    availability: 'https://schema.org/MadeToOrder',
+    // Flat price + currency so Google's Product rich-result parser surfaces the
+    // price (it does not read UnitPriceSpecification). The UnitPriceSpecification
+    // below carries the full-container semantics for advanced parsers / AI. (SEO
+    // audit fix 2026-07-09; complements R16-Q3=B.)
+    price: pv.priceUsd,
+    priceCurrency: PRICE_CURRENCY,
+    priceSpecification: {
+      '@type': 'UnitPriceSpecification',
+      price: pv.priceUsd,
+      priceCurrency: PRICE_CURRENCY,
+      referenceQuantity: {
+        '@type': 'QuantitativeValue',
+        value: 1,
+        unitText: priceUnitNoun(product.slug),
+      },
+      eligibleQuantity: {
+        '@type': 'QuantitativeValue',
+        unitText: 'full container (40HQ)',
+      },
+      valueAddedTaxIncluded: false,
+    },
+    areaServed,
+  }));
+}
+
 /** Per Round 6 F4.R6: Product schema for each featured product on home + product detail pages. */
 export function productSchema(product: import('@/data/products').Product) {
   const firstVariant = product.variants[0];
@@ -125,21 +173,10 @@ export function productSchema(product: import('@/data/products').Product) {
       value: cert.detail,
       ...(cert.validThrough && { validThrough: cert.validThrough }),
     })),
-    // Distributor relationship — Plycem ship blocker compliant (no "Authorized" claim).
-    // Per ship blocker SB-4: NO price, NO priceCurrency, NO priceSpecification —
-    // a quote-only model.
-    // 2026-05-16 history: removed `availability: InStock` after ADR-049
-    // (warehouse positioning correction).
-    // 2026-05-16 Round 11 G2 (5-0 unanimous): restored as `MadeToOrder` —
-    // semantically honest for container-direct supply with 3–4 week typical
-    // door-to-door lead time, and re-eligible for Google Product
-    // rich-snippet surfaces under an accurate schema.org value.
-    offers: {
-      '@type': 'Offer',
-      seller: { '@id': ORG_ID },
-      availability: 'https://schema.org/MadeToOrder',
-      areaServed: SITE.serviceAreas.map((a) => ({ '@type': 'Place', name: a })),
-    },
+    // SB-4 authorized 2026-07-06 (R16): priced products emit UnitPriceSpecification
+    // Offers; quote-only products keep a price-less MadeToOrder Offer. `availability`
+    // stays MadeToOrder for all (container-direct, ~3–4 wk; ADR-049). See productOffers().
+    offers: productOffers(product),
   };
 }
 
@@ -221,6 +258,54 @@ export function howToSchema(args: {
       name: s.name,
       text: s.text,
     })),
+  };
+}
+
+/**
+ * ItemList of the currently list-priced products, for /pricing (R16 audit item 11).
+ * Reuses productSchema() so each embedded Product node (with its priced Offers) is
+ * byte-identical to the one on its detail page (shared @id). NO BreadcrumbList here
+ * — the page's <Breadcrumbs> component already emits one (avoids duplicate @id).
+ */
+export function pricingItemListSchema(products: import('@/data/products').Product[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    '@id': `${SITE.url}/pricing#pricelist`,
+    name: 'JARA delivered (DDP) pricing',
+    numberOfItems: products.length,
+    itemListElement: products.map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: productSchema(p),
+    })),
+  };
+}
+
+/**
+ * Article schema for /guides editorial pages (R16 audit item 15 + critic
+ * addition 4: AI Overviews and Google weight author + datePublished/dateModified
+ * on informational content). Author/publisher resolve to the JARA Organization.
+ */
+export function articleSchema(args: {
+  pageUrl: string;
+  headline: string;
+  description: string;
+  datePublished: string;
+  dateModified: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': `${args.pageUrl}#article`,
+    headline: args.headline,
+    description: args.description,
+    datePublished: args.datePublished,
+    dateModified: args.dateModified,
+    author: { '@id': ORG_ID },
+    publisher: { '@id': ORG_ID },
+    mainEntityOfPage: args.pageUrl,
+    inLanguage: 'en-US',
   };
 }
 

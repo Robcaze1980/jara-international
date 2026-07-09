@@ -4,6 +4,7 @@ import { Ship, Anchor, Truck, ClipboardCheck, Phone, ArrowRight } from 'lucide-r
 import { SITE } from '@/lib/site';
 import { buildTelUrl } from '@/lib/whatsapp';
 import { howToSchema, jsonLdScript } from '@/lib/jsonld';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 
 /**
  * /service-areas — ordering & logistics page.
@@ -93,6 +94,17 @@ export default function OrderingLogisticsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdScript(orderingHowTo) }}
       />
+
+      {/* Breadcrumb strip (light, above the navy hero) */}
+      <div className="mx-auto max-w-7xl px-6 pt-6 lg:px-8">
+        <Breadcrumbs
+          pageUrl={pageUrl}
+          items={[
+            { name: 'Home', path: '/' },
+            { name: 'Ordering & Logistics', path: '/service-areas' },
+          ]}
+        />
+      </div>
 
       {/* Header strip */}
       <section className="bg-navy text-white">

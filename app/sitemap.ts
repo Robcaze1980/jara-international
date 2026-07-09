@@ -9,11 +9,11 @@ import { PRODUCTS } from '@/data/products';
  * Generated from data/products.ts + the static route map so the sitemap
  * stays in sync with the catalog automatically.
  *
- * Per Round 8 §4 disposition: hreflang `es-US` alternates for product
- * detail pages point to `/es` marketing root because per-slug Spanish
- * detail routes do not exist yet. Do NOT "fix" those to /es/products/<slug>
- * until those routes 200 — Google's hreflang validator will demote the
- * whole chain if alternates 404.
+ * SEO audit 2026-07-09: the /products listing and detail pages no longer emit
+ * an es-US hreflang alternate. /es never reciprocated per-product, so the
+ * annotation was non-reciprocal (Google drops it + GSC reports "no return
+ * tags"). They now carry self en-US + x-default only. Restore es-US only when
+ * real /es/products/<slug> routes exist and return 200.
  *
  * /long-beach-stock is intentionally excluded — it is a hidden noindex
  * paid-ads landing page (CLAUDE.md ADR-049 lock) and must not appear in
@@ -69,7 +69,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     alternates: {
       languages: {
         'en-US': `${SITE.url}/products`,
-        'es-US': `${SITE.url}/es`,
         'x-default': `${SITE.url}/products`,
       },
     },
@@ -84,8 +83,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     alternates: {
       languages: {
         'en-US': `${SITE.url}/products/${p.slug}`,
-        // Per Round 8 §4: ES detail routes don't exist; point to /es marketing root.
-        'es-US': `${SITE.url}/es`,
+        // SEO audit 2026-07-09: es-US removed (non-reciprocal — /es had no
+        // per-product return tag). Restore when /es/products/<slug> exists.
         'x-default': `${SITE.url}/products/${p.slug}`,
       },
     },
@@ -120,5 +119,41 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   }));
 
-  return [home, esLanding, productsListing, ...productDetails, ...enSecondary, ...esSecondary];
+  // Guides — editorial hub + 3 informational pages (R16 audit item 15)
+  const guidesIndex: MetadataRoute.Sitemap[number] = {
+    url: `${SITE.url}/guides`,
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: 0.7,
+    alternates: {
+      languages: { 'en-US': `${SITE.url}/guides`, 'x-default': `${SITE.url}/guides` },
+    },
+  };
+  const guides: MetadataRoute.Sitemap = [
+    'non-combustible-subfloor-cost',
+    'fiber-cement-vs-plywood-subfloor',
+    'type-i-ii-construction-subfloor',
+  ].map((slug) => ({
+    url: `${SITE.url}/guides/${slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: 0.75,
+    alternates: {
+      languages: {
+        'en-US': `${SITE.url}/guides/${slug}`,
+        'x-default': `${SITE.url}/guides/${slug}`,
+      },
+    },
+  }));
+
+  return [
+    home,
+    esLanding,
+    productsListing,
+    ...productDetails,
+    ...enSecondary,
+    ...esSecondary,
+    guidesIndex,
+    ...guides,
+  ];
 }

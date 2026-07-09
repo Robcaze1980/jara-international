@@ -62,3 +62,7 @@ __pycache__/
 
 # Claude Code local session state (per-developer, never committed)
 .claude/
+
+# Internal — NEVER commit to this PUBLIC repo (supplier source, landed-cost model, margins)
+BITACORA.md
+docs/internal/

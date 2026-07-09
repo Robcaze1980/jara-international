@@ -1,5 +1,6 @@
 import { SITE } from '@/lib/site';
 import { PRODUCTS } from '@/data/products';
+import { getVariantPriceUsd, PRICE_CAVEATS } from '@/lib/pricing';
 
 /**
  * /llms-full.txt — full markdown content for AI training corpus inclusion
@@ -29,7 +30,7 @@ export async function GET() {
     const variants = p.variants
       .map(
         (v) =>
-          `| ${v.sku} | ${v.thicknessMm}mm (${v.thicknessImperial}) | ${v.widthMm}×${v.lengthMm}mm | ${v.weightKg} kg / ${v.weightLbs} lbs | ${v.edgeProfile ?? '—'} |`
+          `| ${v.sku} | ${v.thicknessMm}mm (${v.thicknessImperial}) | ${v.widthMm}×${v.lengthMm}mm | ${v.weightKg} kg / ${v.weightLbs} lbs | ${v.edgeProfile ?? '—'} | ${getVariantPriceUsd(v.sku) != null ? '$' + getVariantPriceUsd(v.sku) : 'Quote only'} |`
       )
       .join('\n');
 
@@ -53,9 +54,11 @@ ${compliance}
 - Flexural strength (min): ${p.flexuralStrengthMin.value} ${p.flexuralStrengthMin.unit}
 
 ### Variant table
-| SKU | Thickness | Dimensions | Weight | Edge profile |
-|-----|-----------|------------|--------|--------------|
+| SKU | Thickness | Dimensions | Weight | Edge profile | Price (USD) |
+|-----|-----------|------------|--------|--------------|-------------|
 ${variants}
+
+Price basis: per ${p.slug === 'deck' ? 'plank' : 'panel'}, delivered duty-paid (DDP) to a main US base port, full-container (40HQ); indicative, final price confirmed by quote. "Quote only" = not currently list-priced.
 `;
   }).join('\n---\n\n');
 
@@ -93,6 +96,22 @@ ${SITE.serviceAreas.map((a) => `- ${a}`).join('\n')}
 - **Three manufacturing origins** (Costa Rica, El Salvador, Honduras) for supply resilience
 - **Technical sales support** in English and Spanish
 - **B2B-grade transparency**: full spec sheets, code compliance reports, and submittal packages on request
+
+---
+
+## Pricing
+
+Basis: DDP (delivered duty paid) to a main US base port, full-container (40HQ). Per panel; Deck per plank.
+
+Indicative delivered (DDP) list prices — 3 of 7 products are currently list-priced; the rest are quote-only. The final delivered price is confirmed by quote.
+
+- High Performance Subfloor (lead product): from $74 per panel (approximately $2.30–$3.29 per square foot). 20mm straight $74, 20mm T&G $83, 22mm straight $85, 22mm T&G $89, 25mm T&G $105.
+- Exterior Hidden Joint: from $28 per panel. 8mm $28 or $29, 10mm $39, 12mm $49.
+- Deck (plank): from $48 each. 30mm $48 or $49.
+- Exterior Cement Board, Deck Modular, Plycem Siding, Corrugated Roof Tile: priced by quote.
+
+Price terms:
+${PRICE_CAVEATS.map((c) => `- ${c}`).join('\n')}
 
 ---
 

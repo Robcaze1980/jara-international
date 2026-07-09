@@ -13,6 +13,7 @@ import {
 import { SITE } from '@/lib/site';
 import { buildTelUrl, buildWhatsAppUrl } from '@/lib/whatsapp';
 import { faqSchema, jsonLdScript } from '@/lib/jsonld';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 
 /**
  * /contact — full page (Sprint 4 step 6).
@@ -97,7 +98,14 @@ export default function ContactPage() {
 
       {/* Header strip */}
       <section className="mx-auto max-w-4xl px-6 pt-16 pb-8 lg:px-8 lg:pt-24 lg:pb-12">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-steel">
+        <Breadcrumbs
+          pageUrl={pageUrl}
+          items={[
+            { name: 'Home', path: '/' },
+            { name: 'Contact', path: '/contact' },
+          ]}
+        />
+        <p className="mt-6 text-xs font-semibold uppercase tracking-[0.18em] text-steel">
           Contact
         </p>
         <h1 className="mt-3 font-display text-3xl font-bold text-navy md:text-4xl text-balance">

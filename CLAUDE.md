@@ -65,8 +65,8 @@ From `docs/MASTER_AUDIT.md` §5. Brief enforcement-level reminders:
 
 - **SB-1** No "PLYCEM" in primary domain — `jarainternational.com` only.
 - **SB-2** JARA brand identity, not Plycem's.
-- **SB-3** No Plycem-vs-USG comparisons.
-- **SB-4** No Plycem list prices on any surface. Quote-only model. No price in JSON-LD (`offers` block omits `price`, `priceCurrency`, `priceSpecification`).
+- **SB-3** No published Plycem-vs-competitor comparison **tables**, and no **naming** a competitor in comparative claims, without prior **written** Plycem approval. Clarification (2026-07-09 founder call): a **generic, non-tabular** positioning mention of "the leading US brand" that does NOT name it and does NOT structure a Plycem-vs table is **outside SB-3 — allowed** (keep claims truthful/substantiated per ad law).
+- **SB-4** ✅ **UNBLOCKED 2026-07-06** — Plycem verbally authorized JARA to publish list prices (phone call to founder, 2026-07-06). SB-4's bar is "without authorization" (not "written"), so this clears it. JARA list prices (rounded DDP) MAY be published; JSON-LD `Offer`/`priceSpecification` allowed. NOTE: **SB-3** = no competitor comparison _tables_ or _naming_ without written approval; a generic leading-brand mention IS allowed (see SB-3). See `BITACORA.md`.
 - **SB-5** No "PLYCEM" in `<title>` tags.
 - **SB-6** No "Authorized Distributor" wording without Plycem's written approval. Use "US-based distributor of PLYCEM products".
 - **SB-7** No Plycem logo without written approval. Text wordmarks only.

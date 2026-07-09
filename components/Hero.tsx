@@ -68,7 +68,6 @@ export function Hero() {
             alt=""
             role="presentation"
             fill
-            priority
             sizes="(min-width: 1536px) 340px, (min-width: 1280px) 300px, (min-width: 1024px) 260px, (min-width: 768px) 220px, 200px"
             className="rounded-full object-cover shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] ring-4 ring-white/15"
           />

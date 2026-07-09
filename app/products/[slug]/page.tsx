@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import { SITE } from '@/lib/site';
 import { PRODUCTS, getProductBySlug } from '@/data/products';
 import { productSchema, plycemOrganizationSchema, jsonLdScript } from '@/lib/jsonld';
+import { isPricedProduct, getFromPriceUsd, formatUsd, priceUnitNoun } from '@/lib/pricing';
 import { getRelatedProducts } from '@/lib/related-products';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { ProductDetailHero } from '@/components/ProductDetailHero';
@@ -100,25 +102,25 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   if (!product) return { title: 'Product Not Found' };
 
   const canonical = `${SITE.url}/products/${product.slug}`;
+  const pageTitle = product.seoTitle ?? `${product.name} — Fiber-Cement Panel`;
 
   return {
-    title: `${product.name} — Fiber-Cement Panel`,
+    title: pageTitle,
     description: product.shortDescription,
     alternates: {
       canonical,
-      // Hreflang launch limitation (Round 8 §4 disposition, Round 9 C6 comment):
-      // es-US points to /es marketing root for ALL 6 detail pages because per-slug
-      // Spanish detail routes are post-launch scope. Do NOT "fix" this to
-      // ${SITE.url}/es/products/${slug} until those routes exist — Google's hreflang
-      // validator will demote the whole chain if alternates 404.
+      // Hreflang (SEO audit 2026-07-09): only self en-US + x-default. Previously an
+      // es-US alt pointed at /es, but /es never reciprocated per-product — a
+      // non-reciprocal annotation Google drops (GSC "no return tags"). No 1:1
+      // Spanish product route exists, so we omit es-US rather than emit an
+      // unreciprocated tag. Restore only when /es/products/<slug> routes 200.
       languages: {
         'en-US': canonical,
-        'es-US': `${SITE.url}/es`,
         'x-default': canonical,
       },
     },
     openGraph: {
-      title: `${product.name} — Fiber-Cement Panel`,
+      title: pageTitle,
       description: product.shortDescription,
       url: canonical,
       siteName: SITE.name,
@@ -127,7 +129,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${product.name} — Fiber-Cement Panel`,
+      title: pageTitle,
       description: product.shortDescription,
     },
   };
@@ -148,6 +150,8 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
 
   const canonical = `${SITE.url}/products/${product.slug}`;
   const relatedProducts = getRelatedProducts(product.slug, 3);
+  const priced = isPricedProduct(product.slug);
+  const fromPrice = getFromPriceUsd(product);
 
   return (
     <div className="bg-bg-soft">
@@ -192,6 +196,29 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
         <div className="mt-12 grid gap-6 lg:gap-8">
           <ProductGallery product={product} />
           <VariantTable product={product} />
+          {/* Product → /pricing link (R16 audit item 13 — bidirectional pricing hub) */}
+          <div className="rounded-lg border border-bluegray/40 bg-white px-5 py-4">
+            <Link
+              href="/pricing"
+              className="inline-flex flex-wrap items-center gap-x-2 gap-y-1 rounded-sm text-sm font-semibold text-navy hover:text-navy-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel"
+            >
+              {priced && fromPrice != null ? (
+                <>
+                  See delivered (DDP) pricing — from{' '}
+                  <span className="text-base">{formatUsd(fromPrice)}</span>
+                  <span className="font-normal text-ink/70">
+                    /{priceUnitNoun(product.slug)}, full container
+                  </span>
+                  <span aria-hidden="true">→</span>
+                </>
+              ) : (
+                <>
+                  Request delivered (DDP) pricing for {product.name}
+                  <span aria-hidden="true">→</span>
+                </>
+              )}
+            </Link>
+          </div>
           <ComplianceSection product={product} />
           {/* Cert-gap warning placed BELOW Compliance & Certifications
               (2026-05-21 placement rebalance). The natural flow is:

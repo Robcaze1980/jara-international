@@ -4,6 +4,8 @@ import { Phone, Mail, ArrowRight } from 'lucide-react';
 import { SITE } from '@/lib/site';
 import { PRODUCTS } from '@/data/products';
 import { buildTelUrl } from '@/lib/whatsapp';
+import { ProductCard } from '@/components/ProductCard';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 
 /**
  * /products — STUB page (Round 7 F1.R7 fix).
@@ -16,12 +18,11 @@ import { buildTelUrl } from '@/lib/whatsapp';
 export const metadata: Metadata = {
   title: 'Products — Fiber-Cement Panel Catalog',
   description:
-    'JARA International distributes 7 PLYCEM fiber-cement product lines: high-performance subfloor, exterior hidden joint, exterior cement board, plank siding, corrugated roof tile, deck planks, and modular deck tiles. Full catalog and detailed product pages launching this week. Call or email for immediate quote.',
+    'PLYCEM fiber-cement panels for US construction: non-combustible subfloor, exterior cladding, cement board, plank siding, deck, and roof tile. Specs, compliance, and delivered (DDP) pricing.',
   alternates: {
     canonical: `${SITE.url}/products`,
     languages: {
       'en-US': `${SITE.url}/products`,
-      'es-US': `${SITE.url}/es`,
       'x-default': `${SITE.url}/products`,
     },
   },
@@ -31,7 +32,14 @@ export default function ProductsStubPage() {
   return (
     <div className="min-h-[60vh] bg-bg-soft">
       <section className="mx-auto max-w-4xl px-6 py-16 lg:px-8 lg:py-24">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-steel">
+        <Breadcrumbs
+          pageUrl={`${SITE.url}/products`}
+          items={[
+            { name: 'Home', path: '/' },
+            { name: 'Products', path: '/products' },
+          ]}
+        />
+        <p className="mt-6 text-xs font-semibold uppercase tracking-[0.18em] text-steel">
           Product Catalog
         </p>
         <h1 className="mt-3 font-display text-3xl font-bold text-navy md:text-4xl text-balance">
@@ -41,28 +49,20 @@ export default function ProductsStubPage() {
           JARA distributes the PLYCEM line: non-combustible fiber-cement
           structural subfloor (the lead product, UL R15140 / IAPMO / CBC
           Chapter 7A), plus exterior cladding, cement board, plank siding,
-          corrugated roof tile, deck planks, and modular deck tiles. Detailed
-          product pages are publishing this week. For immediate quotes,
-          call or email — Robertson responds within 1 business day.
+          corrugated roof tile, deck planks, and modular deck tiles. Open any
+          product for specs and compliance, or jump to{' '}
+          <Link
+            href="/pricing"
+            className="font-semibold text-navy underline decoration-bluegray underline-offset-4 hover:decoration-navy"
+          >
+            delivered (DDP) pricing
+          </Link>
+          .
         </p>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2">
           {PRODUCTS.map((p) => (
-            <div
-              key={p.slug}
-              className="rounded-lg border border-bluegray/40 bg-white p-5"
-            >
-              <h2 className="font-display text-lg font-semibold text-navy">
-                {p.name}
-              </h2>
-              <p className="mt-2 text-sm leading-relaxed text-ink/75">
-                {p.shortDescription}
-              </p>
-              <p className="mt-3 text-xs text-ink/55">
-                {p.variants.length} {p.variants.length === 1 ? 'variant' : 'variants'} ·{' '}
-                Detail page coming this week
-              </p>
-            </div>
+            <ProductCard key={p.slug} product={p} />
           ))}
         </div>
 

@@ -64,6 +64,11 @@ export type ProductProfile = {
 export type Product = {
   slug: string;
   name: string;
+  /**
+   * Optional SEO <title> override. Defaults to `{name} — Fiber-Cement Panel`.
+   * Used to keep "PLYCEM" out of <title> tags (ship blocker SB) and titles ≤60 chars.
+   */
+  seoTitle?: string;
   shortDescription: string;
   longDescription: string;
   applications: string[];
@@ -414,6 +419,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: 'siding',
     name: 'Plycem Siding',
+    seoTitle: 'Fiber-Cement Plank Siding — 4 Profiles',
     image: '/images/products/siding-hero.webp',
     installationImage: {
       src: '/images/products/siding-installation-cedro-stained.webp',
@@ -535,6 +541,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: 'corrugated-roof-tile',
     name: 'Corrugated Roof Tile (Eureka Sevillana)',
+    seoTitle: 'Corrugated Fiber-Cement Roof Tile',
     image: '/images/products/corrugated-roof-tile.webp',
     images: [
       {
