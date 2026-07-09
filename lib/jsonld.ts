@@ -267,11 +267,14 @@ export function howToSchema(args: {
  * byte-identical to the one on its detail page (shared @id). NO BreadcrumbList here
  * — the page's <Breadcrumbs> component already emits one (avoids duplicate @id).
  */
-export function pricingItemListSchema(products: import('@/data/products').Product[]) {
+export function pricingItemListSchema(
+  products: import('@/data/products').Product[],
+  pageUrl: string = `${SITE.url}/pricing`,
+) {
   return {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    '@id': `${SITE.url}/pricing#pricelist`,
+    '@id': `${pageUrl}#pricelist`,
     name: 'JARA delivered (DDP) pricing',
     numberOfItems: products.length,
     itemListElement: products.map((p, i) => ({
