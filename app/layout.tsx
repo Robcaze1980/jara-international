@@ -34,6 +34,13 @@ export const metadata: Metadata = {
   applicationName: SITE.name,
   authors: [{ name: SITE.name, url: SITE.url }],
   generator: 'Next.js',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.png', type: 'image/png', sizes: '500x500' },
+    ],
+    apple: [{ url: '/apple-icon.png', sizes: '500x500', type: 'image/png' }],
+  },
   keywords: [
     'fiber cement panel distributor',
     'non-combustible subfloor USA',

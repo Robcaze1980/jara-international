@@ -292,6 +292,31 @@ export function howToSchema(args: {
 }
 
 /**
+ * WebApplication schema for lightweight on-page tools such as the material
+ * calculator. Pairs with HowTo when the page both explains and provides the
+ * calculator experience.
+ */
+export function webApplicationSchema(args: {
+  pageUrl: string;
+  name: string;
+  description: string;
+  applicationCategory?: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    '@id': `${args.pageUrl}#webapp`,
+    name: args.name,
+    description: args.description,
+    url: args.pageUrl,
+    applicationCategory: args.applicationCategory ?? 'BusinessApplication',
+    operatingSystem: 'Any',
+    isAccessibleForFree: true,
+    provider: { '@id': ORG_ID },
+  };
+}
+
+/**
  * ItemList of the currently list-priced products, for /pricing (R16 audit item 11).
  * Reuses productSchema() so each embedded Product node (with its priced Offers) is
  * byte-identical to the one on its detail page (shared @id). NO BreadcrumbList here

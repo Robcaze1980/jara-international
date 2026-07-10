@@ -1,7 +1,14 @@
 import type { Metadata } from 'next';
 import { SITE } from '@/lib/site';
 import { PRODUCTS } from '@/data/products';
-import { productSchema, webSiteSchema, plycemOrganizationSchema, howToSchema, jsonLdScript } from '@/lib/jsonld';
+import {
+  productSchema,
+  webSiteSchema,
+  plycemOrganizationSchema,
+  howToSchema,
+  webApplicationSchema,
+  jsonLdScript,
+} from '@/lib/jsonld';
 import { Hero } from '@/components/Hero';
 import { ValueProps } from '@/components/ValueProps';
 import { FeaturedProducts } from '@/components/FeaturedProducts';
@@ -60,6 +67,13 @@ export default function HomePage() {
         { name: 'Review the estimate', text: 'The calculator returns panels needed (32 SF per 4×8 panel), total weight, and 40HQ container loads.' },
         { name: 'Get your delivered price', text: 'See delivered (DDP) pricing or request a quote for your exact quantity and US port of entry.' },
       ],
+    }),
+    webApplicationSchema({
+      pageUrl: SITE.url,
+      name: 'JARA fiber-cement subfloor material calculator',
+      description:
+        'Free calculator for estimating fiber-cement subfloor panels, approximate weight, and 40HQ container loads from project square footage.',
+      applicationCategory: 'CalculatorApplication',
     }),
     ...PRODUCTS.map((p) => productSchema(p)),
   ];
