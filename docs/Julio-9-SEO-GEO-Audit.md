@@ -4,6 +4,18 @@
 **Method:** 9-agent audit workflow (7 parallel dimension deep-dives → synthesis → adversarial critic)
 **Verdict:** *Conditional pass* — executing Phases 1–4 **plus** the 6 adversarial additions re-audits clean across all dimensions.
 
+> **STATUS — 2026-07-09, shipped to production: ✅ ALL AUDIT ITEMS DONE.**
+> Phases 1–4 + critic additions #2–#6 implemented, verified, and live on
+> jarainternational.com (commits `d60a5d4` → `3cc6fe1`). Item 43 shipped as a
+> pricing-parity gate (`npm run check:pricing`, blocking pre-commit) instead of an
+> llms.txt route conversion (lower risk). The three audit-accepted deferrals
+> (lang route-groups refactor, @graph consolidation, Offer shipping/return policy)
+> remain accepted risk — not open gaps.
+>
+> **ONLY OPEN ITEM:** 🔴 **critic #1 — IAPMO ER-360 expiry (2026-07-31)** — a
+> founder/supplier business decision (renew or downgrade), tracked on a separate
+> task. Not a code gap. Everything else is closed.
+
 ---
 
 ## Part 1 — SEO/GEO Audit Loop Methodology
