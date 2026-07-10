@@ -70,7 +70,8 @@ export default function AboutPage() {
 
         <h2 className="mt-12 font-display text-xl font-bold text-navy">Who founded JARA</h2>
         <p className="mt-3 leading-relaxed text-ink/80">
-          JARA was founded by <strong className="text-navy">Robertson Carrillo</strong>, who
+          JARA was founded by{' '}
+          <strong className="text-navy">Robertson Carrillo Zeledon</strong>, who
           brings 25+ years across business, administration, and entrepreneurship —
           including <strong>7 years in international logistics</strong>. He founded and ran{' '}
           <strong className="text-navy">Asia Cargo S.A.</strong>, a freight-forwarding
