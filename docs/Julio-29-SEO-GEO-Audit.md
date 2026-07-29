@@ -72,8 +72,8 @@ This is a compliance surface, not only an SEO one.
 | **P0** | plycemca.com holds rankings; broken TLS + 302 to supplier | **Critical** | ✅ **RESOLVED 2026-07-29** |
 | **P1** | Zero source citations sitewide | High | ✅ **fixed 2026-07-29** |
 | **P2** | Guides too thin to be citable; near-orphaned | High | ✅ **fixed 2026-07-29** |
-| **P3** | 4 host variants serving `200` | Medium | ✅ open |
-| **P4** | `/es` cluster fully orphaned | Medium | ✅ open |
+| **P3** | 4 host variants serving `200` | Medium | ✅ **FIXED 2026-07-29** (1 toggle left) |
+| **P4** | `/es` cluster fully orphaned | Medium | ✅ **FIXED 2026-07-29** |
 | **P5** | IAPMO ER-360 date sweep | High | ⚠️ open — needs renewed date |
 
 ---
@@ -152,7 +152,46 @@ Also closed two price-drift paths the parity check does not cover: the hardcoded
 
 ---
 
-## P3 — host canonicalization (OPEN)
+## P3 — host canonicalization (FIXED 2026-07-29, commits `8b28069` + `161dba2`)
+
+Host-matched `308` www → apex added to `next.config.mjs`, placed first so a www
+request reaches the canonical host before any path-level rule runs.
+
+Verified in production:
+
+| URL | Result |
+|---|---|
+| `www.jarainternational.com/` | 308 → `jarainternational.com/` |
+| `www…/pricing` | 308 → `jarainternational.com/pricing` |
+| `www…/guides/type-i-ii-construction-subfloor` | 308 → same path on apex |
+| `www…/es/pricing` | 308 → same path on apex |
+| `http://www…/` | 308 → `https://jarainternational.com/` |
+| apex | still 200 ✓ |
+
+`permanent: true` emits **308**, not 301. Google treats the two as equivalent
+permanent redirects, and this matches the existing legacy-slug rules in the
+same config, so it was left as-is.
+
+**Regression caught during verification.** The first attempt used a single
+`/:path*` rule. It matched the root with an empty param and Next emitted the
+placeholder un-interpolated — `Location: https://jarainternational.com/:path*`,
+a literally broken URL on the most-linked page of the site. Deep paths were
+fine, which is what made it easy to miss: host-based rules cannot be exercised
+against the dev server, so this only surfaces in a production check. Fixed by
+splitting into an explicit `/` rule plus `/:path+`.
+
+**Still open — one Cloudflare toggle.** `http://jarainternational.com/` (apex,
+no www) still returns 200. Deliberately not handled in app code: matching
+`x-forwarded-proto` behind a proxy is fragile and can loop. Flip **SSL/TLS →
+Edge Certificates → Always Use HTTPS** in the `jarainternational.com` zone; it
+redirects at the edge before the Worker is invoked.
+
+`jaraintl.com` does **not** resolve (no A record) despite being an Active
+Cloudflare zone, and `lib/site.ts` still comments that it "301 redirects to
+canonical". That comment is stale — decide whether to point the domain at the
+apex or retire it.
+
+## P3 — original finding (for reference)
 
 Four host variants all return `200` with no redirect between them:
 
@@ -178,7 +217,26 @@ stale.
 
 ---
 
-## P4 — orphaned `/es` cluster (OPEN)
+## P4 — orphaned `/es` cluster (FIXED 2026-07-29, commit `8b28069`)
+
+The cluster was hub-and-spoke with only inbound-to-hub edges: each sub-page
+linked up to `/es`, nothing linked down or sideways.
+
+- `/es` gained a **"Más información"** section linking all four sub-pages — the
+  entry path that did not exist.
+- New `components/EsSiblingNav.tsx` adds the sideways edges, keeping crawl depth
+  to any ES page at 2 from the homepage.
+- `Breadcrumbs` gained a `tone` prop. The stub pages render on navy, so the
+  default steel-on-white palette was illegible — the reason they shipped with no
+  breadcrumbs and therefore no `BreadcrumbList` at all. `/es/contact`,
+  `/es/resources` and `/es/service-areas` now emit it.
+
+Verified in production — every ES page went from **0 → 4** inbound internal
+links, and all four sub-pages emit `BreadcrumbList`. Dark-tone contrast measured
+against the navy surface with alpha blending: breadcrumb link 6.1:1, current
+14.49:1, sibling links 10.81:1, section heading 7.78:1 — all pass AA, most AAA.
+
+## P4 — original finding (for reference)
 
 `/es/contact`, `/es/pricing`, `/es/resources`, `/es/service-areas` each have
 **zero** inbound internal links from anywhere on the site, including from `/es`
