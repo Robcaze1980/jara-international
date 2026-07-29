@@ -59,6 +59,51 @@ surprising and worth investigating.
 
 ---
 
+## How to run a benchmark round
+
+Split by who can actually do each part. Claude has no access to the GSC or Bing
+dashboards; the founder has no reason to run curl.
+
+### Part A — ask Claude (one message)
+
+> "Corré el benchmark del log — las 6 consultas, el crawl y la salud de las
+> redirecciones. Compará contra Run 2."
+
+Claude runs: the 6 fixed queries, a full crawl of the sitemap, redirect health
+on `plycemca.com` (7 URLs + catch-all), MX/SPF/DMARC, and the `www` → apex
+collapse. Then appends the run to this file.
+
+### Part B — founder only (dashboards)
+
+**Google Search Console — `jarainternational.com`**
+- *Pages* → indexed vs not-indexed count. **Baseline 2026-07-29: 8 indexed / 4 not indexed.**
+  Watch the "Alternate page with proper canonical tag" bucket (was 2) — the www
+  301 should retire it.
+- *Performance* → impressions/clicks trend, and whether any guide URL appears.
+- *Settings → Change of address* → confirm still active, no errors.
+
+**Google Search Console — `plycemca.com`**
+- *Pages* → the 7 old URLs should be migrating out of the index.
+
+**Bing Webmaster Tools — `jarainternational.com`**
+- *Search Performance* — **baseline 2026-07-29: 3 clicks / 66 impressions.**
+- *AI Performance (BETA)* — the metric the citation layer targets. Any guide
+  appearing here is the clearest evidence the 2026-07-29 work landed.
+- *URL Inspection* on the three guides — Bing had **never discovered** them as
+  of 2026-07-29 ("URL is not known to Bing").
+
+Screenshot those and hand them to Claude for interpretation alongside Part A.
+
+### Part C — decide
+
+If the watch signals fired in order (stale-claim decay → plycemca positions
+vacating → JARA appearing), the migration is working; no action, wait for Run 4.
+
+If **nothing** moved by Run 4 (~6 weeks), that is the trigger to investigate:
+check the redirects still return 301, that Change of Address has not errored,
+and whether the `plycemca.com` domain renewed. Do not conclude the on-page work
+failed — with zero backlink acquisition, that is not what Run 3/4 can measure.
+
 ## Run 3 — target ~2026-08-12 (+2 weeks)
 
 _Not yet run._
