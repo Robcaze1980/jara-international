@@ -1,0 +1,8 @@
+source_url,target_url,status_code,preserve_query_string,include_subdomains,subpath_matching,preserve_path_suffix
+https://plycemca.com/fire-code-compliance,https://jarainternational.com/guides/type-i-ii-construction-subfloor,301,true,true,false,false
+https://plycemca.com/pricing,https://jarainternational.com/pricing,301,true,true,false,false
+https://plycemca.com/faq,https://jarainternational.com/products/high-performance-subfloor,301,true,true,false,false
+https://plycemca.com/thickness-guide,https://jarainternational.com/products/high-performance-subfloor,301,true,true,false,false
+https://plycemca.com/installation,https://jarainternational.com/products/high-performance-subfloor,301,true,true,false,false
+https://plycemca.com/structo-crete-alternatives,https://jarainternational.com/products/high-performance-subfloor,301,true,true,false,false
+https://plycemca.com/,https://jarainternational.com/,301,true,true,true,false
