@@ -69,7 +69,7 @@ This is a compliance surface, not only an SEO one.
 
 | # | Gap | Impact | Fixable in this repo |
 |---|---|---|---|
-| **P0** | plycemca.com holds rankings; broken TLS + 302 to supplier | **Critical** | ❌ domain/hosting |
+| **P0** | plycemca.com holds rankings; broken TLS + 302 to supplier | **Critical** | ✅ **RESOLVED 2026-07-29** |
 | **P1** | Zero source citations sitewide | High | ✅ **fixed 2026-07-29** |
 | **P2** | Guides too thin to be citable; near-orphaned | High | ✅ **fixed 2026-07-29** |
 | **P3** | 4 host variants serving `200` | Medium | ✅ open |

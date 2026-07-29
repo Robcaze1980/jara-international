@@ -1,5 +1,28 @@
 # Runbook — plycemca.com → jarainternational.com (301 migration)
 
+> ## ✅ EXECUTED AND VERIFIED — 2026-07-29
+>
+> Zone moved to Cloudflare, Universal SSL issued, Bulk Redirect rule
+> `plycemca 301` deployed against list `plycemca_to_jara` (7 items).
+>
+> **Verification — all pass:**
+>
+> | Check | Result |
+> |---|---|
+> | 7 mapped URLs | all **301** to correct destinations |
+> | Catch-all (subpath matching) | unmapped URLs → `jarainternational.com/` |
+> | `www.plycemca.com` | **301** ✓ |
+> | `http://` and `https://` | both **301** ✓ |
+> | Email (MX / SPF / DMARC) | intact ✓ |
+> | Old IONOS IPv6 | gone; replaced by Cloudflare edge ✓ |
+>
+> The headline redirect now resolves:
+> `https://plycemca.com/fire-code-compliance` → **301** →
+> `https://jarainternational.com/guides/type-i-ii-construction-subfloor`
+>
+> **Remaining:** GSC + Bing Change of Address (Step 5 below). Then re-run the
+> 6-query benchmark at +2 and +6 weeks.
+
 **Status:** approved to execute. Plycem confirmed 2026-07-29 that JARA may keep
 `plycemca.com` **as a redirect only** — no content published on it.
 
