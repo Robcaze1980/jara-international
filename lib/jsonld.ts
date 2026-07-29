@@ -351,6 +351,13 @@ export function articleSchema(args: {
   description: string;
   datePublished: string;
   dateModified: string;
+  /**
+   * SEO/GEO audit 2026-07-29 (gap P1): authoritative sources backing the
+   * claims in the article, built via `citationSchema()` in lib/sources.ts.
+   * Emitting `citation` gives AI extractors an explicit claim→authority edge
+   * instead of leaving them to infer provenance from body copy.
+   */
+  citations?: Array<Record<string, unknown>>;
 }) {
   return {
     '@context': 'https://schema.org',
@@ -364,6 +371,7 @@ export function articleSchema(args: {
     publisher: { '@id': ORG_ID },
     mainEntityOfPage: args.pageUrl,
     inLanguage: 'en-US',
+    ...(args.citations?.length && { citation: args.citations }),
   };
 }
 

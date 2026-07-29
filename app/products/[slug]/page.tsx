@@ -283,6 +283,56 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
             </section>
           )}
           <ProductFAQ product={product} pageUrl={canonical} />
+
+          {/* SEO/GEO audit 2026-07-29: the three subfloor guides each had exactly
+              one inbound internal link (from /guides), leaving the cluster that
+              targets our informational queries almost orphaned. The subfloor
+              pillar is the most topically relevant place to link them from. */}
+          {product.slug === 'high-performance-subfloor' && (
+            <section aria-labelledby="subfloor-guides-heading" className="mt-12">
+              <h2
+                id="subfloor-guides-heading"
+                className="font-display text-xl font-bold text-navy"
+              >
+                Specifier guides
+              </h2>
+              <ul className="mt-4 space-y-3">
+                {[
+                  {
+                    href: '/guides/type-i-ii-construction-subfloor',
+                    title: 'Subfloor for Type I & II construction',
+                    blurb:
+                      'Why the deck must be non-combustible per ASTM E-136, and how the material requirement differs from the assembly rating.',
+                  },
+                  {
+                    href: '/guides/fiber-cement-vs-plywood-subfloor',
+                    title: 'Fiber-cement vs plywood subfloor',
+                    blurb:
+                      'The material comparison, and why fire-retardant-treated plywood does not close the code gap.',
+                  },
+                  {
+                    href: '/guides/non-combustible-subfloor-cost',
+                    title: 'Non-combustible subfloor cost',
+                    blurb:
+                      'Delivered (DDP) pricing per thickness, what the price covers, and how to estimate a project.',
+                  },
+                ].map((g) => (
+                  <li
+                    key={g.href}
+                    className="rounded-lg border border-bluegray/40 bg-white p-4"
+                  >
+                    <Link
+                      href={g.href}
+                      className="font-display text-sm font-semibold text-navy underline decoration-navy/30 underline-offset-2 hover:decoration-navy"
+                    >
+                      {g.title}
+                    </Link>
+                    <p className="mt-1 text-sm leading-relaxed text-ink/75">{g.blurb}</p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
         </div>
 
         {relatedProducts.length > 0 && (
