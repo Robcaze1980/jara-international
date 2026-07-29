@@ -109,6 +109,54 @@ export default function SpanishLandingPage() {
           </p>
         </section>
 
+        {/* SEO/GEO audit 2026-07-29 (gap P4). The four /es sub-pages each linked
+            UP to this landing, but nothing linked DOWN to them — so they had
+            zero inbound internal links and were reachable only via the sitemap.
+            /es/pricing in particular is a complete priced page with ItemList +
+            FAQPage schema that nothing on the site pointed at. This section is
+            the entry path. */}
+        <section className="mt-12">
+          <h2 className="font-display text-2xl font-bold">Más información</h2>
+          <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+            {[
+              {
+                href: '/es/pricing',
+                title: 'Precios entregados (DDP)',
+                blurb: 'Precio por panel y por espesor, entregado a puerto de EE.UU. con arancel pagado.',
+              },
+              {
+                href: '/es/service-areas',
+                title: 'Pedidos y logística',
+                blurb: 'Cómo funciona el envío directo desde planta y qué esperar en las 3–4 semanas.',
+              },
+              {
+                href: '/es/resources',
+                title: 'Recursos y paquete de sometimiento',
+                blurb: 'Fichas técnicas, certificados UL y ASTM, y documentación para el AHJ.',
+              },
+              {
+                href: '/es/contact',
+                title: 'Contacto',
+                blurb: 'Línea de ventas, WhatsApp y correo. Atendemos en español e inglés.',
+              },
+            ].map((l) => (
+              <li key={l.href}>
+                <Link
+                  href={l.href}
+                  className="group block h-full rounded-lg border border-white/20 bg-white/5 p-4 transition-colors hover:border-white/50 hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60"
+                >
+                  <span className="font-display text-base font-semibold text-white">
+                    {l.title}
+                  </span>
+                  <span className="mt-1 block text-sm leading-relaxed text-white/70">
+                    {l.blurb}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
         <section className="mt-12 rounded-lg border border-white/20 bg-white/5 p-6">
           <h2 className="font-display text-xl font-bold">Solicitar Cotización</h2>
           <p className="mt-2 text-white/85">

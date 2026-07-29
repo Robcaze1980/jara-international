@@ -4,6 +4,7 @@ import { Phone, ArrowRight, Truck, ShieldCheck, PackageCheck, FileText, CheckCir
 import { SITE } from '@/lib/site';
 import { buildTelUrl } from '@/lib/whatsapp';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { EsSiblingNav } from '@/components/EsSiblingNav';
 import {
   plycemOrganizationSchema,
   pricingItemListSchema,
@@ -333,6 +334,8 @@ export default function EsPricingPage() {
               <ArrowRight className="h-4 w-4" aria-hidden="true" strokeWidth={2} />
             </Link>
           </div>
+
+          <EsSiblingNav current="/es/pricing" />
         </div>
       </section>
     </div>

@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SITE } from '@/lib/site';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { EsSiblingNav } from '@/components/EsSiblingNav';
 
 /**
  * /es/contact — Spanish counterpart (C15 hreflang scaffolding).
@@ -29,12 +31,14 @@ export default function SpanishContactStubPage() {
     <div className="min-h-screen bg-navy text-white">
       <div className="mx-auto max-w-2xl px-6 py-16 lg:py-24">
         <header className="mb-10">
-          <Link
-            href="/es"
-            className="inline-flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors"
-          >
-            ← Volver a /es
-          </Link>
+          <Breadcrumbs
+            pageUrl={`${SITE.url}/es/contact`}
+            tone="dark"
+            items={[
+              { name: 'Inicio', path: '/es' },
+              { name: 'Contacto', path: '/es/contact' },
+            ]}
+          />
         </header>
 
         <h1 className="font-display text-3xl font-bold leading-tight md:text-4xl text-balance">
@@ -141,6 +145,8 @@ export default function SpanishContactStubPage() {
           </Link>
           .
         </p>
+
+        <EsSiblingNav current="/es/contact" />
       </div>
     </div>
   );
