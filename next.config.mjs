@@ -38,9 +38,22 @@ const nextConfig = {
         // "Always Use HTTPS" (SSL/TLS -> Edge Certificates) does it at the edge
         // before the Worker is invoked, which is both cheaper and safer than
         // matching x-forwarded-proto in application code.
-        source: '/:path*',
+        // The root is split into its own rule on purpose. With a single
+        // `/:path*` rule, a request for `www.jarainternational.com/` matched
+        // with an EMPTY param and Next emitted the placeholder un-interpolated
+        // — Location: https://jarainternational.com/:path* — a literally broken
+        // URL on the most-linked page of the site. Deep paths were fine, which
+        // is what made it easy to miss. `/:path+` requires at least one
+        // segment, so the two rules together cover every case with no overlap.
+        source: '/',
         has: [{ type: 'host', value: 'www.jarainternational.com' }],
-        destination: 'https://jarainternational.com/:path*',
+        destination: 'https://jarainternational.com/',
+        permanent: true,
+      },
+      {
+        source: '/:path+',
+        has: [{ type: 'host', value: 'www.jarainternational.com' }],
+        destination: 'https://jarainternational.com/:path+',
         permanent: true,
       },
       {
