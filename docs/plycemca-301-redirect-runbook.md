@@ -43,6 +43,38 @@ a hard prerequisite, not a nice-to-have.
 3. Wait for the zone to go **Active** (usually under an hour; can take longer).
 4. Confirm **SSL/TLS → Overview** is set to **Full** (not Flexible, not Off).
 
+## Step 1.5 — DNS inventory BEFORE touching nameservers
+
+⚠️ **`plycemca.com` has live email on IONOS Mail.** Moving nameservers without
+recreating these records takes the mailbox down. Captured from the authoritative
+IONOS nameservers on 2026-07-29:
+
+| Type | Name | Value | After migration |
+|---|---|---|---|
+| A | `@` | `74.208.236.23` | **change** → `192.0.2.1`, proxied |
+| AAAA | `@` | `2607:f1c0:100f:f000::200` | **delete** — see note |
+| A | `www` | `74.208.236.23` | **change** → `192.0.2.1`, proxied |
+| MX | `@` | `10 mx00.ionos.com` | **keep exactly**, DNS-only |
+| MX | `@` | `10 mx01.ionos.com` | **keep exactly**, DNS-only |
+| TXT | `@` | `v=spf1 include:_spf-us.ionos.com ~all` | **keep exactly** |
+| CNAME | `_dmarc` | `dmarc.ionos.com` | **keep exactly**, DNS-only |
+| CNAME | `autodiscover` | `adsredir.ionos.info` | **keep exactly**, DNS-only |
+
+Current nameservers (IONOS): `ns1029.ui-dns.de`, `ns1060.ui-dns.com`,
+`ns1075.ui-dns.org`, `ns1118.ui-dns.biz`.
+
+**Why the AAAA must go.** If the IPv6 record still points at the old IONOS host
+while IPv4 points at Cloudflare, any IPv6-capable visitor or crawler — Googlebot
+included — reaches the old broken server and never sees the redirect. Delete it,
+or repoint it to a proxied placeholder. Leaving it is the single easiest way to
+make this migration look like it silently failed.
+
+**Email safety.** MX, SPF, DMARC and autodiscover must stay **DNS-only (grey
+cloud)** — Cloudflare does not proxy mail. Because the MX targets
+(`mx00/mx01.ionos.com`) live outside this zone, proxying the *website* records
+has no effect on mail delivery. Email keeps working as long as the rows above
+are reproduced verbatim.
+
 ## Step 2 — DNS records (redirect-only pattern)
 
 A redirect-only zone still needs a **proxied** record for Cloudflare to
