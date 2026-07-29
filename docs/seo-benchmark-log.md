@@ -91,6 +91,35 @@ collapse. Then appends the run to this file.
   appearing here is the clearest evidence the 2026-07-29 work landed.
 - *URL Inspection* on the three guides — Bing had **never discovered** them as
   of 2026-07-29 ("URL is not known to Bing").
+- *Sitemaps* — should read **23 URLs**. See the root cause below.
+
+### Root cause found 2026-07-29 — why Bing never saw the guides
+
+Bing held **two** sitemap entries, and the working one was stale:
+
+| Sitemap | Last crawl | Status | URLs |
+|---|---|---|---|
+| `www.jarainternational.com/sitemap.xml` (auto-discovered) | **2026-06-13** | Success | 18 |
+| `jarainternational.com/sitemap.xml` (manually submitted) | 2026-07-25 | **Warning** | **0** |
+
+Bing's entire picture of the site came from the **www** sitemap crawled on
+**June 13 — before the guides existed** (published July 9). Hence 18 URLs, not
+23, and hence "URL is not known to Bing" on every guide. The canonical apex
+entry was contributing nothing.
+
+The served file was never at fault: verified 2026-07-29 as HTTP 200,
+`Content-Type: application/xml`, well-formed, 23 `<loc>` entries, identical
+response to a bingbot user-agent, and declared in `robots.txt`.
+
+Two compounding factors, both fixed the same day: the stale sitemap above, and
+the guides having only one inbound internal link each (now four).
+
+**Resolution.** Bing offers no delete for auto-discovered sitemaps — only
+*Re-submit*. Re-submitting the www entry made Bing crawl it, follow the new
+`308` to the apex, and read all **23** URLs. Lesson for future rounds: a stale
+auto-discovered sitemap on a non-canonical host can silently become the only
+picture Bing has of the site, while the manually submitted canonical one sits
+at zero. Check both rows, not just the one that was submitted on purpose.
 
 Screenshot those and hand them to Claude for interpretation alongside Part A.
 
